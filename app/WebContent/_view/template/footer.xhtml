@@ -1,86 +1,78 @@
-<html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://ocpsoft.com/prettyfaces">
 <ui:composition>
 
 
 
 
-  <footer class="js--page-footer">
-    <div class="footer-widgets">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12  col-sm-3">
-            <div class="footer-widgets__social">
-              <h:graphicImage library="layout" styleClass="push-down-10" alt="Grüne Bohne" name="images/logo-footer.png" />
-              <p class="push-down-15">Adipiscing elit. Ut ullamcorper consectetur, non lacinia turpis suscipit non. Estibulum nu nc lacus, tincidunt non odio eu, scelerisque tristique quam.</p>
-              <a class="social-container" href="https://www.facebook.com/GrueneBohne"><span class="zocial-facebook"></span></a>
-              <a class="social-container" href="https://twitter.com/GrueneBohne"><span class="zocial-twitter"></span></a>
-              <a class="social-container" href="#"><span class="zocial-email"></span></a>
-              <a class="social-container" href="http://www.youtube.com/user/GrueneBohne"><span class="zocial-youtube"></span></a>
-            </div>
-          </div>
-          <div class="col-xs-12  col-sm-3">
-            <nav class="footer-widgets__navigation">
-              <div class="footer-wdgets__heading--line">
-                <h4 class="footer-widgets__heading">Navigation</h4>
-              </div>
-              <ul class="nav nav-footer">
-                <li><a href="#">Kontakt</a></li>
-                <li><a href="#">Presse</a></li>
-                <li><a href="#">Für Lebensmittelproudzenten</a></li>
-                <li><a href="#">Jobs</a></li>
-                <li><a href="#">Datenschutz</a></li>
-                <li><a href="#">AGB</a></li>
-                <li><a href="#">Impressum</a></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="col-xs-12  col-sm-3">
-            <div class="footer-widgets__navigation">
-              <div class="footer-wdgets__heading--line">
-                <h4 class="footer-widgets__heading">Zahlungsmethoden</h4>
-              </div>
-              <a class="tag" href="#">PayPal</a> 
-              <a class="tag" href="#">VISA</a> 
-              <a class="tag" href="#">MasterCard</a> 
-              <a class="tag" href="#">American Express</a> 
-            </div>
-          </div>
-          <div class="col-xs-12  col-sm-3">
-            <div class="footer-widgets__navigation">
-                <div class="footer-wdgets__heading--line">
-                  <h4 class="footer-widgets__heading">Kontakt</h4>
-                </div>
-                <a class="footer__link" href="#">Grüne Bohne GmbH</a><br />
-                L15, 1-6, 5th floor<br />
-				68161 Mannheim, Deutschland<br />
-                <a class="footer__link--small" href="contact-2.html">View Google map <span class="glyphicon glyphicon-chevron-right glyphicon--footer-small"></span></a><br /><br />
-                <a class="footer__link" href="#"><span class="glyphicon glyphicon-earphone glyphicon--footer"></span> +49 621 123 456</a><br />
-                <a class="footer__link" href="#"><span class="glyphicon glyphicon-envelope glyphicon--footer"></span> kontakt@grüne-bohne.de</a>
-              </div>
-            </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12  col-sm-6">
-            <div class="footer__text--link">
-             Copyright 2014 © Grüne Bohne
-            </div>
-          </div>
-          <div class="col-xs-12  col-sm-6">
-            <div class="footer__text">
-              Made with fresh and regional food
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+	<footer class="js--page-footer">
+		<div class="footer-widgets">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12  col-sm-3">
+						<div class="footer-widgets__social">
+							<h:graphicImage library="layout" styleClass="push-down-10" alt="Grüne Bohne" name="images/logo-footer.png" />
+							<p class="push-down-15">Adipiscing elit. Ut ullamcorper consectetur, non lacinia turpis suscipit non. Estibulum nu nc lacus,
+								tincidunt non odio eu, scelerisque tristique quam.</p>
+							<a class="social-container" href="https://www.facebook.com/GrueneBohne"><span class="zocial-facebook"></span></a> <a
+								class="social-container" href="https://twitter.com/GrueneBohne"><span class="zocial-twitter"></span></a> <a class="social-container"
+								href="#"><span class="zocial-email"></span></a> <a class="social-container" href="http://www.youtube.com/user/GrueneBohne"><span
+								class="zocial-youtube"></span></a>
+						</div>
+					</div>
+					<div class="col-xs-12  col-sm-3">
+						<nav class="footer-widgets__navigation">
+							<div class="footer-wdgets__heading--line">
+								<h4 class="footer-widgets__heading">Navigation</h4>
+							</div>
+							<ul class="nav nav-footer">
+								<li><p:link mappingId="kontakt">Kontakt</p:link></li>
+								<li><p:link mappingId="presse">Presse</p:link></li>
+								<li><p:link mappingId="partner">Partner</p:link></li>
+								<li><p:link mappingId="jobs">Jobs</p:link></li>
+								<li><p:link mappingId="datenschutz">Datenschutz</p:link></li>
+								<li><p:link mappingId="agb">AGB</p:link></li>
+								<li><p:link mappingId="impressum">Impressum</p:link></li>
+							</ul>
+						</nav>
+					</div>
+					<div class="col-xs-12  col-sm-3">
+						<div class="footer-widgets__navigation">
+							<div class="footer-wdgets__heading--line">
+								<h4 class="footer-widgets__heading">Zahlungsmethoden</h4>
+							</div>
+							<a class="tag" href="#">Bankeinzug</a> <a class="tag" href="#">PayPal</a> <a class="tag" href="#">VISA</a> <a class="tag" href="#">MasterCard</a>
+							<a class="tag" href="#">American Express</a>
+						</div>
+					</div>
+					<div class="col-xs-12  col-sm-3">
+						<div class="footer-widgets__navigation">
+							<div class="footer-wdgets__heading--line">
+								<h4 class="footer-widgets__heading">Kontakt</h4>
+							</div>
+							<a class="footer__link" href="#">Grüne Bohne GmbH</a><br /> L15, 1-6, 5th floor<br /> 68161 Mannheim, Deutschland<br />
+							<p:link styleClass="footer__link--small" mappingId="kontakt">Finden Sie uns mit Google Maps
+							<span class="glyphicon glyphicon-chevron-right glyphicon--footer-small"></span></p:link><br /> <br /> <a class="footer__link" href="#"><span
+								class="glyphicon glyphicon-earphone glyphicon--footer"></span> +49 621 123 456</a><br /> <a class="footer__link" href="#"><span
+								class="glyphicon glyphicon-envelope glyphicon--footer"></span> kontakt@grüne-bohne.de</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12  col-sm-6">
+						<div class="footer__text--link">Copyright 2014 © Grüne Bohne</div>
+					</div>
+					<div class="col-xs-12  col-sm-6">
+						<div class="footer__text">Made with fresh and regional food</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 
 
 

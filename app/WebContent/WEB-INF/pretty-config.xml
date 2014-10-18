@@ -1,16 +1,44 @@
-<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-  xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
                       http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
 
-	<url-mapping id="login">
+	<url-mapping id="index">
 		<pattern value="/" />
-		<view-id value="/_view/index.xhtml" />
+		<view-id value="/_view/pages/index/_index.xhtml" />
 	</url-mapping>
-	
-	<url-mapping id="store">
-		<pattern value="/store" />
-		<view-id value="/_view/shop.xhtml" />
+
+	<!-- ############ STATIC PAGES ############## -->
+	<url-mapping id="kontakt">
+		<pattern value="/kontakt" />
+		<view-id value="/_view/pages/static/kontakt/_index.xhtml" />
+	</url-mapping>
+	<url-mapping id="presse">
+		<pattern value="/presse" />
+		<view-id value="/_view/pages/static/presse/_index.xhtml" />
+	</url-mapping>
+	<url-mapping id="partner">
+		<pattern value="/partner" />
+		<view-id value="/_view/pages/static/partner/_index.xhtml" />
+	</url-mapping>
+	<url-mapping id="jobs">
+		<pattern value="/jobs" />
+		<view-id value="/_view/pages/static/jobs/_index.xhtml" />
+	</url-mapping>
+	<url-mapping id="datenschutz">
+		<pattern value="/datenschutz" />
+		<view-id value="/_view/pages/static/datenschutz/_index.xhtml" />
+	</url-mapping>
+	<url-mapping id="agb">
+		<pattern value="/agb" />
+		<view-id value="/_view/pages/static/agb/_index.xhtml" />
+	</url-mapping>
+	<url-mapping id="impressum">
+		<pattern value="/impressum" />
+		<view-id value="/_view/pages/static/impressum/_index.xhtml" />
+	</url-mapping>
+	<url-mapping id="ueberuns">
+		<pattern value="/ueber-uns" />
+		<view-id value="/_view/pages/static/ueberuns/_index.xhtml" />
 	</url-mapping>
 
 </pretty-config>
