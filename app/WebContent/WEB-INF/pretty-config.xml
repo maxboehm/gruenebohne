@@ -6,39 +6,62 @@
 		<pattern value="/" />
 		<view-id value="/_view/pages/index/_index.xhtml" />
 	</url-mapping>
+	
+	<!-- ############ DYNAMIC PAGES ############## -->
+	<url-mapping id="rezepte">
+		<pattern value="/rezepte" />
+		<view-id value="/_view/pages/shop/rezepte/liste/_rezepte_liste.xhtml" />
+	</url-mapping>
+	<url-mapping id="rezepte-archiv">
+		<pattern value="/rezepte-archiv" />
+		<view-id value="/_view/pages/shop/rezepte/archiv/_rezept_archiv.xhtml" />
+	</url-mapping>
+	<url-mapping id="rezepte-detail">
+		<pattern value="/rezepte/detail" />
+		<view-id value="/_view/pages/shop/rezepte/detail/_rezept_detail.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="produkte">
+		<pattern value="/produkte" />
+		<view-id value="/_view/pages/shop/produkte/liste/_produkt_liste.xhtml" />
+	</url-mapping>
+	<url-mapping id="produkte-detail">
+		<pattern value="/produkte/detail" />
+		<view-id value="/_view/pages/shop/produkte/detail/_produkt_detail.xhtml" />
+	</url-mapping>
 
 	<!-- ############ STATIC PAGES ############## -->
 	<url-mapping id="kontakt">
 		<pattern value="/kontakt" />
-		<view-id value="/_view/pages/static/kontakt/_index.xhtml" />
+		<view-id value="/_view/pages/static/kontakt/_kontakt.xhtml" />
 	</url-mapping>
 	<url-mapping id="presse">
 		<pattern value="/presse" />
-		<view-id value="/_view/pages/static/presse/_index.xhtml" />
+		<view-id value="/_view/pages/static/presse/_presse.xhtml" />
 	</url-mapping>
 	<url-mapping id="partner">
 		<pattern value="/partner" />
-		<view-id value="/_view/pages/static/partner/_index.xhtml" />
+		<view-id value="/_view/pages/static/partner/_partner.xhtml" />
 	</url-mapping>
 	<url-mapping id="jobs">
 		<pattern value="/jobs" />
-		<view-id value="/_view/pages/static/jobs/_index.xhtml" />
+		<view-id value="/_view/pages/static/jobs/_jobs.xhtml" />
 	</url-mapping>
 	<url-mapping id="datenschutz">
 		<pattern value="/datenschutz" />
-		<view-id value="/_view/pages/static/datenschutz/_index.xhtml" />
+		<view-id value="/_view/pages/static/datenschutz/_datenschutz.xhtml" />
 	</url-mapping>
 	<url-mapping id="agb">
 		<pattern value="/agb" />
-		<view-id value="/_view/pages/static/agb/_index.xhtml" />
+		<view-id value="/_view/pages/static/agb/_agb.xhtml" />
 	</url-mapping>
 	<url-mapping id="impressum">
 		<pattern value="/impressum" />
-		<view-id value="/_view/pages/static/impressum/_index.xhtml" />
+		<view-id value="/_view/pages/static/impressum/_impressum.xhtml" />
 	</url-mapping>
 	<url-mapping id="ueberuns">
 		<pattern value="/ueber-uns" />
-		<view-id value="/_view/pages/static/ueberuns/_index.xhtml" />
+		<view-id value="/_view/pages/static/ueberuns/_ueberuns.xhtml" />
 	</url-mapping>
 
 </pretty-config>

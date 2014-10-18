@@ -1,4 +1,5 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://ocpsoft.com/prettyfaces">
 <ui:composition>
 
 
@@ -7,9 +8,9 @@
 			<div class="jumbotron__container">
 
 				<h1 class="jumbotron__title">FRISCH, GESUND UND REGIONAL</h1>
-				<a class="btn  btn-warning btn-lg" href="#">Rezeptboxen</a>
+				<p:link styleClass="btn  btn-warning btn-lg" mappingId="rezepte">Rezeptboxen</p:link>
 				<h:outputText escape="false" value="&amp;nbsp;" />
-				<a class="btn  btn-primary btn-lg" href="#">Lebensmittel</a>
+				<p:link styleClass="btn  btn-primary btn-lg" mappingId="produkte">Lebensmittel</p:link>
 			</div>
 		</div>
 	</div>

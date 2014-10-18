@@ -54,3 +54,7 @@ html .jumbotron2 .jumbotron__container h3{
 	font-size:36px;
 	margin: 5% 0;
 }
+
+.top__menu .nav-pills li{
+	padding: 7px 0;
+}
