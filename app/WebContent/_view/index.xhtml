@@ -4,6 +4,9 @@
       >
 <h:body>
 	<ui:composition template="/_view/template/layout.xhtml">
+		<ui:define name="banner">
+			<ui:include src="/_view/index/banner.xhtml" />
+		</ui:define>
 		<ui:define name="content">
 			<ui:include src="/_view/index/content.xhtml" />
 		</ui:define>

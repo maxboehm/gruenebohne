@@ -1,5 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
 >
 <ui:composition>
 	
@@ -11,7 +12,8 @@
 	      <h1 class="jumbotron__title">
 	        FRISCH, GESUND UND REGIONAL
 	      </h1>
-	      <a class="btn  btn-warning btn-lg" href="#">Rezeptboxen</a> &nbsp;
+	      <a class="btn  btn-warning btn-lg" href="#">Rezeptboxen</a> 
+	      <h:outputText escape="false" value="&amp;nbsp;" />
 	      <a class="btn  btn-primary btn-lg" href="#">Lebensmittel</a>
 	    </div>
 	  </div>
