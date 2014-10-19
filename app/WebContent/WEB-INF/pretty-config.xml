@@ -30,6 +30,19 @@
 		<view-id value="/_view/pages/shop/produkte/detail/_produkt_detail.xhtml" />
 	</url-mapping>
 
+
+	<url-mapping id="warenkorb">
+		<pattern value="/warenkorb" />
+		<view-id value="/_view/pages/shop/bestellvorgang/warenkorb/_warenkorb.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="adresse">
+		<pattern value="/bestellvorgang/adresse" />
+		<view-id value="/_view/pages/shop/bestellvorgang/adresse/_adresse.xhtml" />
+	</url-mapping>
+
+
+
 	<!-- ############ STATIC PAGES ############## -->
 	<url-mapping id="kontakt">
 		<pattern value="/kontakt" />
