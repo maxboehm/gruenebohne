@@ -3,969 +3,1534 @@
 <ui:composition>
 
 
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12  col-sm-3">
-				<aside class="sidebar  sidebar--shop">
-					<h3 class="sidebar__title">
-						<span class="light">Lebens</span>mittel
-					</h3>
-					<hr class="shop__divider" />
-					<div class="shop-filter">
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <nav>
+          <ol class="breadcrumb">
+            
+            <li><a href="index.html">Home</a></li>
+            
+            <li class="active">Lebensmittel</li>
+            
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
 
-						<h5 class="sidebar__subtitle">Kategorien</h5>
-						<ul class="nav  nav--filter">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12  col-sm-3">
+      <aside class="sidebar  sidebar--shop">
+        <h3 class="sidebar__title"><span class="light">Lebens</span>mittel</h3>
+        <hr class="shop__divider" />
+        <div class="shop-filter">
 
-							<li><a data-target=".js--cat-1" class="js--filter-selectable" href="#">Obst</a></li>
+          <h5 class="sidebar__subtitle">Kategorien</h5>
+          <ul class="nav  nav--filter">
+          
+            <li><a data-target=".js--cat-obst" class="js--filter-selectable" href="#">Obst</a></li>
+          
+            <li><a data-target=".js--cat-gemuese" class="js--filter-selectable" href="#">Gemüse</a></li>
+          
+            <li><a data-target=".js--cat-milch" class="js--filter-selectable" href="#">Milchprodukte <h:outputText escape="false" value="&amp;" />Eier</a></li>
+          
+            <li><a data-target=".js--cat-fisch" class="js--filter-selectable" href="#">Fisch</a></li>
+          
+            <li><a data-target=".js--cat-wurst" class="js--filter-selectable" href="#">Wurstprodukte</a></li>
+          
+            <li><a data-target=".js--cat-fleisch" class="js--filter-selectable" href="#">Fleisch</a></li>
+          
+            <li><a data-target=".js--cat-brot" class="js--filter-selectable" href="#">Brot <h:outputText escape="false" value="&amp;" />Backwaren</a></li>
+          
+            <li><a data-target=".js--cat-brotaufstrich" class="js--filter-selectable" href="#">Brotaufstriche</a></li>
+			
+            <li><a data-target=".js--cat-wein" class="js--filter-selectable" href="#">Wein <h:outputText escape="false" value="&amp;" />Sekt</a></li>
+			
+            <li><a data-target=".js--cat-rotwein" class="js--filter-selectable" href="#"><h:outputText escape="false" value="&amp;nbsp;" />&#8210; Rotwein</a></li>
+			
+            <li><a data-target=".js--cat-weisswein" class="js--filter-selectable" href="#"><h:outputText escape="false" value="&amp;nbsp;" />&#8210; Weißwein</a></li>
+			
+            <li><a data-target=".js--cat-schaumwein" class="js--filter-selectable" href="#"><h:outputText escape="false" value="&amp;nbsp;" />&#8210; Schaumwein</a></li>
+          
+          </ul>
 
-							<li><a data-target=".js--cat-2" class="js--filter-selectable" href="#">Gemüse</a></li>
+          <hr class="divider" />
+          <nav>
+            <h5 class="sidebar__subtitle">Siegel</h5>
+            <ul class="nav  nav--filter">
+              <li><a data-target=".js--cat-siegel-deutsch" class="js--filter-selectable" href="#">Deutsches Biosiegel</a></li>
+              <li><a data-target=".js--cat-siegel-demeter" class="js--filter-selectable" href="#">Demeter</a></li>
+              <li><a data-target=".js--cat-siegel-ecovin" class="js--filter-selectable" href="#">Ecovin</a></li>
+              <li><a data-target=".js--cat-siegel-eu" class="js--filter-selectable" href="#">EU-Bio-Siegel</a></li>
+            </ul>
+          </nav>
+          <hr class="divider" />
+        </div>
+      </aside>
+    </div>
+    <div class="col-xs-12  col-sm-9">
+      <div class="grid">
+        <ul class="pagination  shop__amount-filter">
+          <!--<li>
+            <a class="shop__amount-filter__link  hidden-xs" href="_shop.html"><span class="glyphicon glyphicon-th"></span></a>
+          </li>
+          <li>
+              <a class="shop__amount-filter__link  hidden-xs" href="_shop-list-view.html"><span class="glyphicon glyphicon-th-list"></span></a>
+          </li>-->
+        </ul>
+        <div class="shop__sort-filter">
+          <select class="js--isotope-sorting  btn  btn-shop">
+              <option value='{"sortBy":"price", "sortAscending":"true"}'>Preis aufsteigend <h:outputText escape="false" value="&amp;uarr;" /></option>
+              <option value='{"sortBy":"price", "sortAscending":"false"}'>Preis absteigend <h:outputText escape="false" value="&amp;darr;" /></option>
+              <option value='{"sortBy":"name", "sortAscending":"true"}'>Name aufsteigend <h:outputText escape="false" value="&amp;uarr;" /></option>
+              <option value='{"sortBy":"name", "sortAscending":"false"}'>Name absteigend <h:outputText escape="false" value="&amp;darr;" /></option>
+              <option value='{"sortBy":"rating", "sortAscending":"true"}'>Rating aufsteigend <h:outputText escape="false" value="&amp;uarr;" /></option>
+              <option value='{"sortBy":"rating", "sortAscending":"false"}'>Rating absteigend <h:outputText escape="false" value="&amp;darr;" /></option>
+          </select>
+        </div>
+        <hr class="shop__divider" />
+        <div class="row  js--isotope-container">
+          
+            
+            
+            
+<!-- Items Begin -->
 
-							<li><a data-target=".js--cat-3" class="js--filter-selectable" href="#">Milchprodukte <h:outputText escape="false"
-										value="&amp;" /> Eier
-							</a></li>
 
-							<li><a data-target=".js--cat-4" class="js--filter-selectable" href="#">Fisch</a></li>
 
-							<li><a data-target=".js--cat-5" class="js--filter-selectable" href="#">Wurst <h:outputText escape="false" value="&amp;" />
-									Fleisch
-							</a></li>
 
-							<li><a data-target=".js--cat-6" class="js--filter-selectable" href="#">Brot <h:outputText escape="false" value="&amp;" />
-									Backwaren
-							</a></li>
-
-							<li><a data-target=".js--cat-6" class="js--filter-selectable" href="#">Brotaufstriche</a></li>
-
-							<li><a data-target=".js--cat-7" class="js--filter-selectable" href="#">Wein <h:outputText escape="false" value="&amp;" />
-									Sekt
-							</a></li>
-
-						</ul>
-
-						<hr class="divider" />
-
-						<h5 class="sidebar__subtitle">Preis</h5>
-						<div class="shop__filter__slider">
-							<div class="js--jqueryui-price-filter"></div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst" data-price="2.5" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-01.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
 						</div>
-
-						<hr class="divider" />
-						<nav>
-							<h5 class="sidebar__subtitle">Produzent</h5>
-							<ul class="nav  nav--filter">
-								<li><a href="#">Bauer Bernd</a></li>
-								<li><a href="#">Bauer Bernd</a></li>
-								<li><a href="#">Bauer Bernd</a></li>
-								<li><a href="#">Bauer Bernd</a></li>
-								<li><a href="#">Bauer Bernd</a></li>
-							</ul>
-						</nav>
-						<hr class="divider" />
-						<nav>
-							<h5 class="sidebar__subtitle">Siegel</h5>
-							<ul class="nav  nav--filter">
-								<li><a href="#">Deutsches Biosiegel</a></li>
-								<li><a href="#">Demeter</a></li>
-								<li><a href="#">Ecovin</a></li>
-								<li><a href="#">EU-Bio-Siegel</a></li>
-							</ul>
-						</nav>
-						<hr class="divider" />
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Heidelbeeren</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  2,50€
+						</div>
+					  </div>
 					</div>
-				</aside>
-			</div>
-			<div class="col-xs-12  col-sm-9">
-				<div class="grid">
-					<ul class="pagination  shop__amount-filter">
-						<li><a class="shop__amount-filter__link  hidden-xs" href="_shop.html"><span class="glyphicon glyphicon-th"></span></a></li>
-						<li><a class="shop__amount-filter__link  hidden-xs" href="_shop-list-view.html"><span class="glyphicon glyphicon-th-list"></span></a>
-						</li>
-					</ul>
-					<div class="shop__sort-filter">
-						<select class="js--isotope-sorting  btn  btn-shop">
-							<option value='{"sortBy":"price", "sortAscending":"true"}'>Preis aufsteigend
-								<h:outputText escape="false" value="&amp;uarr;" /></option>
-							<option value='{"sortBy":"price", "sortAscending":"false"}'>Preis absteigend
-								<h:outputText escape="false" value="&amp;uarr;" /></option>
-							<option value='{"sortBy":"name", "sortAscending":"true"}'>Name aufsteigend
-								<h:outputText escape="false" value="&amp;uarr;" /></option>
-							<option value='{"sortBy":"name", "sortAscending":"false"}'>Name absteigend
-								<h:outputText escape="false" value="&amp;uarr;" /></option>
-							<option value='{"sortBy":"rating", "sortAscending":"true"}'>Rating aufsteigend
-								<h:outputText escape="false" value="&amp;uarr;" /></option>
-							<option value='{"sortBy":"rating", "sortAscending":"false"}'>Rating absteigend
-								<h:outputText escape="false" value="&amp;uarr;" /></option>
-						</select>
+					<div class="products__category">
+					  Obst
 					</div>
-					<hr class="shop__divider" />
-					<div class="row  js--isotope-container">
-
-
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-1" data-price="8.25" data-rating="5">
-							<div class="products__single">
-								<figure class="products__image">
-
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/1.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Orange Flavoured Raw Cacao Bar</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />8.25</div>
-									</div>
-								</div>
-								<div class="products__category">Bars</div>
-							</div>
-						</div>
-
-
-
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-2" data-price="14.36" data-rating="4">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/2.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Moringa Powder</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />14.36</div>
-									</div>
-								</div>
-								<div class="products__category">Powders</div>
-							</div>
-						</div>
-
-
-						<div class="clearfix  visible-xs"></div>
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-2" data-price="8.99" data-rating="2">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/3.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Gynostemma Powder</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />8.99</div>
-									</div>
-								</div>
-								<div class="products__category">Powders</div>
-							</div>
-						</div>
-
-
-
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-2" data-price="13.23" data-rating="4">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/4.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="out-of-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Out of
-												stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Bio Barley Powder</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />13.23</div>
-									</div>
-								</div>
-								<div class="products__category">Powders</div>
-							</div>
-						</div>
-
-
-						<div class="clearfix  visible-xs"></div>
-						<div class="clearfix  hidden-xs"></div>
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-2" data-price="11.63" data-rating="5">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/5.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Alfalfa Leaf Powder</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />11.63</div>
-									</div>
-								</div>
-								<div class="products__category">Powders</div>
-							</div>
-						</div>
-
-
-
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-3" data-price="8.22" data-rating="3">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/6.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="out-of-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Out of
-												stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Bio Ashwagandha Powder</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />8.22</div>
-									</div>
-								</div>
-								<div class="products__category">Bio</div>
-							</div>
-						</div>
-
-
-						<div class="clearfix  visible-xs"></div>
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-3" data-price="6.18" data-rating="4">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/7.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Bio Apricot Kernels</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />6.18</div>
-									</div>
-								</div>
-								<div class="products__category">Bio</div>
-							</div>
-						</div>
-
-
-
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-2" data-price="13.71" data-rating="5">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/8.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="out-of-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Out of
-												stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Bio Acai Powder</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />13.71</div>
-									</div>
-								</div>
-								<div class="products__category">Powders</div>
-							</div>
-						</div>
-
-
-						<div class="clearfix  visible-xs"></div>
-						<div class="clearfix  hidden-xs"></div>
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-4" data-price="7.47" data-rating="5">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/9.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Chia Seed</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />7.47</div>
-									</div>
-								</div>
-								<div class="products__category">Seed</div>
-							</div>
-						</div>
-
-
-
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-4" data-price="5.17" data-rating="2">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/10.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Cacao Grain</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />5.17</div>
-									</div>
-								</div>
-								<div class="products__category">Seed</div>
-							</div>
-						</div>
-
-
-						<div class="clearfix  visible-xs"></div>
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-4" data-price="3.12" data-rating="1">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/11.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="out-of-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Out of
-												stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Coconut Chips</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />3.12</div>
-									</div>
-								</div>
-								<div class="products__category">Seed</div>
-							</div>
-						</div>
-
-
-
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-3" data-price="4.61" data-rating="5">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/12.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Bio Murve</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />4.61</div>
-									</div>
-								</div>
-								<div class="products__category">Bio</div>
-							</div>
-						</div>
-
-
-						<div class="clearfix  visible-xs"></div>
-						<div class="clearfix  hidden-xs"></div>
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-5" data-price="4.77" data-rating="5">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/13.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Superfruit</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />4.77</div>
-									</div>
-								</div>
-								<div class="products__category">Muesli</div>
-							</div>
-						</div>
-
-
-
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-7" data-price="6.9" data-rating="3">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/14.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Eatable Hemp</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />6.9</div>
-									</div>
-								</div>
-								<div class="products__category">Other</div>
-							</div>
-						</div>
-
-
-						<div class="clearfix  visible-xs"></div>
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-5" data-price="2.73" data-rating="5">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/15.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="out-of-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Out of
-												stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Bio Ovseni Kosmici</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />2.73</div>
-									</div>
-								</div>
-								<div class="products__category">Muesli</div>
-							</div>
-						</div>
-
-
-
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-6" data-price="16.88" data-rating="4">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/16.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">High Protein Diet Mango</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />16.88</div>
-									</div>
-								</div>
-								<div class="products__category">Natural Proteins</div>
-							</div>
-						</div>
-
-
-						<div class="clearfix  visible-xs"></div>
-						<div class="clearfix  hidden-xs"></div>
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-6" data-price="16.89" data-rating="5">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/17.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">High Protein Diet Apricot</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />16.89</div>
-									</div>
-								</div>
-								<div class="products__category">Natural Proteins</div>
-							</div>
-						</div>
-
-
-
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-6" data-price="16.91" data-rating="5">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/18.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="out-of-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Out of
-												stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">High Protein Diet Asparagus</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />16.91</div>
-									</div>
-								</div>
-								<div class="products__category">Natural Proteins</div>
-							</div>
-						</div>
-
-
-						<div class="clearfix  visible-xs"></div>
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-5" data-price="19.59" data-rating="5">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/19.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">High Protein Diet Muesli</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />19.59</div>
-									</div>
-								</div>
-								<div class="products__category">Muesli</div>
-							</div>
-						</div>
-
-
-
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-3" data-price="3.94" data-rating="4">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/20.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Bio Crispy Flakes</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />3.94</div>
-									</div>
-								</div>
-								<div class="products__category">Bio</div>
-							</div>
-						</div>
-
-
-						<div class="clearfix  visible-xs"></div>
-						<div class="clearfix  hidden-xs"></div>
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-5" data-price="3.51" data-rating="2">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/21.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Bio Muesli Active</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />3.51</div>
-									</div>
-								</div>
-								<div class="products__category">Muesli</div>
-							</div>
-						</div>
-
-
-
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-5" data-price="2.98" data-rating="3">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/22.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Bio Muesli Traditional</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />2.98</div>
-									</div>
-								</div>
-								<div class="products__category">Muesli</div>
-							</div>
-						</div>
-
-
-						<div class="clearfix  visible-xs"></div>
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-5" data-price="3.84" data-rating="5">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/23.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="out-of-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Out of
-												stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Bio Muesli Fruits And Fibre</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />3.84</div>
-									</div>
-								</div>
-								<div class="products__category">Muesli</div>
-							</div>
-						</div>
-
-
-
-
-
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-7" data-price="14.95" data-rating="4">
-							<div class="products__single">
-								<figure class="products__image">
-									<p:link mappingId="produkte-detail">
-										<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/dummy/w263/24.jpg" />
-									</p:link>
-									<div class="product-overlay">
-										<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-											<span class="glyphicon glyphicon-search"></span>
-										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
-										<div class="product-overlay__stock">
-											<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-										</div>
-									</div>
-								</figure>
-								<div class="row">
-									<div class="col-xs-9">
-										<h5 class="products__title">
-											<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Polnozrnati Svedri</p:link>
-										</h5>
-									</div>
-									<div class="col-xs-3">
-										<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />14.95</div>
-									</div>
-								</div>
-								<div class="products__category">Other</div>
-							</div>
-						</div>
-
-
-						<div class="clearfix  hidden-xs"></div>
-					</div>
-					<hr class="shop__divider" />
-					<div class="shop__pagination">
-						<ul class="pagination">
-							<li><a class="pagination--nav" href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-							<li><a href="#">1</a></li>
-							<li><a class="active" href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a class="pagination--nav" href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-						</ul>
-					</div>
+				  </div>
 				</div>
-			</div>
-		</div>
-	</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst" data-price="2.8" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-02.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Dunkle Trauben (kernlos)</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  2,80€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Obst
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-gemuese" data-price="4.6" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-03.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Tomaten</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  4,60€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Gemüse
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst" data-price="5.2" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-04.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Zwetschgen</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  5,20€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Obst
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-gemuese" data-price="3.1" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-05.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Radieschen</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  3,10€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Gemüse
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst" data-price="1.4" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-06.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Helle Trauben (kernlos)</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  1,40€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Obst
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-milch" data-price="1.2" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-07.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Milch 3,5%</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  1,20€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Milchprodukte <h:outputText escape="false" value="&amp;" />Eier
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-gemuese" data-price="1" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-08.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Champigons</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  10€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Gemüse
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-brot" data-price="3.1" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-09.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Mohnbrötchen</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  3,10€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Brot <h:outputText escape="false" value="&amp;" />Backwaren
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-brot" data-price="2" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-10.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Mehrkornbrötchen</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  20€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Brot <h:outputText escape="false" value="&amp;" />Backwaren
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-brot" data-price="5.3" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-11.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Roggenmischbrot</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  5,30€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Brot <h:outputText escape="false" value="&amp;" />Backwaren
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-milch" data-price="5.7" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-12.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Eier (Bodenhaltung)</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  5,70€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Milchprodukte <h:outputText escape="false" value="&amp;" />Eier
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-wurst" data-price="5.3" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-13.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Geräucherter Schinken</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  5,30€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Wurstprodukte
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-wurst" data-price="4.3" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-14.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Salami</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  4,30€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Wurstprodukte
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-fleisch" data-price="5.9" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-15.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Minutensteaks</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  5,90€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Fleisch
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-fisch" data-price="4.3" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-16.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Regenbogenforelle</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  4,30€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Fisch
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-milch" data-price="1.5" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-17.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Emmentaler</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  1,50€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Milchprodukte <h:outputText escape="false" value="&amp;" />Eier
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-milch" data-price="1.2" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-18.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Schmand</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  1,20€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Milchprodukte <h:outputText escape="false" value="&amp;" />Eier
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-gemuese" data-price="1.1" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-19.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Kürbis</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  1,10€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Gemüse
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-gemuese" data-price="2.7" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-20.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Kartoffeln</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  2,70€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Gemüse
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-gemuese" data-price="5.7" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-21.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Karotten</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  5,70€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Gemüse
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-fleisch" data-price="0.8" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-22.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Rind geschnitten</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  0,80€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Fleisch
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-fleisch" data-price="4.7" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-23.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Kalbsschnitzel</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  4,70€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Fleisch
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-brot" data-price="0.9" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-24.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Ciabatta-Brötchen</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  0,90€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Brot <h:outputText escape="false" value="&amp;" />Backwaren
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-brot" data-price="0.8" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-25.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Brötchen</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  0,80€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Brot <h:outputText escape="false" value="&amp;" />Backwaren
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-fisch" data-price="0.2" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-26.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Hecht</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  0,20€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Fisch
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-wurst" data-price="4.7" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-27.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Salami</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  4,70€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Wurstprodukte
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-fisch" data-price="5.6" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-28.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Regenbogenforelle</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  5,60€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Fisch
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-wein" data-price="0.9" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-29.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Riesling Trocken 2013</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  0,90€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Wein <h:outputText escape="false" value="&amp;" />Sekt
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-wein" data-price="2.6" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-30.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Saar Riesling 2013</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  2,60€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Wein <h:outputText escape="false" value="&amp;" />Sekt
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-wein" data-price="3.7" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-31.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Schiefer Riesling 2012</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  3,70€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Wein <h:outputText escape="false" value="&amp;" />Sekt
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-wein" data-price="3.3" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-32.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Rotwein</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  3,30€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Wein <h:outputText escape="false" value="&amp;" />Sekt
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-wein" data-price="0.5" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-33.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Ruppertsberger Rose 2012#</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  0,50€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Wein <h:outputText escape="false" value="&amp;" />Sekt
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-wein" data-price="1.4" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-34.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Kloster Eberbach Riesling 2013</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  1,40€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Wein <h:outputText escape="false" value="&amp;" />Sekt
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-wein" data-price="4.2" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-35.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Bad Dürckheim Weißburgunder</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  4,20€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Wein <h:outputText escape="false" value="&amp;" />Sekt
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-wein" data-price="2.5" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-36.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Kloster Eberbach Riesling 2012</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  2,50€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Wein <h:outputText escape="false" value="&amp;" />Sekt
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-wein" data-price="1.2" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-37.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Karl Pfaffmann Riesling 2013</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  1,20€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Wein <h:outputText escape="false" value="&amp;" />Sekt
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-wein" data-price="1.2" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-38.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Weißwein</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  1,20€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Wein <h:outputText escape="false" value="&amp;" />Sekt
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-fleisch" data-price="4.9" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-39.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Rumpsteak</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  4,90€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Gemüse
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst" data-price="1" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-40.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Äpfel (Ambrosia)</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  10€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Obst
+					</div>
+				  </div>
+				</div>
+
+<!-- Items End -->
+            
+          
+            
+     
+            
+          
+          <div class="clearfix  hidden-xs"></div>
+        </div>
+        <hr class="shop__divider" />
+        <div class="shop__pagination">
+          <ul class="pagination">
+            <li><a class="pagination--nav" href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+            <li><a href="#">1</a></li>
+            <li><a class="active" href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a class="pagination--nav" href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 
 

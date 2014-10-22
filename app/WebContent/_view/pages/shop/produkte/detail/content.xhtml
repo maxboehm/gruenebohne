@@ -4,309 +4,322 @@
 
 
 
-	<div class="container">
-		<div class="push-down-30">
-			<div class="row">
-				<div class="col-xs-12 col-sm-4">
-					<div class="product-preview">
-						<div class="push-down-20">
-							<h:graphicImage library="content" styleClass="js--product-preview" alt="#" name="images/dummy/w360/13.jpg" />
-						</div>
-						<div class="product-preview__thumbs  clearfix">
-							<div class="product-preview__thumb  active  js--preview-thumbs">
-								<a href=".js--product-preview" data-src="images/dummy/w360/13.jpg"> <h:graphicImage library="content" alt="#"
-										name="images/dummy/w66/13.jpg" />
-								</a>
-							</div>
-							<div class="product-preview__thumb  js--preview-thumbs">
-								<a href=".js--product-preview" data-src="images/dummy/w360/9.jpg"> <h:graphicImage library="content" alt="#"
-										name="images/dummy/w66/9.jpg" />
-								</a>
-							</div>
-							<div class="product-preview__thumb  js--preview-thumbs">
-								<a href=".js--product-preview" data-src="images/dummy/w360/10.jpg"> <h:graphicImage library="content" alt="#"
-										name="images/dummy/w66/10.jpg" />
-								</a>
-							</div>
-							<div class="product-preview__thumb  js--preview-thumbs">
-								<a href=".js--product-preview" data-src="images/dummy/w360/14.jpg"> <h:graphicImage library="content" alt="#"
-										name="images/dummy/w66/14.jpg" />
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-8">
-					<div class="products__content">
-						<div class="push-down-30"></div>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <nav>
+          <ol class="breadcrumb">
+            
+            <li><a href="index.html">Home</a></li>
+            
+            <li><a href="shop.html">Shop</a></li>
+            
+            <li class="active">Single Product</li>
+            
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
 
-						<span class="products__category">Muesli</span>
-						<h1 class="single-product__title">
-							<span class="light">Fresh</span> Super Fruit
-						</h1>
-						<span class="single-product__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />4.77</span>
-						<div class="single-product__rating">
-							<span class="glyphicon  glyphicon-star  star-on"></span> <span class="glyphicon  glyphicon-star  star-on"></span> <span
-								class="glyphicon  glyphicon-star  star-on"></span> <span class="glyphicon  glyphicon-star  star-on"></span> <span
-								class="glyphicon  glyphicon-star  star-off"></span>
-						</div>
+<div class="container">
+  <div class="push-down-30">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <div class="product-preview">
+          <div class="push-down-20">
+			<h:graphicImage library="content" styleClass="js--product-preview" alt="#" name="images/food/w360/360-03.jpg" />
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-8">
+        <div class="products__content">
+          <div class="push-down-30"></div>
+          
+          <span class="products__category">Gemüse</span>
+          <h1 class="single-product__title"><span class="light"></span> Strauchtomaten</h1>
+          <span class="single-product__price">1,95€</span>
+          <div class="single-product__rating">
+            <span class="glyphicon  glyphicon-star  star-on"></span>
+            <span class="glyphicon  glyphicon-star  star-on"></span>
+            <span class="glyphicon  glyphicon-star  star-on"></span>
+            <span class="glyphicon  glyphicon-star  star-on"></span>
+            <span class="glyphicon  glyphicon-star  star-off"></span>
+          </div>
+          
+          <div class="in-stock--single-product">
+            <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+          </div>
+          <hr class="bold__divider" />
+          <p class="single-product__text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vulputate, leo vel malesuada tincidunt, purus nunc tristique erat, at elementum tellus mi nec mi. Nunc rutrum ullamcorper. In hac habitasse platea tumst. Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus. Vestibulum lorem dolor,  pharetra sit amet urna nec, hendrerit scelerisque risus. In hac habitasse platea dictumst.
+          </p>
+          <hr class="bold__divider" />
+          <!-- Single button -->
+          <select class="btn  btn-shop">
+            <option>50g</option>
+            <option>100g</option>
+            <option>250g</option>
+          </select>
+          <!-- Quantity buttons -->
+          <div class="quantity  js--quantity">
+            <input type="button" value="-" class="quantity__button  js--minus-one  js--clickable" />
+            <input type="text" name="quantity" value="1" class="quantity__input" />
+            <input type="button" value="+" class="quantity__button  js--plus-one  js--clickable" />
+          </div>
+          <!-- Add to cart button -->
+          <a class="btn btn-primary--transition" href="#">
+            <span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-shopping-cart"></span>
+            <span class="single-product__btn-text">In den Warenkorb</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-						<div class="in-stock--single-product">
-							<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-						</div>
-						<hr class="bold__divider" />
-						<p class="single-product__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vulputate, leo vel malesuada
-							tincidunt, purus nunc tristique erat, at elementum tellus mi nec mi. Nunc rutrum ullamcorper. In hac habitasse platea tumst.
-							Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus. Vestibulum lorem dolor, pharetra sit amet urna nec,
-							hendrerit scelerisque risus. In hac habitasse platea dictumst.</p>
-						<hr class="bold__divider" />
-						<!-- Single button -->
-						<select class="btn  btn-shop">
-							<option>350g</option>
-							<option>700g</option>
-							<option>1200g</option>
-						</select>
-						<!-- Quantity buttons -->
-						<div class="quantity  js--quantity">
-							<input type="button" value="-" class="quantity__button  js--minus-one  js--clickable" /> <input type="text" name="quantity" value="1"
-								class="quantity__input" /> <input type="button" value="+" class="quantity__button  js--plus-one  js--clickable" />
-						</div>
-						<!-- Add to cart button -->
-						<a class="btn btn-primary--transition" href="#"> <span class="glyphicon glyphicon-plus"></span><span
-							class="glyphicon glyphicon-shopping-cart"></span> <span class="single-product__btn-text">Add to shopping cart</span>
-						</a>
-						<!-- Social banners -->
-						<div class="row">
-							<div class="col-xs-12  col-sm-6  col-md-4">
-								<div class="banners--small  banners--small--social">
-									<a href="#" class="social"><span class="zocial-facebook"></span> Share on<br /> <span class="banners--small--text">Facebook</span>
-									</a>
-								</div>
-							</div>
-							<div class="col-xs-12 col-sm-6  col-md-4">
-								<div class="banners--small  banners--small--social">
-									<a href="#" class="social"><span class="zocial-twitter"></span> Tweet it<br /> <span class="banners--small--text">Twitter</span>
-									</a>
-								</div>
-							</div>
-							<div class="col-xs-12 col-sm-6  col-md-4">
-								<div class="banners--small  banners--small--social">
-									<a href="#" class="social"><span class="zocial-pinterest"></span> Pin on<br /> <span class="banners--small--text">Pinterest</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Tabs -->
-		<div class="push-down-30">
-			<div class="row">
-				<div class="col-xs-12">
-					<!-- Nav tabs -->
-					<ul class="nav  nav-tabs">
-						<li class="active"><a href="#tabDesc" data-toggle="tab">Description</a></li>
-						<li><a href="#tabManufacturer" data-toggle="tab">Manufacturer</a></li>
-						<li><a href="#tabReviews" data-toggle="tab">Reviews (0)</a></li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane  fade  in  active" id="tabDesc">
-							<div class="row">
-								<div class="col-xs-12  col-sm-6">
-									<h5>Description</h5>
-									<p class="tab-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce est purus, fringilla sit amet arcu quis,
-										feugiat ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus. In hac habitasse platea
-										dictumst. Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus. Vestibulum lorem dolor, pharetra sit
-										amet urna nec, hendrerit scelerisque risus. In hac habitasse platea dictumst.</p>
-								</div>
-								<div class="col-xs-12  col-sm-6">
-									<h5>About us</h5>
-									<p class="tab-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce est purus, fringilla sit amet arcu quis,
-										feugiat ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus. In hac habitasse platea
-										dictumst. Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus. Vestibulum lorem dolor, pharetra sit
-										amet urna nec, hendrerit scelerisque risus. In hac habitasse platea dictumst.</p>
-								</div>
-							</div>
-						</div>
-						<div class="tab-pane  fade" id="tabManufacturer">
-							<h5>Manufacturer details</h5>
-							<p class="tab-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce est purus, fringilla sit amet arcu quis,
-								feugiat ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus. In hac habitasse platea
-								dictumst.</p>
-						</div>
-						<div class="tab-pane  fade" id="tabReviews">
-							<h5>Reviews</h5>
-							<p class="tab-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce est purus, fringilla sit amet arcu quis,
-								feugiat ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus. In hac habitasse platea
-								dictumst. Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus.</p>
-						</div>
-					</div>
-
-
-				</div>
-			</div>
-		</div>
-
-		<!-- Navigation -->
-		<div class="push-down-30">
-			<div class="products-navigation">
-				<div class="products-navigation__title">
-					<h3>
-						<span class="light">Related</span> Products
-					</h3>
-				</div>
-			</div>
-		</div>
-
-		<!-- Products -->
-		<div class="push-down-30">
-			<div class="row">
-
-
-
-
-				<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-6" data-price="16.88" data-rating="4">
-					<div class="products__single">
-						<figure class="products__image">
-							<p:link mappingId="produkte-detail">
-								<h:graphicImage styleClass="product__image" library="content" alt="#" name="images/dummy/w263/16.jpg" />
-
-							</p:link>
-							<div class="product-overlay">
-								<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-									<span class="glyphicon glyphicon-search"></span>
-								</p:link>
-								<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-								</a>
-								<div class="product-overlay__stock">
-									<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-								</div>
-							</div>
-						</figure>
-						<div class="row">
-							<div class="col-xs-9">
-								<h5 class="products__title">
-
-									<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">High Protein Diet Mango</p:link>
-								</h5>
-							</div>
-							<div class="col-xs-3">
-								<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />16.88</div>
-							</div>
-						</div>
-						<div class="products__category">Natural Proteins</div>
-					</div>
-				</div>
-
-
-
-
-				<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-3" data-price="4.61" data-rating="5">
-					<div class="products__single">
-						<figure class="products__image">
-							<p:link mappingId="produkte-detail">
-								<h:graphicImage styleClass="product__image" library="content" alt="#" name="images/dummy/w263/12.jpg" />
-
-							</p:link>
-							<div class="product-overlay">
-								<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-									<span class="glyphicon glyphicon-search"></span>
-								</p:link>
-								<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-								</a>
-								<div class="product-overlay__stock">
-									<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-								</div>
-							</div>
-						</figure>
-						<div class="row">
-							<div class="col-xs-9">
-								<h5 class="products__title">
-									<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Bio Murve</p:link>
-								</h5>
-							</div>
-							<div class="col-xs-3">
-								<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />4.61</div>
-							</div>
-						</div>
-						<div class="products__category">Bio</div>
-					</div>
-				</div>
-
-
-				<div class="clearfix visible-xs"></div>
-
-				<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-5" data-price="3.84" data-rating="5">
-					<div class="products__single">
-						<figure class="products__image">
-							<p:link mappingId="produkte-detail">
-								<h:graphicImage styleClass="product__image" library="content" alt="#" name="images/dummy/w263/23.jpg" />
-							</p:link>
-							<div class="product-overlay">
-								<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-									<span class="glyphicon glyphicon-search"></span>
-								</p:link>
-								<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-								</a>
-								<div class="product-overlay__stock">
-									<span class="out-of-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Out of stock</span>
-								</div>
-							</div>
-						</figure>
-						<div class="row">
-							<div class="col-xs-9">
-								<h5 class="products__title">
-									<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Bio Muesli Fruits And Fibre</p:link>
-
-								</h5>
-							</div>
-							<div class="col-xs-3">
-								<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />3.84</div>
-							</div>
-						</div>
-						<div class="products__category">Muesli</div>
-					</div>
-				</div>
-
-
-
-
-				<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-3" data-price="6.18" data-rating="4">
-					<div class="products__single">
-						<figure class="products__image">
-							<p:link mappingId="produkte-detail">
-								<h:graphicImage styleClass="product__image" library="content" alt="#" name="images/dummy/w263/7.jpg" />
-							</p:link>
-							<div class="product-overlay">
-								<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
-									<span class="glyphicon glyphicon-search"></span>
-								</p:link>
-								<a class="product-overlay__cart" href="#"> +<span class="glyphicon glyphicon-shopping-cart"></span>
-								</a>
-								<div class="product-overlay__stock">
-									<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">In stock</span>
-								</div>
-							</div>
-						</figure>
-						<div class="row">
-							<div class="col-xs-9">
-								<h5 class="products__title">
-									<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Bio Apricot Kernels</p:link>
-								</h5>
-							</div>
-							<div class="col-xs-3">
-								<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />6.18</div>
-							</div>
-						</div>
-						<div class="products__category">Bio</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
+  <!-- Tabs -->
+  <div class="push-down-30">
+    <div class="row">
+      <div class="col-xs-12">
+        <!-- Nav tabs -->
+<ul class="nav  nav-tabs">
+  <li class="active"><a href="#tabDesc" data-toggle="tab">Produzenten</a></li>
+  <li><a href="#tabReviews" data-toggle="tab">Bewertungen (2)</a></li>
+  <li><a href="#tabRecipe" data-toggle="tab">Rezepte</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane  fade  in  active" id="tabDesc">
+    <div class="row sp-produzent">
+		<div class="col-xs-12  col-sm-2">
+			<h:graphicImage library="content" styleClass="gallery" alt="#" name="images/dummy/gallery.jpg" />
+		</div>	
+		<div class="col-xs-12  col-sm-10">
+			<strong>Gärtnerei Laiseacker, Eberdingen (Bioland)</strong>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce est purus, fringilla sit amet arcu quis, feugiat ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus. In hac habitasse platea dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+		</div>		
 	</div>
+    <div class="row sp-produzent">
+		<div class="col-xs-12  col-sm-2">
+			<h:graphicImage library="content" styleClass="gallery" alt="#" name="images/dummy/gallery.jpg" />
+		</div>	
+		<div class="col-xs-12  col-sm-10">
+			<strong>Magerhof Karben, Karben (Bioland)</strong>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce est purus, fringilla sit amet arcu quis, feugiat ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus. In hac habitasse platea dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+		</div>		
+	</div>
+    <div class="row sp-produzent">
+		<div class="col-xs-12  col-sm-2">
+			<h:graphicImage library="content" styleClass="gallery" alt="#" name="images/dummy/gallery.jpg" />
+		</div>	
+		<div class="col-xs-12  col-sm-10">
+			<strong>WINO Obst- und Weinbau, Brackenheim (Bioland und EcoVin )</strong>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce est purus, fringilla sit amet arcu quis, feugiat ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus. In hac habitasse platea dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+		</div>		
+	</div>
+  </div>
+  <div class="tab-pane  fade" id="tabReviews">
+    <div class="row sp-bewertung">
+		<div class="col-xs-12  col-sm-12">
+			<strong>Barbara M.</strong> | 
+            <span class="glyphicon  glyphicon-star  star-on"></span>
+            <span class="glyphicon  glyphicon-star  star-on"></span>
+            <span class="glyphicon  glyphicon-star  star-on"></span>
+            <span class="glyphicon  glyphicon-star  star-on"></span>
+            <span class="glyphicon  glyphicon-star  star-off"></span>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce est purus, fringilla sit amet arcu quis, feugiat ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus. In hac habitasse platea dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+		</div>		
+	</div>
+    <div class="row sp-bewertung">
+		<div class="col-xs-12  col-sm-12">
+			<strong>Hans H.</strong> | 
+            <span class="glyphicon  glyphicon-star  star-on"></span>
+            <span class="glyphicon  glyphicon-star  star-on"></span>
+            <span class="glyphicon  glyphicon-star  star-on"></span>
+            <span class="glyphicon  glyphicon-star  star-off"></span>
+            <span class="glyphicon  glyphicon-star  star-off"></span>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce est purus, fringilla sit amet arcu quis, feugiat ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus. In hac habitasse platea dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+		</div>		
+	</div>
+  </div>
+  <div class="tab-pane  fade" id="tabRecipe">
+    <div class="row sp-produzent">
+		<div class="col-xs-12  col-sm-2">
+			<a href="#"><h:graphicImage library="content" styleClass="gallery" alt="#" name="images/recipe/fotolia_69318147.jpg" /></a>
+		</div>	
+		<div class="col-xs-12  col-sm-10">
+			<strong>Steak mit Kräuterkruste</strong>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce est purus, fringilla sit amet arcu quis, feugiat ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus. In hac habitasse platea dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="#">Mehr</a></p>
+		</div>		
+	</div>
+  </div>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="push-down-30">
+    <div class="products-navigation">
+      <div class="products-navigation__title">
+        <h3><span class="light">Wurde  oft zusammen</span> gekauft mit</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products -->
+  <div class="push-down-30">
+    <div class="row">
+      
+      
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst" data-price="2.5" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-01.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Heidelbeeren</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  2,50€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Obst
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst" data-price="2.8" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-02.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Dunkle Trauben (kernlos)</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  2,80€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Obst
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-gemuese" data-price="4.6" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-03.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Tomaten</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  4,60€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Gemüse
+					</div>
+				  </div>
+				</div>
+              <div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst" data-price="5.2" data-rating="5">
+				  <div class="products__single">
+					<figure class="products__image">
+					  <p:link styleClass="" mappingId="produkte-detail">
+						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/food/w263/263-04.jpg" />
+					  </p:link>
+					  <div class="product-overlay">
+						<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+						  <span class="glyphicon glyphicon-search"></span>
+						</p:link>
+						<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+						</p:link>
+						<div class="product-overlay__stock">
+						  <span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+						</div>
+					  </div>
+					</figure>
+					<div class="row">
+					  <div class="col-xs-9">
+						<h5 class="products__title">
+							<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">Zwetschgen</p:link>
+						</h5>
+					  </div>
+					  <div class="col-xs-3">
+						<div class="products__price">
+						  5,20€
+						</div>
+					  </div>
+					</div>
+					<div class="products__category">
+					  Obst
+					</div>
+				  </div>
+				</div>
+    </div>
+  </div>
+</div>
+
+
 
 </ui:composition>
 </html>
