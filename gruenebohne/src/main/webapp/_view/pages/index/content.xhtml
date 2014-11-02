@@ -1,0 +1,553 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://ocpsoft.com/prettyfaces">
+<ui:composition>
+
+
+
+
+
+	<div class="container">
+		<!-- Navigation for products -->
+		<div class="products-navigation  push-down-15">
+			<div class="row">
+				<div class="col-xs-12  col-sm-8">
+					<div class="products-navigation__title">
+						<h3>
+							<span class="light">Unser</span> Angebot
+						</h3>
+					</div>
+				</div>
+				<div class="col-xs-12  col-sm-4">
+					<div class="products-navigation__arrows">
+						<a href="#js--latest-products-carousel" data-slide="prev"><span
+							class="glyphicon  glyphicon-chevron-left  glyphicon-circle  products-navigation__arrow"></span></a>
+						<h:outputText escape="false" value="&amp;nbsp;" />
+						<a href="#js--latest-products-carousel" data-slide="next"><span
+							class="glyphicon  glyphicon-chevron-right  glyphicon-circle  products-navigation__arrow"></span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Products -->
+		<div id="js--latest-products-carousel" class="carousel slide"
+			data-ride="carousel" data-interval="5000">
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<div class="row">
+
+						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst"
+							data-price="2.5" data-rating="5">
+							<div class="products__single">
+								<figure class="products__image">
+									<p:link styleClass="" mappingId="produkte-detail">
+										<h:graphicImage library="content" styleClass="product__image"
+											alt="#" name="images/food/w263/263-01.jpg" />
+									</p:link>
+									<div class="product-overlay">
+										<p:link styleClass="product-overlay__more"
+											mappingId="produkte-detail">
+											<span class="glyphicon glyphicon-search"></span>
+										</p:link>
+										<p:link styleClass="product-overlay__cart"
+											mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+										</p:link>
+										<div class="product-overlay__stock">
+											<span class="in-stock"><h:outputText escape="false"
+													value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+										</div>
+									</div>
+								</figure>
+								<div class="row">
+									<div class="col-xs-9">
+										<h5 class="products__title">
+											<p:link styleClass="products__link  js--isotope-title"
+												mappingId="produkte-detail">Heidelbeeren</p:link>
+										</h5>
+									</div>
+									<div class="col-xs-3">
+										<div class="products__price">2,50€</div>
+									</div>
+								</div>
+								<div class="products__category">Obst</div>
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst"
+							data-price="2.8" data-rating="5">
+							<div class="products__single">
+								<figure class="products__image">
+									<p:link styleClass="" mappingId="produkte-detail">
+										<h:graphicImage library="content" styleClass="product__image"
+											alt="#" name="images/food/w263/263-02.jpg" />
+									</p:link>
+									<div class="product-overlay">
+										<p:link styleClass="product-overlay__more"
+											mappingId="produkte-detail">
+											<span class="glyphicon glyphicon-search"></span>
+										</p:link>
+										<p:link styleClass="product-overlay__cart"
+											mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+										</p:link>
+										<div class="product-overlay__stock">
+											<span class="in-stock"><h:outputText escape="false"
+													value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+										</div>
+									</div>
+								</figure>
+								<div class="row">
+									<div class="col-xs-9">
+										<h5 class="products__title">
+											<p:link styleClass="products__link  js--isotope-title"
+												mappingId="produkte-detail">Dunkle Trauben (kernlos)</p:link>
+										</h5>
+									</div>
+									<div class="col-xs-3">
+										<div class="products__price">2,80€</div>
+									</div>
+								</div>
+								<div class="products__category">Obst</div>
+							</div>
+						</div>
+						<div
+							class="col-xs-6 col-sm-3  js--isotope-target  js--cat-gemuese"
+							data-price="4.6" data-rating="5">
+							<div class="products__single">
+								<figure class="products__image">
+									<p:link styleClass="" mappingId="produkte-detail">
+										<h:graphicImage library="content" styleClass="product__image"
+											alt="#" name="images/food/w263/263-03.jpg" />
+									</p:link>
+									<div class="product-overlay">
+										<p:link styleClass="product-overlay__more"
+											mappingId="produkte-detail">
+											<span class="glyphicon glyphicon-search"></span>
+										</p:link>
+										<p:link styleClass="product-overlay__cart"
+											mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+										</p:link>
+										<div class="product-overlay__stock">
+											<span class="in-stock"><h:outputText escape="false"
+													value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+										</div>
+									</div>
+								</figure>
+								<div class="row">
+									<div class="col-xs-9">
+										<h5 class="products__title">
+											<p:link styleClass="products__link  js--isotope-title"
+												mappingId="produkte-detail">Tomaten</p:link>
+										</h5>
+									</div>
+									<div class="col-xs-3">
+										<div class="products__price">4,60€</div>
+									</div>
+								</div>
+								<div class="products__category">Gemüse</div>
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst"
+							data-price="5.2" data-rating="5">
+							<div class="products__single">
+								<figure class="products__image">
+									<p:link styleClass="" mappingId="produkte-detail">
+										<h:graphicImage library="content" styleClass="product__image"
+											alt="#" name="images/food/w263/263-04.jpg" />
+									</p:link>
+									<div class="product-overlay">
+										<p:link styleClass="product-overlay__more"
+											mappingId="produkte-detail">
+											<span class="glyphicon glyphicon-search"></span>
+										</p:link>
+										<p:link styleClass="product-overlay__cart"
+											mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+										</p:link>
+										<div class="product-overlay__stock">
+											<span class="in-stock"><h:outputText escape="false"
+													value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+										</div>
+									</div>
+								</figure>
+								<div class="row">
+									<div class="col-xs-9">
+										<h5 class="products__title">
+											<p:link styleClass="products__link  js--isotope-title"
+												mappingId="produkte-detail">Zwetschgen</p:link>
+										</h5>
+									</div>
+									<div class="col-xs-3">
+										<div class="products__price">5,20€</div>
+									</div>
+								</div>
+								<div class="products__category">Obst</div>
+							</div>
+						</div>
+						<div
+							class="col-xs-6 col-sm-3  js--isotope-target  js--cat-gemuese"
+							data-price="3.1" data-rating="5">
+							<div class="products__single">
+								<figure class="products__image">
+									<p:link styleClass="" mappingId="produkte-detail">
+										<h:graphicImage library="content" styleClass="product__image"
+											alt="#" name="images/food/w263/263-05.jpg" />
+									</p:link>
+									<div class="product-overlay">
+										<p:link styleClass="product-overlay__more"
+											mappingId="produkte-detail">
+											<span class="glyphicon glyphicon-search"></span>
+										</p:link>
+										<p:link styleClass="product-overlay__cart"
+											mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+										</p:link>
+										<div class="product-overlay__stock">
+											<span class="in-stock"><h:outputText escape="false"
+													value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+										</div>
+									</div>
+								</figure>
+								<div class="row">
+									<div class="col-xs-9">
+										<h5 class="products__title">
+											<p:link styleClass="products__link  js--isotope-title"
+												mappingId="produkte-detail">Radieschen</p:link>
+										</h5>
+									</div>
+									<div class="col-xs-3">
+										<div class="products__price">3,10€</div>
+									</div>
+								</div>
+								<div class="products__category">Gemüse</div>
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst"
+							data-price="1.4" data-rating="5">
+							<div class="products__single">
+								<figure class="products__image">
+									<p:link styleClass="" mappingId="produkte-detail">
+										<h:graphicImage library="content" styleClass="product__image"
+											alt="#" name="images/food/w263/263-06.jpg" />
+									</p:link>
+									<div class="product-overlay">
+										<p:link styleClass="product-overlay__more"
+											mappingId="produkte-detail">
+											<span class="glyphicon glyphicon-search"></span>
+										</p:link>
+										<p:link styleClass="product-overlay__cart"
+											mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+										</p:link>
+										<div class="product-overlay__stock">
+											<span class="in-stock"><h:outputText escape="false"
+													value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+										</div>
+									</div>
+								</figure>
+								<div class="row">
+									<div class="col-xs-9">
+										<h5 class="products__title">
+											<p:link styleClass="products__link  js--isotope-title"
+												mappingId="produkte-detail">Helle Trauben (kernlos)</p:link>
+										</h5>
+									</div>
+									<div class="col-xs-3">
+										<div class="products__price">1,40€</div>
+									</div>
+								</div>
+								<div class="products__category">Obst</div>
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-milch"
+							data-price="1.2" data-rating="5">
+							<div class="products__single">
+								<figure class="products__image">
+									<p:link styleClass="" mappingId="produkte-detail">
+										<h:graphicImage library="content" styleClass="product__image"
+											alt="#" name="images/food/w263/263-07.jpg" />
+									</p:link>
+									<div class="product-overlay">
+										<p:link styleClass="product-overlay__more"
+											mappingId="produkte-detail">
+											<span class="glyphicon glyphicon-search"></span>
+										</p:link>
+										<p:link styleClass="product-overlay__cart"
+											mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+										</p:link>
+										<div class="product-overlay__stock">
+											<span class="in-stock"><h:outputText escape="false"
+													value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+										</div>
+									</div>
+								</figure>
+								<div class="row">
+									<div class="col-xs-9">
+										<h5 class="products__title">
+											<p:link styleClass="products__link  js--isotope-title"
+												mappingId="produkte-detail">Milch 3,5%</p:link>
+										</h5>
+									</div>
+									<div class="col-xs-3">
+										<div class="products__price">1,20€</div>
+									</div>
+								</div>
+								<div class="products__category">
+									Milchprodukte
+									<h:outputText escape="false" value="&amp;nbsp;" />
+									Eier
+								</div>
+							</div>
+						</div>
+						<div
+							class="col-xs-6 col-sm-3  js--isotope-target  js--cat-gemuese"
+							data-price="1" data-rating="5">
+							<div class="products__single">
+								<figure class="products__image">
+									<p:link styleClass="" mappingId="produkte-detail">
+										<h:graphicImage library="content" styleClass="product__image"
+											alt="#" name="images/food/w263/263-08.jpg" />
+									</p:link>
+									<div class="product-overlay">
+										<p:link styleClass="product-overlay__more"
+											mappingId="produkte-detail">
+											<span class="glyphicon glyphicon-search"></span>
+										</p:link>
+										<p:link styleClass="product-overlay__cart"
+											mappingId="produkte-detail">
+						  +<span class="glyphicon glyphicon-shopping-cart"></span>
+										</p:link>
+										<div class="product-overlay__stock">
+											<span class="in-stock"><h:outputText escape="false"
+													value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+										</div>
+									</div>
+								</figure>
+								<div class="row">
+									<div class="col-xs-9">
+										<h5 class="products__title">
+											<p:link styleClass="products__link  js--isotope-title"
+												mappingId="produkte-detail">Champigons</p:link>
+										</h5>
+									</div>
+									<div class="col-xs-3">
+										<div class="products__price">10€</div>
+									</div>
+								</div>
+								<div class="products__category">Gemüse</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="item">
+					<div class="row"></div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-4">
+				<div class="widgets__navigation">
+					<div class="widgets__heading--line">
+						<h4 class="widgets__heading">Bestbewerteste Produkte</h4>
+					</div>
+
+
+					<div class="push-down-20  clearfix">
+						<p:link styleClass="" mappingId="produkte-detail">
+							<h:graphicImage library="content" styleClass="widgets__products"
+								alt="#" name="images/food/w78/078-30.jpg" />
+						</p:link>
+						<h5 class="products__title">
+							<p:link styleClass="products__link" mappingId="produkte-detail">Saar Riesling 2013</p:link>
+						</h5>
+						<span class="line-through">5,60€</span> <span
+							class="products__price--widgets">2,60€</span> <br />
+						<br /> <span class="glyphicon glyphicon-star  star-on"></span> <span
+							class="glyphicon glyphicon-star  star-on"></span> <span
+							class="glyphicon glyphicon-star  star-on"></span> <span
+							class="glyphicon glyphicon-star  star-on"></span> <span
+							class="glyphicon glyphicon-star  star-on"></span>
+
+					</div>
+
+
+
+					<div class="push-down-20  clearfix">
+						<p:link styleClass="" mappingId="produkte-detail">
+							<h:graphicImage library="content" styleClass="widgets__products"
+								alt="#" name="images/food/w78/078-33.jpg" />
+						</p:link>
+						<h5 class="products__title">
+							<p:link styleClass="products__link" mappingId="produkte-detail">Ruppertsberger Rose 2012</p:link>
+						</h5>
+						<span class="line-through">4,00€</span> <span
+							class="products__price--widgets">0,50€</span> <br />
+						<br /> <span class="glyphicon glyphicon-star  star-on"></span> <span
+							class="glyphicon glyphicon-star  star-on"></span> <span
+							class="glyphicon glyphicon-star  star-on"></span> <span
+							class="glyphicon glyphicon-star  star-on"></span> <span
+							class="glyphicon glyphicon-star  star-on"></span>
+
+					</div>
+
+
+
+					<div class="push-down-20  clearfix">
+						<p:link styleClass="" mappingId="produkte-detail">
+							<h:graphicImage library="content" styleClass="widgets__products"
+								alt="#" name="images/food/w78/078-27.jpg" />
+						</p:link>
+						<h5 class="products__title">
+							<p:link styleClass="products__link" mappingId="produkte-detail">Salami</p:link>
+						</h5>
+						<span class="line-through">6,00€</span> <span
+							class="products__price--widgets">4,70€</span> <br />
+						<br /> <span class="glyphicon glyphicon-star  star-on"></span> <span
+							class="glyphicon glyphicon-star  star-on"></span> <span
+							class="glyphicon glyphicon-star  star-on"></span> <span
+							class="glyphicon glyphicon-star  star-on"></span> <span
+							class="glyphicon glyphicon-star  star-off"></span>
+
+					</div>
+
+
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<div class="widgets__navigation">
+					<div class="widgets__heading--line">
+						<h4 class="widgets__heading">Bestseller</h4>
+					</div>
+
+
+					<div class="clearfix  push-down-15">
+						<p:link styleClass="" mappingId="produkte-detail">
+							<h:graphicImage library="content" styleClass="widgets__products"
+								alt="#" name="images/food/w78/078-38.jpg" />
+						</p:link>
+						<div class="products__title">
+							<p:link styleClass="products__link" mappingId="produkte-detail">Bad Dürckheim Weißburgunder</p:link>
+						</div>
+						<span class="products__price--widgets">4,20€</span> <br />
+						<br />
+						<div class="products__category">Powders</div>
+					</div>
+
+
+
+					<div class="clearfix  push-down-15">
+						<p:link styleClass="" mappingId="produkte-detail">
+							<h:graphicImage library="content" styleClass="widgets__products"
+								alt="#" name="images/food/w78/078-24.jpg" />
+						</p:link>
+						<div class="products__title">
+							<p:link styleClass="products__link" mappingId="produkte-detail">Brötchen</p:link>
+						</div>
+						<span class="products__price--widgets">0,80€</span> <br />
+						<br />
+						<div class="products__category">Natural Proteins</div>
+					</div>
+
+
+
+					<div class="clearfix  push-down-15">
+						<p:link styleClass="" mappingId="produkte-detail">
+							<h:graphicImage library="content" styleClass="widgets__products"
+								alt="#" name="images/food/w78/078-19.jpg" />
+						</p:link>
+						<div class="products__title">
+							<p:link styleClass="products__link" mappingId="produkte-detail">Kürbis</p:link>
+						</div>
+						<span class="products__price--widgets">1,10€</span> <br />
+						<br />
+						<div class="products__category">Other</div>
+					</div>
+
+
+
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<div class="widgets__navigation">
+					<div class="widgets__heading--line">
+						<h4 class="widgets__heading">Rezeptvorschlag</h4>
+					</div>
+					<h:graphicImage library="content" styleClass="product__image"
+						alt="#" name="images/recipe/fotolia_69318147.jpg" />
+					<div class="products__title">
+						<div class="push-down-10"></div>
+						<strong>Steak mit Kräuterkruste</strong>
+					</div>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce est
+					purus, fringilla sit amet arcu quis, feugiat ultrices metus.
+					Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit
+					scelerisque risus.
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="testimonials  light-paper-pattern">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3  hidden-xs">
+					<div class="testimonials__quotes">
+						<h:graphicImage library="layout"
+							styleClass="testimonials__quotes--img" alt="#"
+							name="images/quotes.png" />
+					</div>
+				</div>
+				<div class="col-xs-12  col-sm-6">
+					<a href="#js--testimonails-carousel" data-slide="prev"><span
+						class="glyphicon  glyphicon-circle  glyphicon-chevron-left"></span></a>
+					<h4 class="testimonials__title">Kundenmeinungen</h4>
+					<a href="#js--testimonails-carousel" data-slide="next"><span
+						class="glyphicon  glyphicon-circle  glyphicon-chevron-right"></span></a>
+					<hr class="divider-dark" />
+					<div id="js--testimonails-carousel" class="carousel  slide"
+						data-ride="carousel" data-interval="5000">
+						<div class="carousel-inner">
+							<div class="item  active">
+								<q class="testimonials__text">A top quality product
+									delivered super quick! Thank you so much Organic Shop,<br />I
+									shall definitely be using you guys again!
+								</q><br />
+								<br /> <cite><b>John Don Joe,</b></cite> Musician
+							</div>
+							<div class="item">
+								<q class="testimonials__text">THANKS! I really appreciate
+									the FAST service of Proteus! Really Really Happy with the theme
+									and support! Thanks again.</q><br />
+								<br /> <cite><b>Timonvki,</b></cite> Themeforest user
+							</div>
+							<div class="item">
+								<q class="testimonials__text">Great theme, perfect for any
+									salon. Client loves it. Very good documentation and easy to use
+									and setup.</q><br />
+								<br /> <cite><b>Ypclarke,</b></cite> Themeforest user
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3  hidden-xs">
+					<div class="testimonials__quotes--rotate">
+						<h:graphicImage library="layout"
+							styleClass="testimonials__quotes--img" alt="#"
+							name="images/quotes.png" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</ui:composition>
+</html>

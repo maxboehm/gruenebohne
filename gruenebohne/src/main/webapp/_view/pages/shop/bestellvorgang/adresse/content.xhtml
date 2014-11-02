@@ -1,0 +1,178 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://ocpsoft.com/prettyfaces">
+<ui:composition>
+
+
+
+	<div class="woocommerce  push-down-30">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h3>Checkout</h3>
+					<hr />
+					<p class="woocommerce-info">
+						Haben Sie einen Gutschein? <a href="#">Klicken Sie hier um ihn
+							einzulösen</a>
+					</p>
+				</div>
+				<div class="col-xs-12  col-sm-6">
+					<h3>
+						<span class="light">Rechnungs</span>adresse
+					</h3>
+					<div class="row">
+						<div class="col-xs-12  col-sm-12  push-down-10">
+							<p>
+								<label> Land <abbr class="required"> * </abbr>
+								</label> <select class="input-text">
+									<option>Wählen Sie ein Land...</option>
+									<option value="DE">Deutschland</option>
+									<option value="UK">Großbritannien</option>
+									<option value="USA">USA</option>
+								</select>
+							</p>
+						</div>
+						<div class="col-xs-12  col-sm-6  push-down-10">
+							<p>
+								<label> Vorname <abbr class="required"> * </abbr>
+								</label> <input class="input-text" />
+							</p>
+						</div>
+						<div class="col-xs-12  col-sm-6  push-down-10">
+							<p>
+								<label> Nachname <abbr class="required"> * </abbr>
+								</label> <input class="input-text" />
+							</p>
+						</div>
+						<div class="col-xs-12  col-sm-12  push-down-10">
+							<p>
+								<label> Firma </label> <input class="input-text" />
+							</p>
+						</div>
+						<div class="col-xs-12  col-sm-12  push-down-10">
+							<p>
+								<label> Adresse <abbr class="required"> * </abbr>
+								</label> <input class="input-text  push-down-10"
+									placeholder="Straße, Hausnummer" /> <input class="input-text"
+									placeholder="Erdgeschoss, etc." />
+							</p>
+						</div>
+						<div class="col-xs-12  col-sm-12  push-down-10">
+							<p>
+								<label> Postleitzahl <abbr class="required"> * </abbr>
+								</label> <input class="input-text  push-down-10"
+									placeholder="Postleitzahl" />
+							</p>
+						</div>
+						<div class="col-xs-12  col-sm-12  push-down-10">
+							<p>
+								<label> Stadt <abbr class="required"> * </abbr>
+								</label> <input class="input-text  push-down-10" placeholder="Stadt" />
+							</p>
+						</div>
+						<div class="col-xs-12  col-sm-6  push-down-10">
+							<p>
+								<label> E-Mail <abbr class="required"> * </abbr>
+								</label> <input class="input-text" />
+							</p>
+						</div>
+						<div class="col-xs-12  col-sm-6  push-down-10">
+							<p>
+								<label> Telefonnummer <abbr class="required"> * </abbr>
+								</label> <input class="input-text" />
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<p class="form-row">
+						<input class="input-checkbox" type="checkbox" /> Versand zur
+						Rechnungsadresse?
+					</p>
+					<h3>
+						<span class="light">Liefer</span>adresse
+					</h3>
+					<p>
+						<label> Kommentar </label>
+						<textarea class="input-text" rows="3"></textarea>
+					</p>
+				</div>
+				<div class="col-xs-12">
+					<!-- Your order - table -->
+					<h3>
+						<span class="light">Ihre</span> Bestellung
+					</h3>
+					<table class="shop_table  push-down-30">
+						<thead>
+							<tr>
+								<th class="product-name">Produkt</th>
+								<th class="product-total">Total</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr class="cart-subtotal">
+								<th>Gesamtpreis Warenkorb</th>
+								<td><span class="amount">EUR<h:outputText
+											escape="false" value="&amp;nbsp;" />35
+								</span></td>
+							</tr>
+							<tr class="shipping">
+								<th>Versand</th>
+								<td>Gratisversand</td>
+							</tr>
+							<tr class="total">
+								<th><strong>Gesamtpreis Bestellung</strong></th>
+								<td><strong><span class="amount">EUR<h:outputText
+												escape="false" value="&amp;nbsp;" />35
+									</span></strong></td>
+							</tr>
+						</tfoot>
+						<tbody>
+							<tr class="checkout_table_item">
+								<td class="product-name">Produkt-Name <strong
+									class="product-quantity">× 1</strong></td>
+								<td class="product-total"><span class="amount">EUR<h:outputText
+											escape="false" value="&amp;nbsp;" />35
+								</span></td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- Payment methods -->
+					<div class="payment">
+						<ul class="payment_methods">
+							<li><input type="radio" id="payment_method_bacs"
+								class="input-radio" name="payment_method" value="bacs"
+								checked="checked" /> <label class="test">Lastschrift</label>
+								<div class="payment_box">
+									<p>Make your payment directly into our bank account. Please
+										use your Order ID as the payment reference. Your order wont be
+										shipped until the funds have cleared in our account.</p>
+								</div></li>
+							<li><input type="radio" id="payment_method_bacs"
+								class="input-radio" name="payment_method" value="bacs"
+								checked="checked" /> <label>Paypal</label>
+								<div class="payment_box">
+									<p>Please send your cheque to Store Name, Store Street,
+										Store Town, Store State / County, Store Postcode.</p>
+								</div></li>
+							<li><input type="radio" id="payment_method_bacs"
+								class="input-radio" name="payment_method" value="bacs"
+								checked="checked" /> <label>Kreditkarte</label>
+								<div class="payment_box">
+									<p>Pay via PayPal; you can pay with your credit card if you
+										don’t have a PayPal account.</p>
+								</div></li>
+						</ul>
+						<p:link styleClass="btn  btn-warning  pull-right"
+							mappingId="adresse">Bestellung abschicken</p:link>
+					</div>
+				</div>
+			</div>
+			<hr class="divider" />
+		</div>
+	</div>
+
+
+</ui:composition>
+</html>

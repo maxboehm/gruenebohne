@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition>
+
+
+	<div class="simple-map  js--where-we-are"
+		data-latlng="49.4811088,8.469933299999999"
+		data-markers="[{lat: 49.4811088,lng: 8.469933299999999,title: 'Hauptquartier Foodjunkies'}]"
+		data-zoom="6"></div>
+	<div class="container  push-down-30">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 class="center">
+					<span class="light">Senden</span> Sie uns eine Nachricht!
+				</h1>
+				<hr class="divider" />
+				<div class="text-shrink">
+					<p class="text-highlight">Wir freuen uns über Ihr Feedback und
+						Ihre Fragen. Gerne helfen wir Ihnen weiter und verbessern unseren
+						Service.</p>
+				</div>
+				<hr class="divider  divider-about" />
+				<div class="push-down-30"></div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-9  push-down-30">
+						<form>
+							<div class="row">
+								<div class="col-xs-12  col-sm-4">
+									<div class="form-group">
+										<label class="text-dark" for="name">Name <span
+											class="warning">*</span></label> <input type="text" id="name"
+											class="form-control  form-control--contact"
+											required="required" />
+									</div>
+									<div class="form-group">
+										<label class="text-dark" for="email">E-mail <span
+											class="warning">*</span></label> <input type="text" id="email"
+											class="form-control  form-control--contact"
+											required="required" />
+									</div>
+									<div class="form-group">
+										<label class="text-dark" for="subject">Betreff <span
+											class="warning">*</span></label> <input type="text" id="subject"
+											class="form-control  form-control--contact"
+											required="required" />
+									</div>
+									<span class="hidden-xs">Mit einem <span class="warning">*</span>
+										markierten Felder sind verpflichtend
+									</span>
+								</div>
+								<div class="col-xs-12  col-sm-8">
+									<div class="form-group">
+										<label class="text-dark" for="message">Nachricht <span
+											class="warning">*</span></label>
+										<textarea
+											class="form-control  form-control--contact  form-control--big"
+											id="message" rows="12" required="required"></textarea>
+									</div>
+									<div class="right">
+										<button type="submit" class="btn  btn-warning">Send
+											now</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="col-xs-12 col-sm-3">
+						<h2 class="no-margin">
+							<span class="light">Grüne Bohne</span> GmbH
+						</h2>
+						<p>
+							<span>L15, 1-6, 5th floor</span><br /> 68161 Mannheim,
+							Deutschland<br /> <br /> <a class="secondary-link"
+								href="tel:+49 621 123 456"><span
+								class="glyphicon glyphicon-earphone glyphicon--footer"></span>
+								+49 621 123 456</a><br /> <a class="secondary-link"
+								href="mailto:kontakt@gruene-bohne.com"><span
+								class="glyphicon glyphicon-envelope glyphicon--footer"></span>
+								kontakt@gruene-bohne.com</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</ui:composition>
+</html>
