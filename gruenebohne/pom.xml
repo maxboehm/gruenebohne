@@ -114,7 +114,7 @@
 								<!-- COMMAND: neo.sh hot-update example.properties -->
 								<copy
 									file="target/${project.artifactId}-${project.version}.${project.packaging}"
-									tofile="/Users/Fabian/Desktop/neo-javaee6-wp-sdk-2.45.7.2/tools/gruenebohne.war" />
+									tofile="/Users/Fabian/Desktop/neo-javaee6-wp-sdk-2.46.11/tools/gruenebohne.war" />
 							</target>
 						</configuration>
 						<goals>

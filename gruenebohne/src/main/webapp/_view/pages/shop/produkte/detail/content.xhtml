@@ -1,11 +1,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://ocpsoft.com/prettyfaces">
+	xmlns:p="http://ocpsoft.com/prettyfaces"
+	xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition>
 
-
-
+	<h:form>
 	<div class="breadcrumbs">
 		<div class="container">
 			<div class="row">
@@ -33,8 +33,7 @@
 					<div class="product-preview">
 						<div class="push-down-20">
 							<h:graphicImage library="content"
-								styleClass="js--product-preview" alt="#"
-								name="images/food/w360/360-03.jpg" />
+								styleClass="js--product-preview" alt="#" url="javax.faces.resource/images/food/w360/360-#{product.currentProduct.pictureURL}" />
 						</div>
 					</div>
 				</div>
@@ -42,11 +41,11 @@
 					<div class="products__content">
 						<div class="push-down-30"></div>
 
-						<span class="products__category">Gemüse</span>
+						<span class="products__category">#{product.currentProduct.category.category}</span>
 						<h1 class="single-product__title">
-							<span class="light"></span> Strauchtomaten
+							<span class="light"></span> #{product.currentProduct.prodName}
 						</h1>
-						<span class="single-product__price">1,95€</span>
+						<span class="single-product__price">#{product.currentProduct.price}</span>
 						<div class="single-product__rating">
 							<span class="glyphicon  glyphicon-star  star-on"></span> <span
 								class="glyphicon  glyphicon-star  star-on"></span> <span
@@ -77,18 +76,24 @@
 						</select>
 						<!-- Quantity buttons -->
 						<div class="quantity  js--quantity">
-							<input type="button" value="-"
-								class="quantity__button  js--minus-one  js--clickable" /> <input
-								type="text" name="quantity" value="1" class="quantity__input" />
-							<input type="button" value="+"
-								class="quantity__button  js--plus-one  js--clickable" />
+							<h:commandButton type="submit" value="-"
+								class="quantity__button  js--minus-one  js--clickable" >
+								<f:ajax listener="#{product.sub}"></f:ajax>
+								</h:commandButton>
+								<h:inputText
+								type="text" name="quantity" value="#{product.productAmount}" class="quantity__input" />
+							<h:commandButton type="submit" value="+"
+								class="quantity__button  js--plus-one  js--clickable"> 
+							<f:ajax listener="#{product.add}"></f:ajax>	
+							</h:commandButton>
 						</div>
 						<!-- Add to cart button -->
-						<a class="btn btn-primary--transition" href="#"> <span
+						<span
 							class="glyphicon glyphicon-plus"></span><span
 							class="glyphicon glyphicon-shopping-cart"></span> <span
-							class="single-product__btn-text">In den Warenkorb</span>
-						</a>
+							class="single-product__btn-text"></span>
+						<h:commandButton class="btn btn-primary--transition" value="In den Warenkorb" type="submit" actionListener="#{currentBasket.addToBasket}">
+						</h:commandButton>
 					</div>
 				</div>
 			</div>
@@ -384,6 +389,6 @@
 	</div>
 
 
-
+</h:form>
 </ui:composition>
 </html>

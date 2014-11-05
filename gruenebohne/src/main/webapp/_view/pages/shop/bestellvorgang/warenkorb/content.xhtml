@@ -1,10 +1,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://ocpsoft.com/prettyfaces">
+	xmlns:p="http://ocpsoft.com/prettyfaces"
+	xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition>
 
-
+<h:form>
 
 	<div class="woocommerce  push-down-30">
 		<div class="container">
@@ -24,52 +25,40 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="cart_table_item">
-								<td class="product-remove"><span
-									class="glyphicon  glyphicon-remove"></span></td>
-								<td class="product-thumbnail"><h:graphicImage
-										library="content" name="images/dummy/product-cart.jpg" /></td>
-								<td class="product-name"><p:link
-										mappingId="produkte-detail">Orange Flavoured Raw Cacao Bar</p:link></td>
-								<td class="product-price">EUR<h:outputText escape="false"
-										value="&amp;nbsp;" />18
-								</td>
-								<td class="product-quantity">
-									<div class="quantity  js--quantity">
-										<input type="button" value="-"
-											class="quantity__button  js--minus-one  js--clickable" /> <input
-											type="text" name="quantity" value="1" class="quantity__input" />
-										<input type="button" value="+"
-											class="quantity__button  js--plus-one  js--clickable" />
-									</div>
-								</td>
-								<td class="product-subtotal">EUR<h:outputText
-										escape="false" value="&amp;nbsp;" />18
-								</td>
-							</tr>
-							<tr class="cart_table_item">
-								<td class="product-remove"><span
-									class="glyphicon  glyphicon-remove"></span></td>
-								<td class="product-thumbnail"><h:graphicImage
-										library="content" name="images/dummy/product-cart.jpg" /></td>
-								<td class="product-name"><p:link
-										mappingId="produkte-detail">High Protein Diet Mango</p:link></td>
-								<td class="product-price">EUR<h:outputText escape="false"
-										value="&amp;nbsp;" />20
-								</td>
-								<td class="product-quantity">
-									<div class="quantity  js--quantity">
-										<input type="button" value="-"
-											class="quantity__button  js--minus-one  js--clickable" /> <input
-											type="text" name="quantity" value="1" class="quantity__input" />
-										<input type="button" value="+"
-											class="quantity__button  js--plus-one  js--clickable" />
-									</div>
-								</td>
-								<td class="product-subtotal">EUR<h:outputText
-										escape="false" value="&amp;nbsp;" />20
-								</td>
-							</tr>
+							<ui:repeat var="itemBasket" value="#{currentBasket.basket}">
+								<tr class="cart_table_item">
+									<td class="product-remove"><span
+										class="glyphicon  glyphicon-remove"></span></td>
+									<td class="product-thumbnail"><h:graphicImage
+											library="content" name="images/dummy/product-cart.jpg" alt="dummy" /></td>
+									<td class="product-name"><p:link
+											mappingId="produkte-detail">#{itemBasket.currentProduct.prodName}</p:link></td>
+									<td class="product-price">EUR<h:outputText escape="false"
+											value="&amp;nbsp;" />#{itemBasket.currentProduct.price}
+									</td>
+									<td class="product-quantity">
+										<div class="quantity  js--quantity">
+											<h:commandButton type="submit" value="-"
+												class="quantity__button  js--minus-one  js--clickable">
+												<f:ajax listener="#{currentBasket.sub}">
+												<f:param name="product" value="#{itemBasket.currentProduct.prodId}"></f:param>
+												</f:ajax>
+											</h:commandButton>
+											<h:inputText type="text" name="quantity"
+												value="#{itemBasket.productAmount}" class="quantity__input" />
+											<h:commandButton type="submit" value="+"
+												class="quantity__button  js--plus-one  js--clickable">
+												<f:ajax listener="#{currentBasket.add}">
+												<f:param name="product" value="#{itemBasket.currentProduct.prodId}"></f:param>
+												</f:ajax>
+											</h:commandButton>
+										</div>
+									</td>
+									<td class="product-subtotal">EUR<h:outputText
+											escape="false" value="&amp;nbsp;" />12
+									</td>
+								</tr>
+							</ui:repeat>
 							<tr class="cart_table_action">
 								<td colspan="6" class="actions">
 									<div class="col-xs-6">
@@ -100,7 +89,7 @@
 							<tr class="cart-subtotal">
 								<th>Gesamtpreis Warenkorb</th>
 								<td><span class="amount">EUR<h:outputText
-											escape="false" value="&amp;nbsp;" />38
+											escape="false" value="&amp;nbsp;" />#{currentBasket.totalPrice}
 								</span></td>
 							</tr>
 							<tr class="shipping">
@@ -110,7 +99,7 @@
 							<tr class="total">
 								<th><strong>Gesamtpreis Bestellung</strong></th>
 								<td><strong><span class="amount">EUR<h:outputText
-												escape="false" value="&amp;nbsp;" />38
+												escape="false" value="&amp;nbsp;" />#{currentBasket.totalPrice}
 									</span></strong></td>
 							</tr>
 						</tfoot>
@@ -121,7 +110,7 @@
 		</div>
 	</div>
 
-
+</h:form>
 
 </ui:composition>
 </html>
