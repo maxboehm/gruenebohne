@@ -36,6 +36,7 @@
 	<url-mapping id="warenkorb">
 		<pattern value="/warenkorb" />
 		<view-id value="/_view/pages/shop/bestellvorgang/warenkorb/_warenkorb.xhtml" />
+		<action>#{currentBasket.refreshPrice}</action>
 	</url-mapping>
 
 	<url-mapping id="adresse">

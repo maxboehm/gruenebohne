@@ -6,7 +6,6 @@
 
 
 <ui:composition>
-<h:form>
 
 	<div class="top  js--fixed-header-offset">
 		<div class="container">
@@ -68,9 +67,11 @@
 								class="form-control  form-control--contact"
 								placeholder="Passwort" value="#{login.password}" />
 						</div>
+						<h:form>
 							<h:commandButton value="ANMELDEN" type="submit"
 								class="btn  btn-primary"
 								actionListener="#{login.createNewCustomer}" />
+						</h:form>
 					</form>
 					<a data-toggle="modal" role="button" href="#loginModal"
 						data-dismiss="modal">Bereits registriert?</a>
@@ -104,8 +105,10 @@
 								class="form-control  form-control--contact"
 								placeholder="Passwort" value="#{login.password}" />
 						</div>
+						<h:form>
 							<h:commandButton value="ANMELDEN" type="submit"
 								class="btn  btn-primary" actionListener="#{login.performLogin}" />
+						</h:form>
 					</form>
 				</div>
 			</div>
@@ -209,29 +212,29 @@
 						<!-- Open cart panel -->
 						<div class="header-cart__open-cart">
 							<ui:repeat var="itemBasket" value="#{currentBasket.basket}">
-							<div
-								class="header-cart__product  clearfix  js--cart-remove-target">
-								<div class="header-cart__product-image">
-									<h:graphicImage library="content" alt="Product in the cart"
-										name="images/dummy/product-cart.jpg" />
+								<div
+									class="header-cart__product  clearfix  js--cart-remove-target">
+									<div class="header-cart__product-image">
+										<h:graphicImage library="content" alt="Product in the cart"
+											name="images/dummy/product-cart.jpg" />
 
+									</div>
+									<div class="header-cart__product-image--hover">
+										<a href="#" class="js--remove-item"
+											data-target=".js--cart-remove-target"><span
+											class="glyphicon  glyphicon-circle  glyphicon-remove"></span></a>
+									</div>
+									<div class="header-cart__product-title">
+										<p:link styleClass="header-cart__link"
+											mappingId="produkte-detail">#{itemBasket.currentProduct.prodName}</p:link>
+										<span class="header-cart__qty">Qty:#{itemBasket.productAmount}</span>
+									</div>
+									<div class="header-cart__price">
+										EUR
+										<h:outputText escape="false" value="&amp;nbsp;" />
+										#{itemBasket.currentProduct.price}
+									</div>
 								</div>
-								<div class="header-cart__product-image--hover">
-									<a href="#" class="js--remove-item"
-										data-target=".js--cart-remove-target"><span
-										class="glyphicon  glyphicon-circle  glyphicon-remove"></span></a>
-								</div>
-								<div class="header-cart__product-title">
-									<p:link styleClass="header-cart__link"
-										mappingId="produkte-detail">#{itemBasket.currentProduct.prodName}</p:link>
-									<span class="header-cart__qty">Qty:#{itemBasket.productAmount}</span>
-								</div>
-								<div class="header-cart__price">
-									EUR
-									<h:outputText escape="false" value="&amp;nbsp;" />
-									#{itemBasket.currentProduct.price}
-								</div>
-							</div>
 							</ui:repeat>
 
 							<hr class="header-cart__divider" />
@@ -275,6 +278,5 @@
 
 
 
-</h:form>
 </ui:composition>
 </html>
