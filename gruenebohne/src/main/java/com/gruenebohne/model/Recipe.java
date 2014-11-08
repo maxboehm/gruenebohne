@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -17,15 +18,17 @@ public class Recipe {
 	@GeneratedValue
 	@Column(name="RECIPE_ID")
 	private int id;
-	
-	@Column(name="NAME")
-	private String name;
-	
-	@Column(name="DESCRIPTION")
-	private String description;
-	
+
+	@Column(nullable = false)
+	@Lob
+	private byte[] picture;
+
 	@OneToMany(mappedBy="recipe")
 	private Collection<Product> products;
+
+	@Column private String name;
+	@Column private String description;
+
 
 	public int getId() {
 		return id;
@@ -58,7 +61,7 @@ public class Recipe {
 	public void setProducts(Collection<Product> products) {
 		this.products = products;
 	}
-	
-	
-	
+
+
+
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -17,9 +16,9 @@ public class ProductEJB {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	private void initializeData() {
-		
+
 		ProductCategory cat1 = new ProductCategory(1, "Gemüse");
 		em.persist(cat1);
 		em.flush();
@@ -35,8 +34,8 @@ public class ProductEJB {
 		ProductCategory cat5 = new ProductCategory(5, "Fleischprodukte");
 		em.persist(cat5);
 		em.flush();
-		
-		
+
+
 		Product product1 = new Product();
 		product1.setProdId(1);
 		product1.setProdName("Tomate");
@@ -44,7 +43,7 @@ public class ProductEJB {
 		product1.setPictureURL("03.jpg.xhtml?ln=content");
 		product1.setCategory(cat1);
 		em.persist(product1);
-		
+
 		Product product2 = new Product();
 		product2.setProdId(2);
 		product2.setProdName("Kartoffeln");
@@ -52,14 +51,14 @@ public class ProductEJB {
 		product2.setPictureURL("20.jpg.xhtml?ln=content");
 		product2.setCategory(cat2);
 		em.persist(product2);
-		
+
 		Product product3 = new Product();
 		product3.setProdId(2);
 		product3.setProdName("Karotten");
 		product3.setPrice(5.90);
 		product3.setPictureURL("21.jpg.xhtml?ln=content");
 		product3.setCategory(cat2);
-		
+
 		Product product4 = new Product(4,"Radieschen","TestDescription", 0.95,"05.jpg.xhtml?ln=content", cat1);
 		em.persist(product4);
 		Product product5 = new Product(5,"Dunkle Trauben","TestDescription", 3.95,"02.jpg.xhtml?ln=content", cat2);
@@ -75,29 +74,29 @@ public class ProductEJB {
 		Product product10 = new Product(10,"Salami","TestDescription", 2.95,"14.jpg.xhtml?ln=content", cat5);
 		em.persist(product10);
 		em.flush();
-		
+
 	}
-	
+
 	public List<Product> getAllProductsWithCategory() {
 
-		if(em.createNamedQuery("AllProducts", Product.class).getResultList().isEmpty() && 
+		if(em.createNamedQuery("AllProducts", Product.class).getResultList().isEmpty() &&
 				em.createNamedQuery("AllCategories", ProductCategory.class).getResultList().isEmpty()){
 			initializeData();
 		}
-		
+
 		List<Product> products = em.createNamedQuery("AllProducts", Product.class).getResultList();
 		return products;
 	}
-	
+
 	public Product getProduct(int prodId){
-		
+
 		List <Product> product = em.createNamedQuery("GetProduct", Product.class).setParameter("prodId", prodId).getResultList();
-		
+
 		if(product.isEmpty()){
 			return null;
 		}
 		return product.get(0);
 	}
-	
+
 
 }

@@ -9,27 +9,33 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Address {
-	
+
+	// #################################################################
+	// member
+	// #################################################################
+
 	@Id
 	@GeneratedValue
 	@Column
 	private int id;
-	
-	@Column
-	private String street;
-	
-	@Column
-	private String city;
-	
-	@Column
-	private String country;
-	
-	@Column
-	private int houseNumber;
-	
+
+	@Column private String street;
+	@Column private String city;
+	@Column private String country;
+	@Column private int houseNumber;
+
+	@ManyToOne(optional=false)
+	@JoinColumn(name="addresstyp_id",referencedColumnName="addresstyp_id")
+	private AddressTyp addressTyp;
+
 	@ManyToOne(optional=false)
 	@JoinColumn(name="CUSTOMER_ID",referencedColumnName="CUSTOMER_ID")
 	private Customer customer;
+
+
+	// #################################################################
+	// getter-setter
+	// #################################################################
 
 	public int getId() {
 		return id;
@@ -78,8 +84,16 @@ public class Address {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
-	
-	
+
+	public AddressTyp getAddressTyp() {
+		return addressTyp;
+	}
+
+	public void setAddressTyp(AddressTyp addressTyp) {
+		this.addressTyp = addressTyp;
+	}
+
+
+
 
 }

@@ -1,49 +1,49 @@
 package com.gruenebohne.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="T_ORDER")
+@Table(name="T_RECORD")
 @SequenceGenerator(name = "sequence", initialValue = 0, allocationSize = 1000)
-public class Order {
+public class Record {
 
 	@Id
 	@GeneratedValue(generator="sequence")
-	@Column(name="ORDER_ID", nullable=false)
+	@Column(name="RECORD_ID", nullable=false)
 	private long id;
-	
+
 	@ManyToOne(optional=false)
 	@JoinColumn(name="CUSTOMER_ID",referencedColumnName="CUSTOMER_ID")
 	private Customer customer;
-	
+
 	@Column(name="TOTALPRICE", precision=2)
 	private double totalPrice;
-	
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="ORDER_DETAIL",
-			joinColumns=
-	            @JoinColumn(name="ORDER_ID", referencedColumnName="ORDER_ID"),
-	        inverseJoinColumns=
-	            @JoinColumn(name="PRODUCT_ID", referencedColumnName="PRODUCT_ID")
-	)
-	private List<Product> productList;
 
-	@OneToOne
-	private Invoice invoice;
-	
+	@OneToMany
+	private Set<RecordItem> setRecordItems;
+
+	public Set<RecordItem> getSetRecordItems() {
+		return setRecordItems;
+	}
+
+	public void setSetRecordItems(Set<RecordItem> setRecordItems) {
+		this.setRecordItems = setRecordItems;
+	}
+
+	public void addRecordItem(RecordItem item){
+		setRecordItems.add(item);
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -68,21 +68,5 @@ public class Order {
 		this.totalPrice = totalPrice;
 	}
 
-	public List<Product> getProductList() {
-		return productList;
-	}
 
-	public void setProductList(List<Product> productList) {
-		this.productList = productList;
-	}
-
-	public Invoice getInvoice() {
-		return invoice;
-	}
-
-	public void setInvoice(Invoice invoice) {
-		this.invoice = invoice;
-	}
-	
-	
 }

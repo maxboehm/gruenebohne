@@ -9,8 +9,12 @@
 		<class>com.gruenebohne.model.Product</class>
 		<class>com.gruenebohne.model.ProductCategory</class>
 		<class>com.gruenebohne.model.Address</class>
-		<class>com.gruenebohne.model.Invoice</class>
 		<class>com.gruenebohne.model.Recipe</class>
+		<class>com.gruenebohne.model.RecordItem</class>
+		<class>com.gruenebohne.model.Record</class>
+		<class>com.gruenebohne.model.Producer</class>
+		<class>com.gruenebohne.model.RecordType</class>
+		<class>com.gruenebohne.model.AddressTyp</class>
 		<properties>
 			<property name="eclipselink.ddl-generation" value="create-tables" />
 			<property name="javax.persistence.sql-load-script-source" value="META-INF/sql/mockdata.sql"/>
