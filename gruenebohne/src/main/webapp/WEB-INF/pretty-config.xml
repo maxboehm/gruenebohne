@@ -28,7 +28,7 @@
 	</url-mapping>
 	
 	<url-mapping id="produkte-detail">
-		<pattern value="/produkt/#{id}" />
+		<pattern value="/produkt/#{productdetail.id}" />
 		<view-id value="/_view/pages/shop/produkte/detail/_produkt_detail.xhtml" />
 		<action>#{productdetail.loadProduct}</action>
 	</url-mapping>

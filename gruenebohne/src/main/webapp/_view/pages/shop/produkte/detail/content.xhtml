@@ -75,25 +75,7 @@
 							<option>250g</option>
 						</select>
 						<!-- Quantity buttons -->
-						<div class="quantity  js--quantity">
-							<h:commandButton type="submit" value="-"
-								class="quantity__button  js--minus-one  js--clickable" >
-								<f:ajax listener="#{product.sub}"></f:ajax>
-								</h:commandButton>
-								<h:inputText
-								type="text" name="quantity" value="#{product.productAmount}" class="quantity__input" />
-							<h:commandButton type="submit" value="+"
-								class="quantity__button  js--plus-one  js--clickable"> 
-							<f:ajax listener="#{product.add}"></f:ajax>	
-							</h:commandButton>
-						</div>
-						<!-- Add to cart button -->
-						<span
-							class="glyphicon glyphicon-plus"></span><span
-							class="glyphicon glyphicon-shopping-cart"></span> <span
-							class="single-product__btn-text"></span>
-						<h:commandButton class="btn btn-primary--transition" value="In den Warenkorb" type="submit" actionListener="#{currentBasket.addToBasket}">
-						</h:commandButton>
+
 					</div>
 				</div>
 			</div>
@@ -241,16 +223,17 @@
 					<div class="products__single">
 						<figure class="products__image">
 							<p:link styleClass="" mappingId="produkte-detail">
+								<f:param value="#{productdetail.product.prodId}" />
 								<h:graphicImage library="content" styleClass="product__image"
 									alt="#" name="images/food/w263/263-01.jpg" />
 							</p:link>
 							<div class="product-overlay">
 								<p:link styleClass="product-overlay__more"
-									mappingId="produkte-detail">
+									mappingId="produkte-detail"><f:param value="#{productdetail.product.prodId}" />
 									<span class="glyphicon glyphicon-search"></span>
 								</p:link>
 								<p:link styleClass="product-overlay__cart"
-									mappingId="produkte-detail">
+									mappingId="produkte-detail"><f:param value="#{productdetail.product.prodId}" />
 						  +<span class="glyphicon glyphicon-shopping-cart"></span>
 								</p:link>
 								<div class="product-overlay__stock">
@@ -263,7 +246,7 @@
 							<div class="col-xs-9">
 								<h5 class="products__title">
 									<p:link styleClass="products__link  js--isotope-title"
-										mappingId="produkte-detail">Heidelbeeren</p:link>
+										mappingId="produkte-detail"><f:param value="#{productdetail.product.prodId}" />Heidelbeeren</p:link>
 								</h5>
 							</div>
 							<div class="col-xs-3">
@@ -277,7 +260,7 @@
 					data-price="2.8" data-rating="5">
 					<div class="products__single">
 						<figure class="products__image">
-							<p:link styleClass="" mappingId="produkte-detail">
+							<p:link styleClass="" mappingId="produkte-detail"><f:param value="#{productdetail.product.prodId}" />
 								<h:graphicImage library="content" styleClass="product__image"
 									alt="#" name="images/food/w263/263-02.jpg" />
 							</p:link>
@@ -285,11 +268,11 @@
 								<p:link styleClass="product-overlay__more"
 									mappingId="produkte-detail">
 									<span class="glyphicon glyphicon-search"></span>
-								</p:link>
+								<f:param value="#{productdetail.product.prodId}" /></p:link>
 								<p:link styleClass="product-overlay__cart"
 									mappingId="produkte-detail">
 						  +<span class="glyphicon glyphicon-shopping-cart"></span>
-								</p:link>
+								<f:param value="#{productdetail.product.prodId}" /></p:link>
 								<div class="product-overlay__stock">
 									<span class="in-stock"><h:outputText escape="false"
 											value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
@@ -300,7 +283,7 @@
 							<div class="col-xs-9">
 								<h5 class="products__title">
 									<p:link styleClass="products__link  js--isotope-title"
-										mappingId="produkte-detail">Dunkle Trauben (kernlos)</p:link>
+										mappingId="produkte-detail">Dunkle Trauben (kernlos)<f:param value="#{productdetail.product.prodId}" /></p:link>
 								</h5>
 							</div>
 							<div class="col-xs-3">
@@ -317,16 +300,16 @@
 							<p:link styleClass="" mappingId="produkte-detail">
 								<h:graphicImage library="content" styleClass="product__image"
 									alt="#" name="images/food/w263/263-03.jpg" />
-							</p:link>
+							<f:param value="#{productdetail.product.prodId}" /></p:link>
 							<div class="product-overlay">
 								<p:link styleClass="product-overlay__more"
 									mappingId="produkte-detail">
 									<span class="glyphicon glyphicon-search"></span>
-								</p:link>
+								<f:param value="#{productdetail.product.prodId}" /></p:link>
 								<p:link styleClass="product-overlay__cart"
 									mappingId="produkte-detail">
 						  +<span class="glyphicon glyphicon-shopping-cart"></span>
-								</p:link>
+								<f:param value="#{productdetail.product.prodId}" /></p:link>
 								<div class="product-overlay__stock">
 									<span class="in-stock"><h:outputText escape="false"
 											value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
@@ -337,7 +320,7 @@
 							<div class="col-xs-9">
 								<h5 class="products__title">
 									<p:link styleClass="products__link  js--isotope-title"
-										mappingId="produkte-detail">Tomaten</p:link>
+										mappingId="produkte-detail">Tomaten<f:param value="#{productdetail.product.prodId}" /></p:link>
 								</h5>
 							</div>
 							<div class="col-xs-3">
@@ -354,16 +337,16 @@
 							<p:link styleClass="" mappingId="produkte-detail">
 								<h:graphicImage library="content" styleClass="product__image"
 									alt="#" name="images/food/w263/263-04.jpg" />
-							</p:link>
+							<f:param value="#{productdetail.product.prodId}" /></p:link>
 							<div class="product-overlay">
 								<p:link styleClass="product-overlay__more"
 									mappingId="produkte-detail">
 									<span class="glyphicon glyphicon-search"></span>
-								</p:link>
+								<f:param value="#{productdetail.product.prodId}" /></p:link>
 								<p:link styleClass="product-overlay__cart"
 									mappingId="produkte-detail">
 						  +<span class="glyphicon glyphicon-shopping-cart"></span>
-								</p:link>
+								<f:param value="#{productdetail.product.prodId}" /></p:link>
 								<div class="product-overlay__stock">
 									<span class="in-stock"><h:outputText escape="false"
 											value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
@@ -374,7 +357,7 @@
 							<div class="col-xs-9">
 								<h5 class="products__title">
 									<p:link styleClass="products__link  js--isotope-title"
-										mappingId="produkte-detail">Zwetschgen</p:link>
+										mappingId="produkte-detail">Zwetschgen<f:param value="#{productdetail.product.prodId}" /></p:link>
 								</h5>
 							</div>
 							<div class="col-xs-3">

@@ -33,8 +33,4 @@ public class BeanProducts {
 		this.products = products;
 	}
 
-
-
-
-
 }
