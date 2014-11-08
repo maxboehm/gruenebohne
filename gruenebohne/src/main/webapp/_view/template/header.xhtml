@@ -18,12 +18,12 @@
 				<div class="col-xs-12  col-sm-6">
 					<div class="top__menu">
 						<ul class="nav  nav-pills">
-							<c:if test="#{login.isLoggedin==false}">
+							<c:if test="#{usersession.isLoggedin==false}">
 								<li><a href="#registerModal" role="button"
 									data-toggle="modal">Registrieren</a></li>
 								<li><a href="#loginModal" role="button" data-toggle="modal">Anmelden</a></li>
 							</c:if>
-							<c:if test="#{login.isLoggedin==true}">
+							<c:if test="#{usersession.isLoggedin==true}">
 								<li><a href="#">Mein Account</a></li>
 								<li class="dropdown  js-mobile-dropdown"><a
 									class="dropdown-toggle" href="#"> Mannheim-Heidelberg <span
@@ -33,6 +33,7 @@
 										<li><a href="#">Frankfurt</a></li>
 										<li><a href="#">Stuttgart</a></li>
 									</ul></li>
+								<li><h:form><h:commandButton value="Abmelden" type="submit" class="btn btn-default btn-xs" actionListener="#{usersession.logout}" /></h:form></li>
 							</c:if>
 						</ul>
 					</div>
@@ -57,19 +58,29 @@
 				</div>
 				<div class="modal-body">
 						<h:form>
-						<div class="form-group">
-							<h:inputText type="text"
-								class="form-control  form-control--contact" placeholder="E-Mail"
-								value="#{login.eMail}" />
-						</div>
-						<div class="form-group">
-							<h:inputText type="text"
-								class="form-control  form-control--contact"
-								placeholder="Passwort" value="#{login.password}" />
-						</div>
-							<h:commandButton value="ANMELDEN" type="submit"
-								class="btn  btn-primary"
-								actionListener="#{login.createNewCustomer}" />
+							<div class="form-group"> Vorname
+								<h:inputText type="text"
+									class="form-control  form-control--contact placeholder-firstname" placeholder="Vorname"
+									value="#{register.firstname}" />
+							</div>
+							<div class="form-group"> Nachname
+								<h:inputText type="text"
+									class="form-control  form-control--contact placeholder-lastname" placeholder="Nachname"
+									value="#{register.lastname}" />
+							</div>
+							<div class="form-group"> E-Mail
+								<h:inputText type="text"
+									class="form-control  form-control--contact placeholder-email" placeholder="E-Mail"
+									value="#{register.email}" />
+							</div>
+							<div class="form-group">Passwort
+								<h:inputText type="text"
+									class="form-control  form-control--contact placeholder-passwd"
+									placeholder="Passwort" value="#{register.password}" />
+							</div>
+								<h:commandButton value="ANMELDEN" type="submit"
+									class="btn  btn-primary"
+									actionListener="#{register.createNewCustomer}" />
 						</h:form>
 					<a data-toggle="modal" role="button" href="#loginModal"
 						data-dismiss="modal">Bereits registriert?</a>
@@ -92,22 +103,22 @@
 					<hr class="divider" />
 				</div>
 				<div class="modal-body">
-					<form action="#" class="push-down-15">
+					<h:form class="push-down-15">
 						<div class="form-group">
+							E-Mail
 							<h:inputText type="text"
 								class="form-control  form-control--contact" placeholder="E-Mail"
-								value="#{login.eMail}" />
+								value="#{login.email}" />
 						</div>
 						<div class="form-group">
+							Passwort
 							<h:inputText type="text"
 								class="form-control  form-control--contact"
 								placeholder="Passwort" value="#{login.password}" />
 						</div>
-						<h:form>
 							<h:commandButton value="ANMELDEN" type="submit"
 								class="btn  btn-primary" actionListener="#{login.performLogin}" />
-						</h:form>
-					</form>
+					</h:form>
 				</div>
 			</div>
 		</div>
@@ -188,10 +199,10 @@
 							<div class="mobile-cart  visible-xs  visible-sm  push-down-15">
 								<span class="header-cart__text--price"><span
 									class="header-cart__text">Warenkorb</span> EUR<h:outputText
-										escape="false" value="&amp;nbsp;" />#{currentBasket.totalPrice}</span>
+										escape="false" value="&amp;nbsp;" />#{basket.totalPrice}</span>
 								<p:link mappingId="warenkorb">
 									class="header-cart__items"> <span
-										class="header-cart__items-num">#{currentBasket.size}</span>
+										class="header-cart__items-num">#{basket.size}</span>
 								</p:link>
 							</div>
 						</div>
@@ -203,13 +214,13 @@
 					<div class="header-cart">
 						<span class="header-cart__text--price"><span
 							class="header-cart__text">Warenkorb</span> EUR<h:outputText
-								escape="false" value="&amp;nbsp;" />#{currentBasket.totalPrice}</span>
+								escape="false" value="&amp;nbsp;" />#{basket.totalPrice}</span>
 						<p:link styleClass="header-cart__items" mappingId="warenkorb">
-							<span class="header-cart__items-num">#{currentBasket.size}</span>
+							<span class="header-cart__items-num">#{basket.size}</span>
 						</p:link>
 						<!-- Open cart panel -->
 						<div class="header-cart__open-cart">
-							<ui:repeat var="itemBasket" value="#{currentBasket.basket}">
+							<ui:repeat var="itemBasket" value="#{basket.basket}">
 								<div
 									class="header-cart__product  clearfix  js--cart-remove-target">
 									<div class="header-cart__product-image">
@@ -239,7 +250,7 @@
 							<div class="header-cart__subtotal-box">
 								<span class="header-cart__subtotal">CART SUBTOTAL:</span> <span
 									class="header-cart__subtotal-price">EUR<h:outputText
-										escape="false" value="&amp;nbsp;" />#{currentBasket.totalPrice}
+										escape="false" value="&amp;nbsp;" />#{basket.totalPrice}
 								</span>
 							</div>
 							<p:link styleClass="btn btn-darker" mappingId="warenkorb">Procced to checkout</p:link>

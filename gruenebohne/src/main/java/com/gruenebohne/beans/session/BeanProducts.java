@@ -1,4 +1,4 @@
-package com.gruenebohne.beans;
+package com.gruenebohne.beans.session;
 
 import java.util.List;
 

@@ -5,7 +5,6 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition>
 
-	<h:form>
 	<div class="breadcrumbs">
 		<div class="container">
 			<div class="row">
@@ -69,13 +68,26 @@
 							dictumst.</p>
 						<hr class="bold__divider" />
 						<!-- Single button -->
+						<h:form id="addform">
 						<select class="btn  btn-shop">
 							<option>50g</option>
 							<option>100g</option>
 							<option>250g</option>
 						</select>
 						<!-- Quantity buttons -->
-
+							<input type="hidden" id="prodId" name="prodId" value="#{productdetail.product.prodId}"/>
+							<div class="quantity  js--quantity">
+	            			<input type="button" value="-" class="quantity__button  js--minus-one  js--clickable" />
+	            			<input type="text" name="quantity" value="1" class="quantity__input" />
+	            			<input type="button" value="+" class="quantity__button  js--plus-one  js--clickable" />
+	          			</div>
+							<span
+								class="glyphicon glyphicon-plus"></span><span
+								class="glyphicon glyphicon-shopping-cart"></span> <span
+								class="single-product__btn-text"></span>
+							<h:commandButton class="btn btn-primary--transition" value="In den Warenkorb" type="submit" actionListener="#{basket.performAdd}" />
+						</h:form>
+						<!-- Add to cart button -->
 					</div>
 				</div>
 			</div>
@@ -372,6 +384,5 @@
 	</div>
 
 
-</h:form>
 </ui:composition>
 </html>

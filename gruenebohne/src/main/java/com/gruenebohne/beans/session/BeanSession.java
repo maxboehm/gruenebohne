@@ -1,4 +1,4 @@
-package com.gruenebohne.beans;
+package com.gruenebohne.beans.session;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -12,7 +12,7 @@ import com.gruenebohne.model.Customer;
 /**
  * Bean encapsulating all operations for a person.
  */
-@ManagedBean(name="session")
+@ManagedBean(name="usersession")
 @SessionScoped
 public class BeanSession {
 
@@ -28,16 +28,13 @@ public class BeanSession {
 		return customer!=null;
 	}
 
-	public void performLogin(ActionEvent event) {
-		//		customer = customerejb.loginCustomer(this.eMail, this.password);
+	public void performLogin(String sEmail, String sPassword) {
+		customer = customerejb.loginCustomer(sEmail, sPassword);
 	}
 
-	public void createNewCustomer(ActionEvent event) {
-		customer = new Customer();
-		//		newCustomer.seteMail(this.eMail);
-		//		newCustomer.setPassWord(this.password);
-		customer.setFirstName("TESTFIRSTNAME");
-		customer.setLastName("TESTLASTNAME");
-		customerejb.registerCustomer(customer);
+	public void logout(ActionEvent event){
+		customer = null;
 	}
+
+
 }

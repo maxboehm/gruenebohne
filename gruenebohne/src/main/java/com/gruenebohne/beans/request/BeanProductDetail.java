@@ -1,4 +1,4 @@
-package com.gruenebohne.beans;
+package com.gruenebohne.beans.request;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;

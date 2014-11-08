@@ -48,7 +48,7 @@ public class Customer {
 	@OneToMany(mappedBy="customer", targetEntity=Record.class,fetch=FetchType.EAGER)
 	private Collection<Record> orders;
 
-	@OneToMany(mappedBy="customer", targetEntity=Address.class, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="customer", targetEntity=Address.class, fetch=FetchType.LAZY)
 	private Collection<Address> address;
 
 	// #################################################################
