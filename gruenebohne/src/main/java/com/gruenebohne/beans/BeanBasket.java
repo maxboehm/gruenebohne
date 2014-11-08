@@ -10,7 +10,7 @@ import com.gruenebohne.model.Record;
 
 @ManagedBean(name = "currentBasket")
 @SessionScoped
-public class ShoppingBasket {
+public class BeanBasket {
 
 
 	private Record basket = null;

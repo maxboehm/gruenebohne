@@ -56,7 +56,7 @@
 					<hr class="divider" />
 				</div>
 				<div class="modal-body">
-					<form action="#" class="push-down-15">
+						<h:form>
 						<div class="form-group">
 							<h:inputText type="text"
 								class="form-control  form-control--contact" placeholder="E-Mail"
@@ -67,12 +67,10 @@
 								class="form-control  form-control--contact"
 								placeholder="Passwort" value="#{login.password}" />
 						</div>
-						<h:form>
 							<h:commandButton value="ANMELDEN" type="submit"
 								class="btn  btn-primary"
 								actionListener="#{login.createNewCustomer}" />
 						</h:form>
-					</form>
 					<a data-toggle="modal" role="button" href="#loginModal"
 						data-dismiss="modal">Bereits registriert?</a>
 				</div>

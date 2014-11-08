@@ -11,9 +11,9 @@ import com.gruenebohne.EJB.ProductEJB;
 import com.gruenebohne.model.Product;
 
 
-@ManagedBean(name="store")
+@ManagedBean(name="products")
 @SessionScoped
-public class Store {
+public class BeanProducts {
 
 	@EJB
 	private ProductEJB productejb;
@@ -22,11 +22,7 @@ public class Store {
 
 	@PostConstruct
 	public void init(){
-
 		products = productejb.getAllProductsWithCategory();
-		for(Product p:products){
-			System.out.println(p.getPictureURL());
-		}
 	}
 
 	public List<Product> getProducts() {

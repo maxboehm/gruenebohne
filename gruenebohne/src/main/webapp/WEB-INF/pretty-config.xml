@@ -23,13 +23,14 @@
 	</url-mapping>
 
 	<url-mapping id="produkte">
-		<pattern value="/produkte" />
+		<pattern value="/shop" />
 		<view-id value="/_view/pages/shop/produkte/liste/_produkt_liste.xhtml" />
 	</url-mapping>
+	
 	<url-mapping id="produkte-detail">
-		<pattern value="/produkte/detail" />
+		<pattern value="/produkt/#{id}" />
 		<view-id value="/_view/pages/shop/produkte/detail/_produkt_detail.xhtml" />
-		<action>#{store.setCurrentProduct}</action>
+		<action>#{productdetail.loadProduct}</action>
 	</url-mapping>
 
 

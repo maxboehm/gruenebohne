@@ -33,7 +33,7 @@
 					<div class="product-preview">
 						<div class="push-down-20">
 							<h:graphicImage library="content"
-								styleClass="js--product-preview" alt="#" url="javax.faces.resource/images/food/w360/360-#{product.currentProduct.pictureURL}" />
+								styleClass="js--product-preview" alt="#" url="javax.faces.resource/images/food/w360/360-#{productdetail.product.pictureURL}" />
 						</div>
 					</div>
 				</div>
@@ -41,11 +41,11 @@
 					<div class="products__content">
 						<div class="push-down-30"></div>
 
-						<span class="products__category">#{product.currentProduct.category.category}</span>
+						<span class="products__category">#{productdetail.product.category.category}</span>
 						<h1 class="single-product__title">
-							<span class="light"></span> #{product.currentProduct.prodName}
+							<span class="light"></span> #{productdetail.product.prodName}
 						</h1>
-						<span class="single-product__price">#{product.currentProduct.price}</span>
+						<span class="single-product__price">#{productdetail.product.price}</span>
 						<div class="single-product__rating">
 							<span class="glyphicon  glyphicon-star  star-on"></span> <span
 								class="glyphicon  glyphicon-star  star-on"></span> <span
