@@ -28,6 +28,7 @@ public class BeanBasketModify {
 		System.out.println(request.getParameter("quantity"));
 
 		Product product = ejbProduct.getProduct(Integer.parseInt(request.getParameter("prodId")));
+		System.out.println("test");
 	}
 
 	public BeanBasket getBasket() {

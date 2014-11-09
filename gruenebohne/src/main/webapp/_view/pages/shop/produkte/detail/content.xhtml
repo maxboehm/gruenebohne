@@ -85,7 +85,10 @@
 								class="glyphicon glyphicon-plus"></span><span
 								class="glyphicon glyphicon-shopping-cart"></span> <span
 								class="single-product__btn-text"></span>
-							<h:commandButton class="btn btn-primary--transition" value="In den Warenkorb" type="submit" actionListener="#{basket.performAdd}" />
+								
+							<f:param value="#{productdetail.product.prodId}"/>
+							<h:commandButton class="btn btn-primary--transition" actionListener="#{basket.performAdd}" >Hinzufügen
+							</h:commandButton>
 						</h:form>
 						<!-- Add to cart button -->
 					</div>

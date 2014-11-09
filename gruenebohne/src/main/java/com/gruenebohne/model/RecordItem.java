@@ -4,9 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="T_RECORDITEM")
 public class RecordItem {
 
 
@@ -16,7 +19,12 @@ public class RecordItem {
 	private int id;
 
 	@ManyToOne
+	@JoinColumn(name="PROD_ID")
 	private Product product;
+	
+	@ManyToOne
+	@JoinColumn(name="RECORD_ID")
+	private Record record;
 
 	private int quantity;
 
@@ -43,6 +51,15 @@ public class RecordItem {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+	public Record getRecord() {
+		return record;
+	}
+
+	public void setRecord(Record record) {
+		this.record = record;
+	}
+	
 
 
 }

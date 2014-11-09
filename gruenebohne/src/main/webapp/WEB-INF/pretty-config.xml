@@ -33,7 +33,6 @@
 		<action>#{productdetail.loadProduct}</action>
 	</url-mapping>
 
-
 	<url-mapping id="warenkorb">
 		<pattern value="/warenkorb" />
 		<view-id value="/_view/pages/shop/bestellvorgang/warenkorb/_warenkorb.xhtml" />
