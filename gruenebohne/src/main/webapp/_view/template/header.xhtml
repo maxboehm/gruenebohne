@@ -151,63 +151,33 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse  navbar-collapse" id="collapsible-navbar">
 							<ul class="nav  navbar-nav">
-								<li class="dropdown"><p:link mappingId="index"
-										styleClass="dropdown-toggle">Startseite</p:link></li>
-								<li class="dropdown"><p:link mappingId="rezepte"
-										styleClass="dropdown-toggle">Rezepte<b class="caret"></b>
-									</p:link>
+								<li class="dropdown"><p:link mappingId="index" styleClass="dropdown-toggle">Startseite</p:link></li>
+								<li class="dropdown"><p:link mappingId="rezepte" styleClass="dropdown-toggle">Rezepte</p:link></li>
+								<!--
+								<li class="dropdown"><p:link mappingId="rezepte" styleClass="dropdown-toggle">Rezepte<b class="caret"></b></p:link>
 									<ul class="dropdown-menu">
 										<li><p:link mappingId="rezepte">Aktuelle Rezepte</p:link></li>
-										<li><p:link mappingId="rezepte-archiv">Rezepte-Archiv</p:link></li>
-									</ul></li>
-								<li class="dropdown"><p:link mappingId="produkte"
-										styleClass="dropdown-toggle">Lebensmittel<b
-											class="caret"></b>
-									</p:link>
+										  <li><p:link mappingId="rezepte-archiv">Rezepte-Archiv</p:link></li>
+									</ul>
+								</li>
+								-->
+								<li class="dropdown"><p:link mappingId="produkte" styleClass="dropdown-toggle">Lebensmittel<b class="caret"></b></p:link>
 									<ul class="dropdown-menu">
-										<li><p:link mappingId="produkte">Obst</p:link></li>
-										<li><p:link mappingId="produkte">Gemüse</p:link></li>
-										<li><p:link mappingId="produkte">Milchprodukte <h:outputText
-													escape="false" value="&amp;" /> Eier</p:link></li>
-										<li><p:link mappingId="produkte">Fisch</p:link></li>
-										<li><p:link mappingId="produkte">Wurst <h:outputText
-													escape="false" value="&amp;" /> Fleisch</p:link></li>
-										<li><p:link mappingId="produkte">Brot <h:outputText
-													escape="false" value="&amp;" /> Backwaren</p:link></li>
-										<li><p:link mappingId="produkte">Brotaufstriche</p:link></li>
-										<li><p:link mappingId="produkte">Wein <h:outputText
-													escape="false" value="&amp;" /> Sekt</p:link></li>
-									</ul></li>
-								<li class="dropdown"><p:link mappingId="ueberuns"
-										styleClass="dropdown-toggle">Über uns</p:link></li>
-								<li class="hidden-xs  hidden-sm"><a href="#"
-									class="js--toggle-search-mode"><span
-										class="glyphicon  glyphicon-search  glyphicon-search--nav"></span></a></li>
+										<ui:repeat value="#{category.cat}" var="cat">
+											<li><p:link mappingId="produkte">#{cat.category}</p:link></li>
+										</ui:repeat>												
+									</ul>
+								</li>
+								<li class="dropdown"><p:link mappingId="ueberuns" styleClass="dropdown-toggle">Über uns</p:link></li>
 							</ul>
-							<!-- search for mobile devices -->
-							<form action="#" method="post"
-								class="visible-xs  visible-sm  mobile-navbar-form" role="form">
-								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Search" />
-									<span class="input-group-addon">
-										<button type="submit" class="mobile-navbar-form__appended-btn">
-											<span
-												class="glyphicon  glyphicon-search  glyphicon-search--nav"></span>
-										</button>
-									</span>
-								</div>
-							</form>
+
 							<div class="mobile-cart  visible-xs  visible-sm  push-down-15">
-								<span class="header-cart__text--price"><span
-									class="header-cart__text">Warenkorb</span> EUR<h:outputText
-										escape="false" value="&amp;nbsp;" />asdasd</span>
-								<p:link mappingId="warenkorb">
-									class="header-cart__items"> <span
-										class="header-cart__items-num">asdasd</span>
-								</p:link>
+								<span class="header-cart__text--price">
+									<span class="header-cart__text">Warenkorb</span> EUR<h:outputText escape="false" value="&amp;nbsp;" />asdasd</span>
+									<p:link mappingId="warenkorb">...<span class="header-cart__items-num">asdasd</span>
+									</p:link>
 							</div>
 						</div>
-						<!-- /.navbar-collapse -->
 					</nav>
 				</div>
 				<div class="col-xs-12  col-md-3  hidden-sm  hidden-xs">

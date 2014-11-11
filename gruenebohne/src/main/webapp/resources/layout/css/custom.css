@@ -76,3 +76,8 @@ html .sp-bewertung {
 }
 
 html .video {padding-bottom:15px;}
+
+
+.image-best-thumb .widgets__products{
+	width: 78px;
+}

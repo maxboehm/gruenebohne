@@ -2,6 +2,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://ocpsoft.com/prettyfaces"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition>
 
@@ -24,26 +25,6 @@
 						</ui:repeat>			
 					</ul>
 				</div>
-				<!-- 
-				<h3 id="logo">
-					<span class="light">Vergangene</span> Rezeptboxen
-				</h3>
-				<hr class="sidebar-divider" />
-				<div class="features-menu">
-					<ul class="nav  nav-sidebar-menu">
-						<li><p:link styleClass="sidebar-menu__links"
-								mappingId="rezepte-detail">Steak mit Kräuterkruste</p:link></li>
-						<li><p:link styleClass="sidebar-menu__links"
-								mappingId="rezepte-detail">Steak mit Kräuterkruste</p:link></li>
-						<li><p:link styleClass="sidebar-menu__links"
-								mappingId="rezepte-detail">Steak mit Kräuterkruste</p:link></li>
-						<li><p:link styleClass="sidebar-menu__links"
-								mappingId="rezepte-detail">Steak mit Kräuterkruste</p:link></li>
-						<li><p:link styleClass="sidebar-menu__links"
-								mappingId="rezepte-detail">Steak mit Kräuterkruste</p:link></li>
-					</ul>
-				</div>
-				 -->
 			</div>
 			
 			
@@ -54,6 +35,8 @@
 				<h3 id="headings">
 					#{recipedetail.recipe.prodName}
 				</h3>
+				
+				<h4>Preis pro Person EUR<h:outputText escape="false" value="&amp;nbsp;" />#{recipedetail.recipe.price}</h4>
 				
 				<hr class="title__divider" />
 				
@@ -180,21 +163,30 @@
 			</div>
 			
 			<div class="pull-right">
-				<!-- Quantity buttons -->
-				<div class="quantity  js--quantity">
-					<input type="button" value="-"
-						class="quantity__button  js--minus-one  js--clickable" /> <input
-						type="text" name="quantity" value="1" class="quantity__input" />
-					<input type="button" value="+"
-						class="quantity__button  js--plus-one  js--clickable" />
-				</div>
-				<!-- Add to cart button -->
-				<a class="btn btn-primary--transition" href="#"> <span
-					class="glyphicon glyphicon-plus"></span><span
-					class="glyphicon glyphicon-shopping-cart"></span> <span
-					class="single-product__btn-text">In den Warenkorb</span>
-				</a>
+				<h:form id="addform">
+					<!-- 
+					<select class="btn  btn-shop">
+						<option>50g</option>
+						<option>100g</option>
+						<option>250g</option>
+					</select>
+					 -->
+					<!-- Quantity buttons -->
+					<input type="hidden" id="prodId" name="prodId" value="#{recipedetail.recipe.prodId}"/>
+					<div class="quantity  js--quantity">
+           			<input type="button" value="-" class="quantity__button  js--minus-one  js--clickable" />
+           			<input type="text" name="quantity" value="1" class="quantity__input" />
+           			<input type="button" value="+" class="quantity__button  js--plus-one  js--clickable" />
+         			</div>
+					<span class="glyphicon glyphicon-plus"></span>
+					<span class="glyphicon glyphicon-shopping-cart"></span>
+					<span class="single-product__btn-text"></span>
+						
+					<f:param value="#{productdetail.product.prodId}"/>
+					<h:commandButton class="btn btn-primary--transition" actionListener="#{basket.performAdd}" value="In den Warenkorb legen"/>
+				</h:form>
 			</div>
+			
 			
 			<hr class="divider" />
 		</div>

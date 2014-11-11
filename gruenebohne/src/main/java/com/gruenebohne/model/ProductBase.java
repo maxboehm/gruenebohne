@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.Lob;
@@ -26,6 +27,7 @@ public abstract class ProductBase {
 
 	@Id
 	@Column(name = "PROD_ID", nullable = false)
+	@GeneratedValue
 	private long prodId;
 
 	@Column(name = "PRODUCT_NAME", nullable = false)

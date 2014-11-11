@@ -7,10 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="T_Recipe")
 @DiscriminatorValue("R")
 @NamedQueries({
 	@NamedQuery(name="AllRecipes",query="select r from Recipe r"),

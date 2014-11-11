@@ -1,5 +1,7 @@
 package com.gruenebohne.beans.session;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -31,6 +33,16 @@ public class BeanProducts {
 
 	public void setProduct(List<Product> products) {
 		this.products = products;
+	}
+
+	public List<Product> getRandom3Products(){
+		List<Product> listBest = new ArrayList<Product>(getProducts());
+		List<Product> listNew = new ArrayList<Product>();
+		Collections.shuffle(listBest);
+		for (int i = 0; i < listBest.size(); i++)
+			if(i<3)
+				listNew.add(listBest.get(i));
+		return listNew;
 	}
 
 }
