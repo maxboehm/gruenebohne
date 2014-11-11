@@ -2,8 +2,6 @@ package com.gruenebohne.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,6 +30,7 @@ public class Record {
 	private long id;
 
 	@ManyToOne
+	@JoinColumn(name="CUSTOMER_ID", nullable=false)
 	private Customer customer;
 
 	@Column(name="TOTALPRICE", precision=2)
@@ -39,6 +38,8 @@ public class Record {
 
 	@OneToMany(mappedBy="record",cascade=CascadeType.ALL)
 	private Collection<RecordItem> setRecordItems = new ArrayList<RecordItem>();
+
+
 
 	public Collection<RecordItem> getSetRecordItems() {
 		return setRecordItems;

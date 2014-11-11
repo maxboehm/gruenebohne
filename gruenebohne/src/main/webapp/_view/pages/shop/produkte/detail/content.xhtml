@@ -12,11 +12,11 @@
 					<nav>
 						<ol class="breadcrumb">
 
-							<li><a href="index.html">Home</a></li>
+							<li><p:link mappingId="index">Home</p:link></li>
 
-							<li><a href="shop.html">Shop</a></li>
+							<li><p:link mappingId="produkte">Shop</p:link></li>
 
-							<li class="active">Single Product</li>
+							<li class="active">#{productdetail.product.prodName}</li>
 
 						</ol>
 					</nav>
@@ -31,8 +31,10 @@
 				<div class="col-xs-12 col-sm-4">
 					<div class="product-preview">
 						<div class="push-down-20">
-							<h:graphicImage library="content"
-								styleClass="js--product-preview" alt="#" url="javax.faces.resource/images/food/w360/360-#{productdetail.product.pictureURL}" />
+							<p:urlbuffer var="url" mappingId="image" >
+							  <f:param value="#{productdetail.product.prodId}" />
+							</p:urlbuffer>
+							<img src="#{url}" class="js--product-preview" alt="#{productdetail.product.prodName}" />	
 						</div>
 					</div>
 				</div>
@@ -69,26 +71,26 @@
 						<hr class="bold__divider" />
 						<!-- Single button -->
 						<h:form id="addform">
-						<select class="btn  btn-shop">
-							<option>50g</option>
-							<option>100g</option>
-							<option>250g</option>
-						</select>
-						<!-- Quantity buttons -->
+							<!-- 
+							<select class="btn  btn-shop">
+								<option>50g</option>
+								<option>100g</option>
+								<option>250g</option>
+							</select>
+							 -->
+							<!-- Quantity buttons -->
 							<input type="hidden" id="prodId" name="prodId" value="#{productdetail.product.prodId}"/>
 							<div class="quantity  js--quantity">
 	            			<input type="button" value="-" class="quantity__button  js--minus-one  js--clickable" />
 	            			<input type="text" name="quantity" value="1" class="quantity__input" />
 	            			<input type="button" value="+" class="quantity__button  js--plus-one  js--clickable" />
 	          			</div>
-							<span
-								class="glyphicon glyphicon-plus"></span><span
-								class="glyphicon glyphicon-shopping-cart"></span> <span
-								class="single-product__btn-text"></span>
+							<span class="glyphicon glyphicon-plus"></span>
+							<span class="glyphicon glyphicon-shopping-cart"></span>
+							<span class="single-product__btn-text"></span>
 								
 							<f:param value="#{productdetail.product.prodId}"/>
-							<h:commandButton class="btn btn-primary--transition" actionListener="#{basket.performAdd}" >Hinzufügen
-							</h:commandButton>
+							<h:commandButton class="btn btn-primary--transition" actionListener="#{basket.performAdd}" value="In den Warenkorb legen"/>
 						</h:form>
 						<!-- Add to cart button -->
 					</div>

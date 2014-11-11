@@ -47,9 +47,13 @@
 									<figure class="products__image">
 										<p:link styleClass="" mappingId="produkte-detail">
 										<f:param value="#{prod.prodId}" />
-											<h:graphicImage library="content" styleClass="product__image"
-												alt="#" value="javax.faces.resource/images/food/w263/263-#{prod.pictureURL}">
-												</h:graphicImage>
+										
+												<p:urlbuffer var="url" mappingId="image" >
+												  <f:param value="#{prod.prodId}" />
+												</p:urlbuffer>
+												<img src="#{url}" class="product__image" alt="#{prod.prodName}" />
+												
+												
 										</p:link>
 										<div class="product-overlay">
 											<p:link styleClass="product-overlay__more"

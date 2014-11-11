@@ -15,6 +15,7 @@
 		<class>com.gruenebohne.model.Producer</class>
 		<class>com.gruenebohne.model.RecordType</class>
 		<class>com.gruenebohne.model.AddressTyp</class>
+		<class>com.gruenebohne.model.ProductBase</class>
 		<properties>
 			<property name="eclipselink.ddl-generation" value="create-tables" />
 			<property name="javax.persistence.sql-load-script-source" value="META-INF/sql/mockdata.sql"/>

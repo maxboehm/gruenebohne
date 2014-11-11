@@ -9,6 +9,14 @@
 	</url-mapping>
 
 	<!-- ############ DYNAMIC PAGES ############## -->
+	<url-mapping id="image">
+		<pattern value="/images/#{ /[0-9]+/ image.prodID }.jpg" />
+		<view-id value="/_view/template/empty.xhtml" />
+		<action>#{image.render}</action>
+	</url-mapping>
+	
+	
+	
 	<url-mapping id="rezepte">
 		<pattern value="/rezepte" />
 		<view-id value="/_view/pages/shop/rezepte/liste/_rezepte_liste.xhtml" />
@@ -18,8 +26,9 @@
 		<view-id value="/_view/pages/shop/rezepte/archiv/_rezept_archiv.xhtml" />
 	</url-mapping>
 	<url-mapping id="rezepte-detail">
-		<pattern value="/rezepte/detail" />
+		<pattern value="/rezept/#{recipedetail.id}" />
 		<view-id value="/_view/pages/shop/rezepte/detail/_rezept_detail.xhtml" />
+		<action>#{recipedetail.loadRecipe}</action>
 	</url-mapping>
 
 	<url-mapping id="produkte">

@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 
 import com.gruenebohne.model.Product;
 import com.gruenebohne.model.ProductCategory;
+import com.gruenebohne.model.Recipe;
 
 @Stateless
 @LocalBean
@@ -19,70 +20,69 @@ public class ProductEJB {
 
 	private void initializeData() {
 
-		ProductCategory cat1 = new ProductCategory(1, "Gemüse");
-		em.persist(cat1);
+		for(Product p:em.createNamedQuery("AllProducts", Product.class).getResultList())
+			em.remove(p);
+
 		em.flush();
-		ProductCategory cat2 = new ProductCategory(2, "Obst");
-		em.persist(cat2);
+
+		for(ProductCategory cat:em.createNamedQuery("AllCategories", ProductCategory.class).getResultList())
+			em.remove(cat);
+
 		em.flush();
-		ProductCategory cat3 = new ProductCategory(3, "Milchprodukte");
-		em.persist(cat3);
-		em.flush();
-		ProductCategory cat4 = new ProductCategory(4, "Roggenmischbrot");
-		em.persist(cat4);
-		em.flush();
-		ProductCategory cat5 = new ProductCategory(5, "Fleischprodukte");
-		em.persist(cat5);
+
+		for(Recipe rec:em.createNamedQuery("AllRecipes", Recipe.class).getResultList())
+			em.remove(rec);
+
 		em.flush();
 
 
-		Product product1 = new Product();
-		product1.setProdId(1);
-		product1.setProdName("Tomate");
-		product1.setPrice(2.90);
-		product1.setPictureURL("03.jpg.xhtml?ln=content");
-		product1.setCategory(cat1);
-		em.persist(product1);
+		ProductCategory cat1 = createCategory(1, "Gemüse");
+		ProductCategory cat2 = createCategory(2, "Obst");
+		ProductCategory cat3 = createCategory(3, "Milchprodukte");
+		ProductCategory cat4 = createCategory(4, "Roggenmischbrot");
+		ProductCategory cat5 = createCategory(5, "Fleischprodukte");
 
-		Product product2 = new Product();
-		product2.setProdId(2);
-		product2.setProdName("Kartoffeln");
-		product2.setPrice(2.80);
-		product2.setPictureURL("20.jpg.xhtml?ln=content");
-		product2.setCategory(cat2);
-		em.persist(product2);
+		createProduct(1,"Tomate","TestDescription", 2.95,"/Users/Max/Desktop/w360/360-03.jpg", cat1);
+		createProduct(2,"Kartoffeln","TestDescription", 2.85,"/Users/Max/Desktop/w360/360-20.jpg", cat2);
+		createProduct(3,"Karotten","TestDescription", 5.95,"/Users/Max/Desktop/w360/360-21.jpg", cat2);
+		createProduct(4,"Radieschen","TestDescription", 0.95,"/Users/Max/Desktop/w360/360-05.jpg", cat1);
+		createProduct(5,"Dunkle Trauben","TestDescription", 3.95,"/Users/Max/Desktop/w360/360-02.jpg", cat2);
+		createProduct(6,"Helle Trauben","TestDescription", 3.95,"/Users/Max/Desktop/w360/360-01.jpg", cat2);
+		createProduct(7,"Milch","TestDescription", 1.95,"/Users/Max/Desktop/w360/360-07.jpg", cat3);
+		createProduct(8,"Champignos","TestDescription", 1.95,"/Users/Max/Desktop/w360/360-08.jpg", cat1);
+		createProduct(9,"Roggenmischbrot","TestDescription", 1.95,"/Users/Max/Desktop/w360/360-11.jpg", cat4);
+		createProduct(10,"Salami","TestDescription", 2.95,"/Users/Max/Desktop/w360/360-27.jpg", cat5);
 
-		Product product3 = new Product();
-		product3.setProdId(2);
-		product3.setProdName("Karotten");
-		product3.setPrice(5.90);
-		product3.setPictureURL("21.jpg.xhtml?ln=content");
-		product3.setCategory(cat2);
 
-		Product product4 = new Product(4,"Radieschen","TestDescription", 0.95,"05.jpg.xhtml?ln=content", cat1);
-		em.persist(product4);
-		Product product5 = new Product(5,"Dunkle Trauben","TestDescription", 3.95,"02.jpg.xhtml?ln=content", cat2);
-		em.persist(product5);
-		Product product6 = new Product(6,"Helle Trauben","TestDescription", 3.95,"06.jpg.xhtml?ln=content", cat2);
-		em.persist(product6);
-		Product product7 = new Product(7,"Milch","TestDescription", 1.95,"07.jpg.xhtml?ln=content", cat3);
-		em.persist(product7);
-		Product product8 = new Product(8,"Champignos","TestDescription", 1.95,"08.jpg.xhtml?ln=content", cat1);
-		em.persist(product8);
-		Product product9 = new Product(9,"Roggenmischbrot","TestDescription", 1.95,"11.jpg.xhtml?ln=content", cat4);
-		em.persist(product9);
-		Product product10 = new Product(10,"Salami","TestDescription", 2.95,"14.jpg.xhtml?ln=content", cat5);
-		em.persist(product10);
+		Recipe recipe = new Recipe();
+		recipe.setProdName("Steak mit Kräuterkruste");
+		recipe.setProdDescription("Sehr lecker");
+		recipe.setPictureByPath("/Users/Max/Desktop/w360/360-27.jpg");
+		recipe.setPrice(5.00);
+		em.persist(recipe);
 		em.flush();
 
 	}
 
+	private void createProduct(int nID, String sName, String sDesc, Double dPrice, String sImage, ProductCategory cat){
+		Product prd = new Product(nID,sName,sDesc, dPrice,sImage, cat);
+		em.persist(prd);
+		em.flush();
+	}
+
+	private ProductCategory createCategory(int nID, String sName){
+		ProductCategory cat = new ProductCategory(nID, sName);
+		em.persist(cat);
+		em.flush();
+		return cat;
+	}
+
 	public List<Product> getAllProductsWithCategory() {
 
-		if(em.createNamedQuery("AllProducts", Product.class).getResultList().isEmpty() &&
-				em.createNamedQuery("AllCategories", ProductCategory.class).getResultList().isEmpty()){
-			initializeData();
-		}
+		//		if(em.createNamedQuery("AllProducts", Product.class).getResultList().isEmpty() &&
+		//				em.createNamedQuery("AllCategories", ProductCategory.class).getResultList().isEmpty()){
+		initializeData();
+		//		}
 
 		List<Product> products = em.createNamedQuery("AllProducts", Product.class).getResultList();
 		return products;
