@@ -19,7 +19,6 @@ import javax.persistence.Table;
 @Table(name = "ProductBase")
 @Inheritance
 @DiscriminatorColumn(name="PRD_TYPE")
-@SequenceGenerator(name = "sequence", initialValue = 0, allocationSize = 1000)
 @NamedQueries({
 	@NamedQuery(name="GetProductBase", query="select p from ProductBase p where p.prodId= :prodId")
 })

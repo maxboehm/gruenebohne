@@ -151,8 +151,10 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse  navbar-collapse" id="collapsible-navbar">
 							<ul class="nav  navbar-nav">
-								<li class="dropdown"><p:link mappingId="index" styleClass="dropdown-toggle">Startseite</p:link></li>
-								<li class="dropdown"><p:link mappingId="rezepte" styleClass="dropdown-toggle">Rezepte</p:link></li>
+								<li class="dropdown"><p:link mappingId="index"
+										styleClass="dropdown-toggle">Startseite</p:link></li>
+								<li class="dropdown"><p:link mappingId="rezepte"
+										styleClass="dropdown-toggle">Rezepte</p:link></li>
 								<!--
 								<li class="dropdown"><p:link mappingId="rezepte" styleClass="dropdown-toggle">Rezepte<b class="caret"></b></p:link>
 									<ul class="dropdown-menu">
@@ -161,21 +163,27 @@
 									</ul>
 								</li>
 								-->
-								<li class="dropdown"><p:link mappingId="produkte" styleClass="dropdown-toggle">Lebensmittel<b class="caret"></b></p:link>
+								<li class="dropdown"><p:link mappingId="produkte"
+										styleClass="dropdown-toggle">Lebensmittel<b
+											class="caret"></b>
+									</p:link>
 									<ul class="dropdown-menu">
 										<ui:repeat value="#{category.cat}" var="cat">
 											<li><p:link mappingId="produkte">#{cat.category}</p:link></li>
-										</ui:repeat>												
-									</ul>
-								</li>
-								<li class="dropdown"><p:link mappingId="ueberuns" styleClass="dropdown-toggle">Über uns</p:link></li>
+										</ui:repeat>
+									</ul></li>
+								<li class="dropdown"><p:link mappingId="ueberuns"
+										styleClass="dropdown-toggle">Über uns</p:link></li>
 							</ul>
 
 							<div class="mobile-cart  visible-xs  visible-sm  push-down-15">
-								<span class="header-cart__text--price">
-									<span class="header-cart__text">Warenkorb</span> EUR<h:outputText escape="false" value="&amp;nbsp;" />asdasd</span>
-									<p:link mappingId="warenkorb">...<span class="header-cart__items-num">asdasd</span>
-									</p:link>
+								<span class="header-cart__text--price"> <span
+									class="header-cart__text">Warenkorb</span> EUR<h:outputText
+										escape="false" value="&amp;nbsp;" />asdasd
+								</span>
+								<p:link mappingId="warenkorb">...<span
+										class="header-cart__items-num">asdasd</span>
+								</p:link>
 							</div>
 						</div>
 					</nav>
@@ -192,8 +200,9 @@
 						<!-- Open cart panel -->
 						<div class="header-cart__open-cart">
 							<ui:repeat var="basketItem"
-								value="#{basket.currentBasket.setRecordItems}">							
-							<div
+								value="#{basket.currentBasket.setRecordItems}">
+								<h:form>
+								<div
 									class="header-cart__product  clearfix  js--cart-remove-target">
 									<div class="header-cart__product-image">
 										<h:graphicImage library="content" alt="Product in the cart"
@@ -201,14 +210,17 @@
 
 									</div>
 									<div class="header-cart__product-image--hover">
-										<a href="#" class="js--remove-item"
-											data-target=".js--cart-remove-target"><span
-											class="glyphicon  glyphicon-circle  glyphicon-remove"></span></a>
+										<a href="#" class="js--remove-item"> <h:commandLink
+												styleClass="glyphicon  glyphicon-circle  glyphicon-remove"
+												actionListener="#{basket.performDelete}">
+												<f:param value="#{basketItem.product.prodId}" name="prodId" />
+												<f:param value="#{basketItem.quantity}" name="quantity" />
+											</h:commandLink>
+										</a>
 									</div>
 									<div class="header-cart__product-title">
-									<f:param value="#{basketItem.product.prodId}"/>
-										<h:outputText styleClass="header-cart__link"
-											mappingId="produkte-detail">#{basketItem.product.prodName}
+										<f:param value="#{basketItem.product.prodId}" />
+										<h:outputText styleClass="header-cart__link" value="#{basketItem.product.prodName}">
 											</h:outputText>
 										<span class="header-cart__qty">Qty:#{basketItem.quantity}</span>
 									</div>
@@ -218,6 +230,7 @@
 										#{basketItem.product.price}
 									</div>
 								</div>
+								</h:form>
 							</ui:repeat>
 							<hr class="header-cart__divider" />
 							<div class="header-cart__subtotal-box">

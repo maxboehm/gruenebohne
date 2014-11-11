@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -14,11 +15,11 @@ import javax.persistence.SequenceGenerator;
 @NamedQueries({
 	@NamedQuery(name="AllCategories",query="select c from ProductCategory c")
 })
-@SequenceGenerator(name = "sequence", initialValue = 0, allocationSize = 1000)
 public class ProductCategory {
 
 	@Id
 	@Column(name="CATEGORY_ID")
+	@GeneratedValue
 	private long id;
 
 	@Column(name="CATEGORY")

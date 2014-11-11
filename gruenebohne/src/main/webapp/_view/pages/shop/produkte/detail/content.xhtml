@@ -85,12 +85,13 @@
 	            			<input type="text" name="quantity" value="1" class="quantity__input" />
 	            			<input type="button" value="+" class="quantity__button  js--plus-one  js--clickable" />
 	          			</div>
-							<span class="glyphicon glyphicon-plus"></span>
-							<span class="glyphicon glyphicon-shopping-cart"></span>
-							<span class="single-product__btn-text"></span>
-								
-							<f:param value="#{productdetail.product.prodId}"/>
-							<h:commandButton class="btn btn-primary--transition" actionListener="#{basket.performAdd}" value="In den Warenkorb legen"/>
+							<f:param value="#{productdetail.product.prodId}" name="prodId"/>
+							<h:commandLink class="btn btn-primary--transition" actionListener="#{basket.performAdd}"><span
+								class="glyphicon glyphicon-plus"></span><span
+								class="glyphicon glyphicon-shopping-cart"></span> <span
+								class="single-product__btn-text"></span>
+								<h:outputText value="Hinzufügen"></h:outputText>
+							</h:commandLink>
 						</h:form>
 						<!-- Add to cart button -->
 					</div>

@@ -21,6 +21,7 @@ public class BeanLogin {
 	private BeanSession sessionBean;
 
 	public void performLogin(ActionEvent event) {
+		System.out.println("PERFORMLOGIN");
 		sessionBean.performLogin(email, password);
 	}
 

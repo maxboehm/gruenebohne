@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -13,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -21,22 +21,21 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery(name="getRecord", query="SELECT r from Record r WHERE r.id=:basketId")
 })
-@SequenceGenerator(name = "sequence", initialValue = 0, allocationSize = 1000)
 public class Record {
 
 	@Id
-	@GeneratedValue(generator="sequence")
-	@Column(name="RECORD_ID", nullable=false)
+	@GeneratedValue
+	@Column
 	private long id;
 
 	@ManyToOne
-	@JoinColumn(name="CUSTOMER_ID", nullable=false)
+	@JoinColumn(name="CUSTOMER_ID", nullable=true)
 	private Customer customer;
 
-	@Column(name="TOTALPRICE", precision=2)
+	@Column(precision=2)
 	private double totalPrice;
 
-	@OneToMany(mappedBy="record",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="record",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Collection<RecordItem> setRecordItems = new ArrayList<RecordItem>();
 
 

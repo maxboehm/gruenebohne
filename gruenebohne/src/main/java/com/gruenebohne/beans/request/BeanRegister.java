@@ -28,6 +28,7 @@ public class BeanRegister {
 	@EJB private CustomerEJB customerejb;
 
 	public void createNewCustomer(ActionEvent event) {
+		System.out.println("CREATE NEW CUSTOMER");
 		Customer customer = new Customer();
 		customer.seteMail(getEmail());
 		customer.setPassWord(getPassword());

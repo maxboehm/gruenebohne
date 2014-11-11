@@ -37,7 +37,7 @@ public class BasketEJB {
 						+ item.getQuantity());
 			}
 			System.out.println("ENDE");
-			
+
 			RecordItem item = new RecordItem();
 			item.setProduct(product);
 			item.setQuantity(nQuantity);
@@ -56,24 +56,47 @@ public class BasketEJB {
 		}
 
 	}
-	
-	public int getBasketSize(Record basket){
-		int size =0;
+
+	public void removeProductFromBasket(Record basket, Product product) {
+
 		List<Record> result = em.createNamedQuery("getRecord", Record.class)
 				.setParameter("basketId", basket.getId()).getResultList();
-		if(!result.isEmpty()){
-			size=result.get(0).getSetRecordItems().size();
+
+		RecordItem deletItem = null;
+		for (RecordItem item : result.get(0).getSetRecordItems()) {
+			if (item.getProduct().getProdId() == product.getProdId()) {
+				deletItem = item;
+			}
+		}
+		result.get(0).getSetRecordItems().remove(deletItem);
+		em.flush();
+
+	}
+
+	public Record refreshBasket(Record basket) {
+		List<Record> result = em.createNamedQuery("getRecord", Record.class)
+				.setParameter("basketId", basket.getId()).getResultList();
+
+		return result.get(0);
+	}
+
+	public int getBasketSize(Record basket) {
+		int size = 0;
+		List<Record> result = em.createNamedQuery("getRecord", Record.class)
+				.setParameter("basketId", basket.getId()).getResultList();
+		if (!result.isEmpty()) {
+			size = result.get(0).getSetRecordItems().size();
 		}
 		return size;
 	}
-	
-	public double getTotalPrice(Record basket){
+
+	public double getTotalPrice(Record basket) {
 		double price = 0;
 		List<Record> result = em.createNamedQuery("getRecord", Record.class)
 				.setParameter("basketId", basket.getId()).getResultList();
-		if(!result.isEmpty()){
-			for(RecordItem item : result.get(0).getSetRecordItems()){
-				price += item.getProduct().getPrice()*item.getQuantity();
+		if (!result.isEmpty()) {
+			for (RecordItem item : result.get(0).getSetRecordItems()) {
+				price += item.getProduct().getPrice() * item.getQuantity();
 			}
 		}
 		return price;

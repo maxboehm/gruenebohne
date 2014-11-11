@@ -23,16 +23,8 @@
 		<dependency>
 			<groupId>com.sap.cloud</groupId>
 			<artifactId>neo-javaee6-wp-api</artifactId>
-			<version>2.46.11</version>
+			<version>2.47.3</version>
 			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.sap.security.core.server</groupId>
-			<artifactId>csi</artifactId>
-			<version>1.0.1</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/com.sap.security.core.server.csi_1.0.1.jar</systemPath>
 		</dependency>
 
 		<dependency>
@@ -102,19 +94,13 @@
 								<!-- PLEASE USE THE CONSOLE CLIENT IN ORDER TO DEPLOY TO YOU CLOUD -->
 								<!-- SEE: https://help.hana.ondemand.com/help/frameset.htm?937db4fa204c456f9b7820f83bc87118.html -->
 								<!-- ALL PARAMETERS CAN ALSO BE STORED IN AN .properties file -->
-								<!-- Example example.properties file: 
-								host=hanatrial.ondemand.com 
-								account=p1940434107trial (replace with your account) 
-								user=p1940434107 (replace with your user) 
-								application=gruenebohne 
-								source="toFile" 
-								overwrite=false
-								strategy=replace-binaries
-								-->
+								<!-- Example example.properties file: host=hanatrial.ondemand.com 
+									account=p1940434107trial (replace with your account) user=p1940434107 (replace 
+									with your user) application=gruenebohne source="toFile" overwrite=false strategy=replace-binaries -->
 								<!-- COMMAND: neo.sh hot-update example.properties -->
 								<copy
 									file="target/${project.artifactId}-${project.version}.${project.packaging}"
-									tofile="/Users/Fabian/Desktop/neo-javaee6-wp-sdk-2.46.11/tools/gruenebohne.war" />
+									tofile="/Users/Fabian/Desktop/neo-javaee6-wp-sdk-2.47.3/tools/gruenebohne.war" />
 							</target>
 						</configuration>
 						<goals>

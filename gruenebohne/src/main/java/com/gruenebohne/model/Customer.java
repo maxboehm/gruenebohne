@@ -24,16 +24,15 @@ import javax.persistence.Version;
 	@NamedQuery(name = "AllCustomer", query = "select c from Customer c"),
 	@NamedQuery(name = "GetCustomer", query="select c from Customer c where c.eMail = :custEmail and c.passWord = :custPassword")
 })
-@SequenceGenerator(name = "sequence", initialValue = 0, allocationSize = 1000)
 public class Customer {
 
 	// #################################################################
 	// members
 	// #################################################################
 
-	@GeneratedValue(generator = "sequence")
 	@Id
 	@Column(name="CUSTOMER_ID", nullable=false)
+	@GeneratedValue
 	private long id;
 
 	@Column private String firstName;
