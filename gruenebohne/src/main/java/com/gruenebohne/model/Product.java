@@ -7,6 +7,7 @@ import java.util.Random;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -24,7 +25,12 @@ public class Product extends ProductBase{
 	@Column private Date updatedTime;
 
 	@ManyToMany(mappedBy="products")
+	@JoinTable(name = "RCP_PRD")
 	private Collection<Recipe> recipe;
+
+	@ManyToMany(mappedBy="products")
+	@JoinTable(name = "PRD_PRDCR")
+	private Collection<Producer> producer;
 
 	public Product(){}
 
@@ -59,12 +65,22 @@ public class Product extends ProductBase{
 
 
 	public Collection<Recipe> getRecipe() {
-		System.out.println(recipe.size());
+		System.out.println("Number of recipes: "+recipe.size());
 		return recipe;
 	}
 
 	public void setRecipe(Collection<Recipe> recipe) {
 		this.recipe = recipe;
+	}
+
+
+
+	public Collection<Producer> getProducer() {
+		return producer;
+	}
+
+	public void setProducer(Collection<Producer> producer) {
+		this.producer = producer;
 	}
 
 	@Override

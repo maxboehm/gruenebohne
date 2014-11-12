@@ -98,40 +98,60 @@
 				<div class="col-xs-12">
 					<!-- Nav tabs -->
 					<ul class="nav  nav-tabs">
-						<!-- <li class="active"><a href="#tabDesc" data-toggle="tab">Produzenten</a></li> -->
-						<li class="active"><a href="#tabDesc" data-toggle="tab">Produzenten (#{fake.getProducer().size()})</a></li>
-						<li><a href="#tabReviews" data-toggle="tab">Bewertungen (2)</a></li>
-						<!-- <li><a href="#tabRecipe" data-toggle="tab">Rezepte (#{productdetail.product.getRecipe().size()})</a></li> -->
-						<li><a href="#tabRecipe" data-toggle="tab">Rezepte (#{fake.getRecipes().size()})</a></li>
+						<li class="active"><a href="#tabDesc" data-toggle="tab">Produzenten</a></li>
+						<li><a href="#tabReviews" data-toggle="tab">Bewertungen
+								(2)</a></li>
+						<li><a href="#tabRecipe" data-toggle="tab">Rezepte (#{productdetail.product.getRecipe().size()})</a></li>
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane  fade  in  active" id="tabDesc">
-							
-							<!-- <ui:repeat value="#{productdetail.product.producer}" var="producer"> -->
-							<ui:repeat value="#{fake.getProducer()}" var="producer">
-								
-								<div class="row sp-produzent">
-									<div class="col-xs-12  col-sm-2">
-										<p:urlbuffer var="url" mappingId="producerimage" >
-										  <f:param value="#{producer.id}" />
-										</p:urlbuffer>
-										<img src="#{url}" class="gallery" alt="#{producer.name}" />	
-									</div>
-									<div class="col-xs-12  col-sm-10">
-										<p:link styleClass="producer-detail" mappingId="producer-detail">
-											<f:param value="#{producer.id}" />
-											#{producer.name}
-										</p:link>
-										<h:outputText escape="false" value="#{producer.description}"/>  
-									</div>
+							<div class="row sp-produzent">
+								<div class="col-xs-12  col-sm-2">
+									<h:graphicImage library="content" styleClass="gallery" alt="#"
+										name="images/dummy/gallery.jpg" />
 								</div>
-								
-							</ui:repeat>
-							
+								<div class="col-xs-12  col-sm-10">
+									<strong>Gärtnerei Laiseacker, Eberdingen (Bioland)</strong>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+										Fusce est purus, fringilla sit amet arcu quis, feugiat
+										ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna
+										nec, hendrerit scelerisque risus. In hac habitasse platea
+										dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing
+										elit.</p>
+								</div>
+							</div>
+							<div class="row sp-produzent">
+								<div class="col-xs-12  col-sm-2">
+									<h:graphicImage library="content" styleClass="gallery" alt="#"
+										name="images/dummy/farmer1.jpg" />
+								</div>®
+								<div class="col-xs-12  col-sm-10">
+									<strong>Magerhof Karben, Karben (Bioland)</strong>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+										Fusce est purus, fringilla sit amet arcu quis, feugiat
+										ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna
+										nec, hendrerit scelerisque risus. In hac habitasse platea
+										dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing
+										elit.</p>
+								</div>
+							</div>
+							<div class="row sp-produzent">
+								<div class="col-xs-12  col-sm-2">
+									<h:graphicImage library="content" styleClass="gallery" alt="#"
+										name="images/dummy/farmer2.jpg" />
+								</div>
+								<div class="col-xs-12  col-sm-10">
+									<strong>WINO Obst- und Weinbau, Brackenheim (Bioland
+										und EcoVin )</strong>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+										Fusce est purus, fringilla sit amet arcu quis, feugiat
+										ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna
+										nec, hendrerit scelerisque risus. In hac habitasse platea
+										dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing
+										elit.</p>
+								</div>
+							</div>
 						</div>
-						
-						
-						
 						<div class="tab-pane  fade" id="tabReviews">
 							<div class="row sp-bewertung">
 								<div class="col-xs-12  col-sm-12">
@@ -166,59 +186,25 @@
 								</div>
 							</div>
 						</div>
-						
-						
-						
 						<div class="tab-pane  fade" id="tabRecipe">
 							<div class="row sp-produzent">
 							
 
-								<!--  <ui:repeat value="#{productdetail.product.getRecipe()}" var="rec">-->
-								<ui:repeat value="#{fake.getRecipes()}" var="rec">
-								
-									<div class="col-xs-6 col-sm-3  js--isotope-target">
-										<div class="products__single">
-											<figure class="products__image">
-												<p:link mappingId="rezepte-detail">
-													<f:param value="#{rec.prodId}" />
-													<p:urlbuffer var="url" mappingId="image" >
-													  <f:param value="#{rec.prodId}" />
-													</p:urlbuffer>
-													<img src="#{url}" class="product__image" alt="#{rec.prodName}" />
-												</p:link>
-												<div class="product-overlay">
-													<p:link styleClass="product-overlay__more" mappingId="rezepte-detail">
-														<span class="glyphicon glyphicon-search"></span>
-														<f:param value="#{rec.prodId}" />
-													</p:link>
-													<p:link styleClass="product-overlay__cart" mappingId="rezepte-detail">
-											  			+<span class="glyphicon glyphicon-shopping-cart"></span>
-														<f:param value="#{rec.prodId}" />
-													</p:link>
-													<div class="product-overlay__stock">
-														<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span>
-														<span class="in-stock--text">Verfügbar</span>
-													</div>
-												</div>
-											</figure>
-											<div class="row">
-												<div class="col-xs-9">
-													<h5 class="products__title">
-														<p:link styleClass="products__link  js--isotope-title" mappingId="rezepte-detail">
-															#{rec.prodName}
-															<f:param value="#{rec.prodId}" />
-														</p:link>
-													</h5>
-												</div>
-												<div class="col-xs-3">
-													<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />#{rec.price}</div>
-												</div>
-											</div>
-										</div>
+								<ui:repeat value="#{productdetail.product.getRecipe()}" var="rec">
+								aaaaa
+									<div class="col-xs-12  col-sm-4">
+									<p:link mappingId="rezepte-detail">
+										<f:param value="#{rec.prodId}" />
+										<p:urlbuffer var="url" mappingId="image" >
+										  <f:param value="#{rec.prodId}" />
+										</p:urlbuffer>
+										<img src="#{url}" class="gallery" alt="#{rec.prodName}" />
+									</p:link>
 									</div>
-								
-								
-								
+									<div class="col-xs-12  col-sm-8">
+										<strong>#{rec.prodName}</strong>
+										<p></p>
+									</div>
 								</ui:repeat>
 								
 								

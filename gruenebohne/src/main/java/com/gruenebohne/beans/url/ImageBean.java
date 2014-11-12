@@ -4,20 +4,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
 
-import com.gruenebohne.EJB.ProductBaseEJB;
+public abstract class ImageBean {
 
-@ManagedBean(name = "image")
-@RequestScoped
-public class ImageBean {
-
-	@EJB
-	private ProductBaseEJB productbasejb;
+	protected abstract byte[] getPicture(int nID);
 
 	private int prodID;
 
@@ -26,7 +18,7 @@ public class ImageBean {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
 
-		byte[] picture = productbasejb.getProduct(getProdID()).getPicture();
+		byte[] picture = getPicture(getProdID());
 
 		// set correct content type
 		response.setContentType("image/jpg");
@@ -72,25 +64,5 @@ public class ImageBean {
 	public void setProdID(int prodID) {
 		this.prodID = prodID;
 	}
-
-	//		try {
-	//			// open image
-	//			picture = Files.readAllBytes(Paths.get("/Users/Max/Documents/img.jpg"));
-	//
-	//		} catch (Exception e) {
-	//			e.printStackTrace();
-	//		}
-
-
-	//		FileInputStream fis = new FileInputStream("/Users/Max/Documents/img.jpg");
-	//		OutputStream out = response.getOutputStream();
-	//		int c;
-	//		while ((c = fis.read()) != -1) {
-	//			out.write(c);
-	//		}
-	//		fis.close();
-	//		context.responseComplete();
-	//
-	//		if(true)return;
 
 }

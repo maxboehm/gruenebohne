@@ -14,6 +14,11 @@
 		<view-id value="/_view/template/empty.xhtml" />
 		<action>#{image.render}</action>
 	</url-mapping>
+	<url-mapping id="producerimage">
+		<pattern value="/images/#{ /[0-9]+/ producerimage.prodID }.jpg" />
+		<view-id value="/_view/template/empty.xhtml" />
+		<action>#{producerimage.render}</action>
+	</url-mapping>
 	
 	
 	
@@ -40,6 +45,12 @@
 		<pattern value="/produkt/#{productdetail.id}" />
 		<view-id value="/_view/pages/shop/produkte/detail/_produkt_detail.xhtml" />
 		<action>#{productdetail.loadProduct}</action>
+	</url-mapping>
+	
+	<url-mapping id="produzent-detail">
+		<pattern value="/produzent/#{produzentdetail.id}" />
+		<view-id value="/_view/pages/shop/produzent/detail/_produzent_detail.xhtml" />
+		<action>#{produzentdetail.loadProduzent}</action>
 	</url-mapping>
 
 	<url-mapping id="warenkorb">
