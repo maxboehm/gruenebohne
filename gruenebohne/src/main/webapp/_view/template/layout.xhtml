@@ -78,12 +78,17 @@
         var element = document.createElement("script");
         element.src = "#{resource['layout:js/main.js']}";
         document.body.appendChild(element);
+        
+        var element = document.createElement("script");
+        element.src = "#{resource['layout:js/gb.js']}";
+        document.body.appendChild(element);
       }
       if (window.addEventListener)
         window.addEventListener("load", downloadJSAtOnload, false);
       else if (window.attachEvent)
         window.attachEvent("onload", downloadJSAtOnload);
       else window.onload = downloadJSAtOnload;
+      
     </script>
 
 </h:body>

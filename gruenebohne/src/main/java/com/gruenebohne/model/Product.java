@@ -1,11 +1,13 @@
 package com.gruenebohne.model;
 
 import java.sql.Date;
+import java.util.Collection;
 import java.util.Random;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -19,8 +21,10 @@ import javax.persistence.NamedQuery;
 public class Product extends ProductBase{
 
 	@ManyToOne private ProductCategory category;
-	@ManyToOne private Recipe recipe;
 	@Column private Date updatedTime;
+
+	@ManyToMany(mappedBy="products")
+	private Collection<Recipe> recipe;
 
 	public Product(){}
 
@@ -53,11 +57,13 @@ public class Product extends ProductBase{
 		this.category = category;
 	}
 
-	public Recipe getRecipe() {
+
+	public Collection<Recipe> getRecipe() {
+		System.out.println(recipe.size());
 		return recipe;
 	}
 
-	public void setRecipe(Recipe recipe) {
+	public void setRecipe(Collection<Recipe> recipe) {
 		this.recipe = recipe;
 	}
 

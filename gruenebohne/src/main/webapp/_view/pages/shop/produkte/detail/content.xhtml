@@ -188,22 +188,20 @@
 						</div>
 						<div class="tab-pane  fade" id="tabRecipe">
 							<div class="row sp-produzent">
+							
 								<div class="col-xs-12  col-sm-2">
-									<a href="#"><h:graphicImage library="content"
-											styleClass="gallery" alt="#"
-											name="images/recipe/fotolia_69318147.jpg" /></a>
+									<a href="#">
+										<h:graphicImage library="content" styleClass="gallery" alt="#" name="images/recipe/fotolia_69318147.jpg" /></a>
 								</div>
 								<div class="col-xs-12  col-sm-10">
 									<strong>Steak mit Kräuterkruste</strong>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-										est purus, fringilla sit amet arcu quis, feugiat ultrices
-										metus. Vestibulum lorem dolor, pharetra sit amet urna nec,
-										hendrerit scelerisque risus. In hac habitasse platea dictumst.
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a
-											href="#">Mehr</a>
-									</p>
+									<p></p>
 								</div>
+								<ui:repeat value="#{productdetail.product.getRecipe()}" var="rec">
+								aaaaa
+								</ui:repeat>
+								
+								
 							</div>
 						</div>
 					</div>
@@ -229,155 +227,59 @@
 			<div class="row">
 
 
-				<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst"
-					data-price="2.5" data-rating="5">
-					<div class="products__single">
-						<figure class="products__image">
-							<p:link styleClass="" mappingId="produkte-detail">
-								<f:param value="#{productdetail.product.prodId}" />
-								<h:graphicImage library="content" styleClass="product__image"
-									alt="#" name="images/food/w263/263-01.jpg" />
-							</p:link>
-							<div class="product-overlay">
-								<p:link styleClass="product-overlay__more"
-									mappingId="produkte-detail"><f:param value="#{productdetail.product.prodId}" />
-									<span class="glyphicon glyphicon-search"></span>
+				<ui:repeat value="#{products.getRandom3Products()}" var="prod">
+				
+					<div class="col-xs-6 col-sm-3  js--isotope-target">
+						<div class="products__single">
+							<figure class="products__image">
+								<p:link styleClass="" mappingId="produkte-detail">
+									<p:urlbuffer var="url" mappingId="image" >
+									  <f:param value="#{prod.prodId}" />
+									</p:urlbuffer>
+									<img src="#{url}" class="product__image" alt="#{prod.prodName}" />
+									<f:param value="#{prod.prodId}" />
 								</p:link>
-								<p:link styleClass="product-overlay__cart"
-									mappingId="produkte-detail"><f:param value="#{productdetail.product.prodId}" />
-						  +<span class="glyphicon glyphicon-shopping-cart"></span>
-								</p:link>
-								<div class="product-overlay__stock">
-									<span class="in-stock"><h:outputText escape="false"
-											value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+								<div class="product-overlay">
+									<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+										<span class="glyphicon glyphicon-search"></span>
+										<f:param value="#{prod.prodId}" />
+									</p:link>
+									<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+							  			+<span class="glyphicon glyphicon-shopping-cart"></span>
+										<f:param value="#{prod.prodId}" />
+									</p:link>
+									<div class="product-overlay__stock">
+										<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span>
+										<span class="in-stock--text">Verfügbar</span>
+									</div>
+								</div>
+							</figure>
+							<div class="row">
+								<div class="col-xs-9">
+									<h5 class="products__title">
+										<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">
+											#{prod.prodName}
+											<f:param value="#{prod.prodId}" />
+										</p:link>
+									</h5>
+								</div>
+								<div class="col-xs-3">
+									<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}</div>
 								</div>
 							</div>
-						</figure>
-						<div class="row">
-							<div class="col-xs-9">
-								<h5 class="products__title">
-									<p:link styleClass="products__link  js--isotope-title"
-										mappingId="produkte-detail"><f:param value="#{productdetail.product.prodId}" />Heidelbeeren</p:link>
-								</h5>
-							</div>
-							<div class="col-xs-3">
-								<div class="products__price">2,50€</div>
-							</div>
+							<div class="products__category">#{prod.category.category}</div>
 						</div>
-						<div class="products__category">Obst</div>
 					</div>
-				</div>
-				<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst"
-					data-price="2.8" data-rating="5">
-					<div class="products__single">
-						<figure class="products__image">
-							<p:link styleClass="" mappingId="produkte-detail"><f:param value="#{productdetail.product.prodId}" />
-								<h:graphicImage library="content" styleClass="product__image"
-									alt="#" name="images/food/w263/263-02.jpg" />
-							</p:link>
-							<div class="product-overlay">
-								<p:link styleClass="product-overlay__more"
-									mappingId="produkte-detail">
-									<span class="glyphicon glyphicon-search"></span>
-								<f:param value="#{productdetail.product.prodId}" /></p:link>
-								<p:link styleClass="product-overlay__cart"
-									mappingId="produkte-detail">
-						  +<span class="glyphicon glyphicon-shopping-cart"></span>
-								<f:param value="#{productdetail.product.prodId}" /></p:link>
-								<div class="product-overlay__stock">
-									<span class="in-stock"><h:outputText escape="false"
-											value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
-								</div>
-							</div>
-						</figure>
-						<div class="row">
-							<div class="col-xs-9">
-								<h5 class="products__title">
-									<p:link styleClass="products__link  js--isotope-title"
-										mappingId="produkte-detail">Dunkle Trauben (kernlos)<f:param value="#{productdetail.product.prodId}" /></p:link>
-								</h5>
-							</div>
-							<div class="col-xs-3">
-								<div class="products__price">2,80€</div>
-							</div>
-						</div>
-						<div class="products__category">Obst</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-gemuese"
-					data-price="4.6" data-rating="5">
-					<div class="products__single">
-						<figure class="products__image">
-							<p:link styleClass="" mappingId="produkte-detail">
-								<h:graphicImage library="content" styleClass="product__image"
-									alt="#" name="images/food/w263/263-03.jpg" />
-							<f:param value="#{productdetail.product.prodId}" /></p:link>
-							<div class="product-overlay">
-								<p:link styleClass="product-overlay__more"
-									mappingId="produkte-detail">
-									<span class="glyphicon glyphicon-search"></span>
-								<f:param value="#{productdetail.product.prodId}" /></p:link>
-								<p:link styleClass="product-overlay__cart"
-									mappingId="produkte-detail">
-						  +<span class="glyphicon glyphicon-shopping-cart"></span>
-								<f:param value="#{productdetail.product.prodId}" /></p:link>
-								<div class="product-overlay__stock">
-									<span class="in-stock"><h:outputText escape="false"
-											value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
-								</div>
-							</div>
-						</figure>
-						<div class="row">
-							<div class="col-xs-9">
-								<h5 class="products__title">
-									<p:link styleClass="products__link  js--isotope-title"
-										mappingId="produkte-detail">Tomaten<f:param value="#{productdetail.product.prodId}" /></p:link>
-								</h5>
-							</div>
-							<div class="col-xs-3">
-								<div class="products__price">4,60€</div>
-							</div>
-						</div>
-						<div class="products__category">Gemüse</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst"
-					data-price="5.2" data-rating="5">
-					<div class="products__single">
-						<figure class="products__image">
-							<p:link styleClass="" mappingId="produkte-detail">
-								<h:graphicImage library="content" styleClass="product__image"
-									alt="#" name="images/food/w263/263-04.jpg" />
-							<f:param value="#{productdetail.product.prodId}" /></p:link>
-							<div class="product-overlay">
-								<p:link styleClass="product-overlay__more"
-									mappingId="produkte-detail">
-									<span class="glyphicon glyphicon-search"></span>
-								<f:param value="#{productdetail.product.prodId}" /></p:link>
-								<p:link styleClass="product-overlay__cart"
-									mappingId="produkte-detail">
-						  +<span class="glyphicon glyphicon-shopping-cart"></span>
-								<f:param value="#{productdetail.product.prodId}" /></p:link>
-								<div class="product-overlay__stock">
-									<span class="in-stock"><h:outputText escape="false"
-											value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
-								</div>
-							</div>
-						</figure>
-						<div class="row">
-							<div class="col-xs-9">
-								<h5 class="products__title">
-									<p:link styleClass="products__link  js--isotope-title"
-										mappingId="produkte-detail">Zwetschgen<f:param value="#{productdetail.product.prodId}" /></p:link>
-								</h5>
-							</div>
-							<div class="col-xs-3">
-								<div class="products__price">5,20€</div>
-							</div>
-						</div>
-						<div class="products__category">Obst</div>
-					</div>
-				</div>
+				
+				</ui:repeat>
+						
+
+
+
+
+
+
+
 			</div>
 		</div>
 	</div>

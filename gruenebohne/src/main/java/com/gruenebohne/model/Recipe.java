@@ -1,12 +1,14 @@
 package com.gruenebohne.model;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("R")
@@ -18,11 +20,13 @@ public class Recipe extends ProductBase{
 
 	public Recipe(){}
 
-	public Recipe(long id, String prodName, double price){
+	public Recipe(long id, String prodName, double price, Product[] products){
 		super(id, prodName, price);
+		setProducts(Arrays.asList(products));
 	}
 
-	@OneToMany(mappedBy="recipe")
+	@ManyToMany
+	@JoinTable(name = "RCP_PRD")
 	private Collection<Product> products;
 
 	public Collection<Product> getProducts() {

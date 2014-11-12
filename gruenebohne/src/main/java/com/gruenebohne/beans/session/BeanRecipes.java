@@ -33,4 +33,8 @@ public class BeanRecipes {
 		this.recipes = products;
 	}
 
+	public Recipe getOneRecipe(){
+		return getRecipes().get(0);
+	}
+
 }

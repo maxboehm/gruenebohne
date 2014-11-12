@@ -88,3 +88,9 @@ html .video {padding-bottom:15px;}
 	width: 40px;
 	max-height: 50px;
 }
+.nav-sidebar-menu a.active{
+	background: #fff;
+	color: #222;
+	position: relative;
+	border-left: 2px solid #71a866;
+}

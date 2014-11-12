@@ -156,13 +156,17 @@
 						<div class="widgets__heading--line">
 							<h4 class="widgets__heading">Rezeptvorschlag</h4>
 						</div>
-						<h:graphicImage library="content" styleClass="product__image" alt="#" name="images/recipe/fotolia_69318147.jpg" />
+						<p:link mappingId="rezepte-detail">
+							<f:param value="#{recipes.getOneRecipe().prodId}" />
+							<p:urlbuffer var="url" mappingId="image" >
+							  <f:param value="#{recipes.getOneRecipe().prodId}" />
+							</p:urlbuffer>
+							<img src="#{url}" class="product__image" alt="#{recipes.getOneRecipe().prodName}" />
+						</p:link>
 						<div class="products__title">
 							<div class="push-down-10"></div>
-							<strong>Steak mit Kräuterkruste</strong>
+							<strong>#{recipes.getOneRecipe().prodName}</strong>
 						</div>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce est purus, fringilla sit amet arcu quis, feugiat ultrices metus.
-						Vestibulum lorem dolor, pharetra sit amet urna nec, hendrerit scelerisque risus.
 					</div>
 				</div>
 			</div>
