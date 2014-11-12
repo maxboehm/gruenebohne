@@ -50,7 +50,7 @@
 	<url-mapping id="produzent-detail">
 		<pattern value="/produzent/#{produzentdetail.id}" />
 		<view-id value="/_view/pages/shop/produzent/detail/_produzent_detail.xhtml" />
-		<action>#{produzentdetail.loadProduzent}</action>
+		<action>#{produzentdetail.loadProducer}</action>
 	</url-mapping>
 
 	<url-mapping id="warenkorb">

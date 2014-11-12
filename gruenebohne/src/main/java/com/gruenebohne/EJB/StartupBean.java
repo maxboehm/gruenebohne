@@ -82,7 +82,8 @@ public class StartupBean {
 
 	private Producer createProducer(long id, String sName, Product ... products) {
 		Producer r = new Producer(id, sName, products);
-		r.setDescription(getDescriptionText("producer", r.getId()));
+		r.setDescription(getDescriptionText("producer", r.getId(), "description.html"));
+		r.setShortDescription(getDescriptionText("producer", r.getId(), "short-description.html"));
 		r.setPicture(getPicture("producer", r.getId()));
 		em.persist(r);
 		em.flush();
@@ -91,7 +92,7 @@ public class StartupBean {
 
 	private Recipe createRecipe(long id, Double dPrice, String sName, Product ... products) {
 		Recipe r = new Recipe(id, sName, dPrice, products);
-		r.setProdDescription(getDescriptionText("recipes", r.getProdId()));
+		r.setProdDescription(getDescriptionText("recipes", r.getProdId(), "description.html"));
 		r.setPicture(getPicture("recipes", r.getProdId()));
 		em.persist(r);
 		em.flush();
@@ -100,7 +101,7 @@ public class StartupBean {
 
 	private Product createProduct(long id,Double dPrice, ProductCategory cat, String sName) {
 		Product p = new Product(id, sName, dPrice, cat);
-		p.setProdDescription(getDescriptionText("products", p.getProdId()));
+		p.setProdDescription(getDescriptionText("products", p.getProdId(), "description.html"));
 		p.setPicture(getPicture("products", p.getProdId()));
 		em.persist(p);
 		em.flush();
@@ -115,14 +116,14 @@ public class StartupBean {
 	}
 
 	@SuppressWarnings("resource")
-	public String getDescriptionText(String sDirName, long nID){
+	public String getDescriptionText(String sDirName, long nID, String sFileName){
 		// Create Path
 		String sPath = "resources/database/"+sDirName+"/"+nID+"/";
 		// instantiate scanner
 		java.util.Scanner scanner = null;
 		try {
 			// get resource stream
-			InputStream is = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream(sPath+"description.html");
+			InputStream is = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream(sPath+sFileName);
 			scanner = new java.util.Scanner(is).useDelimiter("\\A");
 			return scanner.hasNext() ? scanner.next() : "";
 		} finally {

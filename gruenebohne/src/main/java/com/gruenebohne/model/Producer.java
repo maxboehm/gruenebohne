@@ -35,6 +35,7 @@ public class Producer {
 
 	@Column private String Name;
 	@Column private String Description;
+	@Column private String ShortDescription;
 	@Column
 	@Lob
 	private byte[] picture;
@@ -61,6 +62,12 @@ public class Producer {
 		return this.Name;
 	}
 
+	public String getShortDescription() {
+		return ShortDescription;
+	}
+	public void setShortDescription(String shortDescription) {
+		ShortDescription = shortDescription;
+	}
 	public long getId() {
 		return id;
 	}

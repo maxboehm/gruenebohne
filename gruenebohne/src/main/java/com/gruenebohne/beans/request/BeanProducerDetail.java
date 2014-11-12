@@ -27,7 +27,7 @@ public class BeanProducerDetail {
 	private Producer producer;
 
 	public void loadProducer(){
-		producer = null;
+		producer = producerEJB.getProducer(getId());
 	}
 
 	public Producer getProducer() {

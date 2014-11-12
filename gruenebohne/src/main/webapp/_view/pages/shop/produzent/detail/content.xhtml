@@ -16,7 +16,7 @@
 
 							<li><p:link mappingId="produkte">Shop</p:link></li>
 
-							<li class="active">#{productdetail.product.prodName}</li>
+							<li class="active">#{produzentdetail.producer.name}</li>
 
 						</ol>
 					</nav>
@@ -31,10 +31,10 @@
 				<div class="col-xs-12 col-sm-4">
 					<div class="product-preview">
 						<div class="push-down-20">
-							<p:urlbuffer var="url" mappingId="image" >
-							  <f:param value="#{productdetail.product.prodId}" />
+							<p:urlbuffer var="url" mappingId="producerimage" >
+							  <f:param value="#{produzentdetail.producer.id}" />
 							</p:urlbuffer>
-							<img src="#{url}" class="js--product-preview" alt="#{productdetail.product.prodName}" />	
+							<img src="#{url}" class="js--product-preview" alt="#{produzentdetail.producer.name}" />
 						</div>
 					</div>
 				</div>
@@ -42,177 +42,13 @@
 					<div class="products__content">
 						<div class="push-down-30"></div>
 
-						<span class="products__category">#{productdetail.product.category.category}</span>
 						<h1 class="single-product__title">
-							<span class="light"></span> #{productdetail.product.prodName}
+							 #{produzentdetail.producer.name}
 						</h1>
-						<span class="single-product__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />#{productdetail.product.price}</span>
-						<div class="single-product__rating">
-							<span class="glyphicon  glyphicon-star  star-on"></span> <span
-								class="glyphicon  glyphicon-star  star-on"></span> <span
-								class="glyphicon  glyphicon-star  star-on"></span> <span
-								class="glyphicon  glyphicon-star  star-on"></span> <span
-								class="glyphicon  glyphicon-star  star-off"></span>
-						</div>
-
-						<div class="in-stock--single-product">
-							<span class="in-stock"><h:outputText escape="false"
-									value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
-						</div>
 						<hr class="bold__divider" />
-						 <h:outputText escape="false" value="#{productdetail.product.prodDescription}"/>  
+						 <h:outputText escape="false" value="#{produzentdetail.producer.description}"/>  
 						<hr class="bold__divider" />
-						<!-- Single button -->
-						<h:form id="addform">
-							<!-- 
-							<select class="btn  btn-shop">
-								<option>50g</option>
-								<option>100g</option>
-								<option>250g</option>
-							</select>
-							 -->
-							<!-- Quantity buttons -->
-							<input type="hidden" id="prodId" name="prodId" value="#{productdetail.product.prodId}"/>
-							<div class="quantity  js--quantity">
-	            			<input type="button" value="-" class="quantity__button  js--minus-one  js--clickable" />
-	            			<input type="text" name="quantity" value="1" class="quantity__input" />
-	            			<input type="button" value="+" class="quantity__button  js--plus-one  js--clickable" />
-	          			</div>
-							<f:param value="#{productdetail.product.prodId}" name="prodId"/>
-							<h:commandLink class="btn btn-primary--transition" actionListener="#{basket.performAdd}"><span
-								class="glyphicon glyphicon-plus"></span><span
-								class="glyphicon glyphicon-shopping-cart"></span> <span
-								class="single-product__btn-text"></span>
-								<h:outputText value="Hinzufügen"></h:outputText>
-							</h:commandLink>
-						</h:form>
-						<!-- Add to cart button -->
 					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Tabs -->
-		<div class="push-down-30">
-			<div class="row">
-				<div class="col-xs-12">
-					<!-- Nav tabs -->
-					<ul class="nav  nav-tabs">
-						<li class="active"><a href="#tabDesc" data-toggle="tab">Produzenten</a></li>
-						<li><a href="#tabReviews" data-toggle="tab">Bewertungen
-								(2)</a></li>
-						<li><a href="#tabRecipe" data-toggle="tab">Rezepte (#{productdetail.product.getRecipe().size()})</a></li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane  fade  in  active" id="tabDesc">
-							<div class="row sp-produzent">
-								<div class="col-xs-12  col-sm-2">
-									<h:graphicImage library="content" styleClass="gallery" alt="#"
-										name="images/dummy/gallery.jpg" />
-								</div>
-								<div class="col-xs-12  col-sm-10">
-									<strong>Gärtnerei Laiseacker, Eberdingen (Bioland)</strong>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Fusce est purus, fringilla sit amet arcu quis, feugiat
-										ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna
-										nec, hendrerit scelerisque risus. In hac habitasse platea
-										dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing
-										elit.</p>
-								</div>
-							</div>
-							<div class="row sp-produzent">
-								<div class="col-xs-12  col-sm-2">
-									<h:graphicImage library="content" styleClass="gallery" alt="#"
-										name="images/dummy/farmer1.jpg" />
-								</div>®
-								<div class="col-xs-12  col-sm-10">
-									<strong>Magerhof Karben, Karben (Bioland)</strong>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Fusce est purus, fringilla sit amet arcu quis, feugiat
-										ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna
-										nec, hendrerit scelerisque risus. In hac habitasse platea
-										dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing
-										elit.</p>
-								</div>
-							</div>
-							<div class="row sp-produzent">
-								<div class="col-xs-12  col-sm-2">
-									<h:graphicImage library="content" styleClass="gallery" alt="#"
-										name="images/dummy/farmer2.jpg" />
-								</div>
-								<div class="col-xs-12  col-sm-10">
-									<strong>WINO Obst- und Weinbau, Brackenheim (Bioland
-										und EcoVin )</strong>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Fusce est purus, fringilla sit amet arcu quis, feugiat
-										ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna
-										nec, hendrerit scelerisque risus. In hac habitasse platea
-										dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing
-										elit.</p>
-								</div>
-							</div>
-						</div>
-						<div class="tab-pane  fade" id="tabReviews">
-							<div class="row sp-bewertung">
-								<div class="col-xs-12  col-sm-12">
-									<strong>Barbara M.</strong> | <span
-										class="glyphicon  glyphicon-star  star-on"></span> <span
-										class="glyphicon  glyphicon-star  star-on"></span> <span
-										class="glyphicon  glyphicon-star  star-on"></span> <span
-										class="glyphicon  glyphicon-star  star-on"></span> <span
-										class="glyphicon  glyphicon-star  star-off"></span>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Fusce est purus, fringilla sit amet arcu quis, feugiat
-										ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna
-										nec, hendrerit scelerisque risus. In hac habitasse platea
-										dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing
-										elit.</p>
-								</div>
-							</div>
-							<div class="row sp-bewertung">
-								<div class="col-xs-12  col-sm-12">
-									<strong>Hans H.</strong> | <span
-										class="glyphicon  glyphicon-star  star-on"></span> <span
-										class="glyphicon  glyphicon-star  star-on"></span> <span
-										class="glyphicon  glyphicon-star  star-on"></span> <span
-										class="glyphicon  glyphicon-star  star-off"></span> <span
-										class="glyphicon  glyphicon-star  star-off"></span>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Fusce est purus, fringilla sit amet arcu quis, feugiat
-										ultrices metus. Vestibulum lorem dolor, pharetra sit amet urna
-										nec, hendrerit scelerisque risus. In hac habitasse platea
-										dictumst. Lorem ipsum dolor sit amet, consectetur adipiscing
-										elit.</p>
-								</div>
-							</div>
-						</div>
-						<div class="tab-pane  fade" id="tabRecipe">
-							<div class="row sp-produzent">
-							
-
-								<ui:repeat value="#{productdetail.product.getRecipe()}" var="rec">
-								aaaaa
-									<div class="col-xs-12  col-sm-4">
-									<p:link mappingId="rezepte-detail">
-										<f:param value="#{rec.prodId}" />
-										<p:urlbuffer var="url" mappingId="image" >
-										  <f:param value="#{rec.prodId}" />
-										</p:urlbuffer>
-										<img src="#{url}" class="gallery" alt="#{rec.prodName}" />
-									</p:link>
-									</div>
-									<div class="col-xs-12  col-sm-8">
-										<strong>#{rec.prodName}</strong>
-										<p></p>
-									</div>
-								</ui:repeat>
-								
-								
-							</div>
-						</div>
-					</div>
-
-
 				</div>
 			</div>
 		</div>
@@ -222,7 +58,7 @@
 			<div class="products-navigation">
 				<div class="products-navigation__title">
 					<h3>
-						<span class="light">Wurde oft zusammen</span> gekauft mit
+						<span class="light">Artikel von #{produzentdetail.producer.name}</span>
 					</h3>
 				</div>
 			</div>

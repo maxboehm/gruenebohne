@@ -118,11 +118,11 @@
 										<img src="#{url}" class="gallery" alt="#{producer.name}" />	
 									</div>
 									<div class="col-xs-12  col-sm-10">
-										<p:link styleClass="producer-detail" mappingId="producer-detail">
+										<p:link styleClass="producer-detail" mappingId="produzent-detail">
 											<f:param value="#{producer.id}" />
 											#{producer.name}
 										</p:link>
-										<h:outputText escape="false" value="#{producer.description}"/>  
+										<h:outputText escape="false" value="#{producer.shortDescription}"/>  
 									</div>
 								</div>
 								
