@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 
 @Entity
 @NamedQueries({
@@ -28,9 +27,7 @@ public class ProductCategory {
 	@OneToMany(mappedBy="category")
 	private Collection<Product> product;
 
-	public ProductCategory(){
-
-	}
+	public ProductCategory(){}
 
 	public ProductCategory(long id, String category){
 		this.id = id;

@@ -18,61 +18,56 @@ public class ProductEJB {
 	@PersistenceContext
 	private EntityManager em;
 
-	private void initializeData() {
+	private void cleanDatabase(){
+		for(Recipe rec:em.createNamedQuery("AllRecipes", Recipe.class).getResultList())
+			em.remove(rec);
 
-		ProductCategory cat1 = createCategory(15, "Gemüse");
-		ProductCategory cat2 = createCategory(16, "Obst");
-		ProductCategory cat3 = createCategory(17, "Milchprodukte");
-		ProductCategory cat4 = createCategory(18, "Roggenmischbrot");
-		ProductCategory cat5 = createCategory(19, "Fleischprodukte");
+		em.flush();
 
-		createProduct(1, "Tomate", "TestDescription", 2.95,
-				"/Users/Max/Desktop/w360/360-03.jpg", cat1);
-		createProduct(2, "Kartoffeln", "TestDescription", 2.85,
-				"/Users/Max/Desktop/w360/360-20.jpg", cat2);
-		createProduct(3, "Karotten", "TestDescription", 5.95,
-				"/Users/Max/Desktop/w360/360-21.jpg", cat2);
-		createProduct(4, "Radieschen", "TestDescription", 0.95,
-				"/Users/Max/Desktop/w360/360-05.jpg", cat1);
-		createProduct(5, "Dunkle Trauben", "TestDescription", 3.95,
-				"/Users/Max/Desktop/w360/360-02.jpg", cat2);
-		createProduct(6, "Helle Trauben", "TestDescription", 3.95,
-				"/Users/Max/Desktop/w360/360-01.jpg", cat2);
-		createProduct(7, "Milch", "TestDescription", 1.95,
-				"/Users/Max/Desktop/w360/360-07.jpg", cat3);
-		createProduct(8, "Champignos", "TestDescription", 1.95,
-				"/Users/Max/Desktop/w360/360-08.jpg", cat1);
-		createProduct(9, "Roggenmischbrot", "TestDescription", 1.95,
-				"/Users/Max/Desktop/w360/360-11.jpg", cat4);
-		createProduct(10, "Salami", "TestDescription", 2.95,
-				"/Users/Max/Desktop/w360/360-27.jpg", cat5);
+		for(Product p:em.createNamedQuery("AllProducts", Product.class).getResultList())
+			em.remove(p);
 
-		createRecipe(11, "Orientalische Zucchini-Zwiebel-Pfanne mit Bulgur",
-				"Sehr lecker", 5.00, "/Users/Max/Desktop/w360/bulgur.jpg");
-		createRecipe(12, "Afrikanischer Süßkartoffeleintopf", "Sehr lecker",
-				5.00, "/Users/Max/Desktop/w360/eintopf.jpg");
-		createRecipe(13, "Jägerrouladen", "Sehr lecker", 5.00,
-				"/Users/Max/Desktop/w360/rol.jpg");
-		createRecipe(14, "Kürbisstrudel mit Pute", "Sehr lecker", 5.00,
-				"/Users/Max/Desktop/w360/strudel.jpg");
-	}
+		em.flush();
 
-	private void createRecipe(long id, String sName, String sDesc,
-			Double dPrice, String sImage) {
-		Recipe recipe = new Recipe();
-		recipe.setProdName(sName);
-		recipe.setProdDescription(sDesc);
-		recipe.setPictureByPath(sImage);
-		recipe.setPrice(dPrice);
-		recipe.setProdId(id);
-		em.persist(recipe);
+
+		for(ProductCategory cat:em.createNamedQuery("AllCategories", ProductCategory.class).getResultList())
+			em.remove(cat);
+
+
 		em.flush();
 	}
 
-	private void createProduct(long id, String sName, String sDesc,
-			Double dPrice, String sImage, ProductCategory cat) {
-		Product prd = new Product(id, sName, sDesc, dPrice, sImage, cat);
-		em.persist(prd);
+	private void initializeData() {
+		ProductCategory cat1 = createCategory(1, "Gemüse");
+		ProductCategory cat2 = createCategory(2, "Obst");
+		ProductCategory cat3 = createCategory(3, "Milchprodukte");
+		ProductCategory cat4 = createCategory(4, "Roggenmischbrot");
+		ProductCategory cat5 = createCategory(5, "Fleischprodukte");
+
+		createProduct(1,  2.95, cat1, "Tomate");
+		createProduct(2,  2.85, cat2, "Kartoffeln");
+		createProduct(3,  5.95, cat2, "Karotten");
+		createProduct(4,  0.95, cat1, "Radieschen");
+		createProduct(5,  3.95, cat2, "Dunkle Trauben");
+		createProduct(6,  4.95, cat2, "Helle Trauben");
+		createProduct(7,  1.95, cat3, "Milch");
+		createProduct(8,  0.95, cat1, "Champignos");
+		createProduct(9,  4.42, cat4, "Roggenmischbrot");
+		createProduct(10, 1.86, cat5, "Salami");
+
+		createRecipe(11, 3.33, "Orientalische Zucchini-Zwiebel-Pfanne mit Bulgur");
+		createRecipe(12, 4.99, "Afrikanischer Süßkartoffeleintopf");
+		createRecipe(13, 2.77, "Jägerrouladen");
+		createRecipe(14, 8.89, "Kürbisstrudel mit Pute");
+	}
+
+	private void createRecipe(long id, Double dPrice, String sName) {
+		em.persist(new Recipe(id, sName, dPrice));
+		em.flush();
+	}
+
+	private void createProduct(long id,Double dPrice, ProductCategory cat, String sName) {
+		em.persist(new Product(id, sName, dPrice, cat));
 		em.flush();
 	}
 
@@ -92,9 +87,7 @@ public class ProductEJB {
 			initializeData();
 		}
 
-		List<Product> products = em.createNamedQuery("AllProducts",
-				Product.class).getResultList();
-		return products;
+		return em.createNamedQuery("AllProducts", Product.class).getResultList();
 	}
 
 	public Product getProduct(int prodId) {

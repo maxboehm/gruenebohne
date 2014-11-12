@@ -17,6 +17,7 @@ public class CategoryEJB {
 	private EntityManager em;
 
 	public List<ProductCategory> getAllCat() {
+		System.out.println("Number of Categories: "+em.createNamedQuery("AllCategories", ProductCategory.class).getResultList().size());
 		return em.createNamedQuery("AllCategories", ProductCategory.class).getResultList();
 	}
 

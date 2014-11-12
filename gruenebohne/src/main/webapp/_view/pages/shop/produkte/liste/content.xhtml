@@ -46,14 +46,10 @@
 						<nav>
 							<h5 class="sidebar__subtitle">Siegel</h5>
 							<ul class="nav  nav--filter">
-								<li><a data-target=".js--cat-siegel-deutsch"
-									class="js--filter-selectable" href="#">Deutsches Biosiegel</a></li>
-								<li><a data-target=".js--cat-siegel-demeter"
-									class="js--filter-selectable" href="#">Demeter</a></li>
-								<li><a data-target=".js--cat-siegel-ecovin"
-									class="js--filter-selectable" href="#">Ecovin</a></li>
-								<li><a data-target=".js--cat-siegel-eu"
-									class="js--filter-selectable" href="#">EU-Bio-Siegel</a></li>
+								<li><a data-target=".js--cat-siegel-deutsch" class="js--filter-selectable" href="#">Deutsches Biosiegel</a></li>
+								<li><a data-target=".js--cat-siegel-demeter" class="js--filter-selectable" href="#">Demeter</a></li>
+								<li><a data-target=".js--cat-siegel-ecovin" class="js--filter-selectable" href="#">Ecovin</a></li>
+								<li><a data-target=".js--cat-siegel-eu" class="js--filter-selectable" href="#">EU-Bio-Siegel</a></li>
 							</ul>
 						</nav>
 						<hr class="divider" />
@@ -88,7 +84,7 @@
 					<div class="row  js--isotope-container">
 
 						<ui:repeat value="#{products.products}" var="prod">
-							<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-#{prod.category.category}"
+							<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-#{prod.category.category} #{prod.getSiegelCssClass()} "
 								data-price="#{prod.price}" data-rating="5">
 								<div class="products__single">
 									<figure class="products__image">

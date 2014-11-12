@@ -81,3 +81,10 @@ html .video {padding-bottom:15px;}
 .image-best-thumb .widgets__products{
 	width: 78px;
 }
+.header-cart__product-image{
+	line-height: 50px;
+}
+.header-cart__product-image img{
+	width: 40px;
+	max-height: 50px;
+}

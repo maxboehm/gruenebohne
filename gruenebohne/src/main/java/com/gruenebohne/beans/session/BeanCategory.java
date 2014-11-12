@@ -2,10 +2,11 @@ package com.gruenebohne.beans.session;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import com.gruenebohne.EJB.CategoryEJB;
 import com.gruenebohne.model.ProductCategory;
@@ -18,14 +19,14 @@ public class BeanCategory {
 	@EJB
 	private CategoryEJB catEJB;
 
+	@PersistenceContext
+	private EntityManager em;
+
 	private List<ProductCategory> cat;
 
-	@PostConstruct
-	public void init(){
-		cat = catEJB.getAllCat();
-	}
-
 	public List<ProductCategory> getCat() {
+		if(cat==null)cat = catEJB.getAllCat();
+
 		return cat;
 	}
 

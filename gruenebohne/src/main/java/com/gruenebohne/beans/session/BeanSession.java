@@ -25,8 +25,8 @@ public class BeanSession {
 	private ProductEJB prodcutejb;
 
 	public boolean getIsLoggedin() {
-		System.out.println("GET IS LOGGED IN");
-		System.out.println(customer!=null);
+		//		System.out.println("GET IS LOGGED IN");
+		//		System.out.println(customer!=null);
 		return customer!=null;
 	}
 

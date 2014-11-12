@@ -1,8 +1,9 @@
 package com.gruenebohne.model;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 
+import javax.faces.context.FacesContext;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -12,7 +13,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +24,20 @@ import javax.persistence.Table;
 })
 public abstract class ProductBase {
 
+	protected abstract String getDirName();
+
+	public ProductBase(){}
+	public ProductBase(long id, String prodName, double price){
+		setProdId(id);
+		setProdName(prodName);
+		setPrice(price);
+
+		// Get the description and image statically
+		retrieveDataFromFiles();
+	}
+
+
+
 	@Id
 	@Column(nullable = false)
 	@GeneratedValue
@@ -32,27 +46,18 @@ public abstract class ProductBase {
 	@Column(nullable = false)
 	private String prodName;
 
-	@Column
+	@Column(length=10000)
 	private String prodDescription;
 
 	@Column
 	private double price;
 
-	@Column//(nullable = false)
+	@Column
 	@Lob
 	private byte[] picture;
 
 	public byte[] getPicture() {
 		return picture;
-	}
-
-
-	public void setPictureByPath (String ImageName)  {
-		try {
-			setPicture(Files.readAllBytes(Paths.get(ImageName)));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void setPicture(byte[] picture) {
@@ -90,6 +95,44 @@ public abstract class ProductBase {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+
+
+
+	@SuppressWarnings("resource")
+	public void retrieveDataFromFiles(){
+		String sPath = "resources/database/"+getDirName()+"/"+getProdId()+"/";
+		try {
+			java.util.Scanner scanner = null;
+			try {
+				InputStream is = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream(sPath+"description.html");
+				scanner = new java.util.Scanner(is).useDelimiter("\\A");
+				String sDesc = scanner.hasNext() ? scanner.next() : "";
+				this.setProdDescription(sDesc);
+			} finally {
+				if(scanner!=null) scanner.close();
+			}
+
+
+
+			InputStream is = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream(sPath+"img.jpg");
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+
+			int nRead;
+			byte[] data = new byte[16384];
+
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+			}
+
+			buffer.flush();
+
+			setPicture(buffer.toByteArray());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 
 
 }

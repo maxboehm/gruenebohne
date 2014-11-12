@@ -16,6 +16,12 @@ import javax.persistence.OneToMany;
 })
 public class Recipe extends ProductBase{
 
+	public Recipe(){}
+
+	public Recipe(long id, String prodName, double price){
+		super(id, prodName, price);
+	}
+
 	@OneToMany(mappedBy="recipe")
 	private Collection<Product> products;
 
@@ -25,6 +31,11 @@ public class Recipe extends ProductBase{
 
 	public void setProducts(Collection<Product> products) {
 		this.products = products;
+	}
+
+	@Override
+	protected String getDirName() {
+		return "recipes";
 	}
 
 

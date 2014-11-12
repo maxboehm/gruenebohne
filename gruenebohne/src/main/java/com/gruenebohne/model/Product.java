@@ -1,6 +1,7 @@
 package com.gruenebohne.model;
 
 import java.sql.Date;
+import java.util.Random;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
@@ -23,12 +24,8 @@ public class Product extends ProductBase{
 
 	public Product(){}
 
-	public Product(long id, String prodName, String prodDescription, double price, String pictureURL,ProductCategory cat){
-		setProdId(id);
-		setProdName(prodName);
-		setProdDescription(prodDescription);
-		setPrice(price);
-		setPictureByPath(pictureURL);
+	public Product(long id, String prodName, double price, ProductCategory cat){
+		super(id, prodName, price);
 		setCategory(cat);
 	}
 
@@ -38,6 +35,14 @@ public class Product extends ProductBase{
 
 	public void setUpdatedTime(Date updatedTime) {
 		this.updatedTime = updatedTime;
+	}
+
+	public String getSiegelCssClass(){
+		String s= new Random().nextBoolean() ?	"js--cat-siegel-demeter "	: "" ;
+		s += new Random().nextBoolean() ?		"js--cat-siegel-ecovin "	: "" ;
+		s += new Random().nextBoolean() ?		"js--cat-siegel-eu " 		: "" ;
+		s += new Random().nextBoolean() ?		"js--cat-siegel-deutsch " 	: "" ;
+		return s.trim();
 	}
 
 	public ProductCategory getCategory() {
@@ -54,6 +59,11 @@ public class Product extends ProductBase{
 
 	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
+	}
+
+	@Override
+	protected String getDirName() {
+		return "products";
 	}
 
 

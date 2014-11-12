@@ -1,7 +1,6 @@
 package com.gruenebohne.EJB;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -24,12 +23,23 @@ public class BasketEJB {
 		return record;
 	}
 
+	/**
+	 * @param basket
+	 * @param product
+	 * @param nQuantity
+	 */
 	public void addProductToBasket(Record basket, Product product, int nQuantity) {
+		// Ermittle den Warenkorb
+		List<Record> result = em.createNamedQuery("getRecord", Record.class).setParameter("basketId", basket.getId()).getResultList();
 
-		List<Record> result = em.createNamedQuery("getRecord", Record.class)
-				.setParameter("basketId", basket.getId()).getResultList();
+		// Warenkorb noch nicht in Datenbank
+		if (result.isEmpty()) {
+			hlpAdd(basket, product, nQuantity);
+			em.persist(basket);
+			em.flush();
 
-		if (!result.isEmpty()) {
+			// Warenkorb in Datenbank
+		} else {
 			System.out.println("AKTUELLER WARENKORB");
 			for (RecordItem item : result.get(0).getSetRecordItems()) {
 				System.out.println("POSITION:");
@@ -37,23 +47,26 @@ public class BasketEJB {
 						+ item.getQuantity());
 			}
 			System.out.println("ENDE");
-
-			RecordItem item = new RecordItem();
-			item.setProduct(product);
-			item.setQuantity(nQuantity);
-			item.setRecord(basket);
-			basket.getSetRecordItems().add(item);
+			hlpAdd(basket, product, nQuantity);
 			em.merge(basket);
 			em.flush();
-		} else {
-			RecordItem item = new RecordItem();
-			item.setProduct(product);
-			item.setQuantity(nQuantity);
-			item.setRecord(basket);
-			basket.getSetRecordItems().add(item);
-			em.persist(basket);
-			em.flush();
 		}
+	}
+
+	private void hlpAdd(Record basket, Product product, int nQuantity){
+		for(RecordItem itemExistent:basket.getSetRecordItems())
+			if(itemExistent.getProduct().getProdId()== product.getProdId()){
+				itemExistent.setQuantity(itemExistent.getQuantity()+nQuantity);
+				return;
+			}
+
+		RecordItem item = new RecordItem();
+		item.setProduct(product);
+		item.setQuantity(nQuantity);
+		item.setRecord(basket);
+		basket.getSetRecordItems().add(item);
+
+
 
 	}
 
@@ -90,7 +103,7 @@ public class BasketEJB {
 		return size;
 	}
 
-	public double getTotalPrice(Record basket) {
+	public double getTotalPrice(Record basket) throws Exception {
 		double price = 0;
 		List<Record> result = em.createNamedQuery("getRecord", Record.class)
 				.setParameter("basketId", basket.getId()).getResultList();

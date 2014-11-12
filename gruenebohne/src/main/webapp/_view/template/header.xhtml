@@ -205,8 +205,10 @@
 								<div
 									class="header-cart__product  clearfix  js--cart-remove-target">
 									<div class="header-cart__product-image">
-										<h:graphicImage library="content" alt="Product in the cart"
-											name="images/dummy/product-cart.jpg" />
+										<p:urlbuffer var="url" mappingId="image" >
+										  <f:param value="#{basketItem.product.prodId}" />
+										</p:urlbuffer>
+										<img src="#{url}" alt="#{basketItem.product.prodName}" />
 
 									</div>
 									<div class="header-cart__product-image--hover">
@@ -222,7 +224,7 @@
 										<f:param value="#{basketItem.product.prodId}" />
 										<h:outputText styleClass="header-cart__link" value="#{basketItem.product.prodName}">
 											</h:outputText>
-										<span class="header-cart__qty">Qty:#{basketItem.quantity}</span>
+										<span class="header-cart__qty">Anzahl: #{basketItem.quantity}</span>
 									</div>
 									<div class="header-cart__price">
 										EUR
@@ -234,12 +236,12 @@
 							</ui:repeat>
 							<hr class="header-cart__divider" />
 							<div class="header-cart__subtotal-box">
-								<span class="header-cart__subtotal">CART SUBTOTAL:</span> <span
+								<span class="header-cart__subtotal">Warenkorb gesamt:</span> <span
 									class="header-cart__subtotal-price">EUR<h:outputText
 										escape="false" value="&amp;nbsp;" />#{basket.totalPrice}
 								</span>
 							</div>
-							<p:link styleClass="btn btn-darker" mappingId="warenkorb">Procced to checkout</p:link>
+							<p:link styleClass="btn btn-darker" mappingId="warenkorb">Produkte bestellen</p:link>
 						</div>
 					</div>
 				</div>
