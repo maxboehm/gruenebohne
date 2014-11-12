@@ -10,7 +10,7 @@ public class RecordType {
 
 	@Id
 	@GeneratedValue
-	@Column(name="recordtype_id")
+	@Column
 	private int id;
 
 	@Column

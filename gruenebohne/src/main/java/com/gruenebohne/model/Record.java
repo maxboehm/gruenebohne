@@ -29,7 +29,7 @@ public class Record {
 	private long id;
 
 	@ManyToOne
-	@JoinColumn(name="CUSTOMER_ID", nullable=true)
+	@JoinColumn(nullable=true)
 	private Customer customer;
 
 	@Column(precision=2)

@@ -19,16 +19,17 @@ public class Product extends ProductBase{
 
 	@ManyToOne private ProductCategory category;
 	@ManyToOne private Recipe recipe;
-	@Column(name = "LAST_UPDATED_TIME") private Date updatedTime;
+	@Column private Date updatedTime;
 
 	public Product(){}
 
-	public Product(String prodName, String prodDescription, double price, String pictureURL,ProductCategory cat){
+	public Product(long id, String prodName, String prodDescription, double price, String pictureURL,ProductCategory cat){
+		setProdId(id);
 		setProdName(prodName);
 		setProdDescription(prodDescription);
 		setPrice(price);
 		setPictureByPath(pictureURL);
-		this.category = cat;
+		setCategory(cat);
 	}
 
 	public Date getUpdatedTime() {

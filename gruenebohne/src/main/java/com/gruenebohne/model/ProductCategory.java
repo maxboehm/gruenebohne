@@ -18,11 +18,11 @@ import javax.persistence.SequenceGenerator;
 public class ProductCategory {
 
 	@Id
-	@Column(name="CATEGORY_ID")
+	@Column
 	@GeneratedValue
 	private long id;
 
-	@Column(name="CATEGORY")
+	@Column
 	private String category;
 
 	@OneToMany(mappedBy="category")

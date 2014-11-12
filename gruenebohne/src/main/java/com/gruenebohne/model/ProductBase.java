@@ -25,17 +25,17 @@ import javax.persistence.Table;
 public abstract class ProductBase {
 
 	@Id
-	@Column(name = "PROD_ID", nullable = false)
+	@Column(nullable = false)
 	@GeneratedValue
 	private long prodId;
 
-	@Column(name = "PRODUCT_NAME", nullable = false)
+	@Column(nullable = false)
 	private String prodName;
 
-	@Column(name = "PRODUCT_DESC")
+	@Column
 	private String prodDescription;
 
-	@Column(name = "REGULAR_PRICE")
+	@Column
 	private double price;
 
 	@Column//(nullable = false)

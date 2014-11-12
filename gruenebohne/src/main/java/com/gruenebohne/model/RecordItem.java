@@ -15,15 +15,15 @@ public class RecordItem {
 
 	@Id
 	@GeneratedValue
-	@Column(name="ITEM_ID")
+	@Column
 	private int id;
 
 	@ManyToOne
-	@JoinColumn(name="PROD_ID")
+	@JoinColumn
 	private ProductBase product;
 
 	@ManyToOne
-	@JoinColumn(name="RECORD_ID")
+	@JoinColumn
 	private Record record;
 
 	private int quantity;
