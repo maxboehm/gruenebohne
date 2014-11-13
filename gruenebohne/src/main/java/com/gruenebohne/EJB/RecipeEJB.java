@@ -2,6 +2,7 @@ package com.gruenebohne.EJB;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,8 +16,11 @@ public class RecipeEJB {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	@EJB StartupBean beanStartup;
 
 	public List<Recipe> getAllRecipes() {
+		beanStartup.startup();
 		return em.createNamedQuery("AllRecipes", Recipe.class).getResultList();
 	}
 

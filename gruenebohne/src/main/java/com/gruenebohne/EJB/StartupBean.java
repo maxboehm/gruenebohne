@@ -2,8 +2,10 @@ package com.gruenebohne.EJB;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.Arrays;
 
 import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -24,6 +26,7 @@ public class StartupBean {
 			cleanDatabase();
 			initializeData();
 			bInit = true;
+			System.out.println("DATA INITIALIZED");
 		}
 	}
 
@@ -70,16 +73,33 @@ public class StartupBean {
 		Product p9  = createProduct(9,  4.42, cat4, "Roggenmischbrot");
 		Product p10 = createProduct(10, 1.86, cat5, "Salami");
 
-		createRecipe(11, 3.33, "Orientalische Zucchini-Zwiebel-Pfanne mit Bulgur", p1, p2, p3, p4);
-		createRecipe(12, 4.99, "Afrikanischer Süßkartoffeleintopf", p5, p6, p7, p8, p9);
-		createRecipe(13, 2.77, "Jägerrouladen", p9, p10, p1, p2, p3);
-		createRecipe(14, 8.89, "Kürbisstrudel mit Pute", p1, p3, p5, p7, p9, p10);
+		Recipe r1 = createRecipe(11, 3.33, "Orientalische Zucchini-Zwiebel-Pfanne mit Bulgur", p1, p2, p3, p4);
+		Recipe r2 = createRecipe(12, 4.99, "Afrikanischer Süßkartoffeleintopf", p5, p6, p7, p8, p9);
+		Recipe r3 = createRecipe(13, 2.77, "Jägerrouladen", p9, p10, p1, p2, p3);
+		Recipe r4 = createRecipe(14, 8.89, "Kürbisstrudel mit Pute", p1, p3, p5, p7, p9, p10);
+		
+		insertRecipe(p1, r1,r3,r4);
+		insertRecipe(p2, r1,r3);
+		insertRecipe(p3, r1, r3);
+		insertRecipe(p4, r1, r3, r4);
+		insertRecipe(p5, r2, r4);
+		insertRecipe(p6, r2);
+		insertRecipe(p7, r2, r4);
+		insertRecipe(p8, r2);
+		insertRecipe(p9, r2, r3, r4);
+		insertRecipe(p10, r3, r4);
 
 		createProducer(1, "Hans-Dampf", p1, p2, p3);
 		createProducer(2, "Hans-Peter", p4, p5, p6);
 		createProducer(3, "Hans-Johann", p1, p4, p5, p6);
 	}
 
+	private void insertRecipe(Product product, Recipe ... recipes){
+		product.setRecipe(Arrays.asList(recipes));
+		em.merge(product);
+		em.flush();
+	}
+	
 	private Producer createProducer(long id, String sName, Product ... products) {
 		Producer r = new Producer(id, sName, products);
 		r.setDescription(getDescriptionText("producer", r.getId(), "description.html"));

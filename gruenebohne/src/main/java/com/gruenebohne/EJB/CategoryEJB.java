@@ -2,6 +2,7 @@ package com.gruenebohne.EJB;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,9 +16,11 @@ public class CategoryEJB {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	@EJB StartupBean beanStartup;
 
 	public List<ProductCategory> getAllCat() {
-		System.out.println("Number of Categories: "+em.createNamedQuery("AllCategories", ProductCategory.class).getResultList().size());
+		beanStartup.startup();
 		return em.createNamedQuery("AllCategories", ProductCategory.class).getResultList();
 	}
 

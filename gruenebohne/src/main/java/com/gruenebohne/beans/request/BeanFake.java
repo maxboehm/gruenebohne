@@ -18,14 +18,8 @@ public class BeanFake {
 	@EJB
 	private ProducerEJB producerEJB;
 
-	@EJB
-	private RecipeEJB recipeEJB;
-
 	public List<Producer> getProducer() {
 		return producerEJB.getAllProducer();
-	}
-	public List<Recipe> getRecipes() {
-		return recipeEJB.getAllRecipes();
 	}
 
 

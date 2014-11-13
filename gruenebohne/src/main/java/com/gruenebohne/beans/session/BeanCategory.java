@@ -19,14 +19,10 @@ public class BeanCategory {
 	@EJB
 	private CategoryEJB catEJB;
 
-	@PersistenceContext
-	private EntityManager em;
-
 	private List<ProductCategory> cat;
 
 	public List<ProductCategory> getCat() {
-		if(cat==null)cat = catEJB.getAllCat();
-
+		cat = catEJB.getAllCat();
 		return cat;
 	}
 

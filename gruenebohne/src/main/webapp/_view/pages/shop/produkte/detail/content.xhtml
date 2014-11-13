@@ -102,7 +102,7 @@
 						<li class="active"><a href="#tabDesc" data-toggle="tab">Produzenten (#{fake.getProducer().size()})</a></li>
 						<li><a href="#tabReviews" data-toggle="tab">Bewertungen (2)</a></li>
 						<!-- <li><a href="#tabRecipe" data-toggle="tab">Rezepte (#{productdetail.product.getRecipe().size()})</a></li> -->
-						<li><a href="#tabRecipe" data-toggle="tab">Rezepte (#{fake.getRecipes().size()})</a></li>
+						<li><a href="#tabRecipe" data-toggle="tab">Rezepte (#{productdetail.product.getRecipe().size()})</a></li>
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane  fade  in  active" id="tabDesc">
@@ -173,8 +173,7 @@
 							<div class="row sp-produzent">
 							
 
-								<!--  <ui:repeat value="#{productdetail.product.getRecipe()}" var="rec">-->
-								<ui:repeat value="#{fake.getRecipes()}" var="rec">
+								<ui:repeat value="#{productdetail.product.getRecipe()}" var="rec">
 								
 									<div class="col-xs-6 col-sm-3  js--isotope-target">
 										<div class="products__single">
