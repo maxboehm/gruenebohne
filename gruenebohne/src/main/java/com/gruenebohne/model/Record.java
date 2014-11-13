@@ -19,7 +19,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="T_RECORD")
 @NamedQueries({
-	@NamedQuery(name="getRecord", query="SELECT r from Record r WHERE r.id=:basketId")
+	@NamedQuery(name="getRecord", query="SELECT r from Record r WHERE r.id=:basketId"),
+	@NamedQuery(name="getOrders", query="SELECT o from Record o WHERE o.isFinalized=:isFinalized")
 })
 public class Record {
 
@@ -38,7 +39,11 @@ public class Record {
 	@OneToMany(mappedBy="record",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Collection<RecordItem> setRecordItems = new ArrayList<RecordItem>();
 
-
+	@Column
+	private String comment;
+	
+	@Column
+	private boolean isFinalized;
 
 	public Collection<RecordItem> getSetRecordItems() {
 		return setRecordItems;
@@ -72,5 +77,22 @@ public class Record {
 		this.totalPrice = totalPrice;
 	}
 
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public boolean isFinalized() {
+		return isFinalized;
+	}
+
+	public void setFinalized(boolean isFinalized) {
+		this.isFinalized = isFinalized;
+	}
+	
+	
 
 }

@@ -38,5 +38,14 @@ public class BeanSession {
 		customer = null;
 	}
 
+	public Customer getCustomer() {
+		customer = customerejb.refreshCustomer(customer);
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 
 }

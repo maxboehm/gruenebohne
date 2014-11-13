@@ -120,6 +120,8 @@
 						<h:commandButton value="ANMELDEN" type="submit"
 							class="btn  btn-primary" actionListener="#{login.performLogin}" />
 					</h:form>
+					<a data-toggle="modal" role="button" href="#registerModal"
+						data-dismiss="modal">Noch nicht registriert?</a>
 				</div>
 			</div>
 		</div>
@@ -214,7 +216,6 @@
 											<a href="#" class="js--remove-item">
 												<h:commandLink styleClass="glyphicon  glyphicon-circle  glyphicon-remove" actionListener="#{basket.performDelete}">
 													<f:param value="#{basketItem.productBase.prodId}" name="prodId" />
-													<f:param value="#{basketItem.quantity}" name="quantity" />
 												</h:commandLink>
 											</a>
 										</div>

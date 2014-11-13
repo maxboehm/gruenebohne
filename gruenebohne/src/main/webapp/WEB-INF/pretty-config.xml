@@ -7,6 +7,12 @@
 		<pattern value="/" />
 		<view-id value="/_view/pages/index/_index.xhtml" />
 	</url-mapping>
+	
+	<url-mapping id="newBasket" parentId="index">
+		<pattern value="/" />
+		<view-id value="/_view/pages/index/_index.xhtml" />
+		<action>#{basket.resetBasket}</action>
+	</url-mapping>
 
 	<!-- ############ DYNAMIC PAGES ############## -->
 	<url-mapping id="image">
@@ -19,8 +25,6 @@
 		<view-id value="/_view/template/empty.xhtml" />
 		<action>#{producerimage.render}</action>
 	</url-mapping>
-	
-	
 	
 	<url-mapping id="rezepte">
 		<pattern value="/rezepte" />
@@ -56,7 +60,6 @@
 	<url-mapping id="warenkorb">
 		<pattern value="/warenkorb" />
 		<view-id value="/_view/pages/shop/bestellvorgang/warenkorb/_warenkorb.xhtml" />
-		<action>#{currentBasket.refreshPrice}</action>
 	</url-mapping>
 
 	<url-mapping id="adresse">

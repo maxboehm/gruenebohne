@@ -3,6 +3,7 @@ package com.gruenebohne.model;
 import java.sql.Timestamp;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +14,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
+
+import org.eclipse.persistence.annotations.CascadeOnDelete;
+import org.eclipse.persistence.annotations.ClassExtractor;
 
 /**
  * Class holding information on a person.
@@ -38,6 +42,7 @@ public class Customer {
 	@Column private String lastName;
 	@Column private String eMail;
 	@Column private String passWord;
+	
 
 	@Version
 	@Column(name="LASTUPDATED")
@@ -46,13 +51,37 @@ public class Customer {
 	@OneToMany(mappedBy="customer", targetEntity=Record.class,fetch=FetchType.EAGER)
 	private Collection<Record> orders;
 
-	@OneToMany(mappedBy="customer", targetEntity=Address.class, fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="customer", targetEntity=Address.class, fetch=FetchType.EAGER)
 	private Collection<Address> address;
+
 
 	// #################################################################
 	// getter-setter
 	// #################################################################
+	
+	public long getId() {
+		return id;
+	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
 	public String geteMail() {
 		return eMail;
@@ -68,14 +97,6 @@ public class Customer {
 
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public Timestamp getUpdateTime() {
@@ -94,19 +115,12 @@ public class Customer {
 		this.orders = orders;
 	}
 
-	public String getFirstName() {
-		return this.firstName;
+	public Collection<Address> getAddress() {
+		return address;
 	}
 
-	public void setFirstName(String newFirstName) {
-		this.firstName = newFirstName;
+	public void setAddress(Collection<Address> address) {
+		this.address = address;
 	}
-
-	public String getLastName() {
-		return this.lastName;
-	}
-
-	public void setLastName(String newLastName) {
-		this.lastName = newLastName;
-	}
+	
 }

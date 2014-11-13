@@ -75,7 +75,7 @@
 							<input type="hidden" id="prodId" name="prodId" value="#{productdetail.product.prodId}"/>
 							<div class="quantity  js--quantity">
 	            			<input type="button" value="-" class="quantity__button  js--minus-one  js--clickable" />
-	            			<input type="text" name="quantity" value="1" class="quantity__input" />
+	            			<input readonly="readonly" type="text" name="quantity" value="1" class="quantity__input" />
 	            			<input type="button" value="+" class="quantity__button  js--plus-one  js--clickable" />
 	          			</div>
 							<f:param value="#{productdetail.product.prodId}" name="prodId"/>

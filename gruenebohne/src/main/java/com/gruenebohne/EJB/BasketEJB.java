@@ -2,11 +2,15 @@ package com.gruenebohne.EJB;
 
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.ejb.EJBs;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.gruenebohne.model.Address;
+import com.gruenebohne.model.Customer;
 import com.gruenebohne.model.ProductBase;
 import com.gruenebohne.model.Record;
 import com.gruenebohne.model.RecordItem;
@@ -18,9 +22,25 @@ public class BasketEJB {
 	@PersistenceContext
 	private EntityManager em;
 
+	@EJB
+	private CustomerEJB customerejb;
+
 	public Record getNewBasket() {
 		Record record = new Record();
 		return record;
+	}
+
+	public void createOrder(Customer updatedCustomer, Record newOrder,
+			Address address) {
+		List<Record> result = em.createNamedQuery("getRecord", Record.class)
+				.setParameter("basketId", newOrder.getId()).getResultList();
+
+		newOrder.setCustomer(updatedCustomer);
+
+		if (!result.isEmpty()) {
+			em.merge(newOrder);
+			em.flush();
+		}
 	}
 
 	/**
@@ -28,9 +48,11 @@ public class BasketEJB {
 	 * @param product
 	 * @param nQuantity
 	 */
-	public void addProductToBasket(Record basket, ProductBase product, int nQuantity) {
+	public void addProductToBasket(Record basket, ProductBase product,
+			int nQuantity) {
 		// Ermittle den Warenkorb
-		List<Record> result = em.createNamedQuery("getRecord", Record.class).setParameter("basketId", basket.getId()).getResultList();
+		List<Record> result = em.createNamedQuery("getRecord", Record.class)
+				.setParameter("basketId", basket.getId()).getResultList();
 
 		// Warenkorb noch nicht in Datenbank
 		if (result.isEmpty()) {
@@ -40,23 +62,18 @@ public class BasketEJB {
 
 			// Warenkorb in Datenbank
 		} else {
-			System.out.println("AKTUELLER WARENKORB");
-			for (RecordItem item : result.get(0).getSetRecordItems()) {
-				System.out.println("POSITION:");
-				System.out.println(item.getProductBase().getProdName() + " "
-						+ item.getQuantity());
-			}
-			System.out.println("ENDE");
 			hlpAdd(basket, product, nQuantity);
 			em.merge(basket);
 			em.flush();
 		}
 	}
 
-	private void hlpAdd(Record basket, ProductBase product, int nQuantity){
-		for(RecordItem itemExistent:basket.getSetRecordItems())
-			if(itemExistent.getProductBase().getProdId()==product.getProdId()){
-				itemExistent.setQuantity(itemExistent.getQuantity()+nQuantity);
+	private void hlpAdd(Record basket, ProductBase product, int nQuantity) {
+		for (RecordItem itemExistent : basket.getSetRecordItems())
+			if (itemExistent.getProductBase().getProdId() == product
+					.getProdId()) {
+				itemExistent
+						.setQuantity(itemExistent.getQuantity() + nQuantity);
 				return;
 			}
 
@@ -65,8 +82,6 @@ public class BasketEJB {
 		item.setQuantity(nQuantity);
 		item.setRecord(basket);
 		basket.getSetRecordItems().add(item);
-
-
 
 	}
 
@@ -109,12 +124,22 @@ public class BasketEJB {
 				.setParameter("basketId", basket.getId()).getResultList();
 		if (!result.isEmpty()) {
 			for (RecordItem item : result.get(0).getSetRecordItems()) {
-				System.out.println(item.getQuantity());
-				System.out.println(item.getProductBase());
-				System.out.println(item.getProductBase().getPrice());
 				price += item.getProductBase().getPrice() * item.getQuantity();
 			}
 		}
 		return price;
 	}
+
+	public void editQuantity(Record basket, int productId, int quantity) {
+		List<Record> result = em.createNamedQuery("getRecord", Record.class)
+				.setParameter("basketId", basket.getId()).getResultList();
+
+		for (RecordItem item : result.get(0).getSetRecordItems()) {
+			if (item.getProductBase().getProdId() == productId) {
+				item.setQuantity(quantity);
+			}
+		}
+		em.flush();
+	}
+
 }
