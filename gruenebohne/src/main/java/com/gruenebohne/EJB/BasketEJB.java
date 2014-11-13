@@ -7,7 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.gruenebohne.model.Product;
+import com.gruenebohne.model.ProductBase;
 import com.gruenebohne.model.Record;
 import com.gruenebohne.model.RecordItem;
 
@@ -28,7 +28,7 @@ public class BasketEJB {
 	 * @param product
 	 * @param nQuantity
 	 */
-	public void addProductToBasket(Record basket, Product product, int nQuantity) {
+	public void addProductToBasket(Record basket, ProductBase product, int nQuantity) {
 		// Ermittle den Warenkorb
 		List<Record> result = em.createNamedQuery("getRecord", Record.class).setParameter("basketId", basket.getId()).getResultList();
 
@@ -43,7 +43,7 @@ public class BasketEJB {
 			System.out.println("AKTUELLER WARENKORB");
 			for (RecordItem item : result.get(0).getSetRecordItems()) {
 				System.out.println("POSITION:");
-				System.out.println(item.getProduct().getProdName() + " "
+				System.out.println(item.getProductBase().getProdName() + " "
 						+ item.getQuantity());
 			}
 			System.out.println("ENDE");
@@ -53,15 +53,15 @@ public class BasketEJB {
 		}
 	}
 
-	private void hlpAdd(Record basket, Product product, int nQuantity){
+	private void hlpAdd(Record basket, ProductBase product, int nQuantity){
 		for(RecordItem itemExistent:basket.getSetRecordItems())
-			if(itemExistent.getProduct().getProdId()== product.getProdId()){
+			if(itemExistent.getProductBase().getProdId()==product.getProdId()){
 				itemExistent.setQuantity(itemExistent.getQuantity()+nQuantity);
 				return;
 			}
 
 		RecordItem item = new RecordItem();
-		item.setProduct(product);
+		item.setProductBase(product);
 		item.setQuantity(nQuantity);
 		item.setRecord(basket);
 		basket.getSetRecordItems().add(item);
@@ -70,14 +70,14 @@ public class BasketEJB {
 
 	}
 
-	public void removeProductFromBasket(Record basket, Product product) {
+	public void removeProductFromBasket(Record basket, ProductBase product) {
 
 		List<Record> result = em.createNamedQuery("getRecord", Record.class)
 				.setParameter("basketId", basket.getId()).getResultList();
 
 		RecordItem deletItem = null;
 		for (RecordItem item : result.get(0).getSetRecordItems()) {
-			if (item.getProduct().getProdId() == product.getProdId()) {
+			if (item.getProductBase().getProdId() == product.getProdId()) {
 				deletItem = item;
 			}
 		}
@@ -109,7 +109,10 @@ public class BasketEJB {
 				.setParameter("basketId", basket.getId()).getResultList();
 		if (!result.isEmpty()) {
 			for (RecordItem item : result.get(0).getSetRecordItems()) {
-				price += item.getProduct().getPrice() * item.getQuantity();
+				System.out.println(item.getQuantity());
+				System.out.println(item.getProductBase());
+				System.out.println(item.getProductBase().getPrice());
+				price += item.getProductBase().getPrice() * item.getQuantity();
 			}
 		}
 		return price;

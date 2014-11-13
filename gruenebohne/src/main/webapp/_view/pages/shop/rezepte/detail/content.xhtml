@@ -135,28 +135,33 @@
 			</div>
 			
 			<div class="pull-right">
-				<h:form id="addform">
-					<!-- 
-					<select class="btn  btn-shop">
-						<option>50g</option>
-						<option>100g</option>
-						<option>250g</option>
-					</select>
-					 -->
-					<!-- Quantity buttons -->
-					<input type="hidden" id="prodId" name="prodId" value="#{recipedetail.recipe.prodId}"/>
-					<div class="quantity  js--quantity">
-           			<input type="button" value="-" class="quantity__button  js--minus-one  js--clickable" />
-           			<input type="text" name="quantity" value="1" class="quantity__input" />
-           			<input type="button" value="+" class="quantity__button  js--plus-one  js--clickable" />
-         			</div>
-					<span class="glyphicon glyphicon-plus"></span>
-					<span class="glyphicon glyphicon-shopping-cart"></span>
-					<span class="single-product__btn-text"></span>
-						
-					<f:param value="#{productdetail.product.prodId}"/>
-					<h:commandButton class="btn btn-primary--transition" actionListener="#{basket.performAdd}" value="In den Warenkorb legen"/>
-				</h:form>
+						<h:form id="addform">
+							<!-- 
+							<select class="btn  btn-shop">
+								<option>50g</option>
+								<option>100g</option>
+								<option>250g</option>
+							</select>
+							 -->
+							<!-- Quantity buttons -->
+							<input type="hidden" id="prodId" name="prodId" value="#{recipedetail.recipe.prodId}"/>
+							<div class="quantity  js--quantity">
+	            			<input type="button" value="-" class="quantity__button  js--minus-one  js--clickable" />
+	            			<input type="text" name="quantity" value="1" class="quantity__input" />
+	            			<input type="button" value="+" class="quantity__button  js--plus-one  js--clickable" />
+	          			</div>
+							<f:param value="#{recipedetail.recipe.prodId}" name="prodId"/>
+							<h:commandLink class="btn btn-primary--transition" actionListener="#{basket.performAdd}"><span
+								class="glyphicon glyphicon-plus"></span><span
+								class="glyphicon glyphicon-shopping-cart"></span> <span
+								class="single-product__btn-text"></span>
+								<h:outputText value="Hinzufügen"></h:outputText>
+							</h:commandLink>
+						</h:form>
+				
+				
+				
+
 			</div>
 			
 			

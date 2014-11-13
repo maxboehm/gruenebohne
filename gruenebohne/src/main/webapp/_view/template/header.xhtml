@@ -199,41 +199,40 @@
 						</p:link>
 						<!-- Open cart panel -->
 						<div class="header-cart__open-cart">
-							<ui:repeat var="basketItem"
-								value="#{basket.currentBasket.setRecordItems}">
-								<h:form>
-								<div
-									class="header-cart__product  clearfix  js--cart-remove-target">
-									<div class="header-cart__product-image">
-										<p:urlbuffer var="url" mappingId="image" >
-										  <f:param value="#{basketItem.product.prodId}" />
-										</p:urlbuffer>
-										<img src="#{url}" alt="#{basketItem.product.prodName}" />
 
+							<ui:repeat var="basketItem" value="#{basket.currentBasket.setRecordItems}">
+								<h:form>
+									<div class="header-cart__product  clearfix  js--cart-remove-target">
+										<div class="header-cart__product-image">
+											<p:urlbuffer var="url" mappingId="image" >
+											  <f:param value="#{basketItem.productBase.prodId}" />
+											</p:urlbuffer>
+											<img src="#{url}" alt="#{basketItem.productBase.prodName}" />
+	
+										</div>
+										<div class="header-cart__product-image--hover">
+											<a href="#" class="js--remove-item">
+												<h:commandLink styleClass="glyphicon  glyphicon-circle  glyphicon-remove" actionListener="#{basket.performDelete}">
+													<f:param value="#{basketItem.productBase.prodId}" name="prodId" />
+													<f:param value="#{basketItem.quantity}" name="quantity" />
+												</h:commandLink>
+											</a>
+										</div>
+										<div class="header-cart__product-title">
+											<f:param value="#{basketItem.productBase.prodId}" />
+											<h:outputText styleClass="header-cart__link" value="#{basketItem.productBase.prodName}">
+												</h:outputText>
+											<span class="header-cart__qty">Anzahl: #{basketItem.quantity}</span>
+										</div>
+										<div class="header-cart__price">
+											EUR
+											<h:outputText escape="false" value="&amp;nbsp;" />
+											#{basketItem.productBase.price}
+										</div>
 									</div>
-									<div class="header-cart__product-image--hover">
-										<a href="#" class="js--remove-item"> <h:commandLink
-												styleClass="glyphicon  glyphicon-circle  glyphicon-remove"
-												actionListener="#{basket.performDelete}">
-												<f:param value="#{basketItem.product.prodId}" name="prodId" />
-												<f:param value="#{basketItem.quantity}" name="quantity" />
-											</h:commandLink>
-										</a>
-									</div>
-									<div class="header-cart__product-title">
-										<f:param value="#{basketItem.product.prodId}" />
-										<h:outputText styleClass="header-cart__link" value="#{basketItem.product.prodName}">
-											</h:outputText>
-										<span class="header-cart__qty">Anzahl: #{basketItem.quantity}</span>
-									</div>
-									<div class="header-cart__price">
-										EUR
-										<h:outputText escape="false" value="&amp;nbsp;" />
-										#{basketItem.product.price}
-									</div>
-								</div>
-								</h:form>
+								</h:form>							
 							</ui:repeat>
+
 							<hr class="header-cart__divider" />
 							<div class="header-cart__subtotal-box">
 								<span class="header-cart__subtotal">Warenkorb gesamt:</span> <span

@@ -20,7 +20,7 @@ public class RecordItem {
 
 	@ManyToOne
 	@JoinColumn
-	private ProductBase product;
+	private ProductBase productBase;
 
 	@ManyToOne
 	@JoinColumn
@@ -36,12 +36,12 @@ public class RecordItem {
 		this.id = id;
 	}
 
-	public ProductBase getProduct() {
-		return product;
+	public ProductBase getProductBase() {
+		return productBase;
 	}
 
-	public void setProduct(ProductBase product) {
-		this.product = product;
+	public void setProductBase(ProductBase product) {
+		this.productBase = product;
 	}
 
 	public int getQuantity() {

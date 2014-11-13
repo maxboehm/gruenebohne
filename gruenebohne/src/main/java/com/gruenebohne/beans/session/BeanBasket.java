@@ -10,8 +10,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import com.gruenebohne.EJB.BasketEJB;
-import com.gruenebohne.EJB.ProductEJB;
-import com.gruenebohne.model.Product;
+import com.gruenebohne.EJB.ProductBaseEJB;
+import com.gruenebohne.model.ProductBase;
 import com.gruenebohne.model.Record;
 
 @ManagedBean(name = "basket")
@@ -25,7 +25,7 @@ public class BeanBasket {
 
 	@EJB private BasketEJB ejbBasket;
 
-	@EJB private ProductEJB ejbProduct;
+	@EJB private ProductBaseEJB ejbProductBase;
 
 	@PostConstruct
 	private void init() {
@@ -40,7 +40,7 @@ public class BeanBasket {
 	public void performAdd(ActionEvent event) {
 		String prodId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("prodId");
 		String quantity = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("quantity");
-		Product product = ejbProduct.getProduct(Integer.parseInt(prodId));
+		ProductBase product = ejbProductBase.getProduct(Integer.parseInt(prodId));
 
 		ejbBasket.addProductToBasket(this.currentBasket, product, Integer.parseInt(quantity));
 
@@ -49,7 +49,7 @@ public class BeanBasket {
 
 	public void performDelete(ActionEvent event){
 		String prodId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("prodId");
-		Product product = ejbProduct.getProduct(Integer.parseInt(prodId));
+		ProductBase product = ejbProductBase.getProduct(Integer.parseInt(prodId));
 
 		ejbBasket.removeProductFromBasket(this.currentBasket, product);
 
