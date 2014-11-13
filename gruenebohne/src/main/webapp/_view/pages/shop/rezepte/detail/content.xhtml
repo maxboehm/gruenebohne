@@ -6,15 +6,16 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-3  hidden-xss">
-				<h3 id="logo">
-					<span class="light">Aktuelle</span> Rezeptboxen
-				</h3>
-				<hr class="sidebar-divider" />
-				<div class="features-menu">
-					<ul class="nav  nav-sidebar-menu">
+
+
+   <div class="container">
+        <div class="row">
+            <div class="col-sm-3 hidden-xss">
+                <h3 id="logo"><span class="light">Aktuelle</span> Rezeptboxen</h3>
+                <hr class="sidebar-divider" />
+
+                <div class="features-menu js--affix-menu">
+                    <ul class="nav nav-sidebar-menu">
 						<ui:repeat value="#{recipes.recipes}" var="recipe">
 							<li>
 								<p:link styleClass="sidebar-menu__links" mappingId="rezepte-detail">
@@ -22,152 +23,203 @@
 									#{recipe.prodName}
 								</p:link>		
 							</li>
-						</ui:repeat>			
-					</ul>
-				</div>
-			</div>
-			
-			
-			
-			
-			
-			<div class="col-xs-12  col-sm-9">
-				<h3 id="headings">
-					#{recipedetail.recipe.prodName}
-				</h3>
-				
-				<h4>Preis pro Person EUR<h:outputText escape="false" value="&amp;nbsp;" />#{recipedetail.recipe.price}</h4>
-				
-				<hr class="title__divider" />
-				
-				<!-- Nav tabs -->
-				<ul class="nav  nav-tabs">
-					<li class="active"><a href="#tabDesc" data-toggle="tab">Zubereitung</a></li>
-					<li><a href="#tabManufacturer" data-toggle="tab">Zutaten</a></li>
-				</ul>
-				<div class="tab-content">
-					<div class="tab-pane  fade  in  active" id="tabDesc">
-						<div class="col-xs-12  col-sm-6  push-down-20">
-							<div class="recipe-img">
-									
-								<p:urlbuffer var="url" mappingId="image" >
-								  <f:param value="#{recipedetail.recipe.prodId}" />
-								</p:urlbuffer>
-								<img src="#{url}" class="gallery" alt="#{recipedetail.recipe.prodName}" />
-									
-								<div class="recipe-img-caption">
-									<div class="recipe-logo-lg">
-										<span class="glyphicon glyphicon-fire"></span>
-									</div>
+						</ui:repeat>	
+                    </ul>
+                </div>
+
+                <!-- <h3 id="logo"><span class="light">Vergangene</span> Rezeptboxen</h3>
+                <hr class="sidebar-divider" />
+
+                <div class="features-menu">
+                    <ul class="nav nav-sidebar-menu">
+                        <li>
+                            <a href="#">Rezept</a>
+                        </li>
+
+                        <li>
+                            <a href="#">Rezept</a>
+                        </li>
+
+                        <li>
+                            <a href="#">Rezept</a>
+                        </li>
+
+                        <li>
+                            <a href="#">Rezept</a>
+                        </li>
+
+                        <li>
+                            <a href="#">Rezept</a>
+                        </li>
+                    </ul>
+                </div>-->
+            </div>
+
+            <div class="col-xs-12 col-sm-9">
+                <h3 id="headings">#{recipedetail.recipe.prodName}</h3>
+                <hr class="title__divider" />
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 push-down-20">
+                        <div class="recipe-img">
+							<p:urlbuffer var="url" mappingId="image" >
+							  <f:param value="#{recipedetail.recipe.prodId}" />
+							</p:urlbuffer>
+							<img src="#{url}" class="gallery" alt="#{recipedetail.recipe.prodName}" />
+								
+							<div class="recipe-img-caption">
+								<div class="recipe-logo-lg">
+									<span class="glyphicon glyphicon-fire"></span>
 								</div>
 							</div>
-	
-						</div>
-						<div class="col-xs-12  col-sm-6 recipe">
-						 	<h:outputText escape="false" value="#{recipedetail.recipe.prodDescription}"/>  
-						</div>	
-					</div>
-					<div class="tab-pane  fade" id="tabManufacturer">
-						<br />
-						<div class="row">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 recipe">
+                        <h6>Zutaten</h6>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce est purus, fringilla sit amet arcu quis</p>
+
+                        <h6>Solltest du zu Hause haben</h6>
+
+                        <p>Salz, Pfeffer, Öl, Butter, Honig</p>
+
+                        <h6>Schwierigkeitsgrad</h6>
+
+                        <p>mittel</p>
+
+                        <h6>Zubereitungszeit</h6>
+
+                        <p>45 min.</p>
+                        
+                        
+                        <h6>Preis pro Portion</h6>
+                             
+                        <span class="single-product__price"><h:outputText escape="false" value="&amp;nbsp;" />#{recipedetail.recipe.price} €</span>
+						<!--  <div class="single-product__rating">
+							<span class="glyphicon  glyphicon-star  star-on"></span> <span
+								class="glyphicon  glyphicon-star  star-on"></span> <span
+								class="glyphicon  glyphicon-star  star-on"></span> <span
+								class="glyphicon  glyphicon-star  star-on"></span> <span
+								class="glyphicon  glyphicon-star  star-off"></span>
+						</div>-->  
+
+                        <div class="pull-right">
+                      
+                        
+                            <!-- Quantity buttons -->
+                            
+							<h:form id="addform">
+								<!-- 
+								<select class="btn  btn-shop">
+									<option>50g</option>
+									<option>100g</option>
+									<option>250g</option>
+								</select>
+								 -->
+								<!-- Quantity buttons -->
+								<input type="hidden" id="prodId" name="prodId" value="#{recipedetail.recipe.prodId}"/>
+								<div class="quantity  js--quantity">
+		            			<input type="button" value="-" class="quantity__button  js--minus-one  js--clickable" />
+		            			<input type="text" name="quantity" value="1" class="quantity__input" />
+		            			<input type="button" value="+" class="quantity__button  js--plus-one  js--clickable" />
+		          			</div>
+								<f:param value="#{recipedetail.recipe.prodId}" name="prodId"/>
+								<h:commandLink class="btn btn-primary--transition" actionListener="#{basket.performAdd}"><span
+									class="glyphicon glyphicon-plus"></span><span
+									class="glyphicon glyphicon-shopping-cart"></span> <span
+									class="single-product__btn-text"></span>
+									<h:outputText value="Hinzufügen"></h:outputText>
+								</h:commandLink>
+							</h:form>                           
+                            
+                        </div>
+                    </div>
+                </div><!-- Nav tabs -->
+
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#tabDesc">Zubereitung</a>
+                    </li>
+
+                    <li>
+                        <a data-toggle="tab" href="#tabManufacturer">Zutaten</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tabDesc">
+                        <br />
+
+                        <h:outputText escape="false" value="#{recipedetail.recipe.prodDescription}"/> 
+                    </div>
+
+                    <div class="tab-pane fade" id="tabManufacturer">
+                        <br />
+
+                        <div class="row">
+							<ui:repeat value="#{recipedetail.recipe.products}" var="prod">
+								<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst"
+									data-price="2.5" data-rating="5">
+							
+									<div class="products__single">
+										<figure class="products__image">
+											<p:link styleClass="" mappingId="produkte-detail">
+											<f:param value="#{prod.prodId}" />
+											
+													<p:urlbuffer var="url" mappingId="image" >
+													  <f:param value="#{prod.prodId}" />
+													</p:urlbuffer>
+													<img src="#{url}" class="product__image" alt="#{prod.prodName}" />
+													
+													
+											</p:link>
+											<div class="product-overlay">
+												<p:link styleClass="product-overlay__more"
+													mappingId="produkte-detail">
+													<f:param value="#{prod.prodId}" />
+													<span class="glyphicon glyphicon-search"></span>
+												</p:link>
+												<p:link styleClass="product-overlay__cart"
+													mappingId="produkte-detail">
+													<f:param value="#{prod.prodId}" />
+							  +<span class="glyphicon glyphicon-shopping-cart"></span>
+												</p:link>
+												<div class="product-overlay__stock">
+													<span class="in-stock"><h:outputText escape="false"
+															value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+												</div>
+											</div>
+										</figure>
+										<div class="row">
+											<div class="col-xs-9">
+												<h5 class="products__title">
+													<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">
+														<f:param value="#{prod.prodId}" />
+															#{prod.prodName}
+														</p:link>
+												</h5>
+											</div>
+											<div class="col-xs-3">
+												<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}</div>
+											</div>
+										</div>
+										<div class="products__category">#{prod.category.category}</div>
+									</div>
+								</div>
+							</ui:repeat>
+                        </div>
+                    </div>
+                </div>
+                <hr class="divider" />
+            </div>
+            <hr class="divider" />
+        </div>
+    </div>
 
 
 
-<ui:repeat value="#{recipedetail.recipe.products}" var="prod">
-	<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst"
-		data-price="2.5" data-rating="5">
 
-		<div class="products__single">
-			<figure class="products__image">
-				<p:link styleClass="" mappingId="produkte-detail">
-				<f:param value="#{prod.prodId}" />
-				
-						<p:urlbuffer var="url" mappingId="image" >
-						  <f:param value="#{prod.prodId}" />
-						</p:urlbuffer>
-						<img src="#{url}" class="product__image" alt="#{prod.prodName}" />
-						
-						
-				</p:link>
-				<div class="product-overlay">
-					<p:link styleClass="product-overlay__more"
-						mappingId="produkte-detail">
-						<f:param value="#{prod.prodId}" />
-						<span class="glyphicon glyphicon-search"></span>
-					</p:link>
-					<p:link styleClass="product-overlay__cart"
-						mappingId="produkte-detail">
-						<f:param value="#{prod.prodId}" />
-  +<span class="glyphicon glyphicon-shopping-cart"></span>
-					</p:link>
-					<div class="product-overlay__stock">
-						<span class="in-stock"><h:outputText escape="false"
-								value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
-					</div>
-				</div>
-			</figure>
-			<div class="row">
-				<div class="col-xs-9">
-					<h5 class="products__title">
-						<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">
-							<f:param value="#{prod.prodId}" />
-								#{prod.prodName}
-							</p:link>
-					</h5>
-				</div>
-				<div class="col-xs-3">
-					<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}</div>
-				</div>
-			</div>
-			<div class="products__category">#{prod.category.category}</div>
-		</div>
-	</div>
-</ui:repeat>
-
-
-
-
-						</div>
-					</div>
-				</div>
-
-				<hr class="divider" />
-			</div>
-			
-			<div class="pull-right">
-						<h:form id="addform">
-							<!-- 
-							<select class="btn  btn-shop">
-								<option>50g</option>
-								<option>100g</option>
-								<option>250g</option>
-							</select>
-							 -->
-							<!-- Quantity buttons -->
-							<input type="hidden" id="prodId" name="prodId" value="#{recipedetail.recipe.prodId}"/>
-							<div class="quantity  js--quantity">
-	            			<input type="button" value="-" class="quantity__button  js--minus-one  js--clickable" />
-	            			<input type="text" name="quantity" value="1" class="quantity__input" />
-	            			<input type="button" value="+" class="quantity__button  js--plus-one  js--clickable" />
-	          			</div>
-							<f:param value="#{recipedetail.recipe.prodId}" name="prodId"/>
-							<h:commandLink class="btn btn-primary--transition" actionListener="#{basket.performAdd}"><span
-								class="glyphicon glyphicon-plus"></span><span
-								class="glyphicon glyphicon-shopping-cart"></span> <span
-								class="single-product__btn-text"></span>
-								<h:outputText value="Hinzufügen"></h:outputText>
-							</h:commandLink>
-						</h:form>
-				
-				
-				
-
-			</div>
-			
-			
-			<hr class="divider" />
-		</div>
-	</div>
 
 
 
