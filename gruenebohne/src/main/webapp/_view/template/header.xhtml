@@ -179,13 +179,12 @@
 							</ul>
 
 							<div class="mobile-cart  visible-xs  visible-sm  push-down-15">
-								<span class="header-cart__text--price"> <span
-									class="header-cart__text">Warenkorb</span> EUR<h:outputText
-										escape="false" value="&amp;nbsp;" />asdasd
-								</span>
-								<p:link mappingId="warenkorb">...<span
-										class="header-cart__items-num">asdasd</span>
-								</p:link>
+		                        <span class="header-cart__text--price"><span
+		                            class="header-cart__text">Warenkorb</span> <h:outputText
+		                                escape="false" value="&amp;nbsp;" />#{basket.totalPrice}€</span>
+		                        <p:link styleClass="header-cart__items" mappingId="warenkorb">
+		                            <span class="header-cart__items-num">#{basket.basketSize}</span>
+		                        </p:link>
 							</div>
 						</div>
 					</nav>
@@ -194,8 +193,8 @@
 					<!-- Cart in header -->
 					<div class="header-cart">
 						<span class="header-cart__text--price"><span
-							class="header-cart__text">Warenkorb</span> EUR<h:outputText
-								escape="false" value="&amp;nbsp;" />#{basket.totalPrice}</span>
+							class="header-cart__text">Warenkorb</span> <h:outputText
+								escape="false" value="&amp;nbsp;" />#{basket.totalPrice}€</span>
 						<p:link styleClass="header-cart__items" mappingId="warenkorb">
 							<span class="header-cart__items-num">#{basket.basketSize}</span>
 						</p:link>
@@ -226,9 +225,9 @@
 											<span class="header-cart__qty">Anzahl: #{basketItem.quantity}</span>
 										</div>
 										<div class="header-cart__price">
-											EUR
+											
 											<h:outputText escape="false" value="&amp;nbsp;" />
-											#{basketItem.productBase.price}
+											#{basketItem.productBase.price}€
 										</div>
 									</div>
 								</h:form>							
@@ -237,8 +236,8 @@
 							<hr class="header-cart__divider" />
 							<div class="header-cart__subtotal-box">
 								<span class="header-cart__subtotal">Warenkorb gesamt:</span> <span
-									class="header-cart__subtotal-price">EUR<h:outputText
-										escape="false" value="&amp;nbsp;" />#{basket.totalPrice}
+									class="header-cart__subtotal-price"><h:outputText
+										escape="false" value="&amp;nbsp;" />#{basket.totalPrice}€
 								</span>
 							</div>
 							<p:link styleClass="btn btn-darker" mappingId="warenkorb">Produkte bestellen</p:link>

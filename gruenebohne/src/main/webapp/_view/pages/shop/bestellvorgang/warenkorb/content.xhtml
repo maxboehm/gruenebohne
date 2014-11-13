@@ -43,8 +43,8 @@
 												mappingId="produkte-detail">#{basketItem.productBase.prodName}
 												<f:param value="#{basketItem.productBase.prodId}" />
 											</p:link></td>
-										<td class="product-price">EUR<h:outputText escape="false"
-												value="&amp;nbsp;" />#{basketItem.productBase.price}
+										<td class="product-price"><h:outputText escape="false"
+												value="&amp;nbsp;" />#{basketItem.productBase.price}€
 										</td>
 										<td class="product-quantity">
 											<div class="quantity  js--quantity">
@@ -70,11 +70,11 @@
 												</h:commandButton>
 											</div>
 										</td>
-										<td class="product-subtotal">EUR<h:outputText
+										<td class="product-subtotal"><h:outputText
 												escape="false" value="&amp;nbsp;" /> <h:outputText
 												value="#{basketItem.productBase.price*basketItem.quantity}">
 												<f:convertNumber minFractionDigits="2" locale="de"></f:convertNumber>
-											</h:outputText>
+											</h:outputText>€
 										</td>
 									</tr>
 								</h:form>
@@ -110,8 +110,8 @@
 						<tfoot>
 							<tr class="cart-subtotal">
 								<th>Gesamtpreis Warenkorb</th>
-								<td><span class="amount">EUR<h:outputText
-											escape="false" value="&amp;nbsp;" />#{basket.getTotalPrice()}
+								<td><span class="amount"><h:outputText
+											escape="false" value="&amp;nbsp;" />#{basket.getTotalPrice()}€
 								</span></td>
 							</tr>
 							<tr class="shipping">
@@ -120,8 +120,8 @@
 							</tr>
 							<tr class="total">
 								<th><strong>Gesamtpreis Bestellung</strong></th>
-								<td><strong><span class="amount">EUR<h:outputText
-												escape="false" value="&amp;nbsp;" />#{basket.getTotalPrice()}
+								<td><strong><span class="amount"><h:outputText
+												escape="false" value="&amp;nbsp;" />#{basket.getTotalPrice()}€
 									</span></strong></td>
 							</tr>
 						</tfoot>

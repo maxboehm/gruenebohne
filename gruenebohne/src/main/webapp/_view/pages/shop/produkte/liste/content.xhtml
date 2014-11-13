@@ -58,6 +58,8 @@
 			</div>
 			<div class="col-xs-12  col-sm-9">
 				<div class="grid">
+					<h3 class="sidebar__title"></h3>
+					<ul class="pagination  shop__amount-filter"></ul>
 					<div class="shop__sort-filter">
 						<select class="js--isotope-sorting  btn  btn-shop">
 							<option value='{"sortBy":"price", "sortAscending":"true"}'>Preis
@@ -120,7 +122,7 @@
 											</h5>
 										</div>
 										<div class="col-xs-3">
-											<div class="products__price"><h:outputText escape="false" value="&amp;nbsp;" />#{prod.price} €</div>
+											<div class="products__price"><h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}€</div>
 										</div>
 									</div>
 									<div class="products__category">#{prod.category.category}</div>

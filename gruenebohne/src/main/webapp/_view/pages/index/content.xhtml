@@ -75,7 +75,7 @@
 											</div>
 											<div class="col-xs-3">
 												<div class="products__price">
-													EUR<h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}
+													<h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}€
 												</div>
 											</div>
 										</div>
@@ -113,8 +113,8 @@
 									<p:link styleClass="products__link" mappingId="produkte-detail">
 										<f:param value="#{prod.prodId}" />#{prod.prodName}</p:link>
 								</h5>
-								<!--  <span class="line-through">EUR<h:outputText escape="false" value="&amp;nbsp;" />5,60</span>-->
-								 <span class="products__price--widgets">EUR<h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}
+								<!--  <span class="line-through"><h:outputText escape="false" value="&amp;nbsp;" />5,60€</span>-->
+								 <span class="products__price--widgets"><h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}€
 								</span> <br /> <br /> <span class="glyphicon glyphicon-star  star-on"></span> <span class="glyphicon glyphicon-star  star-on"></span> <span
 									class="glyphicon glyphicon-star  star-on"></span> <span class="glyphicon glyphicon-star  star-on"></span> <span
 									class="glyphicon glyphicon-star  star-on"></span>
@@ -143,7 +143,7 @@
 									<p:link styleClass="products__link" mappingId="produkte-detail">#{prod.prodName}<f:param value="#{prod.prodId}" />
 									</p:link>
 								</div>
-								<span class="products__price--widgets">EUR<h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}
+								<span class="products__price--widgets"><h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}€
 								</span> <br /> <br />
 								<div class="products__category">#{prod.category.category}</div>
 							</div>
