@@ -99,7 +99,7 @@
 					<!-- Nav tabs -->
 					<ul class="nav  nav-tabs">
 						<!-- <li class="active"><a href="#tabDesc" data-toggle="tab">Produzenten</a></li> -->
-						<li class="active"><a href="#tabDesc" data-toggle="tab">Produzenten (#{fake.getProducer().size()})</a></li>
+						<li class="active"><a href="#tabDesc" data-toggle="tab">Produzenten (#{productdetail.product.getProducer().size()})</a></li>
 						<li><a href="#tabReviews" data-toggle="tab">Bewertungen (2)</a></li>
 						<!-- <li><a href="#tabRecipe" data-toggle="tab">Rezepte (#{productdetail.product.getRecipe().size()})</a></li> -->
 						<li><a href="#tabRecipe" data-toggle="tab">Rezepte (#{productdetail.product.getRecipe().size()})</a></li>
@@ -107,8 +107,7 @@
 					<div class="tab-content">
 						<div class="tab-pane  fade  in  active" id="tabDesc">
 							
-							<!-- <ui:repeat value="#{productdetail.product.producer}" var="producer"> -->
-							<ui:repeat value="#{fake.getProducer()}" var="producer">
+							<ui:repeat value="#{productdetail.product.producer}" var="producer">
 								
 								<div class="row sp-produzent">
 									<div class="col-xs-12  col-sm-2">

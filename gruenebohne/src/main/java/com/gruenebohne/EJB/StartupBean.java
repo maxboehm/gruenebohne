@@ -23,7 +23,7 @@ public class StartupBean {
 	boolean bInit = false;
 	public void startup(){
 		if(!bInit){
-			cleanDatabase();
+			//cleanDatabase();
 			initializeData();
 			bInit = true;
 			System.out.println("DATA INITIALIZED");
@@ -89,9 +89,22 @@ public class StartupBean {
 		insertRecipe(p9, r2, r3, r4);
 		insertRecipe(p10, r3, r4);
 
-		createProducer(1, "Hans-Dampf", p1, p2, p3);
-		createProducer(2, "Hans-Peter", p4, p5, p6);
-		createProducer(3, "Hans-Johann", p1, p4, p5, p6);
+		Producer producer1 = createProducer(1, "Hans-Dampf", p1, p2, p3);
+		Producer producer2 = createProducer(2, "Hans-Peter", p4, p5, p6);
+		Producer producer3 = createProducer(3, "Hans-Johann", p1, p4, p5, p6);
+		
+		attachProducer(p1,producer1, producer2);
+		attachProducer(p2,producer1);
+		attachProducer(p3,producer1);
+		attachProducer(p4,producer2, producer3);
+		attachProducer(p5,producer2, producer3);
+		attachProducer(p6,producer2, producer3);
+	}
+	
+	private void attachProducer(Product product, Producer ... producers){
+		product.setProducer(Arrays.asList(producers));
+		em.merge(product);
+		em.flush();
 	}
 
 	private void insertRecipe(Product product, Recipe ... recipes){
