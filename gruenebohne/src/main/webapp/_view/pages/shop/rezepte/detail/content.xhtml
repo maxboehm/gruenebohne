@@ -14,16 +14,16 @@
                 <h3 id="logo"><span class="light">Aktuelle</span> Rezeptboxen</h3>
                 <hr class="sidebar-divider" />
 
-                <div class="features-menu js--affix-menu">
+                <div class="">
                     <ul class="nav nav-sidebar-menu">
-						<ui:repeat value="#{recipes.recipes}" var="recipe">
-							<li>
-								<p:link styleClass="sidebar-menu__links" mappingId="rezepte-detail">
-									<f:param value="#{recipe.prodId}" />
-									#{recipe.prodName}
-								</p:link>		
-							</li>
-						</ui:repeat>	
+                        <ui:repeat value="#{recipes.recipes}" var="recipe">
+                            <li>
+                                <p:link styleClass="sidebar-menu__links" mappingId="rezepte-detail">
+                                    <f:param value="#{recipe.prodId}" />
+                                    #{recipe.prodName}
+                                </p:link>       
+                            </li>
+                        </ui:repeat>    	
                     </ul>
                 </div>
 
