@@ -2,10 +2,8 @@ package com.gruenebohne.EJB;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.util.Arrays;
 
 import javax.ejb.Singleton;
-import javax.ejb.Startup;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
@@ -58,61 +56,50 @@ public class StartupBean {
 	private void initializeData() {
 		ProductCategory cat1 = createCategory(1, "Gemüse");
 		ProductCategory cat2 = createCategory(2, "Obst");
-		ProductCategory cat3 = createCategory(3, "Milchprodukte");
-		ProductCategory cat4 = createCategory(4, "Roggenmischbrot");
+		ProductCategory cat3 = createCategory(3, "Eiweißprodukte");
+		ProductCategory cat4 = createCategory(4, "Backwaren");
 		ProductCategory cat5 = createCategory(5, "Fleischprodukte");
 
-		Product p1  = createProduct(1,  2.95, cat1, "Tomate");
-		Product p2  = createProduct(2,  2.85, cat2, "Kartoffeln");
-		Product p3  = createProduct(3,  5.95, cat2, "Karotten");
+		Product p1  = createProduct(1,  2.95, cat1, "Tomaten");
+		Product p2  = createProduct(2,  2.85, cat1, "Kartoffeln");
+		Product p3  = createProduct(3,  5.95, cat1, "Karotten");
 		Product p4  = createProduct(4,  0.95, cat1, "Radieschen");
 		Product p5  = createProduct(5,  3.95, cat2, "Dunkle Trauben");
 		Product p6  = createProduct(6,  4.95, cat2, "Helle Trauben");
 		Product p7  = createProduct(7,  1.95, cat3, "Milch");
-		Product p8  = createProduct(8,  0.95, cat1, "Champignos");
+		Product p8  = createProduct(8,  0.95, cat1, "Champignons");
 		Product p9  = createProduct(9,  4.42, cat4, "Roggenmischbrot");
 		Product p10 = createProduct(10, 1.86, cat5, "Salami");
+		Product p11 = createProduct(11, 1.99, cat3, "Eier");
+		Product p12 = createProduct(12, 0.99, cat1, "Zwiebeln");
+		Product p13 = createProduct(13, 2.99, cat5, "Schinkenspeck");
+		Product p14 = createProduct(14, 0.89, cat1, "Knoblauch");
+		Product p15 = createProduct(15, 3.59, cat5, "Roulade vom Rind");
+		Product p16 = createProduct(16, 0.69, cat1, "Zucchini");
+		Product p17 = createProduct(17, 4.39, cat5, "Kasseler");
+		Product p18 = createProduct(18, 1.79, cat2, "Äpfel");
+		Product p19 = createProduct(19, 0.49, cat4, "Roggenbrötchen");
+		Product p20 = createProduct(20, 12.00, cat5, "Rinderhüftsteak");
+		Product p21 = createProduct(21, 4.67, cat3, "Gouda");
+		Product p22 = createProduct(22, 1.20, cat2, "Nudeln-Penne");
 
-		Recipe r1 = createRecipe(11, 3.33, "Orientalische Zucchini-Zwiebel-Pfanne mit Bulgur", p1, p2, p3, p4);
-		Recipe r2 = createRecipe(12, 4.99, "Afrikanischer Süßkartoffeleintopf", p5, p6, p7, p8, p9);
-		Recipe r3 = createRecipe(13, 2.77, "Jägerrouladen", p9, p10, p1, p2, p3);
-		Recipe r4 = createRecipe(14, 8.89, "Kürbisstrudel mit Pute", p1, p3, p5, p7, p9, p10);
-		
-		insertRecipe(p1, r1,r3,r4);
-		insertRecipe(p2, r1,r3);
-		insertRecipe(p3, r1, r3);
-		insertRecipe(p4, r1, r3, r4);
-		insertRecipe(p5, r2, r4);
-		insertRecipe(p6, r2);
-		insertRecipe(p7, r2, r4);
-		insertRecipe(p8, r2);
-		insertRecipe(p9, r2, r3, r4);
-		insertRecipe(p10, r3, r4);
 
-		Producer producer1 = createProducer(1, "Hans-Dampf", p1, p2, p3);
-		Producer producer2 = createProducer(2, "Hans-Peter", p4, p5, p6);
-		Producer producer3 = createProducer(3, "Hans-Johann", p1, p4, p5, p6);
-		
-		attachProducer(p1,producer1, producer2);
-		attachProducer(p2,producer1);
-		attachProducer(p3,producer1);
-		attachProducer(p4,producer2, producer3);
-		attachProducer(p5,producer2, producer3);
-		attachProducer(p6,producer2, producer3);
-	}
-	
-	private void attachProducer(Product product, Producer ... producers){
-		product.setProducer(Arrays.asList(producers));
-		em.merge(product);
-		em.flush();
+		createRecipe(23, 3.33, "Ofenkartoffeln mit frischen Kräutern", p2);
+		createRecipe(24, 4.99, "Afrikanischer Süßkartoffeleintopf", p2, p12, p14, p1);
+		createRecipe(25, 7.77, "Kasselerbraten", p17, p12, p2);
+		createRecipe(26, 5.89, "Kartoffelgratin", p2, p7, p14, p21);
+		createRecipe(27, 1.99, "Fettarme Pommes", p2);
+		createRecipe(28, 7.99, "Rinderrouladen klassisch", p15, p12, p13, p2);
+		createRecipe(29, 2.99, "Italienischer Nudelsalat mit Rucola und getrockneten Tomaten", p1, p22, p14, p12);
+		createRecipe(30, 3.49, "Zucchinifächer mit Feta", p1, p12, p16);
+		createRecipe(31, 3.99, "Schwäbischer Zwiebelkuchen", p11, p12);
+
+		createProducer(1, "Hans-Dampf", p1, p2, p3);
+		createProducer(2, "Hans-Peter", p4, p5, p6);
+		createProducer(3, "Hans-Johann", p1, p4, p5, p6);
 	}
 
-	private void insertRecipe(Product product, Recipe ... recipes){
-		product.setRecipe(Arrays.asList(recipes));
-		em.merge(product);
-		em.flush();
-	}
-	
+
 	private Producer createProducer(long id, String sName, Product ... products) {
 		Producer r = new Producer(id, sName, products);
 		r.setDescription(getDescriptionText("producer", r.getId(), "description.html"));
@@ -120,6 +107,13 @@ public class StartupBean {
 		r.setPicture(getPicture("producer", r.getId()));
 		em.persist(r);
 		em.flush();
+
+		for(Product p:products){
+			p.getProducer().add(r);
+			em.persist(p);
+			em.flush();
+		}
+
 		return r;
 	}
 
@@ -129,6 +123,13 @@ public class StartupBean {
 		r.setPicture(getPicture("recipes", r.getProdId()));
 		em.persist(r);
 		em.flush();
+
+		for(Product p:products){
+			p.getRecipe().add(r);
+			em.persist(p);
+			em.flush();
+		}
+
 		return r;
 	}
 
