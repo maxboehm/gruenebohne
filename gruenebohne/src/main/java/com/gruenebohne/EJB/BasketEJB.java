@@ -1,11 +1,26 @@
 package com.gruenebohne.EJB;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Properties;
 
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.EJBs;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -31,15 +46,77 @@ public class BasketEJB {
 	}
 
 	public void createOrder(Customer updatedCustomer, Record newOrder,
-			Address address) {
+			Address address) throws Exception {
 		List<Record> result = em.createNamedQuery("getRecord", Record.class)
 				.setParameter("basketId", newOrder.getId()).getResultList();
 
 		newOrder.setCustomer(updatedCustomer);
+		newOrder.setTotalPrice(getTotalPrice(newOrder));
 
 		if (!result.isEmpty()) {
-			em.merge(newOrder);
+			Record order = em.merge(newOrder);
 			em.flush();
+
+			if (order != null) {
+				List<Record> temp = em.createNamedQuery("getRecord", Record.class)
+						.setParameter("basketId", order.getId()).getResultList();
+				sendConfirmationEmail(temp.get(0));
+			}
+		}
+	}
+
+	private void sendConfirmationEmail(Record order){
+		Properties props = new Properties();
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.transport.protocol", "smtp");
+		Session session = Session.getInstance(props,
+				new javax.mail.Authenticator() {
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication(
+								"gruenebohne.store@gmail.com", "tobias123");
+					}
+				});
+
+		try {
+
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("gruenebohne@online.de"));
+			message.setRecipients(Message.RecipientType.TO,
+					InternetAddress.parse(order.getCustomer().geteMail()));
+			message.setSubject("Gruenebohne Bestellung");
+			StringBuilder build = new StringBuilder();
+			ArrayList<RecordItem> list = new ArrayList<RecordItem>(order.getSetRecordItems());
+			
+			for (int i = 0; i < list.size(); i++) {
+				build.append("\nPosition"+i+1+" \t"+list.get(i).getId()+" \t\t\t\t\t "+list.get(i).getQuantity()+" \t\t\t "+list.get(i).getProductBase().getPrice()+" \t\t "
+			+list.get(i).getProductBase().getPrice()*list.get(i).getQuantity());
+			}
+			message.setText("Hallo "+order.getCustomer().getFirstName()+" "+order.getCustomer().getLastName()+","
+					+"\n\n\n vielen Dank fuer deine Bestellung im gruenbohne Demoshop (Bestellungsnummer: "+order.getId()+") am "+DateFormat.getDateInstance(DateFormat.SHORT).format(GregorianCalendar.getInstance().getTime())+" um "+DateFormat.getTimeInstance(DateFormat.SHORT).format(GregorianCalendar.getInstance().getTime())+". Informationen zu Ihrer Bestellung:"
+					+"\n"
+					+"\n"
+					+"Position \t\t Artikelnummer \t\t Menge \t\t Preis \t\t Summe"
+					+" \n ___________________________________________________________________"
+					+ build.toString()
+					+" \n"
+					+"\n\n"
+					+"Versandkosten: Gratisversand\n"
+					+ "Gesamtkosten brutto: "+new BigDecimal(order.getTotalPrice()*0.81d).setScale(2,RoundingMode.HALF_UP).doubleValue()+" EUR \n"
+					+ "Gesamtkosten netto: "+ new BigDecimal(order.getTotalPrice()).setScale(2,RoundingMode.HALF_UP).doubleValue()+" EUR \n"
+					+ "Gewählte Zahlungsart: TEST \n"
+					+ "\n"
+					+ "Wie ziehen den Betrag in den nächsten Tagen von deinem Konto ein. "
+					+ "Für Rückfragen stehen wir dir jederzeit gerne zur Verfügung.\n\n\n"
+					+ "Wir wünschen Ihnen noch einen schönen Tag \n"
+					+ "Die gruenebohne :)");
+		
+			Transport.send(message);
+		}
+		catch (MessagingException e) {
+			throw new RuntimeException(e);
 		}
 	}
 

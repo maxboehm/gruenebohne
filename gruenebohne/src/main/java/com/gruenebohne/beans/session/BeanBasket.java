@@ -52,7 +52,7 @@ public class BeanBasket {
 		currentBasket = ejbBasket.getNewBasket();
 	}
 	
-	public void createOrder(Customer updatedCustomer, Customer oldCustomer ,String comment, Address address){
+	public void createOrder(Customer updatedCustomer, Customer oldCustomer ,String comment, Address address) throws Exception{
 		ejbCustomer.updateCustomer(updatedCustomer, address, oldCustomer.geteMail(), oldCustomer.getPassWord());
 		this.currentBasket.setFinalized(true);
 		this.currentBasket.setComment(comment);

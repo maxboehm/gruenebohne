@@ -125,7 +125,7 @@ public class CreateOrder{
 	public void setBasket(BeanBasket basket) {
 		this.basket = basket;
 	}
-	public void createOrder(ActionEvent event){
+	public void createOrder(ActionEvent event) throws Exception{
 		
 		Customer oldCustomer = session.getCustomer();
 		Customer updatedCustomer = session.getCustomer();
