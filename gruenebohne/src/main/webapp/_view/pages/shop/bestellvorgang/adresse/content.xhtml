@@ -16,14 +16,14 @@
 					</div>
 					<div class="col-xs-12  col-sm-6">
 						<h3>
-							<span class="light">Rechnungsadresse</span>
+							<span class="light">Rechnungs</span>adresse
 						</h3>
 						<div class="row">
 							<div class="form-group col-xs-12  col-sm-6  push-down-10">
 								<p>
 									<label> Vorname <abbr class="required"> * </abbr>
 									</label>
-									<h:inputText type="text" class="form-control  form-control--contact"
+									<h:inputText class="form-control  form-control--contact"
 										value="#{orderDetails.firstname}" />
 								</p>
 							</div>
@@ -31,31 +31,31 @@
 								<p>
 									<label> Nachname <abbr class="required"> * </abbr>
 									</label>
-									<h:inputText class="input-text"
+									<h:inputText class="form-control  form-control--contact"
 										value="#{orderDetails.lastname}" />
 								</p>
 							</div>
 							<div class="form-group col-xs-12  col-sm-12  push-down-10">
 								<p>
 									<label> Firma </label>
-									<h:inputText class="form-control  form-control--contact" value="#{orderDetails.firma}" />
+									<h:inputText class="form-control  form-control--contact"
+										value="#{orderDetails.firma}" />
 								</p>
 							</div>
 							<div class="form-group col-xs-12  col-sm-12  push-down-10">
 								<p>
 									<label> Adresse <abbr class="required"> * </abbr>
-									</label>
-									<h:inputText class="form-control  form-control--contact  push-down-10"
-										value="#{orderDetails.streetAndNumber}"
-										placeholder="Straße, Hausnummer" />
-									<input class="input-text" placeholder="Erdgeschoss, etc." />
+									</label> <h:inputText  styleClass="input-text  push-down-10"
+										value="#{orderDetails.streetAndNumber}" placeholder="Street address"/><h:inputText class="input-text"
+										placeholder="Apartment, suite, unit etc. (optional)"/>
 								</p>
 							</div>
 							<div class="form-group col-xs-12  col-sm-12  push-down-10">
 								<p>
 									<label> Postleitzahl <abbr class="required"> * </abbr>
 									</label>
-									<h:inputText class="form-control  form-control--contact  push-down-10"
+									<h:inputText
+										class="form-control  form-control--contact  push-down-10"
 										placeholder="Postleitzahl" value="#{orderDetails.postalCode}" />
 								</p>
 							</div>
@@ -63,7 +63,8 @@
 								<p>
 									<label> Stadt <abbr class="required"> * </abbr>
 									</label>
-									<h:inputText class="form-control  form-control--contact  push-down-10"
+									<h:inputText
+										class="form-control  form-control--contact  push-down-10"
 										placeholder="Stadt" value="#{orderDetails.city}" />
 								</p>
 							</div>
@@ -71,7 +72,8 @@
 								<p>
 									<label> E-Mail <abbr class="required"> * </abbr>
 									</label>
-									<h:inputText class="form-control  form-control--contact" value="#{orderDetails.email}" />
+									<h:inputText class="form-control  form-control--contact"
+										value="#{orderDetails.email}" />
 								</p>
 							</div>
 							<div class="form-group col-xs-12  col-sm-6  push-down-10">
