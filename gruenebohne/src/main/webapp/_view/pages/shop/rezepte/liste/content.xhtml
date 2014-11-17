@@ -15,19 +15,20 @@
 				</h1>
 				<hr class="divider" />
 				<div class="row">
-	
+
 					<ui:repeat value="#{recipes.recipes}" var="recipe">
-					
+
 						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-2"
 							data-price="14.36" data-rating="4">
 							<div class="products__single">
 								<figure class="products__image">
 									<p:link mappingId="rezepte-detail">
 										<f:param value="#{recipe.prodId}" />
-										<p:urlbuffer var="url" mappingId="image" >
-										  <f:param value="#{recipe.prodId}" />
+										<p:urlbuffer var="url" mappingId="image">
+											<f:param value="#{recipe.prodId}" />
 										</p:urlbuffer>
-										<img src="#{url}" class="product__image" alt="#{recipe.prodName}" />
+										<img src="#{url}" class="product__image"
+											alt="#{recipe.prodName}" />
 									</p:link>
 									<div class="product-overlay">
 										<p:link styleClass="product-overlay__more"
@@ -51,18 +52,18 @@
 									</div>
 									<div class="col-xs-3">
 										<div class="products__price">
-											EUR<h:outputText escape="false" value="&amp;nbsp;" />#{recipe.price}
+											EUR
+											<h:outputText escape="false" value="&amp;nbsp;" />
+											#{recipe.price}
 										</div>
 									</div>
 								</div>
 
 							</div>
 						</div>
-	
-					</ui:repeat>
-<div class="clearfix  hidden-xs"></div>
-				</div>
 
+					</ui:repeat>
+				</div>
 				<hr class="divider  divider-about" />
 			</div>
 		</div>

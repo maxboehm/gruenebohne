@@ -29,7 +29,7 @@ public class EmailValidator implements Validator {
         if (!valid) {
             FacesMessage message = new FacesMessage(
                     FacesMessage.SEVERITY_ERROR, "Invalid email address",
-                    "The email address you entered is not valid.");
+                    "...das ist aber keine E-Mail Adresse");
             throw new ValidatorException(message);
         }
     }

@@ -57,31 +57,39 @@
 					<h:form>
 						<div class="form-group">
 							Vorname
-							<h:inputText type="text"
-								class="form-control  form-control--contact placeholder-firstname"
-								placeholder="Vorname" value="#{register.firstname}" />
+							<h:inputText id="firstName" type="text"
+								styleClass="form-control  form-control--contact placeholder-firstname"
+								placeholder="Vorname" value="#{register.firstname}" required="true" requiredMessage="Ooops, hier fehlt etwas! ;)"/>
+								<h:message for="firstName" errorStyle="color:red; display:block"></h:message>
 						</div>
 						<div class="form-group">
 							Nachname
-							<h:inputText type="text"
-								class="form-control  form-control--contact placeholder-lastname"
-								placeholder="Nachname" value="#{register.lastname}" />
+							<h:inputText id="lastName" type="text"
+								styleClass="form-control  form-control--contact placeholder-lastname"
+								placeholder="Nachname" value="#{register.lastname}" required="true" requiredMessage="Ooops, hier fehlt etwas! ;)" />
+								<h:message for="lastName" errorStyle="color:red; display:block"></h:message>
 						</div>
 						<div class="form-group">
 							E-Mail
-							<h:inputText type="text"
-								class="form-control  form-control--contact placeholder-email"
-								placeholder="E-Mail" value="#{register.email}" />
+							<h:inputText id="eMail" type="text"
+								styleClass="form-control  form-control--contact placeholder-email"
+								placeholder="E-Mail" value="#{register.email}" required="true">
+								<f:validator validatorId="emailValidator"></f:validator>
+								</h:inputText>
+								<h:message for="eMail" errorStyle="color:red; display:block"></h:message>
 						</div>
 						<div class="form-group">
 							Passwort
-							<h:inputText type="text"
-								class="form-control  form-control--contact placeholder-passwd"
-								placeholder="Passwort" value="#{register.password}" />
+							<h:inputSecret id="pw" type="text"
+								styleClass="form-control  form-control--contact placeholder-passwd"
+								placeholder="Passwort" value="#{register.password}" required="true" requiredMessage="Ooops, hier fehlt etwas! ;)"/>
+								<h:message for="pw" errorStyle="color:red; display:block"></h:message>
 						</div>
-						<h:commandButton value="ANMELDEN" type="submit"
-							class="btn  btn-primary"
-							actionListener="#{register.createNewCustomer}" />
+						<div class="form-group">
+							<h:commandButton value="REGISTRIEREN" type="submit"
+								styleClass="btn  btn-primary"
+								actionListener="#{register.createNewCustomer}" />
+						</div>
 					</h:form>
 					<a data-toggle="modal" role="button" href="#loginModal"
 						data-dismiss="modal">Bereits registriert?</a>
@@ -104,21 +112,24 @@
 					<hr class="divider" />
 				</div>
 				<div class="modal-body">
-					<h:form class="push-down-15">
+					<h:form>
 						<div class="form-group">
 							E-Mail
 							<h:inputText type="text"
-								class="form-control  form-control--contact" placeholder="E-Mail"
-								value="#{login.email}" />
+								styleClass="form-control  form-control--contact placeholder-email"
+								placeholder="E-Mail" value="#{login.email}" />
 						</div>
 						<div class="form-group">
 							Passwort
-							<h:inputText type="text"
-								class="form-control  form-control--contact"
+							<h:inputSecret type="text"
+								styleClass="form-control  form-control--contact"
 								placeholder="Passwort" value="#{login.password}" />
 						</div>
-						<h:commandButton value="ANMELDEN" type="submit"
-							class="btn  btn-primary" actionListener="#{login.performLogin}" />
+						<div class="form-group">
+							<h:commandButton value="ANMELDEN" type="submit"
+								styleClass="btn  btn-primary"
+								actionListener="#{login.performLogin}" />
+						</div>
 					</h:form>
 					<a data-toggle="modal" role="button" href="#registerModal"
 						data-dismiss="modal">Noch nicht registriert?</a>
@@ -179,12 +190,12 @@
 							</ul>
 
 							<div class="mobile-cart  visible-xs  visible-sm  push-down-15">
-		                        <span class="header-cart__text--price"><span
-		                            class="header-cart__text">Warenkorb</span> <h:outputText
-		                                escape="false" value="&amp;nbsp;" />#{basket.totalPrice}€</span>
-		                        <p:link styleClass="header-cart__items" mappingId="warenkorb">
-		                            <span class="header-cart__items-num">#{basket.basketSize}</span>
-		                        </p:link>
+								<span class="header-cart__text--price"><span
+									class="header-cart__text">Warenkorb</span> <h:outputText
+										escape="false" value="&amp;nbsp;" />#{basket.totalPrice}€</span>
+								<p:link styleClass="header-cart__items" mappingId="warenkorb">
+									<span class="header-cart__items-num">#{basket.basketSize}</span>
+								</p:link>
 							</div>
 						</div>
 					</nav>
@@ -201,44 +212,49 @@
 						<!-- Open cart panel -->
 						<div class="header-cart__open-cart">
 
-							<ui:repeat var="basketItem" value="#{basket.currentBasket.setRecordItems}">
+							<ui:repeat var="basketItem"
+								value="#{basket.currentBasket.setRecordItems}">
 								<h:form>
-									<div class="header-cart__product  clearfix  js--cart-remove-target">
+									<div
+										class="header-cart__product  clearfix  js--cart-remove-target">
 										<div class="header-cart__product-image">
-											<p:urlbuffer var="url" mappingId="image" >
-											  <f:param value="#{basketItem.productBase.prodId}" />
+											<p:urlbuffer var="url" mappingId="image">
+												<f:param value="#{basketItem.productBase.prodId}" />
 											</p:urlbuffer>
 											<img src="#{url}" alt="#{basketItem.productBase.prodName}" />
-	
+
 										</div>
 										<div class="header-cart__product-image--hover">
-											<a href="#" class="js--remove-item">
-												<h:commandLink styleClass="glyphicon  glyphicon-circle  glyphicon-remove" actionListener="#{basket.performDelete}">
-													<f:param value="#{basketItem.productBase.prodId}" name="prodId" />
+											<a href="#" class="js--remove-item"> <h:commandLink
+													styleClass="glyphicon  glyphicon-circle  glyphicon-remove"
+													actionListener="#{basket.performDelete}">
+													<f:param value="#{basketItem.productBase.prodId}"
+														name="prodId" />
 												</h:commandLink>
 											</a>
 										</div>
 										<div class="header-cart__product-title">
 											<f:param value="#{basketItem.productBase.prodId}" />
-											<h:outputText styleClass="header-cart__link" value="#{basketItem.productBase.prodName}">
-												</h:outputText>
-											<span class="header-cart__qty">Anzahl: #{basketItem.quantity}</span>
+											<h:outputText styleClass="header-cart__link"
+												value="#{basketItem.productBase.prodName}">
+											</h:outputText>
+											<span class="header-cart__qty">Anzahl:
+												#{basketItem.quantity}</span>
 										</div>
 										<div class="header-cart__price">
-											
+
 											<h:outputText escape="false" value="&amp;nbsp;" />
 											#{basketItem.productBase.price}€
 										</div>
 									</div>
-								</h:form>							
+								</h:form>
 							</ui:repeat>
 
 							<hr class="header-cart__divider" />
 							<div class="header-cart__subtotal-box">
 								<span class="header-cart__subtotal">Warenkorb gesamt:</span> <span
 									class="header-cart__subtotal-price"><h:outputText
-										escape="false" value="&amp;nbsp;" />#{basket.totalPrice}€
-								</span>
+										escape="false" value="&amp;nbsp;" />#{basket.totalPrice}€ </span>
 							</div>
 							<p:link styleClass="btn btn-darker" mappingId="warenkorb">Produkte bestellen</p:link>
 						</div>

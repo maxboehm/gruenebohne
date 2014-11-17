@@ -1,6 +1,10 @@
 package com.gruenebohne.beans.session;
 
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -13,10 +17,12 @@ import javax.faces.event.ActionEvent;
 import com.gruenebohne.EJB.BasketEJB;
 import com.gruenebohne.EJB.CustomerEJB;
 import com.gruenebohne.EJB.ProductBaseEJB;
+import com.gruenebohne.EJB.RecipeEJB;
 import com.gruenebohne.model.Address;
 import com.gruenebohne.model.Customer;
 import com.gruenebohne.model.Product;
 import com.gruenebohne.model.ProductBase;
+import com.gruenebohne.model.Recipe;
 import com.gruenebohne.model.Record;
 import com.gruenebohne.model.RecordItem;
 
@@ -34,6 +40,8 @@ public class BeanBasket {
 	@EJB private ProductBaseEJB ejbProductBase;
 	
 	@EJB private CustomerEJB ejbCustomer;
+	
+	@EJB private RecipeEJB ejbRecipe;
 
 	@ManagedProperty(value="#{usersession}")
 	private BeanSession session;
@@ -97,6 +105,13 @@ public class BeanBasket {
 		double dtotalPrice= ejbBasket.getTotalPrice(this.currentBasket);
 		totalPrice = new DecimalFormat("0.00").format(dtotalPrice).replace(",", ".");
 		return totalPrice;
+	}
+	
+	public List<Recipe> getRecipes(){
+		
+		ArrayList<Recipe> recipes = new ArrayList<Recipe>(ejbRecipe.getAllRecipes());
+		Collections.shuffle(recipes);
+		return recipes.subList(0, 3);
 	}
 	
 	public int getBasketSize(){

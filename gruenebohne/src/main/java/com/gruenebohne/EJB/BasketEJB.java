@@ -90,8 +90,8 @@ public class BasketEJB {
 			StringBuilder build = new StringBuilder();
 			ArrayList<RecordItem> list = new ArrayList<RecordItem>(order.getSetRecordItems());
 			
-			for (int i = 1; i < list.size()+1; i++) {
-				build.append("\nPosition"+i+" \t"+list.get(i).getId()+" \t\t\t\t\t "+list.get(i).getQuantity()+" \t\t\t "+list.get(i).getProductBase().getPrice()+" \t\t "
+			for (int i = 0; i < list.size(); i++) {
+				build.append("\nPosition "+Math.addExact(i, 1)+" \t\t"+list.get(i).getId()+" \t\t\t\t\t "+list.get(i).getQuantity()+" \t\t\t "+list.get(i).getProductBase().getPrice()+" \t\t "
 			+list.get(i).getProductBase().getPrice()*list.get(i).getQuantity());
 			}
 			message.setText("Hallo "+order.getCustomer().getFirstName()+" "+order.getCustomer().getLastName()+","

@@ -2,6 +2,7 @@ package com.gruenebohne.EJB;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import javax.ejb.Singleton;
 import javax.faces.bean.ApplicationScoped;
@@ -9,10 +10,13 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.gruenebohne.model.Customer;
 import com.gruenebohne.model.Producer;
 import com.gruenebohne.model.Product;
 import com.gruenebohne.model.ProductCategory;
 import com.gruenebohne.model.Recipe;
+import com.gruenebohne.model.Record;
+import com.gruenebohne.model.RecordItem;
 
 @Singleton
 @ApplicationScoped
@@ -84,11 +88,11 @@ public class StartupBean {
 		Product p22 = createProduct(22, 1.20, cat2, "Nudeln-Penne");
 
 
+		createRecipe(26, 5.89, "Kartoffelgratin", p2, p7, p14, p21);
+		createRecipe(27, 1.99, "Fettarme Pommes", p2);
 		createRecipe(23, 3.33, "Ofenkartoffeln mit frischen Kräutern", p2);
 		createRecipe(24, 4.99, "Afrikanischer Süßkartoffeleintopf", p2, p12, p14, p1);
 		createRecipe(25, 7.77, "Kasselerbraten", p17, p12, p2);
-		createRecipe(26, 5.89, "Kartoffelgratin", p2, p7, p14, p21);
-		createRecipe(27, 1.99, "Fettarme Pommes", p2);
 		createRecipe(28, 7.99, "Rinderrouladen klassisch", p15, p12, p13, p2);
 		createRecipe(29, 2.99, "Italienischer Nudelsalat mit Rucola und getrockneten Tomaten", p1, p22, p14, p12);
 		createRecipe(30, 3.49, "Zucchinifächer mit Feta", p1, p12, p16);
@@ -97,6 +101,62 @@ public class StartupBean {
 		createProducer(1, "Hans-Dampf", p1, p2, p3);
 		createProducer(2, "Hans-Peter", p4, p5, p6);
 		createProducer(3, "Hans-Johann", p1, p4, p5, p6);
+		
+//		ArrayList<Customer> customer = createCustomer();
+//		ArrayList<RecordItem> items = createRecordItems();
+//	
+//		createRecords(customer, items);
+	}
+	
+	private ArrayList<RecordItem> createRecordItems(){
+		ArrayList<RecordItem> items = new ArrayList<RecordItem>();
+		
+		for(Product p:em.createNamedQuery("AllProducts", Product.class).getResultList()){
+			RecordItem item = new RecordItem();
+			item.setProductBase(p);
+			item.setQuantity((int)Math.random()*10);
+			em.persist(item);
+			em.flush();
+			items.add(item);
+		}
+		return items;
+		
+	}
+	private ArrayList<Customer> createCustomer(){
+		
+		ArrayList<Customer> temp = new ArrayList<Customer>();
+		
+		for (int i = 0; i < 10; i++) {
+		Customer customer = new Customer();
+		customer.seteMail("test@test.com");
+		customer.setFirstName("Generated");
+		customer.setLastName("Generated");
+		customer.setPassWord("test"+i);
+		em.persist(customer);
+		em.flush();
+		temp.add(customer);
+		}
+		return temp;
+	}
+	
+	private void createRecords(ArrayList<Customer> customer, ArrayList<RecordItem> items){
+		
+		for (int i = 0; i < 10; i++) {
+			Record record = new Record();
+			record.setCustomer(customer.get((int)Math.random()*10));
+			
+			ArrayList<RecordItem> temp = new ArrayList<RecordItem>();
+			for (int j = 0; j < (int)Math.random()*21; j++) {
+				temp.add(items.get((int)Math.random()*21));
+				items.get((int)Math.random()*21).setRecord(record);
+				em.merge(items.get((int)Math.random()*21));
+				em.flush();
+			}
+			record.setSetRecordItems(temp);
+			
+			em.persist(record);
+			em.flush();
+		}
 	}
 
 

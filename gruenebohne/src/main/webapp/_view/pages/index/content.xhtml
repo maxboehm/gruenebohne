@@ -1,5 +1,8 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://ocpsoft.com/prettyfaces" xmlns:f="http://java.sun.com/jsf/core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://ocpsoft.com/prettyfaces"
+	xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition>
 
 
@@ -28,15 +31,17 @@
 					</div>
 				</div>
 			</div>
-
+			
 			<!-- Products -->
-			<div id="js--latest-products-carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+			<div id="js--latest-products-carousel" class="carousel slide"
+				data-ride="carousel" data-interval="5000">
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner">
 					<div class="item active">
 						<div class="row">
 							<ui:repeat value="#{products.products}" var="prod">
-								<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst" data-price="2.5" data-rating="5">
+								<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst"
+									data-price="2.5" data-rating="5">
 
 									<div class="products__single">
 										<figure class="products__image">
@@ -46,28 +51,33 @@
 												<p:urlbuffer var="url" mappingId="image">
 													<f:param value="#{prod.prodId}" />
 												</p:urlbuffer>
-												<img src="#{url}" class="product__image" alt="#{prod.prodName}" />
+												<img src="#{url}" class="product__image"
+													alt="#{prod.prodName}" />
 
 
 											</p:link>
 											<div class="product-overlay">
-												<p:link styleClass="product-overlay__more" mappingId="produkte-detail">
+												<p:link styleClass="product-overlay__more"
+													mappingId="produkte-detail">
 													<f:param value="#{prod.prodId}" />
 													<span class="glyphicon glyphicon-search"></span>
 												</p:link>
-												<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+												<p:link styleClass="product-overlay__cart"
+													mappingId="produkte-detail">
 													<f:param value="#{prod.prodId}" />
 						  +<span class="glyphicon glyphicon-shopping-cart"></span>
 												</p:link>
 												<div class="product-overlay__stock">
-													<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+													<span class="in-stock"><h:outputText escape="false"
+															value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
 												</div>
 											</div>
 										</figure>
 										<div class="row">
 											<div class="col-xs-9">
 												<h5 class="products__title">
-													<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">
+													<p:link styleClass="products__link  js--isotope-title"
+														mappingId="produkte-detail">
 														<f:param value="#{prod.prodId}" />
 														#{prod.prodName}
 													</p:link>
@@ -75,7 +85,8 @@
 											</div>
 											<div class="col-xs-3">
 												<div class="products__price">
-													<h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}€
+													<h:outputText escape="false" value="&amp;nbsp;" />
+													#{prod.price}€
 												</div>
 											</div>
 										</div>
@@ -102,23 +113,28 @@
 
 						<ui:repeat value="#{products.getRandom3Products()}" var="prod">
 							<div class="push-down-20  clearfix">
-								<p:link styleClass="image-best-thumb" mappingId="produkte-detail">
+								<p:link styleClass="image-best-thumb"
+									mappingId="produkte-detail">
 									<f:param value="#{prod.prodId}" />
-									<p:urlbuffer var="url" mappingId="image" >
-									  <f:param value="#{prod.prodId}" />
+									<p:urlbuffer var="url" mappingId="image">
+										<f:param value="#{prod.prodId}" />
 									</p:urlbuffer>
-									<img src="#{url}" class="widgets__products" alt="#{prod.prodName}" />
+									<img src="#{url}" class="widgets__products"
+										alt="#{prod.prodName}" />
 								</p:link>
 								<h5 class="products__title">
 									<p:link styleClass="products__link" mappingId="produkte-detail">
 										<f:param value="#{prod.prodId}" />#{prod.prodName}</p:link>
 								</h5>
 								<!--  <span class="line-through"><h:outputText escape="false" value="&amp;nbsp;" />5,60€</span>-->
-								 <span class="products__price--widgets"><h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}€
-								</span> <br /> <br /> <span class="glyphicon glyphicon-star  star-on"></span> <span class="glyphicon glyphicon-star  star-on"></span> <span
-									class="glyphicon glyphicon-star  star-on"></span> <span class="glyphicon glyphicon-star  star-on"></span> <span
+								<span class="products__price--widgets"><h:outputText
+										escape="false" value="&amp;nbsp;" />#{prod.price}€ </span> <br /> <br />
+								<span class="glyphicon glyphicon-star  star-on"></span> <span
+									class="glyphicon glyphicon-star  star-on"></span> <span
+									class="glyphicon glyphicon-star  star-on"></span> <span
+									class="glyphicon glyphicon-star  star-on"></span> <span
 									class="glyphicon glyphicon-star  star-on"></span>
-						
+
 							</div>
 						</ui:repeat>
 
@@ -132,19 +148,22 @@
 
 						<ui:repeat value="#{products.getRandom3Products()}" var="prod">
 							<div class="clearfix  push-down-15">
-								<p:link styleClass="image-best-thumb" mappingId="produkte-detail">
+								<p:link styleClass="image-best-thumb"
+									mappingId="produkte-detail">
 									<f:param value="#{prod.prodId}" />
-									<p:urlbuffer var="url" mappingId="image" >
-									  <f:param value="#{prod.prodId}" />
+									<p:urlbuffer var="url" mappingId="image">
+										<f:param value="#{prod.prodId}" />
 									</p:urlbuffer>
-									<img src="#{url}" class="widgets__products" alt="#{prod.prodName}" />
+									<img src="#{url}" class="widgets__products"
+										alt="#{prod.prodName}" />
 								</p:link>
 								<div class="products__title">
-									<p:link styleClass="products__link" mappingId="produkte-detail">#{prod.prodName}<f:param value="#{prod.prodId}" />
+									<p:link styleClass="products__link" mappingId="produkte-detail">#{prod.prodName}<f:param
+											value="#{prod.prodId}" />
 									</p:link>
 								</div>
-								<span class="products__price--widgets"><h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}€
-								</span> <br /> <br />
+								<span class="products__price--widgets"><h:outputText
+										escape="false" value="&amp;nbsp;" />#{prod.price}€ </span> <br /> <br />
 								<div class="products__category">#{prod.category.category}</div>
 							</div>
 						</ui:repeat>
@@ -158,10 +177,11 @@
 						</div>
 						<p:link mappingId="rezepte-detail">
 							<f:param value="#{recipes.getOneRecipe().prodId}" />
-							<p:urlbuffer var="url" mappingId="image" >
-							  <f:param value="#{recipes.getOneRecipe().prodId}" />
+							<p:urlbuffer var="url" mappingId="image">
+								<f:param value="#{recipes.getOneRecipe().prodId}" />
 							</p:urlbuffer>
-							<img src="#{url}" class="product__image" alt="#{recipes.getOneRecipe().prodName}" />
+							<img src="#{url}" class="product__image"
+								alt="#{recipes.getOneRecipe().prodName}" />
 						</p:link>
 						<div class="products__title">
 							<div class="push-down-10"></div>
@@ -176,34 +196,46 @@
 				<div class="row">
 					<div class="col-sm-3  hidden-xs">
 						<div class="testimonials__quotes">
-							<h:graphicImage library="layout" styleClass="testimonials__quotes--img" alt="#" name="images/quotes.png" />
+							<h:graphicImage library="layout"
+								styleClass="testimonials__quotes--img" alt="#"
+								name="images/quotes.png" />
 						</div>
 					</div>
 					<div class="col-xs-12  col-sm-6">
-						<a href="#js--testimonails-carousel" data-slide="prev"><span class="glyphicon  glyphicon-circle  glyphicon-chevron-left"></span></a>
+						<a href="#js--testimonails-carousel" data-slide="prev"><span
+							class="glyphicon  glyphicon-circle  glyphicon-chevron-left"></span></a>
 						<h4 class="testimonials__title">Kundenmeinungen</h4>
-						<a href="#js--testimonails-carousel" data-slide="next"><span class="glyphicon  glyphicon-circle  glyphicon-chevron-right"></span></a>
+						<a href="#js--testimonails-carousel" data-slide="next"><span
+							class="glyphicon  glyphicon-circle  glyphicon-chevron-right"></span></a>
 						<hr class="divider-dark" />
-						<div id="js--testimonails-carousel" class="carousel  slide" data-ride="carousel" data-interval="5000">
+						<div id="js--testimonails-carousel" class="carousel  slide"
+							data-ride="carousel" data-interval="5000">
 							<div class="carousel-inner">
 								<div class="item  active">
-									<q class="testimonials__text">Immer wurden persönliche Wünsche erfullt Die Lieferung läuft reibungslos und der Service ist bestens!
-									</q><br /> <br /> <cite><b>Johann Meier</b></cite> Kunde
+									<q class="testimonials__text">Immer wurden persönliche
+										Wünsche erfullt Die Lieferung läuft reibungslos und der
+										Service ist bestens! </q><br /> <br /> <cite><b>Johann
+											Meier</b></cite> Kunde
 								</div>
 								<div class="item">
-									<q class="testimonials__text">Rasche Lieferung. Ausgezeichnete Qualität, gerne wieder!</q><br /> <br /> <cite>
-									<b>Petra Schwarz</b></cite> Kunde
+									<q class="testimonials__text">Rasche Lieferung.
+										Ausgezeichnete Qualität, gerne wieder!</q><br /> <br /> <cite>
+										<b>Petra Schwarz</b>
+									</cite> Kunde
 								</div>
 								<div class="item">
-									<q class="testimonials__text">Die perfekte Möglichkeit meine bisherigen Verkaufswege zu erweitern!</q><br /> <br />
-									<cite><b>Sebastian Petz</b></cite> Bauer
+									<q class="testimonials__text">Die perfekte Möglichkeit
+										meine bisherigen Verkaufswege zu erweitern!</q><br /> <br /> <cite><b>Sebastian
+											Petz</b></cite> Bauer
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-3  hidden-xs">
 						<div class="testimonials__quotes--rotate">
-							<h:graphicImage library="layout" styleClass="testimonials__quotes--img" alt="#" name="images/quotes.png" />
+							<h:graphicImage library="layout"
+								styleClass="testimonials__quotes--img" alt="#"
+								name="images/quotes.png" />
 						</div>
 					</div>
 				</div>

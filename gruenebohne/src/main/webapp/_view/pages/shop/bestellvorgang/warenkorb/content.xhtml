@@ -44,8 +44,7 @@
 												<f:param value="#{basketItem.productBase.prodId}" />
 											</p:link></td>
 										<td class="product-price"><h:outputText escape="false"
-												value="&amp;nbsp;" />#{basketItem.productBase.price}€
-										</td>
+												value="&amp;nbsp;" />#{basketItem.productBase.price}€</td>
 										<td class="product-quantity">
 											<div class="quantity  js--quantity">
 												<f:param name="product"
@@ -70,12 +69,11 @@
 												</h:commandButton>
 											</div>
 										</td>
-										<td class="product-subtotal"><h:outputText
-												escape="false" value="&amp;nbsp;" /> <h:outputText
+										<td class="product-subtotal"><h:outputText escape="false"
+												value="&amp;nbsp;" /> <h:outputText
 												value="#{basketItem.productBase.price*basketItem.quantity}">
 												<f:convertNumber minFractionDigits="2" locale="de"></f:convertNumber>
-											</h:outputText>€
-										</td>
+											</h:outputText>€</td>
 									</tr>
 								</h:form>
 							</ui:repeat>
@@ -100,10 +98,10 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="col-xs-12 col-sm-6"></div>
+
 				<div class="col-xs-12 col-sm-6">
 					<!-- Your order - table -->
-					<h3 class="pull-right">
+					<h3 class="pull-left">
 						<span class="light">Warenkorb</span>-Zusammenfassung
 					</h3>
 					<table class="shop_table  push-down-30">
@@ -127,7 +125,70 @@
 						</tfoot>
 					</table>
 				</div>
+
+				<div class="col-xs-12  push-down-30">
+					<div class="products-navigation">
+						<div class="products-navigation__title">
+							<h3>
+								<span class="light">Passende Rezepte zu</span> ihrer Auswahl
+							</h3>
+						</div>
+					</div>
+
+
+					<ui:repeat value="#{basket.recipes}" var="rec">
+
+						<div class="col-xs-6 col-sm-3  js--isotope-target">
+							<div class="products__single">
+								<figure class="products__image">
+									<p:link mappingId="rezepte-detail">
+										<f:param value="#{rec.prodId}" />
+										<p:urlbuffer var="url" mappingId="image">
+											<f:param value="#{rec.prodId}" />
+										</p:urlbuffer>
+										<img src="#{url}" class="product__image" alt="#{rec.prodName}" />
+									</p:link>
+									<div class="product-overlay">
+										<p:link styleClass="product-overlay__more"
+											mappingId="rezepte-detail">
+											<span class="glyphicon glyphicon-search"></span>
+											<f:param value="#{rec.prodId}" />
+										</p:link>
+										<p:link styleClass="product-overlay__cart"
+											mappingId="rezepte-detail">
+											  			+<span class="glyphicon glyphicon-shopping-cart"></span>
+											<f:param value="#{rec.prodId}" />
+										</p:link>
+										<div class="product-overlay__stock">
+											<span class="in-stock"><h:outputText escape="false"
+													value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
+										</div>
+									</div>
+								</figure>
+								<div class="row">
+									<div class="col-xs-9">
+										<h5 class="products__title">
+											<p:link styleClass="products__link  js--isotope-title"
+												mappingId="rezepte-detail">
+															#{rec.prodName}
+															<f:param value="#{rec.prodId}" />
+											</p:link>
+										</h5>
+									</div>
+									<div class="col-xs-3">
+										<div class="products__price">
+											<h:outputText escape="false" value="&amp;nbsp;" />
+											#{rec.price}€
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</ui:repeat>
+				</div>
+
 			</div>
+
 			<hr class="divider" />
 		</div>
 	</div>

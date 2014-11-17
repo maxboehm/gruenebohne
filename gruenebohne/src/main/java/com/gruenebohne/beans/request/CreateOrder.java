@@ -30,7 +30,7 @@ public class CreateOrder{
 	private String lastname;
 	private String firma;
 	private String streetAndNumber;
-	private int postalCode;
+	private String postalCode;
 	private String city;
 	private String email;
 	private String phonenNumber;
@@ -76,14 +76,14 @@ public class CreateOrder{
 	public void setStreetAndNumber(String streetAndNumber) {
 		this.streetAndNumber = streetAndNumber;
 	}
-	public int getPostalCode() {
+	public String getPostalCode() {
 		ArrayList<Address> addresses = new ArrayList<Address>(session.getCustomer().getAddress());
-		if(!addresses.isEmpty()){
-			return (int)addresses.get(0).getPostalCode();
+		if(!addresses.isEmpty() && addresses.get(0).getPostalCode()!=0){
+			return String.valueOf(addresses.get(0).getPostalCode());
 		}
 		return postalCode;
 	}
-	public void setPostalCode(int postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 	public String getCity() {
@@ -138,7 +138,7 @@ public class CreateOrder{
 		address.setCity(getCity());
 		address.setFirma(getFirma());
 		address.setPhoneNumber(getPhonenNumber());
-		address.setPostalCode(getPostalCode());
+		address.setPostalCode(Double.parseDouble(getPostalCode()));
 		address.setStreetAndNumner(getStreetAndNumber());
 		
 		updatedCustomer.seteMail(getEmail());
