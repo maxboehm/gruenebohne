@@ -30,6 +30,18 @@
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
   <filter>
+    <filter-name>CharsetFilter</filter-name>
+    <filter-class>com.gruenebohne.filters.CharsetFilter</filter-class>
+      <init-param>
+        <param-name>requestEncoding</param-name>
+        <param-value>UTF-8</param-value>
+      </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharsetFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
     <filter-name>Pretty Filter</filter-name>
     <filter-class>com.ocpsoft.pretty.PrettyFilter</filter-class>
   </filter>

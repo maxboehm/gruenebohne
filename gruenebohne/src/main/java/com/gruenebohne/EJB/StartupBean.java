@@ -1,7 +1,10 @@
 package com.gruenebohne.EJB;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import javax.ejb.Singleton;
@@ -98,9 +101,9 @@ public class StartupBean {
 		createRecipe(30, 3.49, "Zucchinifächer mit Feta", p1, p12, p16);
 		createRecipe(31, 3.99, "Schwäbischer Zwiebelkuchen", p11, p12);
 
-		createProducer(1, "Hans-Dampf", p1, p2, p3);
-		createProducer(2, "Hans-Peter", p4, p5, p6);
-		createProducer(3, "Hans-Johann", p1, p4, p5, p6);
+		createProducer(32, "Peter Steinmetz", p1, p2, p3);
+		createProducer(33, "Maren Volk", p4, p5, p6);
+		createProducer(34, "Michael Schwaben", p1, p4, p5, p6);
 		
 //		ArrayList<Customer> customer = createCustomer();
 //		ArrayList<RecordItem> items = createRecordItems();
@@ -218,8 +221,10 @@ public class StartupBean {
 		java.util.Scanner scanner = null;
 		try {
 			// get resource stream
+			
 			InputStream is = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream(sPath+sFileName);
-			scanner = new java.util.Scanner(is).useDelimiter("\\A");
+			scanner = new java.util.Scanner(is, "UTF-8");
+			scanner.useDelimiter("\\A");
 			return scanner.hasNext() ? scanner.next() : "";
 		} finally {
 			if(scanner!=null) scanner.close();

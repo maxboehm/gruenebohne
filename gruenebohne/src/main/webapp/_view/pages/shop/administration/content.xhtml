@@ -28,7 +28,7 @@
 										value="#{orderDetails.firstname}" required="true"
 										requiredMessage="Ooops, hier fehlt etwas! ;)"
 										validatorMessage="...Bitte nur Buchstaben eingeben">
-										<f:validateRegex pattern="[a-zA-Z]+" />
+<!-- 										<f:validateRegex pattern="[a-zA-Z]+" /> -->
 									</h:inputText>
 									<h:message for="firstName"
 										errorStyle="color:red; display:block"></h:message>
@@ -43,7 +43,7 @@
 										value="#{orderDetails.lastname}" required="true"
 										requiredMessage="Ooops, hier fehlt etwas! ;)"
 										validatorMessage="...Bitte nur Buchstaben eingeben">
-										<f:validateRegex pattern="[a-zA-Z]+" />
+<!-- 										<f:validateRegex pattern="[a-zA-Z]+" /> -->
 									</h:inputText>
 									<h:message for="lastName" errorStyle="color:red; display:block"></h:message>
 								</p>
@@ -140,7 +140,7 @@
 						</p>
 					</div>
 					<div class="col-xs-12">
-					<h:commandLink action="pretty:index"
+					<h:commandLink type="submit" action="pretty:index"
 								styleClass="btn  btn-warning">Speichern</h:commandLink>
 					</div>
 				</div>
