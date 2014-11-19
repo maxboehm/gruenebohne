@@ -76,28 +76,12 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-6 recipe">
-                        <h6>Zutaten</h6>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce est purus, fringilla sit amet arcu quis</p>
-
-                        <h6>Solltest du zu Hause haben</h6>
-
-                        <p>Salz, Pfeffer, Öl, Butter, Honig</p>
-
-                        <h6>Schwierigkeitsgrad</h6>
-
-                        <p>mittel</p>
-
-                        <h6>Zubereitungszeit</h6>
-
-                        <p>45 min.</p>
                         
-                        
-                        #### OBERHALB VARIABLE EINBAUEN####
+                        <h:outputText escape="false" value="#{recipedetail.recipe.recipeInfo}"/> 
                         
                         <h6>Preis pro Portion</h6>
                              
-                        <span class="single-product__price"><h:outputText escape="false" value="&amp;nbsp;" />#{recipedetail.recipe.price} €</span>
+                        <span class="single-product__price"><h:outputText escape="false" value="&amp;nbsp;"/>#{recipedetail.recipe.price}€</span>
 						<!--  <div class="single-product__rating">
 							<span class="glyphicon  glyphicon-star  star-on"></span> <span
 								class="glyphicon  glyphicon-star  star-on"></span> <span
@@ -108,7 +92,6 @@
 
                         <div class="pull-right">
                       
-                        
                             <!-- Quantity buttons -->
                             
 							<h:form id="addform">

@@ -180,6 +180,7 @@ public class StartupBean {
 	private Recipe createRecipe(long id, Double dPrice, String sName, Product ... products) {
 		Recipe r = new Recipe(id, sName, dPrice, products);
 		r.setProdDescription(getDescriptionText("recipes", r.getProdId(), "description.html"));
+		r.setRecipeInfo(getDescriptionText("recipes", r.getProdId(), "recipeInfo.html"));
 		r.setPicture(getPicture("recipes", r.getProdId()));
 		em.persist(r);
 		em.flush();

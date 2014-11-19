@@ -3,6 +3,7 @@ package com.gruenebohne.model;
 import java.util.Arrays;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinTable;
@@ -28,6 +29,9 @@ public class Recipe extends ProductBase{
 	@ManyToMany
 	@JoinTable(name = "RCP_PRD")
 	private Collection<Product> products;
+	
+	@Column(length=10000)
+	private String recipeInfo;
 
 	public Collection<Product> getProducts() {
 		return products;
@@ -41,6 +45,15 @@ public class Recipe extends ProductBase{
 	protected String getDirName() {
 		return "recipes";
 	}
+
+	public String getRecipeInfo() {
+		return recipeInfo;
+	}
+
+	public void setRecipeInfo(String recipeInfo) {
+		this.recipeInfo = recipeInfo;
+	}
+	
 
 
 }
