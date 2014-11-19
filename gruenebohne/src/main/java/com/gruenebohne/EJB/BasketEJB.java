@@ -1,5 +1,6 @@
 package com.gruenebohne.EJB;
 
+import java.awt.datatransfer.StringSelection;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DateFormat;
@@ -91,7 +92,7 @@ public class BasketEJB {
 			ArrayList<RecordItem> list = new ArrayList<RecordItem>(order.getSetRecordItems());
 			
 			for (int i = 0; i < list.size(); i++) {
-				build.append("\nPosition "+Math.addExact(i, 1)+" \t\t"+list.get(i).getId()+" \t\t\t\t\t "+list.get(i).getQuantity()+" \t\t\t "+list.get(i).getProductBase().getPrice()+" \t\t "
+				build.append("\nPosition "+i+" \t\t"+list.get(i).getId()+" \t\t\t\t\t "+list.get(i).getQuantity()+" \t\t\t "+list.get(i).getProductBase().getPrice()+" \t\t "
 			+list.get(i).getProductBase().getPrice()*list.get(i).getQuantity());
 			}
 			message.setText("Hallo "+order.getCustomer().getFirstName()+" "+order.getCustomer().getLastName()+","

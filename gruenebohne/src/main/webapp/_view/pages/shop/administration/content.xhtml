@@ -1,0 +1,153 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://ocpsoft.com/prettyfaces"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition>
+
+
+	<h:form>
+		<div class="woocommerce  push-down-30">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<h3>Account</h3>
+						<hr />
+					</div>
+					<div class="col-xs-12  col-sm-6">
+						<h3>
+							<span class="light">Meine </span>Daten
+						</h3>
+						<div class="row">
+							<div class="form-group col-xs-12  col-sm-6  push-down-10">
+								<p>
+									<label> Vorname <abbr class="required"> * </abbr>
+									</label>
+									<h:inputText id="firstName"
+										class="form-control  form-control--contact"
+										value="#{orderDetails.firstname}" required="true"
+										requiredMessage="Ooops, hier fehlt etwas! ;)"
+										validatorMessage="...Bitte nur Buchstaben eingeben">
+										<f:validateRegex pattern="[a-zA-Z]+" />
+									</h:inputText>
+									<h:message for="firstName"
+										errorStyle="color:red; display:block"></h:message>
+								</p>
+							</div>
+							<div class="form-group col-xs-12  col-sm-6  push-down-10">
+								<p>
+									<label> Nachname <abbr class="required"> * </abbr>
+									</label>
+									<h:inputText id="lastName"
+										class="form-control  form-control--contact"
+										value="#{orderDetails.lastname}" required="true"
+										requiredMessage="Ooops, hier fehlt etwas! ;)"
+										validatorMessage="...Bitte nur Buchstaben eingeben">
+										<f:validateRegex pattern="[a-zA-Z]+" />
+									</h:inputText>
+									<h:message for="lastName" errorStyle="color:red; display:block"></h:message>
+								</p>
+							</div>
+							<div class="form-group col-xs-12  col-sm-12  push-down-10">
+								<p>
+									<label> Firma </label>
+									<h:inputText class="form-control  form-control--contact"
+										value="#{orderDetails.firma}" />
+								</p>
+							</div>
+							<div class="form-group col-xs-12  col-sm-12  push-down-10">
+								<p>
+									<label> Adresse <abbr class="required"> * </abbr>
+									</label>
+									<h:inputText id="address" styleClass="input-text  push-down-10"
+										value="#{orderDetails.streetAndNumber}"
+										placeholder="Street address" required="true"
+										requiredMessage="Ooops, hier fehlt etwas! ;)" />
+									<h:message for="address" errorStyle="color:red; display:block"></h:message>
+									<h:inputText class="input-text"
+										placeholder="Apartment, suite, unit etc. (optional)" />
+								</p>
+							</div>
+							<div class="form-group col-xs-12  col-sm-12  push-down-10">
+								<p>
+									<label> Postleitzahl <abbr class="required"> * </abbr>
+									</label>
+									<h:inputText id="plz"
+										class="form-control  form-control--contact  push-down-10"
+										placeholder="Postleitzahl" value="#{orderDetails.postalCode}"
+										required="true" requiredMessage="Ooops, hier fehlt etwas! ;)"
+										validatorMessage="...Bite nur Zahlen eingeben">
+										<f:validateRegex pattern="[0-9]+" />
+									</h:inputText>
+									<h:message for="plz" errorStyle="color:red; display:block"></h:message>
+								</p>
+							</div>
+							<div class="form-group col-xs-12  col-sm-12  push-down-10">
+								<p>
+									<label> Stadt <abbr class="required"> * </abbr>
+									</label>
+									<h:inputText id="city"
+										class="form-control  form-control--contact  push-down-10"
+										placeholder="Stadt" value="#{orderDetails.city}"
+										required="true" requiredMessage="Ooops, hier fehlt etwas! ;)"
+										validatorMessage="...Bitte nur Buchstaben eingeben">
+										<f:validateRegex pattern="[a-zA-Z]+" />
+									</h:inputText>
+									<h:message for="city" errorStyle="color:red; display:block"></h:message>
+								</p>
+							</div>
+							<div class="form-group col-xs-12  col-sm-6  push-down-10">
+								<p>
+									<label> E-Mail <abbr class="required"> * </abbr>
+									</label>
+									<h:inputText id="emailAddress"
+										class="form-control  form-control--contact"
+										value="#{orderDetails.email}" required="true"
+										requiredMessage="Ooops, hier fehlt etwas! ;)">
+										<f:validator validatorId="emailValidator"></f:validator>
+									</h:inputText>
+									<h:message for="emailAddress"
+										errorStyle="color:red; display:block" />
+								</p>
+							</div>
+							<div class="form-group col-xs-12  col-sm-6  push-down-10">
+								<p>
+									<label> Telefonnummer <abbr class="required"> *
+									</abbr>
+									</label>
+									<h:inputText id="phone"
+										class="form-control  form-control--contact"
+										value="#{orderDetails.phonenNumber}" required="true"
+										requiredMessage="Ooops, hier fehlt etwas! ;)"
+										validatorMessage="...Bite nur Zahlen eingeben">
+										<f:validateRegex pattern="[0-9]+" />
+									</h:inputText>
+									<h:message for="phone" errorStyle="color:red; display:block"></h:message>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6">
+						<p class="form-row">
+						</p>
+						<h3>
+							<span class="light">Weitere </span>Informationen
+						</h3>
+						<p>
+							<label> Kommentar </label>
+							<h:inputTextarea class="input-text" rows="3"
+								value="#{orderDetails.comment}"></h:inputTextarea>
+						</p>
+					</div>
+					<div class="col-xs-12">
+					<h:commandLink action="pretty:index"
+								styleClass="btn  btn-warning">Speichern</h:commandLink>
+					</div>
+				</div>
+				<hr class="divider" />
+			</div>
+		</div>
+	</h:form>
+
+</ui:composition>
+</html>

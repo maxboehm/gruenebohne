@@ -25,7 +25,9 @@
 								<li><a href="#loginModal" role="button" data-toggle="modal">Anmelden</a></li>
 							</c:if>
 							<c:if test="#{usersession.isLoggedin==true}">
-								<li><a href="#">Mein Account</a></li>
+								<li><h:form>
+										<h:commandLink action="pretty:account">Mein Account</h:commandLink>
+									</h:form></li>
 								<li><h:form>
 										<h:commandButton value="Abmelden" type="submit"
 											class="btn btn-default btn-xs"
@@ -59,15 +61,17 @@
 							Vorname
 							<h:inputText id="firstName" type="text"
 								styleClass="form-control  form-control--contact placeholder-firstname"
-								placeholder="Vorname" value="#{register.firstname}" required="true" requiredMessage="Ooops, hier fehlt etwas! ;)"/>
-								<h:message for="firstName" errorStyle="color:red; display:block"></h:message>
+								placeholder="Vorname" value="#{register.firstname}"
+								required="true" requiredMessage="Ooops, hier fehlt etwas! ;)" />
+							<h:message for="firstName" errorStyle="color:red; display:block"></h:message>
 						</div>
 						<div class="form-group">
 							Nachname
 							<h:inputText id="lastName" type="text"
 								styleClass="form-control  form-control--contact placeholder-lastname"
-								placeholder="Nachname" value="#{register.lastname}" required="true" requiredMessage="Ooops, hier fehlt etwas! ;)" />
-								<h:message for="lastName" errorStyle="color:red; display:block"></h:message>
+								placeholder="Nachname" value="#{register.lastname}"
+								required="true" requiredMessage="Ooops, hier fehlt etwas! ;)" />
+							<h:message for="lastName" errorStyle="color:red; display:block"></h:message>
 						</div>
 						<div class="form-group">
 							E-Mail
@@ -75,15 +79,16 @@
 								styleClass="form-control  form-control--contact placeholder-email"
 								placeholder="E-Mail" value="#{register.email}" required="true">
 								<f:validator validatorId="emailValidator"></f:validator>
-								</h:inputText>
-								<h:message for="eMail" errorStyle="color:red; display:block"></h:message>
+							</h:inputText>
+							<h:message for="eMail" errorStyle="color:red; display:block"></h:message>
 						</div>
 						<div class="form-group">
 							Passwort
 							<h:inputSecret id="pw" type="text"
 								styleClass="form-control  form-control--contact placeholder-passwd"
-								placeholder="Passwort" value="#{register.password}" required="true" requiredMessage="Ooops, hier fehlt etwas! ;)"/>
-								<h:message for="pw" errorStyle="color:red; display:block"></h:message>
+								placeholder="Passwort" value="#{register.password}"
+								required="true" requiredMessage="Ooops, hier fehlt etwas! ;)" />
+							<h:message for="pw" errorStyle="color:red; display:block"></h:message>
 						</div>
 						<div class="form-group">
 							<h:commandButton value="REGISTRIEREN" type="submit"

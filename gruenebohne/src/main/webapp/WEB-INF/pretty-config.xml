@@ -66,6 +66,11 @@
 		<pattern value="/bestellvorgang/adresse" />
 		<view-id value="/_view/pages/shop/bestellvorgang/adresse/_adresse.xhtml" />
 	</url-mapping>
+	
+	<url-mapping id="account">
+		<pattern value="/meinaccount" />
+		<view-id value="/_view/pages/shop/administration/_account.xhtml" />
+	</url-mapping>
 
 
 

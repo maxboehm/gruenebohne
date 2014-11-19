@@ -21,7 +21,6 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
 	@NamedQuery(name="AllProducer",query="select p from Producer p"),
 	@NamedQuery(name="GetProducer", query="select p from Producer p where p.id= :id")
-
 })
 public class Producer {
 
@@ -34,8 +33,11 @@ public class Producer {
 	private long id;
 
 	@Column private String Name;
-	@Column private String Description;
+	
+	@Column(length=5000)
+	private String Description;
 	@Column private String ShortDescription;
+	
 	@Column
 	@Lob
 	private byte[] picture;
