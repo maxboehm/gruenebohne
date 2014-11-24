@@ -104,9 +104,9 @@ public class BasketEJB {
 				build.append("\nPosition " + i + " \t"
 						+ list.get(i).getProductBase().getProdName()
 						+ " \t\t " + list.get(i).getQuantity()
-						+ " \t\t\t " + price+" €"
+						+ " \t\t\t " + price+" EUR"
 						+ " \t\t " +  price.doubleValue()
-						* list.get(i).getQuantity()+" €");
+						* list.get(i).getQuantity()+" EUR");
 			}
 			message.setText("Hallo "
 					+ order.getCustomer().getFirstName()
@@ -133,11 +133,11 @@ public class BasketEJB {
 					+ "Gesamtkosten brutto: "
 					+ new BigDecimal(order.getTotalPrice() * 0.81d).setScale(2,
 							RoundingMode.HALF_UP).doubleValue()
-					+ " € \n"
+					+ " EUR \n"
 					+ "Gesamtkosten netto: "
 					+ new BigDecimal(order.getTotalPrice()).setScale(2,
 							RoundingMode.HALF_UP).doubleValue()
-					+ " € \n"
+					+ " EUR \n"
 					+ "Gewählte Zahlungsart: RECHNUNG \n"
 					+ "\n"
 					+ "Wie ziehen den Betrag in den nächsten Tagen von deinem Konto ein. "
@@ -185,9 +185,9 @@ public class BasketEJB {
 						+ list.get(i).getProductBase().getProdName() + "\t\t "
 						+ itemProducer + " \t "
 						+ list.get(i).getQuantity() + " \t "
-						+ price + " €"+" \t "
+						+ price + " EUR"+" \t "
 						+ price.doubleValue()
-						* list.get(i).getQuantity()+" €");
+						* list.get(i).getQuantity()+" EUR");
 			}
 			
 			ArrayList <Address> adresse = new ArrayList<Address>(order.getCustomer().getAddress());
@@ -221,10 +221,10 @@ public class BasketEJB {
 					+ "Gesamtkosten brutto: "
 					+ new BigDecimal(order.getTotalPrice() * 0.81d).setScale(2,
 							RoundingMode.HALF_UP).doubleValue()
-					+ " € \n"
+					+ " EUR \n"
 					+ "Gesamtkosten netto: "
 					+ new BigDecimal(order.getTotalPrice()).setScale(2,
-							RoundingMode.HALF_UP).doubleValue() + " € \n"
+							RoundingMode.HALF_UP).doubleValue() + " EUR \n"
 					+ "Gewählte Zahlungsart: RECHNUNG \n" + "\n");
 
 			Transport.send(message);
