@@ -30,5 +30,4 @@ public class ProducerEJB {
 		return producer.get(0);
 	}
 
-
 }

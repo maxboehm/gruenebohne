@@ -27,6 +27,8 @@ import javax.persistence.PersistenceContext;
 
 import com.gruenebohne.model.Address;
 import com.gruenebohne.model.Customer;
+import com.gruenebohne.model.Producer;
+import com.gruenebohne.model.Product;
 import com.gruenebohne.model.ProductBase;
 import com.gruenebohne.model.Record;
 import com.gruenebohne.model.RecordItem;
@@ -40,6 +42,9 @@ public class BasketEJB {
 
 	@EJB
 	private CustomerEJB customerejb;
+
+	@EJB
+	private ProducerEJB producerejb;
 
 	public Record getNewBasket() {
 		Record record = new Record();
@@ -59,20 +64,23 @@ public class BasketEJB {
 			em.flush();
 
 			if (order != null) {
-				List<Record> temp = em.createNamedQuery("getRecord", Record.class)
-						.setParameter("basketId", order.getId()).getResultList();
+				List<Record> temp = em
+						.createNamedQuery("getRecord", Record.class)
+						.setParameter("basketId", order.getId())
+						.getResultList();
 				sendConfirmationEmail(temp.get(0));
 			}
 		}
 	}
 
-	private void sendConfirmationEmail(Record order){
+	private void sendConfirmationEmail(Record order) {
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.transport.protocol", "smtp");
+
 		Session session = Session.getInstance(props,
 				new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
@@ -82,41 +90,145 @@ public class BasketEJB {
 				});
 
 		try {
-
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("gruenebohne@online.de"));
+			message.setFrom(new InternetAddress("gruenebohne.store@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
 					InternetAddress.parse(order.getCustomer().geteMail()));
 			message.setSubject("Gruenebohne Bestellung");
 			StringBuilder build = new StringBuilder();
-			ArrayList<RecordItem> list = new ArrayList<RecordItem>(order.getSetRecordItems());
-			
+			ArrayList<RecordItem> list = new ArrayList<RecordItem>(
+					order.getSetRecordItems());
+
 			for (int i = 0; i < list.size(); i++) {
-				build.append("\nPosition "+i+" \t\t"+list.get(i).getId()+" \t\t\t\t\t "+list.get(i).getQuantity()+" \t\t\t "+list.get(i).getProductBase().getPrice()+" \t\t "
-			+list.get(i).getProductBase().getPrice()*list.get(i).getQuantity());
+				BigDecimal price = new BigDecimal(list.get(i).getProductBase().getPrice()).setScale(2, RoundingMode.HALF_UP);
+				build.append("\nPosition " + i + " \t"
+						+ list.get(i).getProductBase().getProdName()
+						+ " \t\t " + list.get(i).getQuantity()
+						+ " \t\t\t " + price+" €"
+						+ " \t\t " +  price.doubleValue()
+						* list.get(i).getQuantity()+" €");
 			}
-			message.setText("Hallo "+order.getCustomer().getFirstName()+" "+order.getCustomer().getLastName()+","
-					+"\n\n\n vielen Dank fuer deine Bestellung im gruenbohne Demoshop (Bestellungsnummer: "+order.getId()+") am "+DateFormat.getDateInstance(DateFormat.SHORT).format(GregorianCalendar.getInstance().getTime())+" um "+DateFormat.getTimeInstance(DateFormat.SHORT).format(GregorianCalendar.getInstance().getTime())+". Informationen zu Ihrer Bestellung:"
-					+"\n"
-					+"\n"
-					+"Position \t\t Artikelnummer \t\t Menge \t\t Preis \t\t Summe"
-					+" \n ___________________________________________________________________"
+			message.setText("Hallo "
+					+ order.getCustomer().getFirstName()
+					+ " "
+					+ order.getCustomer().getLastName()
+					+ ","
+					+ "\n\n\n vielen Dank fuer deine Bestellung im gruenbohne Demoshop (Bestellungsnummer: "
+					+ order.getId()
+					+ ") am "
+					+ DateFormat.getDateInstance(DateFormat.SHORT).format(
+							GregorianCalendar.getInstance().getTime())
+					+ " um "
+					+ DateFormat.getTimeInstance(DateFormat.SHORT).format(
+							GregorianCalendar.getInstance().getTime())
+					+ ". Informationen zu Ihrer Bestellung:"
+					+ "\n"
+					+ "\n"
+					+ "Position \t\t Artikelname \t\t Menge \t\t Preis \t\t Summe"
+					+ " \n ___________________________________________________________________"
 					+ build.toString()
-					+" \n"
-					+"\n\n"
-					+"Versandkosten: Gratisversand\n"
-					+ "Gesamtkosten brutto: "+new BigDecimal(order.getTotalPrice()*0.81d).setScale(2,RoundingMode.HALF_UP).doubleValue()+" EUR \n"
-					+ "Gesamtkosten netto: "+ new BigDecimal(order.getTotalPrice()).setScale(2,RoundingMode.HALF_UP).doubleValue()+" EUR \n"
-					+ "Gewählte Zahlungsart: TEST \n"
+					+ " \n"
+					+ "\n\n"
+					+ "Versandkosten: Gratisversand\n"
+					+ "Gesamtkosten brutto: "
+					+ new BigDecimal(order.getTotalPrice() * 0.81d).setScale(2,
+							RoundingMode.HALF_UP).doubleValue()
+					+ " € \n"
+					+ "Gesamtkosten netto: "
+					+ new BigDecimal(order.getTotalPrice()).setScale(2,
+							RoundingMode.HALF_UP).doubleValue()
+					+ " € \n"
+					+ "Gewählte Zahlungsart: RECHNUNG \n"
 					+ "\n"
 					+ "Wie ziehen den Betrag in den nächsten Tagen von deinem Konto ein. "
 					+ "Für Rückfragen stehen wir dir jederzeit gerne zur Verfügung.\n\n\n"
 					+ "Wir wünschen Ihnen noch einen schönen Tag \n"
 					+ "Die gruenebohne :)");
-		
+
 			Transport.send(message);
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
 		}
-		catch (MessagingException e) {
+
+		try {
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("gruenebohne.store@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO,
+					InternetAddress.parse("gruenebohne.store@gmail.com"));
+			message.setSubject("Neue Bestellunng");
+			StringBuilder build = new StringBuilder();
+			ArrayList<RecordItem> list = new ArrayList<RecordItem>(
+					order.getSetRecordItems());
+
+			for (int i = 0; i < list.size(); i++) {
+				List<Producer> producer = producerejb.getAllProducer();
+				int id = list.get(i).getId();
+				String itemProducer = "";
+
+				for (Producer currentProducer : producer) {
+					ArrayList<Product> producerProducts = new ArrayList(
+							currentProducer.getProducts());
+					for (Product prod : producerProducts) {
+						if (id == prod.getProdId()) {
+							itemProducer = currentProducer.getName();
+							break;
+						}
+					}
+				}
+				if (itemProducer == "") {
+					itemProducer = producer.get((int) (3 * Math.random()))
+							.getName();
+				}
+				BigDecimal price = new BigDecimal(list.get(i).getProductBase().getPrice()).setScale(2, RoundingMode.HALF_UP);
+				build.append("\nPosition " + i + " \t\t" + list.get(i).getId()
+						+ " \t\t\t\t "
+						+ list.get(i).getProductBase().getProdName() + "\t\t "
+						+ itemProducer + " \t "
+						+ list.get(i).getQuantity() + " \t "
+						+ price + " €"+" \t "
+						+ price.doubleValue()
+						* list.get(i).getQuantity()+" €");
+			}
+			
+			ArrayList <Address> adresse = new ArrayList<Address>(order.getCustomer().getAddress());
+			message.setText("Neue Bestellung von: "
+					+ order.getCustomer().getFirstName()
+					+ " "
+					+ order.getCustomer().getLastName()
+					+ " am "
+					+ DateFormat.getDateInstance(DateFormat.SHORT).format(
+							GregorianCalendar.getInstance().getTime())
+					+ " um "
+					+ DateFormat.getTimeInstance(DateFormat.SHORT).format(
+							GregorianCalendar.getInstance().getTime())
+					+ "\n"
+					+ "BestellID: "
+					+ order.getId()
+					+ "\n"
+					+ "\n"
+					+ "Position \t\t Artikelnummer \t\t Artikelname \t\t Produzent \t\t Menge \t\t Preis \t\t Summe"
+					+ " \n _________________________________________________________________________________________"
+					+ build.toString()
+					+ " \n"
+					+ "\n\n"
+					+ "Kundenname: "+order.getCustomer().getFirstName()+" "+order.getCustomer().getLastName()+ " \n"
+					+ "Straße: "+adresse.get(0).getStreetAndNumner()+ " \n"
+					+ "Postleitzahl: "+adresse.get(0).getPostalCode()+ " \n"
+					+ "Stadt: "+adresse.get(0).getCity()+ " \n"
+					+ " \n"
+					+ "\n\n"
+					+ "Versandkosten: Gratisversand\n"
+					+ "Gesamtkosten brutto: "
+					+ new BigDecimal(order.getTotalPrice() * 0.81d).setScale(2,
+							RoundingMode.HALF_UP).doubleValue()
+					+ " € \n"
+					+ "Gesamtkosten netto: "
+					+ new BigDecimal(order.getTotalPrice()).setScale(2,
+							RoundingMode.HALF_UP).doubleValue() + " € \n"
+					+ "Gewählte Zahlungsart: RECHNUNG \n" + "\n");
+
+			Transport.send(message);
+		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
 	}
