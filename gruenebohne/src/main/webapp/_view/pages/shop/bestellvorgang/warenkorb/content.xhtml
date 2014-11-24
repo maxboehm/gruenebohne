@@ -36,9 +36,11 @@
 												<f:param value="#{basketItem.productBase.prodId}"
 													name="prodId" />
 											</h:commandLink></td>
-										<td class="product-thumbnail"><h:graphicImage
-												library="content" name="images/dummy/product-cart.jpg"
-												alt="dummy" /></td>
+										<td class="product-thumbnail"><p:urlbuffer var="url"
+												mappingId="image">
+												<f:param value="#{basketItem.productBase.prodId}" />
+											</p:urlbuffer> <img style="width: 100%; height: auto;" src="#{url}" alt="#{basketItem.productBase.prodName}" />
+										</td>
 										<td class="product-name"><p:link
 												mappingId="produkte-detail">#{basketItem.productBase.prodName}
 												<f:param value="#{basketItem.productBase.prodId}" />

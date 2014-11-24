@@ -63,9 +63,10 @@ public class StartupBean {
 	private void initializeData() {
 		ProductCategory cat1 = createCategory(1, "Gemüse");
 		ProductCategory cat2 = createCategory(2, "Obst");
-		ProductCategory cat3 = createCategory(3, "Eiweißprodukte");
+		ProductCategory cat3 = createCategory(3, "Milchprodukte");
 		ProductCategory cat4 = createCategory(4, "Backwaren");
 		ProductCategory cat5 = createCategory(5, "Fleischprodukte");
+		ProductCategory cat6 = createCategory(6, "Pasta");
 
 		Product p1  = createProduct(1,  2.95, cat1, "Tomaten", "100g");
 		Product p2  = createProduct(2,  2.85, cat1, "Kartoffeln", "100g");
@@ -88,7 +89,7 @@ public class StartupBean {
 		Product p19 = createProduct(19, 0.49, cat4, "Roggenbrötchen", "100g");
 		Product p20 = createProduct(20, 12.00, cat5, "Rinderhüftsteak", "100g");
 		Product p21 = createProduct(21, 4.67, cat3, "Gouda", "100g");
-		Product p22 = createProduct(22, 1.20, cat2, "Nudeln-Penne", "100g");
+		Product p22 = createProduct(22, 1.20, cat6, "Nudeln-Penne", "100g");
 
 
 		createRecipe(26, 5.89, "Kartoffelgratin", "Portion", p2, p7, p14, p21);
