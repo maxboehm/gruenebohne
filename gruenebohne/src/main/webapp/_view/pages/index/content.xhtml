@@ -86,7 +86,7 @@
 											<div class="col-xs-3">
 												<div class="products__price">
 													<h:outputText escape="false" value="&amp;nbsp;" />
-													#{prod.price}€
+													#{prod.price}€/#{prod.unit}
 												</div>
 											</div>
 										</div>
@@ -128,7 +128,7 @@
 								</h5>
 								<!--  <span class="line-through"><h:outputText escape="false" value="&amp;nbsp;" />5,60€</span>-->
 								<span class="products__price--widgets"><h:outputText
-										escape="false" value="&amp;nbsp;" />#{prod.price}€ </span> <br /> <br />
+										escape="false" value="&amp;nbsp;" />#{prod.price}€/#{prod.unit} </span> <br /> <br />
 								<span class="glyphicon glyphicon-star  star-on"></span> <span
 									class="glyphicon glyphicon-star  star-on"></span> <span
 									class="glyphicon glyphicon-star  star-on"></span> <span
@@ -163,7 +163,7 @@
 									</p:link>
 								</div>
 								<span class="products__price--widgets"><h:outputText
-										escape="false" value="&amp;nbsp;" />#{prod.price}€ </span> <br /> <br />
+										escape="false" value="&amp;nbsp;" />#{prod.price}€/#{prod.unit} </span> <br /> <br />
 								<div class="products__category">#{prod.category.category}</div>
 							</div>
 						</ui:repeat>

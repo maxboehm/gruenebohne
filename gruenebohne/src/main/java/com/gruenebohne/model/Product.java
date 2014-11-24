@@ -34,8 +34,8 @@ public class Product extends ProductBase{
 
 	public Product(){}
 
-	public Product(long id, String prodName, double price, ProductCategory cat){
-		super(id, prodName, price);
+	public Product(long id, String prodName, double price, ProductCategory cat, String unit){
+		super(id, prodName, price, unit);
 		setCategory(cat);
 	}
 

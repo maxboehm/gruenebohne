@@ -23,10 +23,11 @@ public abstract class ProductBase {
 	protected abstract String getDirName();
 
 	public ProductBase(){}
-	public ProductBase(long id, String prodName, double price){
+	public ProductBase(long id, String prodName, double price, String unit){
 		setProdId(id);
 		setProdName(prodName);
 		setPrice(price);
+		setUnit(unit);
 	}
 
 
@@ -44,6 +45,9 @@ public abstract class ProductBase {
 
 	@Column
 	private double price;
+	
+	@Column
+	private String unit;
 
 	@Column
 	@Lob
@@ -87,6 +91,14 @@ public abstract class ProductBase {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 
 

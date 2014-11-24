@@ -81,7 +81,7 @@
                         
                         <h6>Preis pro Portion</h6>
                              
-                        <span class="single-product__price"><h:outputText escape="false" value="&amp;nbsp;"/>#{recipedetail.recipe.price}€</span>
+                        <span class="single-product__price"><h:outputText escape="false" value="&amp;nbsp;"/>#{recipedetail.recipe.price}€/#{recipedetail.recipe.unit}</span>
 						<!--  <div class="single-product__rating">
 							<span class="glyphicon  glyphicon-star  star-on"></span> <span
 								class="glyphicon  glyphicon-star  star-on"></span> <span
@@ -186,7 +186,7 @@
 												</h5>
 											</div>
 											<div class="col-xs-3">
-												<div class="products__price">EUR<h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}</div>
+												<div class="products__price"><h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}€/#{prod.unit}</div>
 											</div>
 										</div>
 										<div class="products__category">#{prod.category.category}</div>

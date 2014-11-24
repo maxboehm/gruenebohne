@@ -21,8 +21,8 @@ public class Recipe extends ProductBase{
 
 	public Recipe(){}
 
-	public Recipe(long id, String prodName, double price, Product[] products){
-		super(id, prodName, price);
+	public Recipe(long id, String prodName, double price, Product[] products,String unit){
+		super(id, prodName, price, unit);
 		setProducts(Arrays.asList(products));
 	}
 
