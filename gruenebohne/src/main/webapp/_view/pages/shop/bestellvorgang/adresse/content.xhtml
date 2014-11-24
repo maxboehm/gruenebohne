@@ -192,10 +192,18 @@
 						<!-- Payment methods -->
 						<div class="payment">
 							<ul class="payment_methods">
-								<h:selectOneRadio layout="pageDirection">
-									<f:selectItem itemValue="" itemLabel="Lastschrift"  />
-									<f:selectItem itemValue="" itemLabel="Kreditkarte" />
-								</h:selectOneRadio>
+								<li><input type="radio" id="payment_method_bacs"
+									class="input-radio" name="payment_method" value="bacs"
+									checked="checked"/><label class="test">Rechnung</label>
+								</li>
+								<li><input type="radio" id="payment_method_bacs"
+									class="input-radio" name="payment_method" value="bacs"
+									/><label class="test">Kreditkarte</label>
+								</li>
+								<li><input type="radio" id="payment_method_bacs"
+									class="input-radio" name="payment_method" value="bacs"
+									/><label class="test">Überweisung</label>
+								</li>
 							</ul>
 							<f:param value="createOrder"></f:param>
 							<h:commandLink action="pretty:newBasket"
