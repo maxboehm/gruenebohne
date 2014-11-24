@@ -107,6 +107,11 @@ public class BeanBasket {
 		return totalPrice;
 	}
 	
+	public boolean getDeliveryCost() throws Exception{
+		double dtotalPrice= ejbBasket.getTotalPrice(this.currentBasket);
+		return dtotalPrice>=20 ? true:false;
+	}
+	
 	public List<Recipe> getRecipes(){
 		
 		ArrayList<Recipe> recipes = new ArrayList<Recipe>(ejbRecipe.getAllRecipes());

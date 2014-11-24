@@ -116,7 +116,12 @@
 							</tr>
 							<tr class="shipping">
 								<th>Versand</th>
+								<c:if test="#{basket.getDeliveryCost()==true}">
 								<td>Gratisversand</td>
+								</c:if>
+								<c:if test="#{basket.getDeliveryCost()==false}">
+								<td>5.95€</td>
+								</c:if>	
 							</tr>
 							<tr class="total">
 								<th><strong>Gesamtpreis Bestellung</strong></th>
