@@ -97,7 +97,7 @@
 	            			<input type="button" value="+" class="quantity__button  js--plus-one  js--clickable" />
 	          			</div>
 							<f:param value="#{productdetail.product.prodId}" name="prodId"/>
-							<h:commandLink class="btn btn-primary--transition" onclick="generate('#{productdetail.product.prodName} wurden hinzugefügt')"><span
+							<h:commandLink class="btn btn-primary--transition" onclick="generate('#{productdetail.product.prodName} hinzugefügt.')"><span
 								class="glyphicon glyphicon-plus"></span><span
 								class="glyphicon glyphicon-shopping-cart"></span> <span
 								class="single-product__btn-text"></span>
@@ -209,7 +209,7 @@
 														<f:param value="#{rec.prodId}" />
 													</p:link>
 													<h:form>
-													<h:commandLink styleClass="product-overlay__cart" onclick="generate('#{rec.prodName} wurde hinzugefügt')">
+													<h:commandLink styleClass="product-overlay__cart" onclick="generate('#{rec.prodName} hinzugefügt.')">
 											  			+<span class="glyphicon glyphicon-shopping-cart"></span>
 														<f:param value="#{rec.prodId}" name="prodId" />
 														<f:param value="1" name="quantity"/>
@@ -286,7 +286,7 @@
 										<f:param value="#{prod.prodId}" />
 									</p:link>
 									<h:form>
-									<h:commandLink styleClass="product-overlay__cart" onclick="generate('#{prod.prodName} wurden hinzugefügt')">
+									<h:commandLink styleClass="product-overlay__cart" onclick="generate('#{prod.prodName} hinzugefügt.')">
 							  			+<span class="glyphicon glyphicon-shopping-cart"></span>
 										<f:param value="#{prod.prodId}" name="prodId" />
 										<f:param value="1" name="quantity"/>
