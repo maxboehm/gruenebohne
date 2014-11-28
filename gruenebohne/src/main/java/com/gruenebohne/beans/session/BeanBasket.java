@@ -13,6 +13,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import com.gruenebohne.EJB.BasketEJB;
 import com.gruenebohne.EJB.CustomerEJB;
@@ -72,7 +73,18 @@ public class BeanBasket {
 		String prodId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("prodId");
 		String quantity = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("quantity");
 		ProductBase product = ejbProductBase.getProduct(Integer.parseInt(prodId));
+		
+		ejbBasket.addProductToBasket(this.currentBasket, product, Integer.parseInt(quantity));
 
+		currentBasket = ejbBasket.refreshBasket(this.currentBasket);
+		toString();
+	}
+	
+	public void performAddAjax(AjaxBehaviorEvent event) {
+		String prodId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("prodId");
+		String quantity = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("quantity");
+		ProductBase product = ejbProductBase.getProduct(Integer.parseInt(prodId));
+		
 		ejbBasket.addProductToBasket(this.currentBasket, product, Integer.parseInt(quantity));
 
 		currentBasket = ejbBasket.refreshBasket(this.currentBasket);
@@ -80,6 +92,16 @@ public class BeanBasket {
 	}
 
 	public void performDelete(ActionEvent event){
+		String prodId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("prodId");
+		ProductBase product = ejbProductBase.getProduct(Integer.parseInt(prodId));
+
+		ejbBasket.removeProductFromBasket(this.currentBasket, product);
+
+		currentBasket = ejbBasket.refreshBasket(this.currentBasket);
+		toString();
+	}
+	
+	public void performDeleteAjax(AjaxBehaviorEvent event){
 		String prodId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("prodId");
 		ProductBase product = ejbProductBase.getProduct(Integer.parseInt(prodId));
 
@@ -100,9 +122,30 @@ public class BeanBasket {
 		currentBasket = ejbBasket.refreshBasket(this.currentBasket);
 		toString();
 	}
+	
+	public void setQuantityAjax(AjaxBehaviorEvent event){
+		String productId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("productId");
+		String quantity = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("productQuantity");
+		
+		if(Integer.parseInt(quantity)>0){
+			ejbBasket.editQuantity(this.currentBasket, Integer.parseInt(productId), Integer.parseInt(quantity));
+		}
+		
+		currentBasket = ejbBasket.refreshBasket(this.currentBasket);
+		toString();
+	}
 
 	public String getTotalPrice() throws Exception{
 		double dtotalPrice= ejbBasket.getTotalPrice(this.currentBasket);
+		totalPrice = new DecimalFormat("0.00").format(dtotalPrice).replace(",", ".");
+		return totalPrice;
+	}
+	
+	public String getTotalPriceWithDeliveryCost() throws Exception{
+		double dtotalPrice= ejbBasket.getTotalPrice(this.currentBasket);
+		if(dtotalPrice<20){
+			dtotalPrice = dtotalPrice+5.95d;
+		}
 		totalPrice = new DecimalFormat("0.00").format(dtotalPrice).replace(",", ".");
 		return totalPrice;
 	}

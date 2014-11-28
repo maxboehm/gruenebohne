@@ -207,6 +207,7 @@
 				</div>
 				<div class="col-xs-12  col-md-3  hidden-sm  hidden-xs">
 					<!-- Cart in header -->
+				<h:form id="aktuellerWarenkorb">
 					<div class="header-cart">
 						<span class="header-cart__text--price"><span
 							class="header-cart__text">Warenkorb</span> <h:outputText
@@ -214,12 +215,12 @@
 						<p:link styleClass="header-cart__items" mappingId="warenkorb">
 							<span class="header-cart__items-num">#{basket.basketSize}</span>
 						</p:link>
+						
 						<!-- Open cart panel -->
 						<div class="header-cart__open-cart">
 
 							<ui:repeat var="basketItem"
 								value="#{basket.currentBasket.setRecordItems}">
-								<h:form>
 									<div
 										class="header-cart__product  clearfix  js--cart-remove-target">
 										<div class="header-cart__product-image">
@@ -227,14 +228,13 @@
 												<f:param value="#{basketItem.productBase.prodId}" />
 											</p:urlbuffer>
 											<img src="#{url}" alt="#{basketItem.productBase.prodName}" />
-
 										</div>
 										<div class="header-cart__product-image--hover">
 											<a href="#" class="js--remove-item"> <h:commandLink
-													styleClass="glyphicon  glyphicon-circle  glyphicon-remove"
-													actionListener="#{basket.performDelete}">
+													styleClass="glyphicon  glyphicon-circle  glyphicon-remove">
 													<f:param value="#{basketItem.productBase.prodId}"
 														name="prodId" />
+													<f:ajax render=":aktuellerWarenkorb" listener="#{basket.performDeleteAjax}"></f:ajax>
 												</h:commandLink>
 											</a>
 										</div>
@@ -252,7 +252,6 @@
 											#{basketItem.productBase.price}€
 										</div>
 									</div>
-								</h:form>
 							</ui:repeat>
 
 							<hr class="header-cart__divider" />
@@ -264,6 +263,7 @@
 							<p:link styleClass="btn btn-darker" mappingId="warenkorb">Produkte bestellen</p:link>
 						</div>
 					</div>
+					</h:form>
 				</div>
 			</div>
 		</div>

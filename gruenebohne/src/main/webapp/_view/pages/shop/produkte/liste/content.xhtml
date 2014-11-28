@@ -102,10 +102,14 @@
 												<span class="glyphicon glyphicon-search"></span>
 												<f:param value="#{prod.prodId}" />
 											</p:link>
-											<p:link styleClass="product-overlay__cart" mappingId="produkte-detail">
+											<h:form>
+											<h:commandLink styleClass="product-overlay__cart">
 									  			+<span class="glyphicon glyphicon-shopping-cart"></span>
-												<f:param value="#{prod.prodId}" />
-											</p:link>
+												<f:param value="#{prod.prodId}" name="prodId"/>
+												<f:param value="1" name="quantity" />
+												<f:ajax listener="#{basket.performAddAjax}" render=":aktuellerWarenkorb"/>
+											</h:commandLink>
+											</h:form>
 											<div class="product-overlay__stock">
 												<span class="in-stock"><h:outputText escape="false" value="&amp;bull;" /></span>
 												<span class="in-stock--text">Verfügbar</span>

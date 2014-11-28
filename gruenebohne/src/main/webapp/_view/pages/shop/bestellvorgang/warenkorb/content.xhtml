@@ -26,9 +26,9 @@
 							</tr>
 						</thead>
 						<tbody>
+						<h:form>
 							<ui:repeat var="basketItem"
 								value="#{basket.currentBasket.getSetRecordItems()}">
-								<h:form>
 									<tr class="cart_table_item">
 										<td class="product-remove"><h:commandLink
 												styleClass="glyphicon  glyphicon-remove"
@@ -77,8 +77,8 @@
 												<f:convertNumber minFractionDigits="2" locale="de"></f:convertNumber>
 											</h:outputText>€</td>
 									</tr>
-								</h:form>
-							</ui:repeat>
+								</ui:repeat>
+							</h:form>
 							<tr class="cart_table_action">
 								<td colspan="6" class="actions">
 									<div class="col-xs-6"></div>
@@ -126,7 +126,7 @@
 							<tr class="total">
 								<th><strong>Gesamtpreis Bestellung</strong></th>
 								<td><strong><span class="amount"><h:outputText
-												escape="false" value="&amp;nbsp;" />#{basket.getTotalPrice()}€
+												escape="false" value="&amp;nbsp;" />#{basket.getTotalPriceWithDeliveryCost()}€
 									</span></strong></td>
 							</tr>
 						</tfoot>
@@ -161,11 +161,13 @@
 											<span class="glyphicon glyphicon-search"></span>
 											<f:param value="#{rec.prodId}" />
 										</p:link>
-										<p:link styleClass="product-overlay__cart"
-											mappingId="rezepte-detail">
+										<h:form>
+										<h:commandLink styleClass="product-overlay__cart" actionListener="#{basket.performAdd}">
 											  			+<span class="glyphicon glyphicon-shopping-cart"></span>
-											<f:param value="#{rec.prodId}" />
-										</p:link>
+											<f:param value="#{rec.prodId}" name="prodId" />
+											<f:param value="1" name="quantity"></f:param>
+										</h:commandLink>
+										</h:form>
 										<div class="product-overlay__stock">
 											<span class="in-stock"><h:outputText escape="false"
 													value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>

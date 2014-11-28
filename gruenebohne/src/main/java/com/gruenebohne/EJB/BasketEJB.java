@@ -98,7 +98,18 @@ public class BasketEJB {
 			StringBuilder build = new StringBuilder();
 			ArrayList<RecordItem> list = new ArrayList<RecordItem>(
 					order.getSetRecordItems());
-
+			
+			String deliveryCost="";
+			Double totalCost = new BigDecimal(order.getTotalPrice()).setScale(2,
+					RoundingMode.HALF_UP).doubleValue();
+			if(order.getTotalPrice()<20){
+				deliveryCost="5,95€";
+				totalCost =+ 5.95d;
+			}
+			else{
+				deliveryCost="Kostenloser Versand";
+			}
+			
 			for (int i = 0; i < list.size(); i++) {
 				BigDecimal price = new BigDecimal(list.get(i).getProductBase().getPrice()).setScale(2, RoundingMode.HALF_UP);
 				build.append("\nPosition " + i + " \t"
@@ -129,14 +140,13 @@ public class BasketEJB {
 					+ build.toString()
 					+ " \n"
 					+ "\n\n"
-					+ "Versandkosten: Gratisversand\n"
+					+ "Versandkosten: "+deliveryCost
 					+ "Gesamtkosten brutto: "
 					+ new BigDecimal(order.getTotalPrice() * 0.81d).setScale(2,
 							RoundingMode.HALF_UP).doubleValue()
 					+ " EUR \n"
 					+ "Gesamtkosten netto: "
-					+ new BigDecimal(order.getTotalPrice()).setScale(2,
-							RoundingMode.HALF_UP).doubleValue()
+					+ totalCost
 					+ " EUR \n"
 					+ "Gewählte Zahlungsart: RECHNUNG \n"
 					+ "\n"

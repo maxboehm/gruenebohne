@@ -36,9 +36,14 @@
 											<f:param value="#{recipe.prodId}" />
 											<span class="glyphicon glyphicon-search"></span>
 										</p:link>
-										<a class="product-overlay__cart" href="#"> +<span
+										<h:form>
+										<h:commandLink class="product-overlay__cart" href="#"> +<span
 											class="glyphicon glyphicon-shopping-cart"></span>
-										</a>
+										<f:param value="#{recipe.prodId}" name="prodId" />
+										<f:param value="1" name="quantity" />
+										<f:ajax listener="#{basket.performAddAjax}" render=":aktuellerWarenkorb"/>
+										</h:commandLink>
+										</h:form>
 									</div>
 								</figure>
 								<div class="row">

@@ -110,10 +110,11 @@
 		            			<input type="button" value="+" class="quantity__button  js--plus-one  js--clickable" />
 		          			</div>
 								<f:param value="#{recipedetail.recipe.prodId}" name="prodId"/>
-								<h:commandLink class="btn btn-primary--transition" actionListener="#{basket.performAdd}"><span
+								<h:commandLink class="btn btn-primary--transition"><span
 									class="glyphicon glyphicon-plus"></span><span
 									class="glyphicon glyphicon-shopping-cart"></span> <span
 									class="single-product__btn-text"></span>
+									<f:ajax listener="#{basket.performAddAjax}" render=":aktuellerWarenkorb"/>
 									<h:outputText value="Hinzufügen"></h:outputText>
 								</h:commandLink>
 							</h:form>                           
@@ -165,11 +166,14 @@
 													<f:param value="#{prod.prodId}" />
 													<span class="glyphicon glyphicon-search"></span>
 												</p:link>
-												<p:link styleClass="product-overlay__cart"
-													mappingId="produkte-detail">
-													<f:param value="#{prod.prodId}" />
+												<h:form>
+												<h:commandLink styleClass="product-overlay__cart">
+													<f:param value="#{prod.prodId}" name="prodId"/>
+													<f:param value="1" name="quantity" />
+													<f:ajax listener="#{basket.performAddAjax}" render=":aktuellerWarenkorb"/>
 							  +<span class="glyphicon glyphicon-shopping-cart"></span>
-												</p:link>
+												</h:commandLink>
+												</h:form>
 												<div class="product-overlay__stock">
 													<span class="in-stock"><h:outputText escape="false"
 															value="&amp;bull;" /></span> <span class="in-stock--text">Verfügbar</span>
