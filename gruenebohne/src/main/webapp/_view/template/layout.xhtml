@@ -45,6 +45,10 @@
 			s.parentNode.insertBefore(wf, s);
 		})();
 	</script>
+	
+	<h:outputScript name="js/main.js" library="layout"></h:outputScript>
+	<h:outputScript name="js/gb.js" library="layout"></h:outputScript>
+	<h:outputScript name="js/noty.js" library="layout"></h:outputScript>
 
 </h:head>
 
@@ -73,25 +77,25 @@
 	</div>
 
 
-	<script type="text/javascript">
-		function downloadJSAtOnload() {
+<!-- 	<script type="text/javascript">
+// 		function downloadJSAtOnload() {
 			
-			var element = document.createElement("script");
-			element.src = "#{resource['layout:js/main.js']}";
-			document.body.appendChild(element);
+// 			var element = document.createElement("script");
+// 			element.src = "#{resource['layout:js/main.js']}";
+// 			document.body.appendChild(element);
 
-			var element = document.createElement("script");
-			element.src = "#{resource['layout:js/gb.js']}";
-			document.body.appendChild(element);
+// 			var element = document.createElement("script");
+// 			element.src = "#{resource['layout:js/gb.js']}";
+// 			document.body.appendChild(element);
 
-		}
-		if (window.addEventListener)
-			window.addEventListener("load", downloadJSAtOnload, false);
-		else if (window.attachEvent)
-			window.attachEvent("onload", downloadJSAtOnload);
-		else
-			window.onload = downloadJSAtOnload;
-	</script>
+// 		}
+// 		if (window.addEventListener)
+// 			window.addEventListener("load", downloadJSAtOnload, false);
+// 		else if (window.attachEvent)
+// 			window.attachEvent("onload", downloadJSAtOnload);
+// 		else
+// 			window.onload = downloadJSAtOnload;
+</script> -->
 
 </h:body>
 </html>

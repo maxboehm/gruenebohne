@@ -29,8 +29,8 @@
 										<h:commandLink action="pretty:account">Mein Account</h:commandLink>
 									</h:form></li>
 								<li><h:form>
-										<h:commandButton value="Abmelden" action="pretty:index"	type="submit"
-											class="btn btn-default btn-xs"
+										<h:commandButton value="Abmelden" action="pretty:index"
+											type="submit" class="btn btn-default btn-xs"
 											actionListener="#{usersession.logout}" />
 									</h:form></li>
 							</c:if>
@@ -133,7 +133,7 @@
 						<div class="form-group">
 							<h:commandButton value="ANMELDEN" type="submit"
 								styleClass="btn  btn-primary"
-								actionListener="#{login.performLogin}" />
+								actionListener="#{login.performLogin}"  />
 						</div>
 					</h:form>
 					<a data-toggle="modal" role="button" href="#registerModal"
@@ -207,20 +207,20 @@
 				</div>
 				<div class="col-xs-12  col-md-3  hidden-sm  hidden-xs">
 					<!-- Cart in header -->
-				<h:form id="aktuellerWarenkorb">
-					<div class="header-cart">
-						<span class="header-cart__text--price"><span
-							class="header-cart__text">Warenkorb</span> <h:outputText
-								escape="false" value="&amp;nbsp;" />#{basket.totalPrice}€</span>
-						<p:link styleClass="header-cart__items" mappingId="warenkorb">
-							<span class="header-cart__items-num">#{basket.basketSize}</span>
-						</p:link>
-						
-						<!-- Open cart panel -->
-						<div class="header-cart__open-cart">
+					<h:form id="aktuellerWarenkorb">
+						<div class="header-cart">
+							<span class="header-cart__text--price"><span
+								class="header-cart__text">Warenkorb</span> <h:outputText
+									escape="false" value="&amp;nbsp;" />#{basket.totalPrice}€</span>
+							<p:link styleClass="header-cart__items" mappingId="warenkorb">
+								<span class="header-cart__items-num">#{basket.basketSize}</span>
+							</p:link>
 
-							<ui:repeat var="basketItem"
-								value="#{basket.currentBasket.setRecordItems}">
+							<!-- Open cart panel -->
+							<div class="header-cart__open-cart">
+
+								<ui:repeat var="basketItem"
+									value="#{basket.currentBasket.setRecordItems}">
 									<div
 										class="header-cart__product  clearfix  js--cart-remove-target">
 										<div class="header-cart__product-image">
@@ -231,10 +231,11 @@
 										</div>
 										<div class="header-cart__product-image--hover">
 											<a href="#" class="js--remove-item"> <h:commandLink
-													styleClass="glyphicon  glyphicon-circle  glyphicon-remove">
+													styleClass="glyphicon  glyphicon-circle  glyphicon-remove" onclick="generate('#{basketItem.productBase.prodName} wurden entfernt','topLeft')">
 													<f:param value="#{basketItem.productBase.prodId}"
 														name="prodId" />
-													<f:ajax render=":aktuellerWarenkorb" listener="#{basket.performDeleteAjax}"></f:ajax>
+													<f:ajax render=":aktuellerWarenkorb"
+														listener="#{basket.performDeleteAjax}"></f:ajax>
 												</h:commandLink>
 											</a>
 										</div>
@@ -252,17 +253,17 @@
 											#{basketItem.productBase.price}€
 										</div>
 									</div>
-							</ui:repeat>
+								</ui:repeat>
 
-							<hr class="header-cart__divider" />
-							<div class="header-cart__subtotal-box">
-								<span class="header-cart__subtotal">Warenkorb gesamt:</span> <span
-									class="header-cart__subtotal-price"><h:outputText
-										escape="false" value="&amp;nbsp;" />#{basket.totalPrice}€ </span>
+								<hr class="header-cart__divider" />
+								<div class="header-cart__subtotal-box">
+									<span class="header-cart__subtotal">Warenkorb gesamt:</span> <span
+										class="header-cart__subtotal-price"><h:outputText
+											escape="false" value="&amp;nbsp;" />#{basket.totalPrice}€ </span>
+								</div>
+								<p:link styleClass="btn btn-darker" mappingId="warenkorb">Produkte bestellen</p:link>
 							</div>
-							<p:link styleClass="btn btn-darker" mappingId="warenkorb">Produkte bestellen</p:link>
 						</div>
-					</div>
 					</h:form>
 				</div>
 			</div>

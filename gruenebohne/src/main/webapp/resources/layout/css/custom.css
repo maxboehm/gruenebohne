@@ -94,3 +94,15 @@ html .video {padding-bottom:15px;}
 	position: relative;
 	border-left: 2px solid #71a866;
 }
+.notyTheme {
+            overflow: hidden;
+            border: 0px solid #413c35;
+            box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            background-color: #71a866;
+            padding:8px;
+            margin:5px;
+            margin-right:20px;
+            border-radius: 5px;
+            color: #ffffff !important;
+}

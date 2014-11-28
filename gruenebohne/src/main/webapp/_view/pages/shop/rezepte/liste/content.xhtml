@@ -5,6 +5,23 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition>
 
+	<script type="text/javascript">
+		function generate(text,layout) {
+			if(layout==null){
+				layout='topRight'
+			}
+			var n = noty({
+				text : text,
+				type : 'information',
+				dismissQueue : true,
+				layout : layout,
+				theme : 'notyTheme',
+				timeout:3000,
+				
+			});
+			console.log('html: ' + n.options.id);
+		}
+	</script>
 
 
 	<div class="container  push-down-30">
@@ -37,12 +54,13 @@
 											<span class="glyphicon glyphicon-search"></span>
 										</p:link>
 										<h:form>
-										<h:commandLink class="product-overlay__cart" href="#"> +<span
-											class="glyphicon glyphicon-shopping-cart"></span>
-										<f:param value="#{recipe.prodId}" name="prodId" />
-										<f:param value="1" name="quantity" />
-										<f:ajax listener="#{basket.performAddAjax}" render=":aktuellerWarenkorb"/>
-										</h:commandLink>
+											<h:commandLink class="product-overlay__cart" href="#" onclick="generate('#{recipe.prodName} wurde hinzugefügt')"> +<span
+													class="glyphicon glyphicon-shopping-cart"></span>
+												<f:param value="#{recipe.prodId}" name="prodId" />
+												<f:param value="1" name="quantity" />
+												<f:ajax listener="#{basket.performAddAjax}"
+													render=":aktuellerWarenkorb" />
+											</h:commandLink>
 										</h:form>
 									</div>
 								</figure>

@@ -5,9 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <ui:composition>
-
-
-
+	
 	<div class="woocommerce  push-down-30">
 		<div class="container">
 			<div class="row">
@@ -26,9 +24,9 @@
 							</tr>
 						</thead>
 						<tbody>
-						<h:form>
-							<ui:repeat var="basketItem"
-								value="#{basket.currentBasket.getSetRecordItems()}">
+							<h:form>
+								<ui:repeat var="basketItem"
+									value="#{basket.currentBasket.getSetRecordItems()}">
 									<tr class="cart_table_item">
 										<td class="product-remove"><h:commandLink
 												styleClass="glyphicon  glyphicon-remove"
@@ -39,8 +37,8 @@
 										<td class="product-thumbnail"><p:urlbuffer var="url"
 												mappingId="image">
 												<f:param value="#{basketItem.productBase.prodId}" />
-											</p:urlbuffer> <img style="width: 100%; height: auto;" src="#{url}" alt="#{basketItem.productBase.prodName}" />
-										</td>
+											</p:urlbuffer> <img style="width: 100%; height: auto;" src="#{url}"
+											alt="#{basketItem.productBase.prodName}" /></td>
 										<td class="product-name"><p:link
 												mappingId="produkte-detail">#{basketItem.productBase.prodName}
 												<f:param value="#{basketItem.productBase.prodId}" />
@@ -117,11 +115,11 @@
 							<tr class="shipping">
 								<th>Versand</th>
 								<c:if test="#{basket.getDeliveryCost()==true}">
-								<td>Gratisversand</td>
+									<td>Gratisversand</td>
 								</c:if>
 								<c:if test="#{basket.getDeliveryCost()==false}">
-								<td>5.95€</td>
-								</c:if>	
+									<td>5.95€</td>
+								</c:if>
 							</tr>
 							<tr class="total">
 								<th><strong>Gesamtpreis Bestellung</strong></th>
@@ -162,11 +160,12 @@
 											<f:param value="#{rec.prodId}" />
 										</p:link>
 										<h:form>
-										<h:commandLink styleClass="product-overlay__cart" actionListener="#{basket.performAdd}">
+											<h:commandLink styleClass="product-overlay__cart"
+												actionListener="#{basket.performAdd}">
 											  			+<span class="glyphicon glyphicon-shopping-cart"></span>
-											<f:param value="#{rec.prodId}" name="prodId" />
-											<f:param value="1" name="quantity"></f:param>
-										</h:commandLink>
+												<f:param value="#{rec.prodId}" name="prodId" />
+												<f:param value="1" name="quantity"></f:param>
+											</h:commandLink>
 										</h:form>
 										<div class="product-overlay__stock">
 											<span class="in-stock"><h:outputText escape="false"

@@ -6,28 +6,45 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition>
 
+	<script type="text/javascript">
+		function generate(text,layout) {
+			if(layout==null){
+				layout='topRight'
+			}
+			var n = noty({
+				text : text,
+				type : 'information',
+				dismissQueue : true,
+				layout : layout,
+				theme : 'notyTheme',
+				timeout:3000,
+				
+			});
+			console.log('html: ' + n.options.id);
+		}
+	</script>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 hidden-xss">
+				<h3 id="logo">
+					<span class="light">Aktuelle</span> Rezeptboxen
+				</h3>
+				<hr class="sidebar-divider" />
 
-
-   <div class="container">
-        <div class="row">
-            <div class="col-sm-3 hidden-xss">
-                <h3 id="logo"><span class="light">Aktuelle</span> Rezeptboxen</h3>
-                <hr class="sidebar-divider" />
-
-                <div class="">
-                    <ul class="nav nav-sidebar-menu">
-                        <ui:repeat value="#{recipes.recipes}" var="recipe">
-                            <li>
-                                <p:link styleClass="sidebar-menu__links" mappingId="rezepte-detail">
-                                    <f:param value="#{recipe.prodId}" />
+				<div class="">
+					<ul class="nav nav-sidebar-menu">
+						<ui:repeat value="#{recipes.recipes}" var="recipe">
+							<li><p:link styleClass="sidebar-menu__links"
+									mappingId="rezepte-detail">
+									<f:param value="#{recipe.prodId}" />
                                     #{recipe.prodName}
-                                </p:link>       
-                            </li>
-                        </ui:repeat>    	
-                    </ul>
-                </div>
+                                </p:link></li>
+						</ui:repeat>
+					</ul>
+				</div>
 
-                <!-- <h3 id="logo"><span class="light">Vergangene</span> Rezeptboxen</h3>
+				<!-- <h3 id="logo"><span class="light">Vergangene</span> Rezeptboxen</h3>
                 <hr class="sidebar-divider" />
 
                 <div class="features-menu">
@@ -53,47 +70,50 @@
                         </li>
                     </ul>
                 </div>-->
-            </div>
+			</div>
 
-            <div class="col-xs-12 col-sm-9">
-                <h3 id="headings">#{recipedetail.recipe.prodName}</h3>
-                <hr class="sidebar-divider" />
+			<div class="col-xs-12 col-sm-9">
+				<h3 id="headings">#{recipedetail.recipe.prodName}</h3>
+				<hr class="sidebar-divider" />
 
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 push-down-20">
-                        <div class="recipe-img">
-							<p:urlbuffer var="url" mappingId="image" >
-							  <f:param value="#{recipedetail.recipe.prodId}" />
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 push-down-20">
+						<div class="recipe-img">
+							<p:urlbuffer var="url" mappingId="image">
+								<f:param value="#{recipedetail.recipe.prodId}" />
 							</p:urlbuffer>
-							<img src="#{url}" class="gallery" alt="#{recipedetail.recipe.prodName}" />
-								
+							<img src="#{url}" class="gallery"
+								alt="#{recipedetail.recipe.prodName}" />
+
 							<div class="recipe-img-caption">
 								<div class="recipe-logo-lg">
 									<span class="glyphicon glyphicon-fire"></span>
 								</div>
 							</div>
-                        </div>
-                    </div>
+						</div>
+					</div>
 
-                    <div class="col-xs-12 col-sm-6 recipe">
-                        
-                        <h:outputText escape="false" value="#{recipedetail.recipe.recipeInfo}"/> 
-                        
-                        <h6>Preis pro Portion</h6>
-                             
-                        <span class="single-product__price"><h:outputText escape="false" value="&amp;nbsp;"/>#{recipedetail.recipe.price}€/#{recipedetail.recipe.unit}</span>
+					<div class="col-xs-12 col-sm-6 recipe">
+
+						<h:outputText escape="false"
+							value="#{recipedetail.recipe.recipeInfo}" />
+
+						<h6>Preis pro Portion</h6>
+
+						<span class="single-product__price"><h:outputText
+								escape="false" value="&amp;nbsp;" />#{recipedetail.recipe.price}€/#{recipedetail.recipe.unit}</span>
 						<!--  <div class="single-product__rating">
 							<span class="glyphicon  glyphicon-star  star-on"></span> <span
 								class="glyphicon  glyphicon-star  star-on"></span> <span
 								class="glyphicon  glyphicon-star  star-on"></span> <span
 								class="glyphicon  glyphicon-star  star-on"></span> <span
 								class="glyphicon  glyphicon-star  star-off"></span>
-						</div>-->  
+						</div>-->
 
-                        <div class="pull-right">
-                      
-                            <!-- Quantity buttons -->
-                            
+						<div class="pull-right">
+
+							<!-- Quantity buttons -->
+
 							<h:form id="addform">
 								<!-- 
 								<select class="btn  btn-shop">
@@ -103,62 +123,66 @@
 								</select>
 								 -->
 								<!-- Quantity buttons -->
-								<input type="hidden" id="prodId" name="prodId" value="#{recipedetail.recipe.prodId}"/>
+								<input type="hidden" id="prodId" name="prodId"
+									value="#{recipedetail.recipe.prodId}" />
 								<div class="quantity  js--quantity">
-		            			<input type="button" value="-" class="quantity__button  js--minus-one  js--clickable" />
-		            			<input type="text" name="quantity" value="1" class="quantity__input" />
-		            			<input type="button" value="+" class="quantity__button  js--plus-one  js--clickable" />
-		          			</div>
-								<f:param value="#{recipedetail.recipe.prodId}" name="prodId"/>
-								<h:commandLink class="btn btn-primary--transition"><span
-									class="glyphicon glyphicon-plus"></span><span
-									class="glyphicon glyphicon-shopping-cart"></span> <span
-									class="single-product__btn-text"></span>
-									<f:ajax listener="#{basket.performAddAjax}" render=":aktuellerWarenkorb"/>
+									<input type="button" value="-"
+										class="quantity__button  js--minus-one  js--clickable" /> <input
+										type="text" name="quantity" value="1" class="quantity__input" />
+									<input type="button" value="+"
+										class="quantity__button  js--plus-one  js--clickable" />
+								</div>
+								<f:param value="#{recipedetail.recipe.prodId}" name="prodId" />
+								<h:commandLink class="btn btn-primary--transition" onclick="generate('#{recipedetail.recipe.prodName} wurde hinzugefügt')">
+									<span class="glyphicon glyphicon-plus"></span>
+									<span class="glyphicon glyphicon-shopping-cart"></span>
+									<span class="single-product__btn-text"></span>
+									<f:ajax listener="#{basket.performAddAjax}"
+										render=":aktuellerWarenkorb" />
 									<h:outputText value="Hinzufügen"></h:outputText>
 								</h:commandLink>
-							</h:form>                           
-                            
-                        </div>
-                    </div>
-                </div><!-- Nav tabs -->
+							</h:form>
 
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a data-toggle="tab" href="#tabDesc">Zubereitung</a>
-                    </li>
+						</div>
+					</div>
+				</div>
+				<!-- Nav tabs -->
 
-                    <li>
-                        <a data-toggle="tab" href="#tabManufacturer">Zutaten</a>
-                    </li>
-                </ul>
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#tabDesc">Zubereitung</a>
+					</li>
 
-                <div class="tab-content">
-                    <div class="tab-pane fade in active" id="tabDesc">
-                        <br />
+					<li><a data-toggle="tab" href="#tabManufacturer">Zutaten</a></li>
+				</ul>
 
-                        <h:outputText escape="false" value="#{recipedetail.recipe.prodDescription}"/> 
-                    </div>
+				<div class="tab-content">
+					<div class="tab-pane fade in active" id="tabDesc">
+						<br />
 
-                    <div class="tab-pane fade" id="tabManufacturer">
-                        <br />
+						<h:outputText escape="false"
+							value="#{recipedetail.recipe.prodDescription}" />
+					</div>
 
-                        <div class="row">
+					<div class="tab-pane fade" id="tabManufacturer">
+						<br />
+
+						<div class="row">
 							<ui:repeat value="#{recipedetail.recipe.products}" var="prod">
 								<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-obst"
 									data-price="2.5" data-rating="5">
-							
+
 									<div class="products__single">
 										<figure class="products__image">
 											<p:link styleClass="" mappingId="produkte-detail">
-											<f:param value="#{prod.prodId}" />
-											
-													<p:urlbuffer var="url" mappingId="image" >
-													  <f:param value="#{prod.prodId}" />
-													</p:urlbuffer>
-													<img src="#{url}" class="product__image" alt="#{prod.prodName}" />
-													
-													
+												<f:param value="#{prod.prodId}" />
+
+												<p:urlbuffer var="url" mappingId="image">
+													<f:param value="#{prod.prodId}" />
+												</p:urlbuffer>
+												<img src="#{url}" class="product__image"
+													alt="#{prod.prodName}" />
+
+
 											</p:link>
 											<div class="product-overlay">
 												<p:link styleClass="product-overlay__more"
@@ -167,12 +191,14 @@
 													<span class="glyphicon glyphicon-search"></span>
 												</p:link>
 												<h:form>
-												<h:commandLink styleClass="product-overlay__cart">
-													<f:param value="#{prod.prodId}" name="prodId"/>
-													<f:param value="1" name="quantity" />
-													<f:ajax listener="#{basket.performAddAjax}" render=":aktuellerWarenkorb"/>
+													<h:commandLink styleClass="product-overlay__cart"
+														onclick="generate('#{prod.prodName} wurden hinzugefügt')">
+														<f:param value="#{prod.prodId}" name="prodId" />
+														<f:param value="1" name="quantity" />
+														<f:ajax listener="#{basket.performAddAjax}"
+															render=":aktuellerWarenkorb" />
 							  +<span class="glyphicon glyphicon-shopping-cart"></span>
-												</h:commandLink>
+													</h:commandLink>
 												</h:form>
 												<div class="product-overlay__stock">
 													<span class="in-stock"><h:outputText escape="false"
@@ -183,27 +209,31 @@
 										<div class="row">
 											<div class="col-xs-9">
 												<h5 class="products__title">
-													<p:link styleClass="products__link  js--isotope-title" mappingId="produkte-detail">
+													<p:link styleClass="products__link  js--isotope-title"
+														mappingId="produkte-detail">
 														<f:param value="#{prod.prodId}" />
 															#{prod.prodName}
 														</p:link>
 												</h5>
 											</div>
 											<div class="col-xs-3">
-												<div class="products__price"><h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}€/#{prod.unit}</div>
+												<div class="products__price">
+													<h:outputText escape="false" value="&amp;nbsp;" />
+													#{prod.price}€/#{prod.unit}
+												</div>
 											</div>
 										</div>
 										<div class="products__category">#{prod.category.category}</div>
 									</div>
 								</div>
 							</ui:repeat>
-                        </div>
-                    </div>
-                </div>
-                <hr class="divider" />
-            </div>
-        </div>
-    </div>
+						</div>
+					</div>
+				</div>
+				<hr class="divider" />
+			</div>
+		</div>
+	</div>
 
 
 

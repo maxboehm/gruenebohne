@@ -5,7 +5,23 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition>
 
-
+	<script type="text/javascript">
+		function generate(text,layout) {
+			if(layout==null){
+				layout='topRight'
+			}
+			var n = noty({
+				text : text,
+				type : 'information',
+				dismissQueue : true,
+				layout : layout,
+				theme : 'notyTheme',
+				timeout:3000,
+				
+			});
+			console.log('html: ' + n.options.id);
+		}
+	</script>
 
 	<h:form>
 		<div class="container">
@@ -30,7 +46,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- Products -->
 			<div id="js--latest-products-carousel" class="carousel slide"
 				data-ride="carousel" data-interval="5000">
@@ -60,13 +76,15 @@
 													<f:param value="#{prod.prodId}" />
 													<span class="glyphicon glyphicon-search"></span>
 												</p:link>
-												
-												<h:commandLink class="product-overlay__cart">
+
+												<h:commandLink class="product-overlay__cart"
+													onclick="generate('#{prod.prodName} wurden hinzugefügt')">
 												+<span class="glyphicon glyphicon-shopping-cart"></span>
-												<f:param value="#{prod.prodId}" name="prodId" />
-												<f:param value="1" name="quantity" />
-												<f:ajax listener="#{basket.performAddAjax}" render=":aktuellerWarenkorb">	 
-						 						</f:ajax>
+													<f:param value="#{prod.prodId}" name="prodId" />
+													<f:param value="1" name="quantity" />
+													<f:ajax listener="#{basket.performAddAjax}"
+														render=":aktuellerWarenkorb">
+													</f:ajax>
 												</h:commandLink>
 												<div class="product-overlay__stock">
 													<span class="in-stock"><h:outputText escape="false"
@@ -129,9 +147,9 @@
 								</h5>
 								<!--  <span class="line-through"><h:outputText escape="false" value="&amp;nbsp;" />5,60€</span>-->
 								<span class="products__price--widgets"><h:outputText
-										escape="false" value="&amp;nbsp;" />#{prod.price}€/#{prod.unit} </span> <br /> <br />
+										escape="false" value="&amp;nbsp;" />#{prod.price}€/#{prod.unit}
+								</span> <br /> <br /> <span class="glyphicon glyphicon-star  star-on"></span>
 								<span class="glyphicon glyphicon-star  star-on"></span> <span
-									class="glyphicon glyphicon-star  star-on"></span> <span
 									class="glyphicon glyphicon-star  star-on"></span> <span
 									class="glyphicon glyphicon-star  star-on"></span> <span
 									class="glyphicon glyphicon-star  star-on"></span>
@@ -164,7 +182,8 @@
 									</p:link>
 								</div>
 								<span class="products__price--widgets"><h:outputText
-										escape="false" value="&amp;nbsp;" />#{prod.price}€/#{prod.unit} </span> <br /> <br />
+										escape="false" value="&amp;nbsp;" />#{prod.price}€/#{prod.unit}
+								</span> <br /> <br />
 								<div class="products__category">#{prod.category.category}</div>
 							</div>
 						</ui:repeat>
