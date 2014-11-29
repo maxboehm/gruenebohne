@@ -7,9 +7,9 @@
 
 	<script type="text/javascript">
 		function generate(text,layout) {
-			if(layout==null){
+			/**if(layout==null){**/
 				layout='topRight'
-			}
+			/**}**/
 			var n = noty({
 				text : text,
 				type : 'information',
@@ -146,8 +146,9 @@
 										<f:param value="#{prod.prodId}" />#{prod.prodName}</p:link>
 								</h5>
 								<!--  <span class="line-through"><h:outputText escape="false" value="&amp;nbsp;" />5,60€</span>-->
-								<span class="products__price--widgets"><h:outputText
-										escape="false" value="&amp;nbsp;" />#{prod.price}€<small>/#{prod.unit}</small>
+								<span class="products__price--widgets"><h:outputText escape="false" value="#{prod.price}">
+                                            <f:convertNumber minFractionDigits="2" locale="en"></f:convertNumber>
+                                        </h:outputText>€<small>/#{prod.unit}</small>
 								</span> <br /> <br /> <span class="glyphicon glyphicon-star  star-on"></span>
 								<span class="glyphicon glyphicon-star  star-on"></span> <span
 									class="glyphicon glyphicon-star  star-on"></span> <span
@@ -176,15 +177,16 @@
 									<img src="#{url}" class="widgets__products"
 										alt="#{prod.prodName}" />
 								</p:link>
-								<div class="products__title">
+								<h5 class="products__title">
 									<p:link styleClass="products__link" mappingId="produkte-detail">#{prod.prodName}<f:param
 											value="#{prod.prodId}" />
 									</p:link>
-								</div>
-								<span class="products__price--widgets"><h:outputText
-										escape="false" value="&amp;nbsp;" />#{prod.price}€<small>/#{prod.unit}</small>
+								</h5>
+                                <div class="products__category">#{prod.category.category}</div>
+                                <span class="products__price--widgets"><h:outputText escape="false" value="#{prod.price}">
+                                            <f:convertNumber minFractionDigits="2" locale="en"></f:convertNumber>
+                                        </h:outputText>€<small>/#{prod.unit}</small>
 								</span> <br /> <br />
-								<div class="products__category">#{prod.category.category}</div>
 							</div>
 						</ui:repeat>
 

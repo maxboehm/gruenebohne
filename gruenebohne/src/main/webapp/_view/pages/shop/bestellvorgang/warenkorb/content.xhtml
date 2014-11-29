@@ -72,15 +72,15 @@
 										<td class="product-subtotal"><h:outputText escape="false"
 												value="&amp;nbsp;" /> <h:outputText
 												value="#{basketItem.productBase.price*basketItem.quantity}">
-												<f:convertNumber minFractionDigits="2" locale="de"></f:convertNumber>
+												<f:convertNumber minFractionDigits="2" locale="en"></f:convertNumber>
 											</h:outputText>€</td>
 									</tr>
 								</ui:repeat>
 							</h:form>
 							<tr class="cart_table_action">
 								<td colspan="6" class="actions">
-									<div class="col-xs-6"></div>
-									<div class="col-xs-6">
+									<div class="col-xs-12"></div>
+									<div class="col-xs-12">
 										<c:if test="#{usersession.isLoggedin==false}">
 											<a class="btn  btn-primary  pull-right" href="#loginModal"
 												role="button" data-toggle="modal">Bestellvorgang
@@ -118,7 +118,7 @@
 									<td>Gratisversand</td>
 								</c:if>
 								<c:if test="#{basket.getDeliveryCost()==false}">
-									<td>5.95€</td>
+									<td><h:outputText value="&#160;" />5.95€</td>
 								</c:if>
 							</tr>
 							<tr class="total">
