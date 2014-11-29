@@ -35,8 +35,7 @@
 
 					<ui:repeat value="#{recipes.recipes}" var="recipe">
 
-						<div class="col-xs-6 col-sm-3  js--isotope-target  js--cat-2"
-							data-price="14.36" data-rating="4">
+						<div class="col-xs-6 col-sm-3">
 							<div class="products__single">
 								<figure class="products__image">
 									<p:link mappingId="rezepte-detail">
@@ -65,7 +64,7 @@
 									</div>
 								</figure>
 								<div class="row">
-									<div class="col-xs-9">
+									<div class="col-xs-12 col-md-6 col-lg-8">
 										<h5 class="products__title">
 											<p:link styleClass="products__link  js--isotope-title"
 												mappingId="rezepte-detail">
@@ -73,10 +72,8 @@
 												#{recipe.prodName}</p:link>
 										</h5>
 									</div>
-									<div class="col-xs-3">
-										<div class="products__price">
-											<h:outputText escape="false" value="&amp;nbsp;" />
-											#{recipe.price}€/#{recipe.unit}
+									<div class="col-xs-12 col-md-6 col-lg-4">
+										<div class="products__price"><h:outputText escape="false" value="&amp;nbsp;" />#{recipe.price}€<small>/#{recipe.unit}</small>  
 										</div>
 									</div>
 								</div>
@@ -84,8 +81,8 @@
 								<div></div>
 							</div>
 						</div>
-
 					</ui:repeat>
+					<div class="clearfix  hidden-xs"></div>
 				</div>
 				<hr class="divider  divider-about" />
 			</div>
