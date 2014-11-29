@@ -64,7 +64,12 @@
 						<h1 class="single-product__title">
 							<span class="light"></span> #{productdetail.product.prodName}
 						</h1>
-						<span class="single-product__price"><h:outputText escape="false" value="&amp;nbsp;" />#{productdetail.product.price}€<small>/#{productdetail.product.unit}</small></span>
+						<span class="single-product__price">
+							<h:outputText value="#{productdetail.product.price}">
+								<f:convertNumber minFractionDigits="2" locale="en"></f:convertNumber>
+							</h:outputText>€<small>/#{productdetail.product.unit}</small>
+
+						</span>
 						<div class="single-product__rating">
 							<span class="glyphicon  glyphicon-star  star-on"></span> <span
 								class="glyphicon  glyphicon-star  star-on"></span> <span

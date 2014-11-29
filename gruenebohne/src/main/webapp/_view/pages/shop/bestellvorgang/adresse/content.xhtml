@@ -156,9 +156,12 @@
 							<tfoot>
 								<tr class="cart-subtotal">
 									<th>Gesamtpreis Warenkorb</th>
-									<td><span class="amount">EUR<h:outputText
-												escape="false" value="&amp;nbsp;" />#{basket.getTotalPrice()}
-									</span></td>
+									<td>
+									<h:outputText escape="false" value="#{basket.getTotalPrice()}">
+											<f:convertNumber minFractionDigits="2" locale="en"></f:convertNumber>
+										</h:outputText>€
+									
+									</td>
 								</tr>
 								<tr class="shipping">
 									<th>Versand</th>
@@ -166,9 +169,11 @@
 								</tr>
 								<tr class="total">
 									<th><strong>Gesamtpreis Bestellung</strong></th>
-									<td><strong><span class="amount">EUR<h:outputText
-													escape="false" value="&amp;nbsp;" />#{basket.getTotalPrice()}
-										</span></strong></td>
+									<td><strong> <h:outputText escape="false"
+												value="#{basket.getTotalPrice()}">
+												<f:convertNumber minFractionDigits="2" locale="en"></f:convertNumber>
+											</h:outputText>€
+									</strong></td>
 								</tr>
 							</tfoot>
 							<tbody>
@@ -179,11 +184,11 @@
 											<strong class="product-quantity">×
 												#{basketItem.quantity}</strong>
 										</td>
-										<td class="product-total"><span class="amount">EUR
+										<td class="product-total"><span class="amount">
 												<h:outputText escape="false"
 													value="#{basketItem.productBase.price*basketItem.quantity}">
-													<f:convertNumber minFractionDigits="2" locale="de"></f:convertNumber>
-												</h:outputText>
+													<f:convertNumber minFractionDigits="2" locale="en"></f:convertNumber>
+												</h:outputText>€
 										</span></td>
 									</tr>
 								</ui:repeat>
@@ -194,15 +199,15 @@
 							<ul class="payment_methods">
 								<li><input type="radio" id="payment_method_bacs"
 									class="input-radio" name="payment_method" value="bacs"
-									checked="checked"/><label class="test">Rechnung</label>
+									checked="checked"/><label class="test"><h:outputText value="&#160;" /><h:outputText value="&#160;" />Rechnung</label>
 								</li>
 								<li><input type="radio" id="payment_method_bacs"
 									class="input-radio" name="payment_method" value="bacs"
-									/><label class="test">Kreditkarte</label>
+									/><label class="test"><h:outputText value="&#160;" /><h:outputText value="&#160;" />Kreditkarte</label>
 								</li>
 								<li><input type="radio" id="payment_method_bacs"
 									class="input-radio" name="payment_method" value="bacs"
-									/><label class="test">Überweisung</label>
+									/><label class="test"><h:outputText value="&#160;" /><h:outputText value="&#160;" />Überweisung</label>
 								</li>
 							</ul>
 							<f:param value="createOrder"></f:param>
