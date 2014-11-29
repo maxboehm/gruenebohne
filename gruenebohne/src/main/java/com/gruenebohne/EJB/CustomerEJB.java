@@ -2,15 +2,11 @@ package com.gruenebohne.EJB;
 
 import java.util.List;
 
-import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.gruenebohne.beans.session.BeanSession;
 import com.gruenebohne.model.Address;
 import com.gruenebohne.model.Customer;
 
@@ -27,9 +23,12 @@ public class CustomerEJB {
 				.createNamedQuery("GetCustomer", Customer.class)
 				.setParameter("custEmail", eMail)
 				.setParameter("custPassword", password).getResultList();
-		if (customer.isEmpty()) {
+
+		// WRONG login data
+		if (customer.isEmpty())
 			return null;
-		}
+
+		// CORRECT login data
 		return customer.get(0);
 	}
 
@@ -56,12 +55,12 @@ public class CustomerEJB {
 		em.flush();
 
 	}
-	
+
 	public Customer refreshCustomer(Customer customer){
 		List<Customer> customerExist = em.createNamedQuery("GetCustomer").setParameter("custEmail", customer.geteMail()).setParameter("custPassword", customer.getPassWord()).getResultList();
-		if(!customerExist.isEmpty()){
+		if(!customerExist.isEmpty())
 			return customerExist.get(0);
-		}
+
 		return customer;
 	}
 }

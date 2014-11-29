@@ -27,31 +27,32 @@ public class BeanRegister {
 
 	@EJB private CustomerEJB customerejb;
 
+	/**
+	 * create and login a new customer via its request
+	 * @param event
+	 */
 	public void createNewCustomer(ActionEvent event) {
 		System.out.println("CREATE NEW CUSTOMER");
+		// Create new customer
 		Customer customer = new Customer();
+		// set data by request
 		customer.seteMail(getEmail());
 		customer.setPassWord(getPassword());
 		customer.setFirstName(getFirstname());
 		customer.setLastName(getLastname());
+		// save new customer
 		customerejb.registerCustomer(customer);
-
+		// login the new customer
 		sessionBean.performLogin(getEmail(), getPassword());
 	}
-
-
 
 	public BeanSession getSessionBean() {
 		return sessionBean;
 	}
 
-
-
 	public void setSessionBean(BeanSession sessionBean) {
 		this.sessionBean = sessionBean;
 	}
-
-
 
 	public String getEmail() {
 		return email;
@@ -84,8 +85,5 @@ public class BeanRegister {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-
-
-
 
 }

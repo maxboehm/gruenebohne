@@ -17,12 +17,14 @@ public class ProductBaseEJB {
 	private EntityManager em;
 
 	public ProductBase getProduct(int prodId){
-
+		// get product by id
 		List <ProductBase> product = em.createNamedQuery("GetProductBase", ProductBase.class).setParameter("prodId", prodId).getResultList();
 
-		if(product.isEmpty()){
+		// no product? return null
+		if(product.isEmpty())
 			return null;
-		}
+
+		// otherwise return product
 		return product.get(0);
 	}
 

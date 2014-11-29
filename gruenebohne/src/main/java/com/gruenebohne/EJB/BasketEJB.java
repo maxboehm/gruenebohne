@@ -1,18 +1,14 @@
 package com.gruenebohne.EJB;
 
-import java.awt.datatransfer.StringSelection;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Properties;
 
-import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.ejb.EJBs;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.mail.Message;
@@ -47,19 +43,26 @@ public class BasketEJB {
 	private ProducerEJB producerejb;
 
 	public Record getNewBasket() {
-		Record record = new Record();
-		return record;
+		return new Record();
 	}
 
-	public void createOrder(Customer updatedCustomer, Record newOrder,
-			Address address) throws Exception {
-		List<Record> result = em.createNamedQuery("getRecord", Record.class)
-				.setParameter("basketId", newOrder.getId()).getResultList();
-
+	/**
+	 * Create order and send confirmation email subsequently
+	 * @param updatedCustomer
+	 * @param newOrder
+	 * @param address
+	 * @throws Exception
+	 */
+	public void createOrder(Customer updatedCustomer, Record newOrder, Address address) throws Exception {
+		// Get records
+		List<Record> result = em.createNamedQuery("getRecord", Record.class).setParameter("basketId", newOrder.getId()).getResultList();
+		// set customer
 		newOrder.setCustomer(updatedCustomer);
+		// set the price
 		newOrder.setTotalPrice(getTotalPrice(newOrder));
 
 		if (!result.isEmpty()) {
+			// save order
 			Record order = em.merge(newOrder);
 			em.flush();
 
@@ -68,12 +71,127 @@ public class BasketEJB {
 						.createNamedQuery("getRecord", Record.class)
 						.setParameter("basketId", order.getId())
 						.getResultList();
+				// set confirmation email
 				sendConfirmationEmail(temp.get(0));
 			}
 		}
 	}
 
+
+	/**
+	 * @param basket
+	 * @param product
+	 * @param nQuantity
+	 */
+	public void addProductToBasket(Record basket, ProductBase product,
+			int nQuantity) {
+		// Ermittle den Warenkorb
+		List<Record> result = em.createNamedQuery("getRecord", Record.class)
+				.setParameter("basketId", basket.getId()).getResultList();
+
+		// Warenkorb noch nicht in Datenbank
+		if (result.isEmpty()) {
+			hlpAdd(basket, product, nQuantity);
+			em.persist(basket);
+			em.flush();
+
+			// Warenkorb in Datenbank
+		} else {
+			hlpAdd(basket, product, nQuantity);
+			em.merge(basket);
+			em.flush();
+		}
+	}
+
+	/**
+	 * @param basket
+	 * @param product
+	 * @param nQuantity
+	 */
+	private void hlpAdd(Record basket, ProductBase product, int nQuantity) {
+		// Search if this product is already in the basket
+		for (RecordItem itemExistent : basket.getSetRecordItems())
+			if (itemExistent.getProductBase().getProdId() == product.getProdId()) {
+				// if it is already there, just modify the quantity
+				itemExistent.setQuantity(itemExistent.getQuantity() + nQuantity);
+				return;
+			}
+
+		// if it's not there, create a new record
+		RecordItem item = new RecordItem();
+		item.setProductBase(product);
+		item.setQuantity(nQuantity);
+		item.setRecord(basket);
+		basket.getSetRecordItems().add(item);
+
+	}
+
+	/**
+	 * @param basket
+	 * @param product
+	 */
+	public void removeProductFromBasket(Record basket, ProductBase product) {
+		// Retrieve all records
+		List<Record> result = em.createNamedQuery("getRecord", Record.class).setParameter("basketId", basket.getId()).getResultList();
+
+		RecordItem deletItem = null;
+		for (RecordItem item : result.get(0).getSetRecordItems()) {
+			// search for the record which should get deleted
+			if (item.getProductBase().getProdId() == product.getProdId())
+				deletItem = item;
+		}
+		result.get(0).getSetRecordItems().remove(deletItem);
+		em.flush();
+
+	}
+
+	/**
+	 * @param basket
+	 * @return
+	 */
+	public Record refreshBasket(Record basket) {
+		// reload basket
+		List<Record> result = em.createNamedQuery("getRecord", Record.class).setParameter("basketId", basket.getId()).getResultList();
+		return result.get(0);
+	}
+
+	public int getBasketSize(Record basket) {
+		int size = 0;
+		// load basket
+		List<Record> result = em.createNamedQuery("getRecord", Record.class).setParameter("basketId", basket.getId()).getResultList();
+		if (!result.isEmpty())
+			size = result.get(0).getSetRecordItems().size();
+
+		return size;
+	}
+
+	public double getTotalPrice(Record basket) throws Exception {
+		double price = 0;
+		List<Record> result = em.createNamedQuery("getRecord", Record.class).setParameter("basketId", basket.getId()).getResultList();
+		if (!result.isEmpty())
+			// get price through iteration and summing up
+			for (RecordItem item : result.get(0).getSetRecordItems())
+				price += item.getProductBase().getPrice() * item.getQuantity();
+
+		return price;
+	}
+
+	public void editQuantity(Record basket, int productId, int quantity) {
+		List<Record> result = em.createNamedQuery("getRecord", Record.class).setParameter("basketId", basket.getId()).getResultList();
+
+		for (RecordItem item : result.get(0).getSetRecordItems())
+			if (item.getProductBase().getProdId() == productId)
+				item.setQuantity(quantity);
+
+		em.flush();
+	}
+
+	/**
+	 * Confirmation email by order
+	 * @param order
+	 */
 	private void sendConfirmationEmail(Record order) {
+		// configure host
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
@@ -83,22 +201,24 @@ public class BasketEJB {
 
 		Session session = Session.getInstance(props,
 				new javax.mail.Authenticator() {
-					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication(
-								"gruenebohne.store@gmail.com", "tobias123");
-					}
-				});
+			@Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+				// set password and user
+				return new PasswordAuthentication(
+						"gruenebohne.store@gmail.com", "tobias123");
+			}
+		});
 
 		try {
+			// create a new message
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("gruenebohne.store@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
 					InternetAddress.parse(order.getCustomer().geteMail()));
 			message.setSubject("Gruenebohne Bestellung");
 			StringBuilder build = new StringBuilder();
-			ArrayList<RecordItem> list = new ArrayList<RecordItem>(
-					order.getSetRecordItems());
-			
+			ArrayList<RecordItem> list = new ArrayList<RecordItem>(order.getSetRecordItems());
+
 			String deliveryCost="";
 			Double totalCost = new BigDecimal(order.getTotalPrice()).setScale(2,
 					RoundingMode.HALF_UP).doubleValue();
@@ -109,7 +229,7 @@ public class BasketEJB {
 			else{
 				deliveryCost="Kostenloser Versand";
 			}
-			
+
 			for (int i = 0; i < list.size(); i++) {
 				BigDecimal price = new BigDecimal(list.get(i).getProductBase().getPrice()).setScale(2, RoundingMode.HALF_UP);
 				build.append("\nPosition " + i + " \t"
@@ -129,31 +249,31 @@ public class BasketEJB {
 					+ ") am "
 					+ DateFormat.getDateInstance(DateFormat.SHORT).format(
 							GregorianCalendar.getInstance().getTime())
-					+ " um "
-					+ DateFormat.getTimeInstance(DateFormat.SHORT).format(
-							GregorianCalendar.getInstance().getTime())
-					+ ". Informationen zu Ihrer Bestellung:"
-					+ "\n"
-					+ "\n"
-					+ "Position \t\t Artikelname \t\t Menge \t\t Preis \t\t Summe"
-					+ " \n ___________________________________________________________________"
-					+ build.toString()
-					+ " \n"
-					+ "\n\n"
-					+ "Versandkosten: "+deliveryCost
-					+ "Gesamtkosten brutto: "
-					+ new BigDecimal(order.getTotalPrice() * 0.81d).setScale(2,
-							RoundingMode.HALF_UP).doubleValue()
-					+ " EUR \n"
-					+ "Gesamtkosten netto: "
-					+ totalCost
-					+ " EUR \n"
-					+ "Gewählte Zahlungsart: RECHNUNG \n"
-					+ "\n"
-					+ "Wie ziehen den Betrag in den nächsten Tagen von deinem Konto ein. "
-					+ "Für Rückfragen stehen wir dir jederzeit gerne zur Verfügung.\n\n\n"
-					+ "Wir wünschen Ihnen noch einen schönen Tag \n"
-					+ "Die gruenebohne :)");
+							+ " um "
+							+ DateFormat.getTimeInstance(DateFormat.SHORT).format(
+									GregorianCalendar.getInstance().getTime())
+									+ ". Informationen zu Ihrer Bestellung:"
+									+ "\n"
+									+ "\n"
+									+ "Position \t\t Artikelname \t\t Menge \t\t Preis \t\t Summe"
+									+ " \n ___________________________________________________________________"
+									+ build.toString()
+									+ " \n"
+									+ "\n\n"
+									+ "Versandkosten: "+deliveryCost
+									+ "Gesamtkosten brutto: "
+									+ new BigDecimal(order.getTotalPrice() * 0.81d).setScale(2,
+											RoundingMode.HALF_UP).doubleValue()
+											+ " EUR \n"
+											+ "Gesamtkosten netto: "
+											+ totalCost
+											+ " EUR \n"
+											+ "Gewählte Zahlungsart: RECHNUNG \n"
+											+ "\n"
+											+ "Wie ziehen den Betrag in den nächsten Tagen von deinem Konto ein. "
+											+ "Für Rückfragen stehen wir dir jederzeit gerne zur Verfügung.\n\n\n"
+											+ "Wir wünschen Ihnen noch einen schönen Tag \n"
+											+ "Die gruenebohne :)");
 
 			Transport.send(message);
 		} catch (MessagingException e) {
@@ -199,7 +319,7 @@ public class BasketEJB {
 						+ price.doubleValue()
 						* list.get(i).getQuantity()+" EUR");
 			}
-			
+
 			ArrayList <Address> adresse = new ArrayList<Address>(order.getCustomer().getAddress());
 			message.setText("Neue Bestellung von: "
 					+ order.getCustomer().getFirstName()
@@ -208,34 +328,34 @@ public class BasketEJB {
 					+ " am "
 					+ DateFormat.getDateInstance(DateFormat.SHORT).format(
 							GregorianCalendar.getInstance().getTime())
-					+ " um "
-					+ DateFormat.getTimeInstance(DateFormat.SHORT).format(
-							GregorianCalendar.getInstance().getTime())
-					+ "\n"
-					+ "BestellID: "
-					+ order.getId()
-					+ "\n"
-					+ "\n"
-					+ "Position \t\t Artikelnummer \t\t Artikelname \t\t Produzent \t\t Menge \t\t Preis \t\t Summe"
-					+ " \n _________________________________________________________________________________________"
-					+ build.toString()
-					+ " \n"
-					+ "\n\n"
-					+ "Kundenname: "+order.getCustomer().getFirstName()+" "+order.getCustomer().getLastName()+ " \n"
-					+ "Straße: "+adresse.get(0).getStreetAndNumner()+ " \n"
-					+ "Postleitzahl: "+adresse.get(0).getPostalCode()+ " \n"
-					+ "Stadt: "+adresse.get(0).getCity()+ " \n"
-					+ " \n"
-					+ "\n\n"
-					+ "Versandkosten: Gratisversand\n"
-					+ "Gesamtkosten brutto: "
-					+ new BigDecimal(order.getTotalPrice() * 0.81d).setScale(2,
-							RoundingMode.HALF_UP).doubleValue()
-					+ " EUR \n"
-					+ "Gesamtkosten netto: "
-					+ new BigDecimal(order.getTotalPrice()).setScale(2,
-							RoundingMode.HALF_UP).doubleValue() + " EUR \n"
-					+ "Gewählte Zahlungsart: RECHNUNG \n" + "\n");
+							+ " um "
+							+ DateFormat.getTimeInstance(DateFormat.SHORT).format(
+									GregorianCalendar.getInstance().getTime())
+									+ "\n"
+									+ "BestellID: "
+									+ order.getId()
+									+ "\n"
+									+ "\n"
+									+ "Position \t\t Artikelnummer \t\t Artikelname \t\t Produzent \t\t Menge \t\t Preis \t\t Summe"
+									+ " \n _________________________________________________________________________________________"
+									+ build.toString()
+									+ " \n"
+									+ "\n\n"
+									+ "Kundenname: "+order.getCustomer().getFirstName()+" "+order.getCustomer().getLastName()+ " \n"
+									+ "Straße: "+adresse.get(0).getStreetAndNumner()+ " \n"
+									+ "Postleitzahl: "+adresse.get(0).getPostalCode()+ " \n"
+									+ "Stadt: "+adresse.get(0).getCity()+ " \n"
+									+ " \n"
+									+ "\n\n"
+									+ "Versandkosten: Gratisversand\n"
+									+ "Gesamtkosten brutto: "
+									+ new BigDecimal(order.getTotalPrice() * 0.81d).setScale(2,
+											RoundingMode.HALF_UP).doubleValue()
+											+ " EUR \n"
+											+ "Gesamtkosten netto: "
+											+ new BigDecimal(order.getTotalPrice()).setScale(2,
+													RoundingMode.HALF_UP).doubleValue() + " EUR \n"
+													+ "Gewählte Zahlungsart: RECHNUNG \n" + "\n");
 
 			Transport.send(message);
 		} catch (MessagingException e) {
@@ -243,103 +363,5 @@ public class BasketEJB {
 		}
 	}
 
-	/**
-	 * @param basket
-	 * @param product
-	 * @param nQuantity
-	 */
-	public void addProductToBasket(Record basket, ProductBase product,
-			int nQuantity) {
-		// Ermittle den Warenkorb
-		List<Record> result = em.createNamedQuery("getRecord", Record.class)
-				.setParameter("basketId", basket.getId()).getResultList();
-
-		// Warenkorb noch nicht in Datenbank
-		if (result.isEmpty()) {
-			hlpAdd(basket, product, nQuantity);
-			em.persist(basket);
-			em.flush();
-
-			// Warenkorb in Datenbank
-		} else {
-			hlpAdd(basket, product, nQuantity);
-			em.merge(basket);
-			em.flush();
-		}
-	}
-
-	private void hlpAdd(Record basket, ProductBase product, int nQuantity) {
-		for (RecordItem itemExistent : basket.getSetRecordItems())
-			if (itemExistent.getProductBase().getProdId() == product
-					.getProdId()) {
-				itemExistent
-						.setQuantity(itemExistent.getQuantity() + nQuantity);
-				return;
-			}
-
-		RecordItem item = new RecordItem();
-		item.setProductBase(product);
-		item.setQuantity(nQuantity);
-		item.setRecord(basket);
-		basket.getSetRecordItems().add(item);
-
-	}
-
-	public void removeProductFromBasket(Record basket, ProductBase product) {
-
-		List<Record> result = em.createNamedQuery("getRecord", Record.class)
-				.setParameter("basketId", basket.getId()).getResultList();
-
-		RecordItem deletItem = null;
-		for (RecordItem item : result.get(0).getSetRecordItems()) {
-			if (item.getProductBase().getProdId() == product.getProdId()) {
-				deletItem = item;
-			}
-		}
-		result.get(0).getSetRecordItems().remove(deletItem);
-		em.flush();
-
-	}
-
-	public Record refreshBasket(Record basket) {
-		List<Record> result = em.createNamedQuery("getRecord", Record.class)
-				.setParameter("basketId", basket.getId()).getResultList();
-
-		return result.get(0);
-	}
-
-	public int getBasketSize(Record basket) {
-		int size = 0;
-		List<Record> result = em.createNamedQuery("getRecord", Record.class)
-				.setParameter("basketId", basket.getId()).getResultList();
-		if (!result.isEmpty()) {
-			size = result.get(0).getSetRecordItems().size();
-		}
-		return size;
-	}
-
-	public double getTotalPrice(Record basket) throws Exception {
-		double price = 0;
-		List<Record> result = em.createNamedQuery("getRecord", Record.class)
-				.setParameter("basketId", basket.getId()).getResultList();
-		if (!result.isEmpty()) {
-			for (RecordItem item : result.get(0).getSetRecordItems()) {
-				price += item.getProductBase().getPrice() * item.getQuantity();
-			}
-		}
-		return price;
-	}
-
-	public void editQuantity(Record basket, int productId, int quantity) {
-		List<Record> result = em.createNamedQuery("getRecord", Record.class)
-				.setParameter("basketId", basket.getId()).getResultList();
-
-		for (RecordItem item : result.get(0).getSetRecordItems()) {
-			if (item.getProductBase().getProdId() == productId) {
-				item.setQuantity(quantity);
-			}
-		}
-		em.flush();
-	}
 
 }

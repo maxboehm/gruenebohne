@@ -35,6 +35,10 @@ public class BeanProducts {
 		this.products = products;
 	}
 
+	/**
+	 * Get 3 random products (bestseller)
+	 * @return
+	 */
 	public List<Product> getRandom3Products(){
 		List<Product> listBest = new ArrayList<Product>(getProducts());
 		List<Product> listNew = new ArrayList<Product>();

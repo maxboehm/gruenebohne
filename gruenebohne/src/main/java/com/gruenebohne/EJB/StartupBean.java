@@ -1,10 +1,7 @@
 package com.gruenebohne.EJB;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import javax.ejb.Singleton;
@@ -21,12 +18,21 @@ import com.gruenebohne.model.Recipe;
 import com.gruenebohne.model.Record;
 import com.gruenebohne.model.RecordItem;
 
+/**
+ * This class mainly handle the startup with an empty database and fills it with data
+ * We fill here the database manually
+ * Basic data is in the java-file, the rest of the data (description and image) is 'outsourced'
+ * into a file structure (gruenebohne/src/main/webapp/resources/database) where we read the files
+ * and put them into the database
+ */
 @Singleton
 @ApplicationScoped
 public class StartupBean {
 
 	boolean bInit = false;
+
 	public void startup(){
+		// has the startup already been done?
 		if(!bInit){
 			//cleanDatabase();
 			initializeData();
@@ -38,6 +44,9 @@ public class StartupBean {
 	@PersistenceContext
 	private EntityManager em;
 
+	/**
+	 * reset whole database tables
+	 */
 	private void cleanDatabase(){
 		for(Recipe rec:em.createNamedQuery("AllRecipes", Recipe.class).getResultList())
 			em.remove(rec);
@@ -60,7 +69,11 @@ public class StartupBean {
 		em.flush();
 	}
 
+	/**
+	 * Fill the database with data
+	 */
 	private void initializeData() {
+		// CATEGORY
 		ProductCategory cat1 = createCategory(1, "Gemüse");
 		ProductCategory cat2 = createCategory(2, "Obst");
 		ProductCategory cat3 = createCategory(3, "Milchprodukte");
@@ -68,6 +81,7 @@ public class StartupBean {
 		ProductCategory cat5 = createCategory(5, "Fleischprodukte");
 		ProductCategory cat6 = createCategory(6, "Pasta");
 
+		// PRODUCT
 		Product p1  = createProduct(1,  2.95, cat1, "Tomaten", "100g");
 		Product p2  = createProduct(2,  2.85, cat1, "Kartoffeln", "100g");
 		Product p3  = createProduct(3,  5.95, cat1, "Karotten", "100g");
@@ -91,7 +105,7 @@ public class StartupBean {
 		Product p21 = createProduct(21, 4.67, cat3, "Gouda", "100g");
 		Product p22 = createProduct(22, 1.20, cat6, "Nudeln-Penne", "100g");
 
-
+		// RECIPE
 		createRecipe(26, 5.89, "Kartoffelgratin", "Portion", p2, p7, p14, p21);
 		createRecipe(27, 1.99, "Fettarme Pommes","Portion", p2);
 		createRecipe(23, 3.33, "Ofenkartoffeln mit frischen Kräutern","Portion", p2);
@@ -102,70 +116,23 @@ public class StartupBean {
 		createRecipe(30, 3.49, "Zucchinifächer mit Feta", "Portion", p1, p12, p16);
 		createRecipe(31, 3.99, "Schwäbischer Zwiebelkuchen","Portion", p11, p12);
 
+		// PRODUCER
 		createProducer(32, "Peter Steinmetz", p1, p2, p3);
 		createProducer(33, "Maren Volk", p4, p5, p6);
 		createProducer(34, "Michael Schwaben", p1, p4, p5, p6);
-		
-//		ArrayList<Customer> customer = createCustomer();
-//		ArrayList<RecordItem> items = createRecordItems();
-//	
-//		createRecords(customer, items);
-	}
-	
-	private ArrayList<RecordItem> createRecordItems(){
-		ArrayList<RecordItem> items = new ArrayList<RecordItem>();
-		
-		for(Product p:em.createNamedQuery("AllProducts", Product.class).getResultList()){
-			RecordItem item = new RecordItem();
-			item.setProductBase(p);
-			item.setQuantity((int)Math.random()*10);
-			em.persist(item);
-			em.flush();
-			items.add(item);
-		}
-		return items;
-		
-	}
-	private ArrayList<Customer> createCustomer(){
-		
-		ArrayList<Customer> temp = new ArrayList<Customer>();
-		
-		for (int i = 0; i < 10; i++) {
-		Customer customer = new Customer();
-		customer.seteMail("test@test.com");
-		customer.setFirstName("Generated");
-		customer.setLastName("Generated");
-		customer.setPassWord("test"+i);
-		em.persist(customer);
-		em.flush();
-		temp.add(customer);
-		}
-		return temp;
-	}
-	
-	private void createRecords(ArrayList<Customer> customer, ArrayList<RecordItem> items){
-		
-		for (int i = 0; i < 10; i++) {
-			Record record = new Record();
-			record.setCustomer(customer.get((int)Math.random()*10));
-			
-			ArrayList<RecordItem> temp = new ArrayList<RecordItem>();
-			for (int j = 0; j < (int)Math.random()*21; j++) {
-				temp.add(items.get((int)Math.random()*21));
-				items.get((int)Math.random()*21).setRecord(record);
-				em.merge(items.get((int)Math.random()*21));
-				em.flush();
-			}
-			record.setSetRecordItems(temp);
-			
-			em.persist(record);
-			em.flush();
-		}
 	}
 
 
+	/**
+	 * Helper for creating a producer
+	 * @param id
+	 * @param sName
+	 * @param products
+	 * @return
+	 */
 	private Producer createProducer(long id, String sName, Product ... products) {
 		Producer r = new Producer(id, sName, products);
+		// retrieve the data from the java project
 		r.setDescription(getDescriptionText("producer", r.getId(), "description.html"));
 		r.setShortDescription(getDescriptionText("producer", r.getId(), "short-description.html"));
 		r.setPicture(getPicture("producer", r.getId()));
@@ -181,6 +148,15 @@ public class StartupBean {
 		return r;
 	}
 
+	/**
+	 * Helper for creating a recipe
+	 * @param id
+	 * @param dPrice
+	 * @param sName
+	 * @param unit
+	 * @param products
+	 * @return
+	 */
 	private Recipe createRecipe(long id, Double dPrice, String sName, String unit, Product ... products) {
 		Recipe r = new Recipe(id, sName, dPrice, products, unit);
 		r.setProdDescription(getDescriptionText("recipes", r.getProdId(), "description.html"));
@@ -198,6 +174,15 @@ public class StartupBean {
 		return r;
 	}
 
+	/**
+	 * Helper for creating a product
+	 * @param id
+	 * @param dPrice
+	 * @param cat
+	 * @param sName
+	 * @param unit
+	 * @return
+	 */
 	private Product createProduct(long id,Double dPrice, ProductCategory cat, String sName, String unit) {
 		Product p = new Product(id, sName, dPrice, cat, unit);
 		p.setProdDescription(getDescriptionText("products", p.getProdId(), "description.html"));
@@ -207,6 +192,12 @@ public class StartupBean {
 		return p;
 	}
 
+	/**
+	 * Helper for creating a category
+	 * @param nID
+	 * @param sName
+	 * @return
+	 */
 	private ProductCategory createCategory(int nID, String sName) {
 		ProductCategory cat = new ProductCategory(nID, sName);
 		em.persist(cat);
@@ -214,7 +205,13 @@ public class StartupBean {
 		return cat;
 	}
 
-	@SuppressWarnings("resource")
+	/**
+	 * Read the description from a file in the java project
+	 * @param sDirName
+	 * @param nID
+	 * @param sFileName
+	 * @return
+	 */
 	public String getDescriptionText(String sDirName, long nID, String sFileName){
 		// Create Path
 		String sPath = "resources/database/"+sDirName+"/"+nID+"/";
@@ -222,7 +219,6 @@ public class StartupBean {
 		java.util.Scanner scanner = null;
 		try {
 			// get resource stream
-			
 			InputStream is = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream(sPath+sFileName);
 			scanner = new java.util.Scanner(is, "UTF-8");
 			scanner.useDelimiter("\\A");
@@ -232,6 +228,12 @@ public class StartupBean {
 		}
 	}
 
+	/**
+	 * Read the picture from a file in the java project
+	 * @param sDirName
+	 * @param nID
+	 * @return
+	 */
 	public byte[] getPicture(String sDirName, long nID){
 		// Create Path
 		String sPath = "resources/database/"+sDirName+"/"+nID+"/";
@@ -254,5 +256,71 @@ public class StartupBean {
 		}
 		return new byte[0];
 	}
+
+	/**
+	 * Method for randomly creating records
+	 * @return
+	 */
+	private ArrayList<RecordItem> createRecordItems(){
+		ArrayList<RecordItem> items = new ArrayList<RecordItem>();
+
+		for(Product p:em.createNamedQuery("AllProducts", Product.class).getResultList()){
+			RecordItem item = new RecordItem();
+			item.setProductBase(p);
+			item.setQuantity((int)Math.random()*10);
+			em.persist(item);
+			em.flush();
+			items.add(item);
+		}
+		return items;
+
+	}
+	/**
+	 * Method for randomly creation of customer
+	 * @return
+	 */
+	private ArrayList<Customer> createCustomer(){
+
+		ArrayList<Customer> temp = new ArrayList<Customer>();
+
+		for (int i = 0; i < 10; i++) {
+			Customer customer = new Customer();
+			customer.seteMail("test@test.com");
+			customer.setFirstName("Generated");
+			customer.setLastName("Generated");
+			customer.setPassWord("test"+i);
+			em.persist(customer);
+			em.flush();
+			temp.add(customer);
+		}
+		return temp;
+	}
+
+	/**
+	 * random generation of records
+	 * @param customer
+	 * @param items
+	 */
+	private void createRecords(ArrayList<Customer> customer, ArrayList<RecordItem> items){
+
+		for (int i = 0; i < 10; i++) {
+			Record record = new Record();
+			record.setCustomer(customer.get((int)Math.random()*10));
+
+			ArrayList<RecordItem> temp = new ArrayList<RecordItem>();
+			for (int j = 0; j < (int)Math.random()*21; j++) {
+				temp.add(items.get((int)Math.random()*21));
+				items.get((int)Math.random()*21).setRecord(record);
+				em.merge(items.get((int)Math.random()*21));
+				em.flush();
+			}
+			record.setSetRecordItems(temp);
+
+			em.persist(record);
+			em.flush();
+		}
+	}
+
+
 
 }

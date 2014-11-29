@@ -14,11 +14,19 @@ public class BeanProductDetail {
 
 	@EJB
 	private ProductEJB productejb;
-	
+
 	@EJB
 	private RecipeEJB recipeejb;
 
 	private int id;
+	private Product product;
+
+	/**
+	 * load the product via the id
+	 */
+	public void loadProduct(){
+		product = productejb.getProduct(getId());
+	}
 
 	public int getId() {
 		return id;
@@ -26,12 +34,6 @@ public class BeanProductDetail {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	private Product product;
-
-	public void loadProduct(){
-		product = productejb.getProduct(getId());
 	}
 
 	public Product getProduct() {

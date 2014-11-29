@@ -1,10 +1,7 @@
 package com.gruenebohne.beans.request;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 
-import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -19,14 +16,14 @@ import com.gruenebohne.model.Customer;
 @ManagedBean(name="orderDetails")
 @RequestScoped
 public class CreateOrder{
-	
-	
+
+
 	@ManagedProperty(value="#{usersession}")
 	private BeanSession session;
-	
+
 	@ManagedProperty(value="#{basket}")
 	private BeanBasket basket;
-	
+
 	private String firstname;
 	private String lastname;
 	private String firma;
@@ -36,9 +33,7 @@ public class CreateOrder{
 	private String email;
 	private String phonenNumber;
 	private String comment;
-	
-	
-	
+
 	public BeanSession getSession() {
 		return session;
 	}
@@ -59,9 +54,9 @@ public class CreateOrder{
 	}
 	public String getFirma() {
 		ArrayList<Address> addresses = new ArrayList<Address>(session.getCustomer().getAddress());
-		if(!addresses.isEmpty()){
+		if(!addresses.isEmpty())
 			return addresses.get(0).getFirma();
-		}
+
 		return firma;
 	}
 	public void setFirma(String firma) {
@@ -119,35 +114,41 @@ public class CreateOrder{
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	
+
 	public BeanBasket getBasket() {
 		return basket;
 	}
 	public void setBasket(BeanBasket basket) {
 		this.basket = basket;
 	}
+	/**
+	 * Creates an order
+	 * @param event
+	 * @throws Exception
+	 */
 	public void createOrder(ActionEvent event) throws Exception{
-		
+		// get customer
 		Customer oldCustomer = session.getCustomer();
 		Customer updatedCustomer = session.getCustomer();
-		
+
+		// set the address
 		Address address = new Address();
 		AddressTyp addressTyp = new AddressTyp();
 		addressTyp.setAlias("Privat");
-		
+		// set data
 		address.setAddressTyp(addressTyp);
 		address.setCity(getCity());
 		address.setFirma(getFirma());
 		address.setPhoneNumber(getPhonenNumber());
 		address.setPostalCode(Double.parseDouble(getPostalCode()));
 		address.setStreetAndNumner(getStreetAndNumber());
-		
+
 		updatedCustomer.seteMail(getEmail());
 		updatedCustomer.setFirstName(getFirstname());
 		updatedCustomer.setLastName(getLastname());
-		
+		// create order
 		basket.createOrder(updatedCustomer, oldCustomer,getComment(), address);
 	}
-	
+
 
 }

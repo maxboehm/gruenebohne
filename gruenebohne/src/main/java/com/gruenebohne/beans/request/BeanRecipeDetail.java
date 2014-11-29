@@ -14,7 +14,15 @@ public class BeanRecipeDetail {
 	@EJB
 	private RecipeEJB recipeEJB;
 
+	private Recipe recipe;
 	private int id;
+
+	/**
+	 * load the recipe via the id
+	 */
+	public void loadRecipe(){
+		recipe = recipeEJB.getRecipe(getId());
+	}
 
 	public int getId() {
 		return id;
@@ -22,12 +30,6 @@ public class BeanRecipeDetail {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	private Recipe recipe;
-
-	public void loadRecipe(){
-		recipe = recipeEJB.getRecipe(getId());
 	}
 
 	public Recipe getRecipe() {

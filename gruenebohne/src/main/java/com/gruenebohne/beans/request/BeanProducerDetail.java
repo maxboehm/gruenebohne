@@ -14,7 +14,15 @@ public class BeanProducerDetail {
 	@EJB
 	private ProducerEJB producerEJB;
 
+	private Producer producer;
 	private int id;
+
+	/**
+	 * Set the producer via the id
+	 */
+	public void loadProducer(){
+		producer = producerEJB.getProducer(getId());
+	}
 
 	public int getId() {
 		return id;
@@ -22,12 +30,6 @@ public class BeanProducerDetail {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	private Producer producer;
-
-	public void loadProducer(){
-		producer = producerEJB.getProducer(getId());
 	}
 
 	public Producer getProducer() {

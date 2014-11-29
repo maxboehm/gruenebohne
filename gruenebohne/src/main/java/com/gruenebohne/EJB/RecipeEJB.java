@@ -16,21 +16,24 @@ public class RecipeEJB {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@EJB StartupBean beanStartup;
 
 	public List<Recipe> getAllRecipes() {
 		beanStartup.startup();
+		// return all recipes
 		return em.createNamedQuery("AllRecipes", Recipe.class).getResultList();
 	}
 
 	public Recipe getRecipe(int prodId){
-
+		// get recipe by id
 		List <Recipe> recipe = em.createNamedQuery("GetRecipe", Recipe.class).setParameter("prodId", prodId).getResultList();
 
-		if(recipe.isEmpty()){
+		// no recipe? return null
+		if(recipe.isEmpty())
 			return null;
-		}
+
+		// return recipe
 		return recipe.get(0);
 	}
 

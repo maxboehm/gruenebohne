@@ -22,18 +22,20 @@ public class ProductEJB {
 
 	public List<Product> getAllProductsWithCategory() {
 		beanStartup.startup();
+		// get all products
 		return em.createNamedQuery("AllProducts", Product.class).getResultList();
 	}
 
 	public Product getProduct(int prodId) {
-
+		// get product by id
 		List<Product> product = em
 				.createNamedQuery("GetProduct", Product.class)
 				.setParameter("prodId", prodId).getResultList();
 
-		if (product.isEmpty()) {
-			return null;
-		}
+		// no product? return null
+		if (product.isEmpty()) return null;
+
+		// otherwise, return product
 		return product.get(0);
 	}
 

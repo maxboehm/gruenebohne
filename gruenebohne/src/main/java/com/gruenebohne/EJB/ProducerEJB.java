@@ -21,12 +21,13 @@ public class ProducerEJB {
 	}
 
 	public Producer getProducer(int id){
-
+		// get producer by id
 		List <Producer> producer = em.createNamedQuery("GetProducer", Producer.class).setParameter("id", id).getResultList();
 
-		if(producer.isEmpty()){
-			return null;
-		}
+		// no one there? return null
+		if(producer.isEmpty()) return null;
+
+		// Otherwise return producer
 		return producer.get(0);
 	}
 

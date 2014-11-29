@@ -25,12 +25,11 @@ public class BeanSession {
 	private ProductEJB prodcutejb;
 
 	public boolean getIsLoggedin() {
-		//		System.out.println("GET IS LOGGED IN");
-		//		System.out.println(customer!=null);
 		return customer!=null;
 	}
 
 	public void performLogin(String sEmail, String sPassword) {
+		// set the customer to the session if login was successfull
 		customer = customerejb.loginCustomer(sEmail, sPassword);
 	}
 

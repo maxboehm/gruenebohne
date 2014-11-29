@@ -7,9 +7,6 @@ import javax.faces.event.ActionEvent;
 
 import com.gruenebohne.beans.session.BeanSession;
 
-/**
- * Bean encapsulating all operations for a person.
- */
 @ManagedBean(name="login")
 @RequestScoped
 public class BeanLogin {
@@ -20,24 +17,21 @@ public class BeanLogin {
 	@ManagedProperty(value = "#{usersession}")
 	private BeanSession sessionBean;
 
+	/**
+	 * Log the user into the system via email and password
+	 * @param event
+	 */
 	public void performLogin(ActionEvent event) {
-		System.out.println("PERFORMLOGIN");
 		sessionBean.performLogin(email, password);
 	}
-
-
 
 	public BeanSession getSessionBean() {
 		return sessionBean;
 	}
 
-
-
 	public void setSessionBean(BeanSession sessionBean) {
 		this.sessionBean = sessionBean;
 	}
-
-
 
 	public String getEmail() {
 		return email;

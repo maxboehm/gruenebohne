@@ -13,6 +13,11 @@ public abstract class ImageBean {
 
 	private int prodID;
 
+	/**
+	 * Get Picture from database and serve it to the customer
+	 * THE CODE WAS MOSTLY TAKEN FROM THE INTERNET
+	 * @throws IOException
+	 */
 	public void render() throws IOException {
 		// get HttpServletResponse
 		FacesContext context = FacesContext.getCurrentInstance();
