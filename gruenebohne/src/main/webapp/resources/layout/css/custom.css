@@ -146,3 +146,17 @@ transition: all .1s linear;
 }
 
 html.no-touch .product-overlay__more span {display:none;}
+
+.procducts__title_short {
+overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap; }
+
+.recipe__title {
+overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 50px;	
+}

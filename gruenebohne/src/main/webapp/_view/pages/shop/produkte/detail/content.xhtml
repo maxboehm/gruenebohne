@@ -64,7 +64,7 @@
 						<h1 class="single-product__title">
 							<span class="light"></span> #{productdetail.product.prodName}
 						</h1>
-						<span class="single-product__price"><h:outputText escape="false" value="&amp;nbsp;" />#{productdetail.product.price}€/#{productdetail.product.unit}</span>
+						<span class="single-product__price"><h:outputText escape="false" value="&amp;nbsp;" />#{productdetail.product.price}€<small>/#{productdetail.product.unit}</small></span>
 						<div class="single-product__rating">
 							<span class="glyphicon  glyphicon-star  star-on"></span> <span
 								class="glyphicon  glyphicon-star  star-on"></span> <span
@@ -223,7 +223,7 @@
 												</div>
 											</figure>
 											<div class="row">
-												<div class="col-xs-9">
+												<div class="col-xs-12">
 													<h5 class="products__title">
 														<p:link styleClass="products__link  js--isotope-title" mappingId="rezepte-detail">
 															#{rec.prodName}
@@ -231,8 +231,8 @@
 														</p:link>
 													</h5>
 												</div>
-												<div class="col-xs-3">
-													<div class="products__price"><h:outputText escape="false" value="&amp;nbsp;" />#{rec.price}€/#{rec.unit}</div>
+												<div class="col-xs-12">
+													<div class="products__price"><h:outputText escape="false" value="&amp;nbsp;" />#{rec.price}€<small>/#{rec.unit}</small></div>
 												</div>
 											</div>
 										</div>
@@ -309,7 +309,7 @@
 									</h5>
 								</div>
 								<div class="col-xs-3">
-									<div class="products__price"><h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}€/#{prod.unit}</div>
+									<div class="products__price"><h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}€<small>/#{prod.unit}</small></div>
 								</div>
 							</div>
 							<div class="products__category">#{prod.category.category}</div>

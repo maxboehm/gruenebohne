@@ -107,7 +107,7 @@
 
 						<ui:repeat value="#{products.products}" var="prod">
 							<div
-								class="col-xs-6 col-sm-3  js--isotope-target  js--cat-#{prod.category.category} #{prod.getSiegelCssClass()} "
+								class="col-xs-6 col-sm-4  js--isotope-target  js--cat-#{prod.category.category} #{prod.getSiegelCssClass()} "
 								data-price="#{prod.price}" data-rating="5">
 								<div class="products__single">
 									<figure class="products__image">
@@ -141,7 +141,7 @@
 										</div>
 									</figure>
 									<div class="row">
-                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="col-xs-12 col-sm-12 col-md-8">
 											<h5 class="products__title">
 												<p:link styleClass="products__link  js--isotope-title"
 													mappingId="produkte-detail">
@@ -151,10 +151,8 @@
 											</h5>
                                     <div class="products__category">#{prod.category.category}</div>
 										</div>
-										<div class="col-xs-12 col-sm-12 col-md-6">
-											<div class="products__price">
-												<h:outputText escape="false" value="&amp;nbsp;" />
-												#{prod.price}€<small>/#{prod.unit}</small>
+										<div class="col-xs-12 col-sm-12 col-md-4">
+											<div class="products__price"><h:outputText escape="false" value="&amp;nbsp;" />#{prod.price}€<small>/#{prod.unit}</small>
 											</div>
 										</div>
 									</div>
