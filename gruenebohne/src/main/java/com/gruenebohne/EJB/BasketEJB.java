@@ -263,11 +263,10 @@ public class BasketEJB {
 									+ "</table>"
 									+ "<br><br>"
 									+ "Versandkosten: "+deliveryCost+"<br>"
-									+ "Gesamtkosten brutto: "
 									+ new BigDecimal(order.getTotalPrice() * 0.81d).setScale(2,
 											RoundingMode.HALF_UP).doubleValue()
 											+ "€ <br>"
-											+ "Gesamtkosten netto: "
+											+ "Gesamtkosten: "
 											+ totalCost
 											+ "€ <br>"
 											+ "Gewählte Zahlungsart: RECHNUNG <br>"
@@ -363,11 +362,10 @@ public class BasketEJB {
 									+ " <br>"
 									+ "<br><br>"
 									+ "Versandkosten: "+deliveryCost+"<br>"
-									+ "Gesamtkosten brutto: "
 									+ new BigDecimal(order.getTotalPrice() * 0.81d).setScale(2,
 											RoundingMode.HALF_UP).doubleValue()
 											+ " € <br>"
-											+ "Gesamtkosten netto: "
+											+ "Gesamtkosten: "
 											+ totalCost+"€ <br>"
 													+ "Gewählte Zahlungsart: RECHNUNG <br>" + "<br>", "text/html; charset=utf-8");
 
