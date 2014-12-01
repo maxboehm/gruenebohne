@@ -2,7 +2,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://ocpsoft.com/prettyfaces"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <ui:composition>
 
 
@@ -156,21 +157,24 @@
 							<tfoot>
 								<tr class="cart-subtotal">
 									<th>Gesamtpreis Warenkorb</th>
-									<td>
-									<h:outputText escape="false" value="#{basket.getTotalPrice()}">
+									<td><h:outputText escape="false"
+											value="#{basket.getTotalPrice()}">
 											<f:convertNumber minFractionDigits="2" locale="en"></f:convertNumber>
-										</h:outputText>€
-									
-									</td>
+										</h:outputText>€</td>
 								</tr>
 								<tr class="shipping">
 									<th>Versand</th>
-									<td>Gratisversand</td>
+									<c:if test="#{basket.getDeliveryCost()==true}">
+										<td>Gratisversand</td>
+									</c:if>
+									<c:if test="#{basket.getDeliveryCost()==false}">
+										<td><h:outputText value="&#160;" />5.95€</td>
+									</c:if>
 								</tr>
 								<tr class="total">
 									<th><strong>Gesamtpreis Bestellung</strong></th>
 									<td><strong> <h:outputText escape="false"
-												value="#{basket.getTotalPrice()}">
+												value="#{basket.getTotalPriceWithDeliveryCost()}">
 												<f:convertNumber minFractionDigits="2" locale="en"></f:convertNumber>
 											</h:outputText>€
 									</strong></td>
@@ -184,8 +188,8 @@
 											<strong class="product-quantity">×
 												#{basketItem.quantity}</strong>
 										</td>
-										<td class="product-total"><span class="amount">
-												<h:outputText escape="false"
+										<td class="product-total"><span class="amount"> <h:outputText
+													escape="false"
 													value="#{basketItem.productBase.price*basketItem.quantity}">
 													<f:convertNumber minFractionDigits="2" locale="en"></f:convertNumber>
 												</h:outputText>€
@@ -199,16 +203,17 @@
 							<ul class="payment_methods">
 								<li><input type="radio" id="payment_method_bacs"
 									class="input-radio" name="payment_method" value="bacs"
-									checked="checked"/><label class="test"><h:outputText value="&#160;" /><h:outputText value="&#160;" />Rechnung</label>
-								</li>
+									checked="checked" /><label class="test"><h:outputText
+											value="&#160;" />
+										<h:outputText value="&#160;" />Rechnung</label></li>
 								<li><input type="radio" id="payment_method_bacs"
-									class="input-radio" name="payment_method" value="bacs"
-									/><label class="test"><h:outputText value="&#160;" /><h:outputText value="&#160;" />Kreditkarte</label>
-								</li>
+									class="input-radio" name="payment_method" value="bacs" /><label
+									class="test"><h:outputText value="&#160;" />
+										<h:outputText value="&#160;" />Kreditkarte</label></li>
 								<li><input type="radio" id="payment_method_bacs"
-									class="input-radio" name="payment_method" value="bacs"
-									/><label class="test"><h:outputText value="&#160;" /><h:outputText value="&#160;" />Überweisung</label>
-								</li>
+									class="input-radio" name="payment_method" value="bacs" /><label
+									class="test"><h:outputText value="&#160;" />
+										<h:outputText value="&#160;" />Überweisung</label></li>
 							</ul>
 							<f:param value="createOrder"></f:param>
 							<h:commandLink action="pretty:danke"

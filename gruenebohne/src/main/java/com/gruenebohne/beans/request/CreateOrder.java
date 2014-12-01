@@ -75,7 +75,7 @@ public class CreateOrder{
 	public String getPostalCode() {
 		ArrayList<Address> addresses = new ArrayList<Address>(session.getCustomer().getAddress());
 		if(!addresses.isEmpty() && addresses.get(0).getPostalCode()!=0){
-			return String.valueOf(addresses.get(0).getPostalCode());
+			return String.valueOf(addresses.get(0).getPostalCode()).split(".")[0];
 		}
 		return postalCode;
 	}

@@ -224,7 +224,7 @@ public class BasketEJB {
 					RoundingMode.HALF_UP).doubleValue();
 			if(order.getTotalPrice()<20){
 				deliveryCost="5,95€";
-				totalCost =+ 5.95d;
+				totalCost = totalCost + 5.95d;
 			}
 			else{
 				deliveryCost="Kostenloser Versand";
@@ -232,19 +232,19 @@ public class BasketEJB {
 
 			for (int i = 0; i < list.size(); i++) {
 				BigDecimal price = new BigDecimal(list.get(i).getProductBase().getPrice()).setScale(2, RoundingMode.HALF_UP);
-				build.append("\nPosition " + i + " \t"
-						+ list.get(i).getProductBase().getProdName()
-						+ " \t\t " + list.get(i).getQuantity()
-						+ " \t\t\t " + price+" EUR"
-						+ " \t\t " +  price.doubleValue()
-						* list.get(i).getQuantity()+" EUR");
+				build.append("<tr><td style=\"text-align:center\">" + (i+1) + "</td>"
+						+ "<td style=\"text-align:center\">"+list.get(i).getProductBase().getProdName()+"</td>"
+						+ "<td style=\"text-align:center\">" + list.get(i).getQuantity()+"</td>"
+						+ "<td style=\"text-align:center\">" + price+"€"+"</td>"
+						+ "<td style=\"text-align:center\">" +  price.doubleValue()
+						* list.get(i).getQuantity()+"€"+"</td></tr>");
 			}
-			message.setText("Hallo "
+			message.setContent("Hallo "
 					+ order.getCustomer().getFirstName()
 					+ " "
 					+ order.getCustomer().getLastName()
 					+ ","
-					+ "\n\n\n vielen Dank fuer deine Bestellung im gruenbohne Demoshop (Bestellungsnummer: "
+					+ "<br> <br> <br> Vielen Dank fuer deine Bestellung im gruenbohne Demoshop (Bestellungsnummer: "
 					+ order.getId()
 					+ ") am "
 					+ DateFormat.getDateInstance(DateFormat.SHORT).format(
@@ -252,28 +252,31 @@ public class BasketEJB {
 							+ " um "
 							+ DateFormat.getTimeInstance(DateFormat.SHORT).format(
 									GregorianCalendar.getInstance().getTime())
-									+ ". Informationen zu Ihrer Bestellung:"
-									+ "\n"
-									+ "\n"
-									+ "Position \t\t Artikelname \t\t Menge \t\t Preis \t\t Summe"
-									+ " \n ___________________________________________________________________"
+									+ ".<br>Informationen zu deiner Bestellung:"
+									+ "<br>"
+									+ "<br><br>"
+									+ "<table style=\"width:80%\">"
+									+ "<tbody>"
+									+ "<tr><th>Position</th><th>Artikelname</th><th>Menge</th><th>Preis</th><th>Summe</th></tr>"
 									+ build.toString()
-									+ " \n"
-									+ "\n\n"
-									+ "Versandkosten: "+deliveryCost
+									+ "</tbody>"
+									+ "</table>"
+									+ "<br><br>"
+									+ "Versandkosten: "+deliveryCost+"<br>"
 									+ "Gesamtkosten brutto: "
 									+ new BigDecimal(order.getTotalPrice() * 0.81d).setScale(2,
 											RoundingMode.HALF_UP).doubleValue()
-											+ " EUR \n"
+											+ "€ <br>"
 											+ "Gesamtkosten netto: "
 											+ totalCost
-											+ " EUR \n"
-											+ "Gewählte Zahlungsart: RECHNUNG \n"
-											+ "\n"
-											+ "Wie ziehen den Betrag in den nächsten Tagen von deinem Konto ein. "
-											+ "Für Rückfragen stehen wir dir jederzeit gerne zur Verfügung.\n\n\n"
-											+ "Wir wünschen Ihnen noch einen schönen Tag \n"
-											+ "Die gruenebohne :)");
+											+ "€ <br>"
+											+ "Gewählte Zahlungsart: RECHNUNG <br>"
+											+ "<br>"
+											+ "Wir ziehen den Betrag in den nächsten Tagen von deinem Konto ein. Der Versand"
+											+ "erfolgt an die gespeicherte Adresse. "
+											+ "Für Rückfragen stehen wir dir jederzeit gerne zur Verfügung.<br><br><br>"
+											+ "Wir wünschen dir noch einen schönen Tag <br>"
+											+ "Die gruenebohne :)", "text/html; charset=utf-8");
 
 			Transport.send(message);
 		} catch (MessagingException e) {
@@ -290,6 +293,17 @@ public class BasketEJB {
 			ArrayList<RecordItem> list = new ArrayList<RecordItem>(
 					order.getSetRecordItems());
 
+			String deliveryCost="";
+			Double totalCost = new BigDecimal(order.getTotalPrice()).setScale(2,
+					RoundingMode.HALF_UP).doubleValue();
+			if(order.getTotalPrice()<20){
+				deliveryCost="5,95€";
+				totalCost = totalCost + 5.95d;
+			}
+			else{
+				deliveryCost="Kostenloser Versand";
+			}
+			
 			for (int i = 0; i < list.size(); i++) {
 				List<Producer> producer = producerejb.getAllProducer();
 				int id = list.get(i).getId();
@@ -310,18 +324,17 @@ public class BasketEJB {
 							.getName();
 				}
 				BigDecimal price = new BigDecimal(list.get(i).getProductBase().getPrice()).setScale(2, RoundingMode.HALF_UP);
-				build.append("\nPosition " + i + " \t\t" + list.get(i).getId()
-						+ " \t\t\t\t "
-						+ list.get(i).getProductBase().getProdName() + "\t\t "
-						+ itemProducer + " \t "
-						+ list.get(i).getQuantity() + " \t "
-						+ price + " EUR"+" \t "
-						+ price.doubleValue()
-						* list.get(i).getQuantity()+" EUR");
+				build.append("<tr><td style=\"text-align:center\">" + (i+1) + "</td><td style=\"text-align:center\">" + list.get(i).getId()+"</td>"
+						+ "<td style=\"text-align:center\">"+list.get(i).getProductBase().getProdName() + "</td> "
+						+ "<td style=\"text-align:center\">"+itemProducer + "</td>"
+						+ "<td style=\"text-align:center\">"+list.get(i).getQuantity()+"</td>"
+						+ "<td style=\"text-align:center\">"+price + "€"+"</td>"
+						+ "<td style=\"text-align:center\">"+price.doubleValue()
+						* list.get(i).getQuantity()+"€"+"</td>");
 			}
 
 			ArrayList <Address> adresse = new ArrayList<Address>(order.getCustomer().getAddress());
-			message.setText("Neue Bestellung von: "
+			message.setContent("Neue Bestellung von: "
 					+ order.getCustomer().getFirstName()
 					+ " "
 					+ order.getCustomer().getLastName()
@@ -331,31 +344,32 @@ public class BasketEJB {
 							+ " um "
 							+ DateFormat.getTimeInstance(DateFormat.SHORT).format(
 									GregorianCalendar.getInstance().getTime())
-									+ "\n"
+									+ "<br>"
 									+ "BestellID: "
 									+ order.getId()
-									+ "\n"
-									+ "\n"
-									+ "Position \t\t Artikelnummer \t\t Artikelname \t\t Produzent \t\t Menge \t\t Preis \t\t Summe"
-									+ " \n _________________________________________________________________________________________"
+									+ "<br>"
+									+ "<br>"
+									+ "<table style=\"width:80%\">"
+									+ "<tbody>"
+									+ "<tr><th>Position</th><th>ArtikelID</th><th>Artikelname</th><th>Produzent</th><th>Menge</th><th>Preis</th><th>Summe</th></tr>"
 									+ build.toString()
-									+ " \n"
-									+ "\n\n"
-									+ "Kundenname: "+order.getCustomer().getFirstName()+" "+order.getCustomer().getLastName()+ " \n"
-									+ "Straße: "+adresse.get(0).getStreetAndNumner()+ " \n"
-									+ "Postleitzahl: "+adresse.get(0).getPostalCode()+ " \n"
-									+ "Stadt: "+adresse.get(0).getCity()+ " \n"
-									+ " \n"
-									+ "\n\n"
-									+ "Versandkosten: Gratisversand\n"
+									+ "</tbody>"
+									+ "</table>"
+									+ "<br><br>"
+									+ "Kundenname: "+order.getCustomer().getFirstName()+" "+order.getCustomer().getLastName()+ " <br>"
+									+ "Straße: "+adresse.get(0).getStreetAndNumner()+ " <br>"
+									+ "Postleitzahl: "+adresse.get(0).getPostalCode()+ " <br>"
+									+ "Stadt: "+adresse.get(0).getCity()+ " <br>"
+									+ " <br>"
+									+ "<br><br>"
+									+ "Versandkosten: "+deliveryCost+"<br>"
 									+ "Gesamtkosten brutto: "
 									+ new BigDecimal(order.getTotalPrice() * 0.81d).setScale(2,
 											RoundingMode.HALF_UP).doubleValue()
-											+ " EUR \n"
+											+ " € <br>"
 											+ "Gesamtkosten netto: "
-											+ new BigDecimal(order.getTotalPrice()).setScale(2,
-													RoundingMode.HALF_UP).doubleValue() + " EUR \n"
-													+ "Gewählte Zahlungsart: RECHNUNG \n" + "\n");
+											+ totalCost+"€ <br>"
+													+ "Gewählte Zahlungsart: RECHNUNG <br>" + "<br>", "text/html; charset=utf-8");
 
 			Transport.send(message);
 		} catch (MessagingException e) {
