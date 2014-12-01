@@ -39,12 +39,12 @@ public class BeanProducts {
 	 * Get random products
 	 * @return
 	 */
-	public List<Product> getRandomProducts(int number){
+	public List<Product> get3RandomProducts(){
 		List<Product> listBest = new ArrayList<Product>(getProducts());
 		List<Product> listNew = new ArrayList<Product>();
 		Collections.shuffle(listBest);
 		for (int i = 0; i < listBest.size(); i++)
-			if(i<number)
+			if(i<3)
 				listNew.add(listBest.get(i));
 		return listNew;
 	}

@@ -130,7 +130,7 @@
 							<h4 class="widgets__heading">Bestbewerteste Produkte</h4>
 						</div>
 
-						<ui:repeat value="#{products.getRandomProducts(3)}" var="prod">
+						<ui:repeat value="#{products.get3RandomProducts()}" var="prod">
 							<div class="push-down-20  clearfix">
 								<p:link styleClass="image-best-thumb"
 									mappingId="produkte-detail">
@@ -166,7 +166,7 @@
 							<h4 class="widgets__heading">Bestseller</h4>
 						</div>
 
-						<ui:repeat value="#{products.getRandomProducts(3)}" var="prod">
+						<ui:repeat value="#{products.get3RandomProducts()}" var="prod">
 							<div class="clearfix  push-down-15">
 								<p:link styleClass="image-best-thumb"
 									mappingId="produkte-detail">
