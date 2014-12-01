@@ -48,14 +48,17 @@ public class BasketEJB {
 
 	/**
 	 * Create order and send confirmation email subsequently
+	 * 
 	 * @param updatedCustomer
 	 * @param newOrder
 	 * @param address
 	 * @throws Exception
 	 */
-	public void createOrder(Customer updatedCustomer, Record newOrder, Address address) throws Exception {
+	public void createOrder(Customer updatedCustomer, Record newOrder,
+			Address address) throws Exception {
 		// Get records
-		List<Record> result = em.createNamedQuery("getRecord", Record.class).setParameter("basketId", newOrder.getId()).getResultList();
+		List<Record> result = em.createNamedQuery("getRecord", Record.class)
+				.setParameter("basketId", newOrder.getId()).getResultList();
 		// set customer
 		newOrder.setCustomer(updatedCustomer);
 		// set the price
@@ -76,7 +79,6 @@ public class BasketEJB {
 			}
 		}
 	}
-
 
 	/**
 	 * @param basket
@@ -111,9 +113,11 @@ public class BasketEJB {
 	private void hlpAdd(Record basket, ProductBase product, int nQuantity) {
 		// Search if this product is already in the basket
 		for (RecordItem itemExistent : basket.getSetRecordItems())
-			if (itemExistent.getProductBase().getProdId() == product.getProdId()) {
+			if (itemExistent.getProductBase().getProdId() == product
+					.getProdId()) {
 				// if it is already there, just modify the quantity
-				itemExistent.setQuantity(itemExistent.getQuantity() + nQuantity);
+				itemExistent
+						.setQuantity(itemExistent.getQuantity() + nQuantity);
 				return;
 			}
 
@@ -132,7 +136,8 @@ public class BasketEJB {
 	 */
 	public void removeProductFromBasket(Record basket, ProductBase product) {
 		// Retrieve all records
-		List<Record> result = em.createNamedQuery("getRecord", Record.class).setParameter("basketId", basket.getId()).getResultList();
+		List<Record> result = em.createNamedQuery("getRecord", Record.class)
+				.setParameter("basketId", basket.getId()).getResultList();
 
 		RecordItem deletItem = null;
 		for (RecordItem item : result.get(0).getSetRecordItems()) {
@@ -151,14 +156,16 @@ public class BasketEJB {
 	 */
 	public Record refreshBasket(Record basket) {
 		// reload basket
-		List<Record> result = em.createNamedQuery("getRecord", Record.class).setParameter("basketId", basket.getId()).getResultList();
+		List<Record> result = em.createNamedQuery("getRecord", Record.class)
+				.setParameter("basketId", basket.getId()).getResultList();
 		return result.get(0);
 	}
 
 	public int getBasketSize(Record basket) {
 		int size = 0;
 		// load basket
-		List<Record> result = em.createNamedQuery("getRecord", Record.class).setParameter("basketId", basket.getId()).getResultList();
+		List<Record> result = em.createNamedQuery("getRecord", Record.class)
+				.setParameter("basketId", basket.getId()).getResultList();
 		if (!result.isEmpty())
 			size = result.get(0).getSetRecordItems().size();
 
@@ -167,7 +174,8 @@ public class BasketEJB {
 
 	public double getTotalPrice(Record basket) throws Exception {
 		double price = 0;
-		List<Record> result = em.createNamedQuery("getRecord", Record.class).setParameter("basketId", basket.getId()).getResultList();
+		List<Record> result = em.createNamedQuery("getRecord", Record.class)
+				.setParameter("basketId", basket.getId()).getResultList();
 		if (!result.isEmpty())
 			// get price through iteration and summing up
 			for (RecordItem item : result.get(0).getSetRecordItems())
@@ -177,7 +185,8 @@ public class BasketEJB {
 	}
 
 	public void editQuantity(Record basket, int productId, int quantity) {
-		List<Record> result = em.createNamedQuery("getRecord", Record.class).setParameter("basketId", basket.getId()).getResultList();
+		List<Record> result = em.createNamedQuery("getRecord", Record.class)
+				.setParameter("basketId", basket.getId()).getResultList();
 
 		for (RecordItem item : result.get(0).getSetRecordItems())
 			if (item.getProductBase().getProdId() == productId)
@@ -188,6 +197,7 @@ public class BasketEJB {
 
 	/**
 	 * Confirmation email by order
+	 * 
 	 * @param order
 	 */
 	private void sendConfirmationEmail(Record order) {
@@ -201,13 +211,13 @@ public class BasketEJB {
 
 		Session session = Session.getInstance(props,
 				new javax.mail.Authenticator() {
-			@Override
-			protected PasswordAuthentication getPasswordAuthentication() {
-				// set password and user
-				return new PasswordAuthentication(
-						"gruenebohne.store@gmail.com", "tobias123");
-			}
-		});
+					@Override
+					protected PasswordAuthentication getPasswordAuthentication() {
+						// set password and user
+						return new PasswordAuthentication(
+								"gruenebohne.store@gmail.com", "tobias123");
+					}
+				});
 
 		try {
 			// create a new message
@@ -217,65 +227,71 @@ public class BasketEJB {
 					InternetAddress.parse(order.getCustomer().geteMail()));
 			message.setSubject("Gruenebohne Bestellung");
 			StringBuilder build = new StringBuilder();
-			ArrayList<RecordItem> list = new ArrayList<RecordItem>(order.getSetRecordItems());
+			ArrayList<RecordItem> list = new ArrayList<RecordItem>(
+					order.getSetRecordItems());
 
-			String deliveryCost="";
-			Double totalCost = new BigDecimal(order.getTotalPrice()).setScale(2,
-					RoundingMode.HALF_UP).doubleValue();
-			if(order.getTotalPrice()<20){
-				deliveryCost="5,95€";
+			String deliveryCost = "";
+			Double totalCost = new BigDecimal(order.getTotalPrice()).setScale(
+					2, RoundingMode.HALF_UP).doubleValue();
+			if (order.getTotalPrice() < 20) {
+				deliveryCost = "5,95€";
 				totalCost = totalCost + 5.95d;
-			}
-			else{
-				deliveryCost="Kostenloser Versand";
+			} else {
+				deliveryCost = "Kostenloser Versand";
 			}
 
 			for (int i = 0; i < list.size(); i++) {
-				BigDecimal price = new BigDecimal(list.get(i).getProductBase().getPrice()).setScale(2, RoundingMode.HALF_UP);
-				build.append("<tr><td style=\"text-align:center\">" + (i+1) + "</td>"
-						+ "<td style=\"text-align:center\">"+list.get(i).getProductBase().getProdName()+"</td>"
-						+ "<td style=\"text-align:center\">" + list.get(i).getQuantity()+"</td>"
-						+ "<td style=\"text-align:center\">" + price+"€"+"</td>"
-						+ "<td style=\"text-align:center\">" +  price.doubleValue()
-						* list.get(i).getQuantity()+"€"+"</td></tr>");
+				BigDecimal price = new BigDecimal(list.get(i).getProductBase()
+						.getPrice()).setScale(2, RoundingMode.HALF_UP);
+				build.append("<tr><td style=\"text-align:center\">" + (i + 1)
+						+ "</td>" + "<td style=\"text-align:center\">"
+						+ list.get(i).getProductBase().getProdName() + "</td>"
+						+ "<td style=\"text-align:center\">"
+						+ list.get(i).getQuantity() + "</td>"
+						+ "<td style=\"text-align:center\">" + price + "€"
+						+ "</td>" + "<td style=\"text-align:center\">"
+						+ price.doubleValue() * list.get(i).getQuantity() + "€"
+						+ "</td></tr>");
 			}
-			message.setContent("Hallo "
-					+ order.getCustomer().getFirstName()
-					+ " "
-					+ order.getCustomer().getLastName()
-					+ ","
-					+ "<br> <br> <br> Vielen Dank fuer deine Bestellung im gruenbohne Demoshop (Bestellungsnummer: "
-					+ order.getId()
-					+ ") am "
-					+ DateFormat.getDateInstance(DateFormat.SHORT).format(
-							GregorianCalendar.getInstance().getTime())
+			message.setContent(
+					"Hallo "
+							+ order.getCustomer().getFirstName()
+							+ " "
+							+ order.getCustomer().getLastName()
+							+ ","
+							+ "<br> <br> <br> Vielen Dank fuer deine Bestellung im gruenbohne Demoshop (Bestellungsnummer: "
+							+ order.getId()
+							+ ") am "
+							+ DateFormat.getDateInstance(DateFormat.SHORT)
+									.format(GregorianCalendar.getInstance()
+											.getTime())
 							+ " um "
-							+ DateFormat.getTimeInstance(DateFormat.SHORT).format(
-									GregorianCalendar.getInstance().getTime())
-									+ ".<br>Informationen zu deiner Bestellung:"
-									+ "<br>"
-									+ "<br><br>"
-									+ "<table style=\"width:80%\">"
-									+ "<tbody>"
-									+ "<tr><th>Position</th><th>Artikelname</th><th>Menge</th><th>Preis</th><th>Summe</th></tr>"
-									+ build.toString()
-									+ "</tbody>"
-									+ "</table>"
-									+ "<br><br>"
-									+ "Versandkosten: "+deliveryCost+"<br>"
-									+ new BigDecimal(order.getTotalPrice() * 0.81d).setScale(2,
-											RoundingMode.HALF_UP).doubleValue()
-											+ "€ <br>"
-											+ "Gesamtkosten: "
-											+ totalCost
-											+ "€ <br>"
-											+ "Gewählte Zahlungsart: RECHNUNG <br>"
-											+ "<br>"
-											+ "Wir ziehen den Betrag in den nächsten Tagen von deinem Konto ein. Der Versand"
-											+ "erfolgt an die gespeicherte Adresse. "
-											+ "Für Rückfragen stehen wir dir jederzeit gerne zur Verfügung.<br><br><br>"
-											+ "Wir wünschen dir noch einen schönen Tag <br>"
-											+ "Die gruenebohne :)", "text/html; charset=utf-8");
+							+ DateFormat.getTimeInstance(DateFormat.SHORT)
+									.format(GregorianCalendar.getInstance()
+											.getTime())
+							+ ".<br>Informationen zu deiner Bestellung:"
+							+ "<br>"
+							+ "<br><br>"
+							+ "<table style=\"width:80%\">"
+							+ "<tbody>"
+							+ "<tr><th>Position</th><th>Artikelname</th><th>Menge</th><th>Preis</th><th>Summe</th></tr>"
+							+ build.toString()
+							+ "</tbody>"
+							+ "</table>"
+							+ "<br><br>"
+							+ "Versandkosten: "
+							+ deliveryCost
+							+ "<br>"
+							+ "Gesamtkosten: "
+							+ totalCost
+							+ "€ <br>"
+							+ "Gewählte Zahlungsart: RECHNUNG <br>"
+							+ "<br>"
+							+ "Wir ziehen den Betrag in den nächsten Tagen von deinem Konto ein. Der Versand"
+							+ "erfolgt an die gespeicherte Adresse. "
+							+ "Für Rückfragen stehen wir dir jederzeit gerne zur Verfügung.<br><br><br>"
+							+ "Wir wünschen dir noch einen schönen Tag <br>"
+							+ "Die gruenebohne :)", "text/html; charset=utf-8");
 
 			Transport.send(message);
 		} catch (MessagingException e) {
@@ -292,17 +308,16 @@ public class BasketEJB {
 			ArrayList<RecordItem> list = new ArrayList<RecordItem>(
 					order.getSetRecordItems());
 
-			String deliveryCost="";
-			Double totalCost = new BigDecimal(order.getTotalPrice()).setScale(2,
-					RoundingMode.HALF_UP).doubleValue();
-			if(order.getTotalPrice()<20){
-				deliveryCost="5,95€";
+			String deliveryCost = "";
+			Double totalCost = new BigDecimal(order.getTotalPrice()).setScale(
+					2, RoundingMode.HALF_UP).doubleValue();
+			if (order.getTotalPrice() < 20) {
+				deliveryCost = "5,95€";
 				totalCost = totalCost + 5.95d;
+			} else {
+				deliveryCost = "Kostenloser Versand";
 			}
-			else{
-				deliveryCost="Kostenloser Versand";
-			}
-			
+
 			for (int i = 0; i < list.size(); i++) {
 				List<Producer> producer = producerejb.getAllProducer();
 				int id = list.get(i).getId();
@@ -322,58 +337,76 @@ public class BasketEJB {
 					itemProducer = producer.get((int) (3 * Math.random()))
 							.getName();
 				}
-				BigDecimal price = new BigDecimal(list.get(i).getProductBase().getPrice()).setScale(2, RoundingMode.HALF_UP);
-				build.append("<tr><td style=\"text-align:center\">" + (i+1) + "</td><td style=\"text-align:center\">" + list.get(i).getId()+"</td>"
-						+ "<td style=\"text-align:center\">"+list.get(i).getProductBase().getProdName() + "</td> "
-						+ "<td style=\"text-align:center\">"+itemProducer + "</td>"
-						+ "<td style=\"text-align:center\">"+list.get(i).getQuantity()+"</td>"
-						+ "<td style=\"text-align:center\">"+price + "€"+"</td>"
-						+ "<td style=\"text-align:center\">"+price.doubleValue()
-						* list.get(i).getQuantity()+"€"+"</td>");
+				BigDecimal price = new BigDecimal(list.get(i).getProductBase()
+						.getPrice()).setScale(2, RoundingMode.HALF_UP);
+				build.append("<tr><td style=\"text-align:center\">" + (i + 1)
+						+ "</td><td style=\"text-align:center\">"
+						+ list.get(i).getId() + "</td>"
+						+ "<td style=\"text-align:center\">"
+						+ list.get(i).getProductBase().getProdName() + "</td> "
+						+ "<td style=\"text-align:center\">" + itemProducer
+						+ "</td>" + "<td style=\"text-align:center\">"
+						+ list.get(i).getQuantity() + "</td>"
+						+ "<td style=\"text-align:center\">" + price + "€"
+						+ "</td>" + "<td style=\"text-align:center\">"
+						+ price.doubleValue() * list.get(i).getQuantity() + "€"
+						+ "</td>");
 			}
 
-			ArrayList <Address> adresse = new ArrayList<Address>(order.getCustomer().getAddress());
-			message.setContent("Neue Bestellung von: "
-					+ order.getCustomer().getFirstName()
-					+ " "
-					+ order.getCustomer().getLastName()
-					+ " am "
-					+ DateFormat.getDateInstance(DateFormat.SHORT).format(
-							GregorianCalendar.getInstance().getTime())
+			ArrayList<Address> adresse = new ArrayList<Address>(order
+					.getCustomer().getAddress());
+			message.setContent(
+					"Neue Bestellung von: "
+							+ order.getCustomer().getFirstName()
+							+ " "
+							+ order.getCustomer().getLastName()
+							+ " am "
+							+ DateFormat.getDateInstance(DateFormat.SHORT)
+									.format(GregorianCalendar.getInstance()
+											.getTime())
 							+ " um "
-							+ DateFormat.getTimeInstance(DateFormat.SHORT).format(
-									GregorianCalendar.getInstance().getTime())
-									+ "<br>"
-									+ "BestellID: "
-									+ order.getId()
-									+ "<br>"
-									+ "<br>"
-									+ "<table style=\"width:80%\">"
-									+ "<tbody>"
-									+ "<tr><th>Position</th><th>ArtikelID</th><th>Artikelname</th><th>Produzent</th><th>Menge</th><th>Preis</th><th>Summe</th></tr>"
-									+ build.toString()
-									+ "</tbody>"
-									+ "</table>"
-									+ "<br><br>"
-									+ "Kundenname: "+order.getCustomer().getFirstName()+" "+order.getCustomer().getLastName()+ " <br>"
-									+ "Straße: "+adresse.get(0).getStreetAndNumner()+ " <br>"
-									+ "Postleitzahl: "+adresse.get(0).getPostalCode()+ " <br>"
-									+ "Stadt: "+adresse.get(0).getCity()+ " <br>"
-									+ " <br>"
-									+ "<br><br>"
-									+ "Versandkosten: "+deliveryCost+"<br>"
-									+ new BigDecimal(order.getTotalPrice() * 0.81d).setScale(2,
-											RoundingMode.HALF_UP).doubleValue()
-											+ " € <br>"
-											+ "Gesamtkosten: "
-											+ totalCost+"€ <br>"
-													+ "Gewählte Zahlungsart: RECHNUNG <br>" + "<br>", "text/html; charset=utf-8");
+							+ DateFormat.getTimeInstance(DateFormat.SHORT)
+									.format(GregorianCalendar.getInstance()
+											.getTime())
+							+ "<br>"
+							+ "BestellID: "
+							+ order.getId()
+							+ "<br>"
+							+ "<br>"
+							+ "<table style=\"width:80%\">"
+							+ "<tbody>"
+							+ "<tr><th>Position</th><th>ArtikelID</th><th>Artikelname</th><th>Produzent</th><th>Menge</th><th>Preis</th><th>Summe</th></tr>"
+							+ build.toString()
+							+ "</tbody>"
+							+ "</table>"
+							+ "<br><br>"
+							+ "Kundenname: "
+							+ order.getCustomer().getFirstName()
+							+ " "
+							+ order.getCustomer().getLastName()
+							+ " <br>"
+							+ "Straße: "
+							+ adresse.get(0).getStreetAndNumner()
+							+ " <br>"
+							+ "Postleitzahl: "
+							+ adresse.get(0).getPostalCode()
+							+ " <br>"
+							+ "Stadt: "
+							+ adresse.get(0).getCity()
+							+ " <br>"
+							+ " <br>"
+							+ "<br><br>"
+							+ "Versandkosten: "
+							+ deliveryCost
+							+ "<br>"
+							+ "Gesamtkosten: " + totalCost + "€ <br>"
+							+ "Gewählte Zahlungsart: RECHNUNG <br>" + "<br>",
+					"text/html; charset=utf-8");
 
 			Transport.send(message);
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
 	}
-
 
 }
