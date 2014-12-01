@@ -36,15 +36,15 @@ public class BeanProducts {
 	}
 
 	/**
-	 * Get 3 random products (bestseller)
+	 * Get random products
 	 * @return
 	 */
-	public List<Product> getRandom3Products(){
+	public List<Product> getRandomProducts(int number){
 		List<Product> listBest = new ArrayList<Product>(getProducts());
 		List<Product> listNew = new ArrayList<Product>();
 		Collections.shuffle(listBest);
 		for (int i = 0; i < listBest.size(); i++)
-			if(i<3)
+			if(i<number)
 				listNew.add(listBest.get(i));
 		return listNew;
 	}

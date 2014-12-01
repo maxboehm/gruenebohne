@@ -7,12 +7,6 @@
 		<pattern value="/" />
 		<view-id value="/_view/pages/index/_index.xhtml" />
 	</url-mapping>
-	
-	<url-mapping id="newBasket" parentId="index">
-		<pattern value="/" />
-		<view-id value="/_view/pages/index/_index.xhtml" />
-		<action>#{basket.resetBasket}</action>
-	</url-mapping>
 
 	<!-- ############ DYNAMIC PAGES ############## -->
 	<url-mapping id="image">
@@ -71,8 +65,12 @@
 		<pattern value="/meinaccount" />
 		<view-id value="/_view/pages/shop/administration/_account.xhtml" />
 	</url-mapping>
-
-
+	
+	<url-mapping id="danke">
+		<pattern value="/danke" />
+		<view-id value="/_view/pages/shop/bestellvorgang/danke/_danke.xhtml" />
+		<action>#{basket.resetBasket}</action>
+	</url-mapping>
 
 	<!-- ############ STATIC PAGES ############## -->
 	<url-mapping id="kontakt">
