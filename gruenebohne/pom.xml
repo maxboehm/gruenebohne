@@ -88,7 +88,7 @@
 								<!-- toFile HAS TO BE SET TO YOUR SPECIFIC SERVER PICKUP FOLDER -->
 								<copy
 									file="target/${project.artifactId}-${project.version}.${project.packaging}"
-									tofile="/Users/Fabian/Documents/workspace/Servers/Java EE 6 Web Profile Server-config/pickup/gruenebohne.war" />
+									tofile="/Users/Max/Documents/Programmierung/tmp/gruenebohne.war" />
 
 								<!-- toFile HAS TO BE SET TO YOUR SPECIFIC HANA SDK TOOLS FOLDER -->
 								<!-- PLEASE USE THE CONSOLE CLIENT IN ORDER TO DEPLOY TO YOU CLOUD -->
@@ -100,7 +100,7 @@
 								<!-- COMMAND: neo.sh hot-update example.properties -->
 								<copy
 									file="target/${project.artifactId}-${project.version}.${project.packaging}"
-									tofile="/Users/Fabian/Desktop/neo-javaee6-wp-sdk-2.47.3/tools/gruenebohne.war" />
+									tofile="/Users/Max/Documents/Programmierung/tmp/gruenebohne1.war" />
 							</target>
 						</configuration>
 						<goals>

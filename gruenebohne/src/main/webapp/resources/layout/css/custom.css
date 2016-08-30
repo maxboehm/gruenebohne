@@ -1,3 +1,14 @@
+.notice-demoshop{
+	background-color: red;
+}
+.notice-demoshop p{
+	text-align: center;
+    padding: 10px;
+    color: #fff;
+    font-weight: bold;
+    margin: 0;
+}
+
 html .jumbotron {
 background: url(#{resource['layout:images/food/food-slider.jpg']}) repeat center top;
 }
